@@ -20,3 +20,11 @@ class Rahavard:
     def balance_sheet(self, symbol_far):
         t = get(self.url.balance_sheet(symbol_id=self.symbol_id_.get(symbol_far)), verify=None).text
         return ced.balance_sheet(t)
+
+    def income_statements(self, symbol_far):
+        t = get(self.url.income_statements(symbol_id=self.symbol_id_.get(symbol_far)), verify=None).text
+        return ced.income_statements(t)
+
+    def cash_flow(self, symbol_far):
+        t = get(self.url.cash_flow(symbol_id=self.symbol_id_.get(symbol_far)), verify=None).text
+        return ced.cash_flow(t)
