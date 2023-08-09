@@ -32,10 +32,13 @@ class TSETMC:
     def search_instrument_code(self, symbol_far: str):
         data = get(self.url.search_ins_code(symbol_far)).json()["instrumentSearch"]
         for i in data:
-            if (ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)) and (
-                i["lastDate"] == 1
-            ):
-                return i["insCode"]
+            try:
+                if (ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)) and (
+                    i["lastDate"] == 1
+                ):
+                    return i["insCode"]
+            except:
+                print(f"Please enter the valid symbol! '{symbol_far}'")
 
     def instrument_info(self, ins_codes: list):
         """
@@ -52,43 +55,47 @@ class TSETMC:
 
     def option_info(self):
         return self.instrument_info(
-            self.market_watch(option=True)["instrument_code"].values
+            self.market_watch(option=True)["ins_code"].values
         )[cols.option_info.rep].rename(columns={"symbol": "ua"})
 
     def stock_info(self):
         return self.instrument_info(
-            self.market_watch(stock=True)["instrument_code"].values
+            self.market_watch(stock=True)["ins_code"].values
         )
 
     def etf_info(self):
         return self.instrument_info(
-            self.market_watch(etf=True)["instrument_code"].values
+            self.market_watch(etf=True)["ins_code"].values
         )
 
     def bond_info(self):
         return self.instrument_info(
-            self.market_watch(bond=True)["instrument_code"].values
+            self.market_watch(bond=True)["ins_code"].values
         )
 
-    def hist_price(self, ins_code):
+    def hist_price(self, symbol_far="فولاد", ins_code=None):
         """
         take adjusted price history.
         :param ins_code: int or str, instrument code.
+        :param symbol_far: str , instrument symbol
         :return: pandas data-frame
         """
+        if not ins_code:
+            ins_code = self.search_instrument_code(symbol_far)
 
         main = get(self.url.hist_price(ins_code)).json()["closingPriceDaily"]
-        df = pd.DataFrame(main).rename(columns=cols.hist_price.rename)[
-            cols.hist_price.rep
-        ]
+        df = pd.DataFrame(main).rename(columns=cols.hist_price.rename)
         return ced.date(df)
 
-    def adj_hist_price(self, ins_code):
+    def adj_hist_price(self, symbol_far="فولاد", ins_code=None):
         """
         take adjusted price history.
         :param ins_code: int or str, instrument code.
+        :param symbol_far: str , instrument symbol
         :return: pandas data-frame
         """
+        if not ins_code:
+            ins_code = self.search_instrument_code(symbol_far)
         return ced.adj_price(self.hist_price(ins_code))
 
     def client_type(self, ins_code):
