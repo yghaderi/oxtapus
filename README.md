@@ -1,8 +1,13 @@
 # metafid
-
+این پکیج برای پوشش بخشی از داده‌های موردِ نیاز در تصمیم‌هایِ مالی-اقتصادی توسعه داده شده است
 ## install 
+#### mac , linux
 ```bash
 python3 -m pip install metafid-data
+```
+#### windows
+```bash
+python -m pip install metafid-data
 ```
 
 ## data
@@ -15,7 +20,7 @@ tsetmc = TSETMC()
 stock_mw = tsetmc.market_watch(stock=True) #stoock
 ifb_paye_mw = tsetmc.market_watch(ifb_paye=True) # پایه‌یٍ فرابورس
 mortgage_mw = tsetmc.market_watch(mortgage=True) # اوراقٍ مسکن
-# cum_right, bond, option, futures, etf, commodity دیگر پارامترها شامل اینها است 
+# cum_right, bond, option, futures, etf, commodity دیگر پارامترها شامل اینها که می‌توان با هم هم افزوده شوند 
 m_mw = tsetmc.market_watch(stock=True, cum_right=True,etf=True )
 # ------------- option market watch -------------
 tsetmc.option_market_watch()
@@ -41,4 +46,17 @@ rah = Rahavard()
 rah.balance_sheet("فولاد")
 
 ```
-### tgju
+### econ 
+### TGJU (tgju.org)
+```python
+from mf_data.econ import TGJU
+tgju = TGJU()
+# ------------- sekke -------------
+sekke_emami = tgju.sekke_emami() # امامی
+nim_sekke = tgju.nim_sekke() # نیم
+rob_sekke = tgju.rob_sekke() # رُبع
+ons = tgju.ons() # xauusd (اُنس جهانی)
+# ------------- currency -------------
+usd_irr = tgju.usd_irr()
+```
+### ICB (Iran Central Bank)

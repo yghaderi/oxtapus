@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "metafid-data"
-version = "0.1.4"
+version = "0.1.6"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
@@ -9,6 +9,7 @@ repository = "https://github.com/yghaderi/metafid-data"
 packages = [
     {include="mf_data", from="src"},
     {include="mf_data/ise", from="src"},
+    {include="mf_data/econ", from="src"},
 ]
 
 [tool.poetry.dependencies]
