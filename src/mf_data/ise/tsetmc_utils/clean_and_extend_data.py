@@ -15,7 +15,7 @@ def mw(df):
     """
     return df.rename(columns=cols.mw.rename).rename(columns=cols.mw_ob.rename)[
         cols.mw.rep + cols.mw_ob.rep
-        ]
+    ]
 
 
 def date(df: pd.DataFrame, jdate: bool = True):
@@ -79,8 +79,9 @@ def omw(option: pd.DataFrame, ua: pd.DataFrame):
     df = df[~df.ex_date.isnull()].copy()
     df = df.assign(ex_date=df.ex_date.map(expiration_date))
     df = df.apply(pd.to_numeric, errors="ignore")
-    df = df.assign(t=df.ex_date.map(days_to_ex_date),
-                   type=df.symbol_far.map(option_type))
+    df = df.assign(
+        t=df.ex_date.map(days_to_ex_date), type=df.symbol_far.map(option_type)
+    )
     return df
 
 
@@ -106,4 +107,11 @@ def ins_info(instrument_info: str):
     }
 
 
-ced = Ced(mw=mw, omw=omw, arabic_char=arabic_char, ins_info=ins_info, date=date, adj_price=adj_price)
+ced = Ced(
+    mw=mw,
+    omw=omw,
+    arabic_char=arabic_char,
+    ins_info=ins_info,
+    date=date,
+    adj_price=adj_price,
+)

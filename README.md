@@ -1,5 +1,5 @@
 # metafid
-این پکیج برای پوشش بخشی از داده‌های موردِ نیاز در تصمیم‌هایِ مالی-اقتصادی توسعه داده شده است
+این پکیج برای پوششِ بخشی از داده‌های موردِ نیاز در تصمیم‌هایِ مالی-اقتصادی توسعه داده شده است
 ## install 
 #### mac , linux
 ```bash
@@ -20,7 +20,7 @@ tsetmc = TSETMC()
 stock_mw = tsetmc.market_watch(stock=True) #stoock
 ifb_paye_mw = tsetmc.market_watch(ifb_paye=True) # پایه‌یٍ فرابورس
 mortgage_mw = tsetmc.market_watch(mortgage=True) # اوراقٍ مسکن
-# cum_right, bond, option, futures, etf, commodity دیگر پارامترها شامل اینها که می‌توان با هم هم افزوده شوند 
+# cum_right, bond, option, futures, etf, commodity دیگر پارامترها شامل اینها است که می‌توان با-هم هم افزوده شوند 
 m_mw = tsetmc.market_watch(stock=True, cum_right=True,etf=True )
 # ------------- option market watch -------------
 tsetmc.option_market_watch()
@@ -29,13 +29,23 @@ tsetmc.stock_info()
 tsetmc.option_info()
 tsetmc.etf_info()
 # ------------- history price -------------
-tsetmc.hist_price(symbol_far= "فولاد") 
+tsetmc.hist_price(symbol_far= "شبندر") 
 # اگر میخواهید بر اساس کد نماد داده دریافت کنید
-tsetmc.hist_price(ins_code= "46348559193224090") 
+tsetmc.hist_price(ins_code= "35366681030756042") 
 # ------------- adjust history price -------------
-tsetmc.adj_hist_price(symbol_far= "فولاد") 
+tsetmc.adj_hist_price(symbol_far= "شبندر") 
 # اگر میخواهید بر اساس کد نماد داده دریافت کنید
-tsetmc.adj_hist_price("46348559193224090") 
+tsetmc.adj_hist_price(ins_code= "35366681030756042") 
+```
+### Codal(codal.ir)
+###### beta version!
+```python
+from mf_data.ise import Codal
+codal = Codal()
+codal.symbol = "شبندر"
+
+# ------------- income-statements -------------
+income_statements = codal.income_statements() # صورتِ سود یا زیان
 ```
 
 ### Rahavard
@@ -43,7 +53,7 @@ tsetmc.adj_hist_price("46348559193224090")
 from mf_data.ise import Rahavard
 rah = Rahavard()
 # ------------- balance-sheet -------------
-rah.balance_sheet("فولاد")
+rah.balance_sheet("شبندر")
 
 ```
 ### econ 

@@ -33,9 +33,9 @@ class TSETMC:
         data = get(self.url.search_ins_code(symbol_far)).json()["instrumentSearch"]
         for i in data:
             try:
-                if (ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)) and (
-                    i["lastDate"] == 1
-                ):
+                if (
+                    ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
+                ) and (i["lastDate"] == 1):
                     return i["insCode"]
             except:
                 print(f"Please enter the valid symbol! '{symbol_far}'")
@@ -54,24 +54,18 @@ class TSETMC:
         return pd.DataFrame.from_records(ins_info)
 
     def option_info(self):
-        return self.instrument_info(
-            self.market_watch(option=True)["ins_code"].values
-        )[cols.option_info.rep].rename(columns={"symbol": "ua"})
+        return self.instrument_info(self.market_watch(option=True)["ins_code"].values)[
+            cols.option_info.rep
+        ].rename(columns={"symbol": "ua"})
 
     def stock_info(self):
-        return self.instrument_info(
-            self.market_watch(stock=True)["ins_code"].values
-        )
+        return self.instrument_info(self.market_watch(stock=True)["ins_code"].values)
 
     def etf_info(self):
-        return self.instrument_info(
-            self.market_watch(etf=True)["ins_code"].values
-        )
+        return self.instrument_info(self.market_watch(etf=True)["ins_code"].values)
 
     def bond_info(self):
-        return self.instrument_info(
-            self.market_watch(bond=True)["ins_code"].values
-        )
+        return self.instrument_info(self.market_watch(bond=True)["ins_code"].values)
 
     def hist_price(self, symbol_far="فولاد", ins_code=None):
         """
