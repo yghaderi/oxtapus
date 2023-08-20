@@ -74,3 +74,6 @@ class URL:
 
     def share_change(self, ins_code):
         return f"{self.base_url}Instrument/GetInstrumentShareChange/{ins_code}"
+
+    def option_info_comp(self, ins_id):
+        return f"{self.base_url}Instrument/GetInstrumentOptionByInstrumentID/{ins_id}"

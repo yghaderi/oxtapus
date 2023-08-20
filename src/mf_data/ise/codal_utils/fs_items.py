@@ -18,7 +18,7 @@ income_statements = {
     "سود (زيان) عملياتي": "operating_income",
     "هزينه‏‌هاى مالى": "finance_expense",
     "هزينه‏ هاى مالى": "finance_expense",
-    "ساير درآمدها و هزينه ‏هاى غيرعملياتى":"net_miscellaneous_revenue",
+    "ساير درآمدها و هزينه ‏هاى غيرعملياتى": "net_miscellaneous_revenue",
     "سایر درآمدها و هزینه‌های غیرعملیاتی- درآمد سرمایه‌گذاری‌ها": "net_miscellaneous_revenue",
     "سایر درآمدها و هزینه‌های غیرعملیاتی- اقلام متفرقه": "net_miscellaneous_revenue",
     "سود (زيان) عمليات در حال تداوم قبل از ماليات": "net_income_from_continuing_operations_before_tax",

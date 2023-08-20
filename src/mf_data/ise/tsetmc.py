@@ -1,4 +1,3 @@
-from urllib.parse import urlencode
 import pandas as pd
 from ..utils import get
 from .tsetmc_utils import cols, URL, ced
@@ -17,6 +16,9 @@ class TSETMC:
         return ced.mw(df)
 
     def option_market_watch(self):
+        """get option market-watch
+        :return: pandas.DataFrame
+        """
         # option df
         option = self.market_watch(option=True).drop(cols.omw.drop, axis=1)
         # underlying asset
@@ -30,6 +32,9 @@ class TSETMC:
         return df.rename(columns=cols.omw.rename)
 
     def search_instrument_code(self, symbol_far: str):
+        """get instrument code by search symbol-far
+        :return:string
+        """
         data = get(self.url.search_ins_code(symbol_far)).json()["instrumentSearch"]
         for i in data:
             try:
@@ -40,32 +45,52 @@ class TSETMC:
             except:
                 print(f"Please enter the valid symbol! '{symbol_far}'")
 
-    def instrument_info(self, ins_codes: list):
-        """
-        take instrument info
-        :param ins_codes: list of instrument code
+    def instrument_info(self, ins_code: list):
+        """get instrument info
+        :param ins_code: list of instrument code
         :return: pandas data-frame
         """
         ins_info = []
-        for ins_code in ins_codes:
+        for i in ins_code:
             ins_info.append(
-                ced.ins_info(get(self.url.ins_info(ins_code)).json()["instrumentInfo"])
+                ced.ins_info(get(self.url.ins_info(i)).json()["instrumentInfo"])
             )
         return pd.DataFrame.from_records(ins_info)
 
+    def option_info_comp(self, ins_id):
+        """get complimentary option info.
+        :param ins_id: list, instrument id
+        :return: pandas.DataFrame
+        """
+        ins_info = []
+        for i in ins_id:
+            ins_info.append(
+                get(self.url.option_info_comp(i)).json().get("instrumentOption")
+            )
+        df = pd.DataFrame(ins_info).rename(columns=cols.option_info_comp.rename)[
+            cols.option_info_comp.rep
+        ]
+        return df
+
     def option_info(self):
-        return self.instrument_info(self.market_watch(option=True)["ins_code"].values)[
+        """get option base info
+        :return:pandas.DataFrame
+        """
+        option_mw = self.market_watch(option=True)
+        df = self.instrument_info(option_mw["ins_code"].unique())[
             cols.option_info.rep
         ].rename(columns={"symbol": "ua"})
+        df_comp = self.option_info_comp(option_mw["ins_id"].unique())
+        return df.merge(df_comp, on="ins_code", how="left")
 
     def stock_info(self):
-        return self.instrument_info(self.market_watch(stock=True)["ins_code"].values)
+        return self.instrument_info(self.market_watch(stock=True)["ins_code"].unique())
 
     def etf_info(self):
-        return self.instrument_info(self.market_watch(etf=True)["ins_code"].values)
+        return self.instrument_info(self.market_watch(etf=True)["ins_code"].unique())
 
     def bond_info(self):
-        return self.instrument_info(self.market_watch(bond=True)["ins_code"].values)
+        return self.instrument_info(self.market_watch(bond=True)["ins_code"].unique())
 
     def hist_price(self, symbol_far="فولاد", ins_code=None):
         """

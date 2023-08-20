@@ -1,8 +1,16 @@
 from collections import namedtuple
 
-
 Cols = namedtuple(
-    "Cols", ["mw", "mw_ob", "omw", "hist_price", "option_info", "client_type"]
+    "Cols",
+    [
+        "mw",
+        "mw_ob",
+        "omw",
+        "hist_price",
+        "option_info",
+        "client_type",
+        "option_info_comp",
+    ],
 )
 Property = namedtuple("Property", ["rename", "drop", "rep"])
 
@@ -104,7 +112,6 @@ _option_info = {
         "symbol_far",
         "name_far",
         "market_name",
-        "contract_size",
     ]
 }
 _client_type = {
@@ -125,7 +132,26 @@ _client_type = {
         "sell_N_Value": "val_sales_ins",
     }
 }
-
+_option_info_comp = {
+    "rename": {
+        "insCode": "ins_code",
+        "buyOP": "open_interest",
+        "contractSize": "contract_size",
+        "strikePrice": "strike_price",
+        "uaInsCode": "ua_ins_code",
+        "beginDate": "begin_date",
+        "endDate": "ex_date",
+    },
+    "rep": [
+        "ins_code",
+        "ua_ins_code",
+        "begin_date",
+        "ex_date",
+        "contract_size",
+        "strike_price",
+        "open_interest",
+    ],
+}
 mw = Property(
     rename=_mw.get("rename"), drop=_mw.get("drop"), rep=_mw.get("rep")
 )  # market-watch
@@ -150,7 +176,11 @@ client_type = Property(
     drop=_client_type.get("drop"),
     rep=_client_type.get("rep"),
 )
-
+option_info_comp = Property(
+    rename=_option_info_comp.get("rename"),
+    drop=_option_info_comp.get("drop"),
+    rep=_option_info_comp.get("rep"),
+)
 cols = Cols(
     mw=mw,
     mw_ob=mw_ob,
@@ -158,4 +188,5 @@ cols = Cols(
     hist_price=hist_price,
     option_info=option_info,
     client_type=client_type,
+    option_info_comp=option_info_comp,
 )

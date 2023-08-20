@@ -131,10 +131,10 @@ class QueryParameters:
 
 class URL(QueryParameters):
     def __init__(
-            self,
-            base_url="https://codal.ir",
-            api="https://search.codal.ir/api/search/v2/q?",
-            **kwargs,
+        self,
+        base_url="https://codal.ir",
+        api="https://search.codal.ir/api/search/v2/q?",
+        **kwargs,
     ):
         super().__init__(**kwargs)
         self.base_url = base_url

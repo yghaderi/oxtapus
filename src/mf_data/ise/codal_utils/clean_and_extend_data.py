@@ -13,7 +13,7 @@ Ced = namedtuple("Ced", ["letters", "balance_sheet", "income_statements", "cash_
 
 # ------------- ****** -------------
 def codal_parser(text):
-    t = text.split("var datasource =")[1].split("};")[0].strip()+"}"
+    t = text.split("var datasource =")[1].split("};")[0].strip() + "}"
     return json.loads(t)
 
 
