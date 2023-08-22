@@ -1,5 +1,6 @@
+import asyncio
 import pandas as pd
-from ..utils import get
+from ..utils import get, async_get
 from .tsetmc_utils import cols, URL, ced
 
 
@@ -50,23 +51,42 @@ class TSETMC:
         :param ins_code: list of instrument code
         :return: pandas data-frame
         """
-        ins_info = []
-        for i in ins_code:
-            ins_info.append(
-                ced.ins_info(get(self.url.ins_info(i)).json()["instrumentInfo"])
-            )
-        return pd.DataFrame.from_records(ins_info)
 
-    def option_info_comp(self, ins_id):
+        task = [async_get(url=self.url.ins_info(i)) for i in ins_code]
+
+        async def main():
+            return await asyncio.gather(*task)
+
+        loop = asyncio.get_event_loop()
+        ins_info_ = loop.run_until_complete(main())
+        ins_info = []
+        for i in ins_info_:
+            try:
+                ins_info.append(ced.ins_info(i.get("instrumentInfo")))
+            except AttributeError as e:
+                print(e)
+
+        df = pd.DataFrame.from_records(ins_info)
+        return df
+
+    def option_info_comp(self, ins_id: list):
         """get complimentary option info.
         :param ins_id: list, instrument id
         :return: pandas.DataFrame
         """
+        task = [async_get(url=self.url.option_info_comp(i)) for i in ins_id]
+
+        async def main():
+            return await asyncio.gather(*task)
+
+        loop = asyncio.get_event_loop()
+        ins_info_ = loop.run_until_complete(main())
         ins_info = []
-        for i in ins_id:
-            ins_info.append(
-                get(self.url.option_info_comp(i)).json().get("instrumentOption")
-            )
+        for i in ins_info_:
+            try:
+                ins_info.append(i.get("instrumentOption"))
+            except AttributeError as e:
+                print(e)
         df = pd.DataFrame(ins_info).rename(columns=cols.option_info_comp.rename)[
             cols.option_info_comp.rep
         ]
@@ -81,7 +101,7 @@ class TSETMC:
             cols.option_info.rep
         ].rename(columns={"symbol": "ua"})
         df_comp = self.option_info_comp(option_mw["ins_id"].unique())
-        return df.merge(df_comp, on="ins_code", how="left")
+        return df.merge(df_comp, on="ins_code", how="inner")
 
     def stock_info(self):
         return self.instrument_info(self.market_watch(stock=True)["ins_code"].unique())
