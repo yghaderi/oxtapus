@@ -3,7 +3,7 @@ from hazm import Normalizer
 
 normalizer = Normalizer()
 
-FSItems = namedtuple("FSItems", ["income_statements"])
+FSItems = namedtuple("FSItems", ["income_statements", "balance_sheet"])
 
 income_statements = {
     "درآمدهای عملیاتی": "revenue",
@@ -49,9 +49,79 @@ income_statements = {
     "سود (زیان) خالص هر سهم– ریال": "earning_per_share",
 }
 
+balance_sheet = {
+    "دارايي‌هاي ثابت مشهود": "tangible_fixed_assets",
+    "سرمايه‌گذاري در املاک": "investment_property",
+    "دارایی‌های نامشهود": "intangible_assets",
+    "سرمایه‌گذاری‌های بلندمدت": "long_term_investments",
+    "دریافتنی‌های بلندمدت": "long_term_receivables",
+    "سایر دارایی‌ها": "other_assets",
+    "جمع دارایی‌های غیرجاری": "total_non_current_assets",
+    "سفارشات و پیش‌پرداخت‌ها": "prepayments",
+    "موجودی مواد و کالا": "inventories",
+    "دریافتنی‌های تجاری و سایر دریافتنی‌ها": "trade_and_other_receivables",
+    "سرمایه‌گذاری‌های کوتاه‌مدت": "short_term_investments",
+    "موجودی نقد": "cash_and_equivalents",
+    "دارایی‌های نگهداری شده برای فروش": "asset_for_sale",
+    "جمع دارایی‌های جاری": "total_current_assets",
+    "جمع دارایی‌ها": "total_assets",
+    "سرمايه": "common_stock",
+    "افزایش سرمایه در جریان": "received_for_capital_advance",
+    "صرف سهام": "capital_surplus",
+    "صرف سهام خزانه": "treasury_stock_surplus",
+    "اندوخته قانونی": "legal_reserve",
+    "ساير اندوخته‌ها": "expansion_reserve",
+    "مازاد تجدیدارزيابی دارایی‌ها": "revaluation_surplus",
+    "تفاوت تسعیر ارز عملیات خارجی": "exchange_differences_on_translation",
+    "سود (زيان) انباشته": "retained_earnings",
+    "سهام خزانه": "treasury_stock",
+    "جمع حقوق مالکانه": "total_shareholders_equity",
+    "پرداختنی‌های بلندمدت": "long_term_payables",
+    "تسهیلات مالی بلندمدت": "long_term_debt",
+    "ذخیره مزایای پایان خدمت کارکنان": "allowance_for_post_retirement",
+    "جمع بدهی‌های غیرجاری": "total_non_current_liabilities",
+    "پرداختنی‌های تجاری و سایر پرداختنی‌ها": "trade_and_other_payables",
+    "مالیات پرداختنی": "deferred_tax_liabilities",
+    "سود سهام پرداختنی": "dividends_payable",
+    "تسهیلات مالی": "loan_payable",
+    "ذخایر": "provisions",
+    "پیش‌دریافت‌ها": "deferred_revenue",
+    "بدهی‌های ‌مرتبط ‌با دارایی‌های نگهداری‌‌شده برای ‌فروش": "liabilities_related_to_assets_for_sale",
+    "جمع بدهی‌های جاری": "total_current_liabilities",
+    "جمع بدهی‌ها": "total_liabilities",
+    "جمع حقوق مالکانه و بدهی‌ها": "total_liabilities_and_shareholders_equities",
+    # ---------------
+    "دارایی‌های ثابت مشهود": "tangible_fixed_assets",
+    "سرمایه‌گذاری در املاک": "investment_property",
+    "دریافتنی‌‌های بلندمدت": "long_term_receivables",
+    "پیش پرداخت‌ها و سفارشات": "prepayments",
+    "دریافتنی‌‌های تجاری": "trade_and_other_receivables",
+    "دریافتنی‌‌های غیرتجاری": "trade_and_other_receivables",
+    "سرمایه‌گذاری‌‌های کوتاه مدت": "short_term_investments",
+    "سرمایه": "common_stock",
+    "افزایش (کاهش) سرمایه در جریان": "received_for_capital_advance",
+    "صرف (کسر) سهام": "capital_surplus",
+    "سایر اندوخته‌ها": "expansion_reserve",
+    "مازاد تجدید ارزیابی دارایی‌های نگهداری شده برای فروش": "revaluation_surplus",
+    "مازاد تجدید ارزیابی دارایی‌ها": "revaluation_surplus",
+    "تفاوت تسعیر ناشی از تبدیل به واحد پول گزارشگری": "exchange_differences_on_translation",
+    "اندوخته تسعیر ارز دارایی‌ها و بدهی‌های شرکت‌های دولتی": "exchange_differences_on_translation",
+    "سود (زیان) انباشته": "retained_earnings",
+    "جمع حقوق صاحبان سهام": "total_shareholders_equity",
+    "پیش‌دریافت‌های غیرجاری": "long_term_payables",
+    "پرداختنی‌های تجاری": "trade_and_other_payables",
+    "پرداختنی‌های غیرتجاری": "trade_and_other_payables",
+    "پیش‌دریافت‌های جاری": "deferred_revenue",
+    "بدهی‌های مرتبط با دارایی‌های نگهداری شده برای فروش": "liabilities_related_to_assets_for_sale",
+    "جمع بدهی‌ها و حقوق صاحبان سهام": "total_liabilities_and_shareholders_equities",
+}
+
 
 def normalize_key(dict_: dict):
     return {normalizer.normalize(key): val for key, val in dict_.items()}
 
 
-fs_items = FSItems(income_statements=normalize_key(income_statements))
+fs_items = FSItems(
+    income_statements=normalize_key(income_statements),
+    balance_sheet=normalize_key(balance_sheet),
+)

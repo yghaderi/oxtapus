@@ -53,3 +53,8 @@ class Codal(URL):
                 print(url)
 
         return df[cols.income_statements.rep]
+
+    def balance_sheet(self):
+        letters = self.letters()
+        for i, row in letters.iterrows():
+            url = self.financial_statements(letter_url=row.url, sheet_id=1)
