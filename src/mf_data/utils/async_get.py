@@ -18,7 +18,6 @@ def concurrency_limit_decorator(limit=3, retry_limit=5):
                 retries = 0
                 while retry_limit > retries:
                     try:
-                        time.sleep(2)
                         return await func(*args, **kwargs)
                     except Exception as e:
                         retries += 1
