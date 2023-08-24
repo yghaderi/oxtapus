@@ -14,22 +14,24 @@ def concurrency_limit_decorator(limit=3, retry_limit=5):
     def executor(func):
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            retries = 0
-            while retry_limit > retries:
-                try:
-                    async with sem:
+            async with sem:
+                retries = 0
+                while retry_limit > retries:
+                    try:
+                        time.sleep(2)
                         return await func(*args, **kwargs)
-                except Exception as e:
-                    retries += 1
-                    if retries == retry_limit:
-                        print(e)
+                    except Exception as e:
+                        retries += 1
+                        time.sleep(retries)
+                        if retries == retry_limit:
+                            print(e)
 
         return wrapper
 
     return executor
 
 
-@concurrency_limit_decorator(2, 5)
+@concurrency_limit_decorator(10, 5)
 async def async_get(url, timeout=3, response_: str = "json"):
     async with aiohttp.ClientSession() as session:
         async with session.get(
