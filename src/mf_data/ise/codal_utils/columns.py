@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-Cols = namedtuple("Cols", ["letters", "income_statements"])
+Cols = namedtuple("Cols", ["letters", "income_statements", "balance_sheet"])
 Property = namedtuple("Property", ["rename", "drop", "rep"])
 
 _letters = {
@@ -60,6 +60,57 @@ _income_statements = {
     ]
 }
 
+_balance_sheet = {
+    "rep": [
+        "symbol",
+        "company_name",
+        "title",
+        "issue_datetime",
+        "period_end_to_date",
+        "tangible_fixed_assets",
+        "investment_property",
+        "intangible_assets",
+        "long_term_investments",
+        "long_term_receivables",
+        "other_assets",
+        "total_non_current_assets",
+        "prepayments",
+        "inventories",
+        "trade_and_other_receivables",
+        "short_term_investments",
+        "cash_and_equivalents",
+        "asset_for_sale",
+        "total_current_assets",
+        "total_assets",
+        "common_stock",
+        "received_for_capital_advance",
+        "capital_surplus",
+        "treasury_stock_surplus",
+        "legal_reserve",
+        "expansion_reserve",
+        "revaluation_surplus",
+        "exchange_differences_on_translation",
+        "retained_earnings",
+        "treasury_stock",
+        "total_shareholders_equity",
+        "long_term_liabilities",
+        "long_term_debt",
+        "allowance_for_post_retirement",
+        "total_non_current_liabilities",
+        "trade_and_other_liabilities",
+        "deferred_tax_liabilities",
+        "dividends_payable",
+        "loan_payable",
+        "provisions",
+        "deferred_revenue",
+        "liabilities_related_to_assets_for_sale",
+        "total_current_liabilities",
+        "total_liabilities",
+        "total_liabilities_and_shareholders_equities",
+        "url",
+    ]
+}
+
 letters = Property(
     rename=_letters.get("rename"), drop=_letters.get("drop"), rep=_letters.get("rep")
 )
@@ -68,5 +119,10 @@ income_statements = Property(
     drop=_income_statements.get("drop"),
     rep=_income_statements.get("rep"),
 )
+balance_sheet = Property(
+    rename=_balance_sheet.get("rename"),
+    drop=_balance_sheet.get("drop"),
+    rep=_balance_sheet.get("rep"),
+)
 
-cols = Cols(letters=letters, income_statements=income_statements)
+cols = Cols(letters=letters, income_statements=income_statements, balance_sheet=balance_sheet)

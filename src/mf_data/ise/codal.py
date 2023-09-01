@@ -31,7 +31,8 @@ class Codal(URL):
         for i, row in letters.iterrows():
             url = self.financial_statements(letter_url=row.url, sheet_id=1)
             try:
-                df_ = ced.income_statements(url=url)
+                r = get(url, verify=True, timeout=(2, 10))
+                df_ = ced.income_statements(r.text)
                 df_ = df_.join(
                     pd.DataFrame.from_dict(
                         [
@@ -48,13 +49,38 @@ class Codal(URL):
                     )
                 )
                 df = pd.concat([df, df_])
-            except:
-                print("invalid income-statements url or other problem!\n")
+            except Exception as e:
+                print(e)
                 print(url)
 
         return df[cols.income_statements.rep]
 
     def balance_sheet(self):
         letters = self.letters()
+        df = pd.DataFrame()
         for i, row in letters.iterrows():
-            url = self.financial_statements(letter_url=row.url, sheet_id=1)
+            url = self.financial_statements(letter_url=row.url, sheet_id=0)
+            try:
+                r = get(url, verify=True, timeout=(2, 10))
+                df_ = ced.balance_sheet(r.text)
+                df_ = df_.join(
+                    pd.DataFrame.from_dict(
+                        [
+                            row[
+                                [
+                                    "symbol",
+                                    "company_name",
+                                    "title",
+                                    "issue_datetime",
+                                    "url",
+                                ]
+                            ].to_dict()
+                        ]
+                    )
+                )
+                df = pd.concat([df, df_])
+            except Exception as e:
+                print(e)
+                print(url)
+        return df[cols.balance_sheet.rep]
+
