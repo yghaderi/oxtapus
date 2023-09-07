@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "metafid-data"
-version = "0.2.1"
+name = "oxtapus"
+version = "0.2.3"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
-repository = "https://github.com/yghaderi/metafid-data"
+repository = "https://github.com/yghaderi/oxtapus"
 
 packages = [
-    {include="mf_data", from="src"},
-    {include="mf_data/ise", from="src"},
-    {include="mf_data/econ", from="src"},
+    {include="oxtapus", from="src"},
+    {include="oxtapus/ise", from="src"},
+    {include="oxtapus/econ", from="src"},
 ]
 
 [tool.poetry.dependencies]

@@ -1,3 +1,4 @@
+import functools
 import asyncio
 import pandas as pd
 from ..utils import get, async_get
@@ -40,7 +41,7 @@ class TSETMC:
         for i in data:
             try:
                 if (
-                    ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
+                        ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
                 ) and (i["lastDate"] == 1):
                     return i["insCode"]
             except:
@@ -112,20 +113,27 @@ class TSETMC:
     def bond_info(self):
         return self.instrument_info(self.market_watch(bond=True)["ins_code"].unique())
 
+    def handle_args(func):
+        @functools.wraps(func)
+        def wrapper(self, symbol_far="فولاد", ins_code=None, *args, **kwargs):
+            if not ins_code:
+                ins_code = self.search_instrument_code(symbol_far)
+            return func(self, symbol_far, ins_code)
+
+        return wrapper
+
+    @handle_args
     def hist_price(self, symbol_far="فولاد", ins_code=None):
-        """
-        take adjusted price history.
+        """take adjusted price history.
         :param ins_code: int or str, instrument code.
         :param symbol_far: str , instrument symbol
         :return: pandas data-frame
         """
-        if not ins_code:
-            ins_code = self.search_instrument_code(symbol_far)
-
         main = get(self.url.hist_price(ins_code)).json()["closingPriceDaily"]
         df = pd.DataFrame(main).rename(columns=cols.hist_price.rename)
         return ced.date(df)
 
+    @handle_args
     def adj_hist_price(self, symbol_far="فولاد", ins_code=None):
         """
         take adjusted price history.
@@ -133,24 +141,44 @@ class TSETMC:
         :param symbol_far: str , instrument symbol
         :return: pandas data-frame
         """
-        if not ins_code:
-            ins_code = self.search_instrument_code(symbol_far)
         return ced.adj_price(self.hist_price(ins_code))
 
     def client_type(self, ins_code):
-        """
-        take Individual and Institutional trade data
+        """take Individual and Institutional trade data
         :param ins_code: int or str, instrument code.
         :return: pandas data-frame
         """
-
         main = get(self.url.client_type(ins_code)).json()["clientType"]
         df = pd.DataFrame(main)
         df = df.rename(columns=cols.client_type.rename)[cols.client_type.rep]
         return ced.date(df).applymap(int)
 
-    @staticmethod
-    def share_change(ins_code):
-        url = (
-            f"http://cdn.tsetmc.com/api/Instrument/GetInstrumentShareChange/{ins_code}"
-        )
+    @handle_args
+    def share_change(self, symbol_far="فولاد", ins_code=None):
+        """Get share change history.
+        :param ins_code: int or str, instrument code.
+        :param symbol_far: str , instrument symbol
+        :return: pandas data-frame
+        """
+        main = get(self.url.share_change(ins_code)).json().get("instrumentShareChange")
+        df = pd.DataFrame(main).rename(columns=cols.share_change.rename)[cols.share_change.rep]
+        return ced.date(df)
+
+    def all_index(self):
+        """Get the latest data of all index
+        :return pandas data-frame"""
+        main = get(self.url.all_index()).json()["indexB1"]
+        return pd.DataFrame(main).rename(columns=cols.all_index.rename)[cols.all_index.rep]
+
+    def index_ticker_symbols(self, index_code):
+        """Get associated symbols that track by index
+        :param index_code: int or str
+        :return pandas data-frame
+        """
+        main = get(self.url.index_ticker_symbols(index_code)).json()["indexCompany"]
+        return pd.DataFrame(ced.index_traker_symbols(index_code, main))
+
+    def index_hist(self, index_code):
+        main = get((self.url.index_hist(index_code))).json()["indexB2"]
+        df = pd.DataFrame(main).rename(columns=cols.index_hist.rename)
+        return ced.date(df)

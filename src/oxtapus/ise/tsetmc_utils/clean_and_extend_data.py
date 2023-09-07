@@ -1,11 +1,10 @@
 import jdatetime
 from collections import namedtuple
 import re
-import json
 import pandas as pd
 from .columns import cols
 
-Ced = namedtuple("Ced", ["mw", "omw", "arabic_char", "ins_info", "date", "adj_price"])
+Ced = namedtuple("Ced", ["mw", "omw", "arabic_char", "ins_info", "date", "adj_price", "index_traker_symbols"])
 
 
 def mw(df):
@@ -15,7 +14,7 @@ def mw(df):
     """
     return df.rename(columns=cols.mw.rename).rename(columns=cols.mw_ob.rename)[
         cols.mw.rep + cols.mw_ob.rep
-    ]
+        ]
 
 
 def date(df: pd.DataFrame, jdate: bool = True):
@@ -107,6 +106,16 @@ def ins_info(instrument_info: str):
     }
 
 
+def index_traker_symbols(index_code: int, data: dict):
+    """Parse index traker symbols data
+    :param index_code: int
+    :param data: dict
+    :return list of dict
+    """
+    return [{"industry_code": index_code, 'instrument_code': ins["instrument"]['insCode'],
+             "symbol_far": ins["instrument"]["lVal18AFC"]} for ins in data]
+
+
 ced = Ced(
     mw=mw,
     omw=omw,
@@ -114,4 +123,5 @@ ced = Ced(
     ins_info=ins_info,
     date=date,
     adj_price=adj_price,
+    index_traker_symbols=index_traker_symbols
 )

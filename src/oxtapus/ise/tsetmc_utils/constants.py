@@ -77,3 +77,12 @@ class URL:
 
     def option_info_comp(self, ins_id):
         return f"{self.base_url}Instrument/GetInstrumentOptionByInstrumentID/{ins_id}"
+
+    def all_index(self):
+        return f"{self.base_url}Index/GetIndexB1LastAll/All/1"
+
+    def index_ticker_symbols(self, index_code):
+        return f"{self.base_url}ClosingPrice/GetIndexCompany/{index_code}"
+
+    def index_hist(self, index_code):
+        return f"{self.base_url}Index/GetIndexB2History/{index_code}"

@@ -10,6 +10,9 @@ Cols = namedtuple(
         "option_info",
         "client_type",
         "option_info_comp",
+        "share_change",
+        "all_index",
+        "index_hist"
     ],
 )
 Property = namedtuple("Property", ["rename", "drop", "rep"])
@@ -152,6 +155,37 @@ _option_info_comp = {
         "open_interest",
     ],
 }
+
+_share_change = {
+    "rename": {
+        "insCode": "ins_code",
+        "dEven": "date",
+        "numberOfShareNew": "current",
+        "numberOfShareOld": "previous",
+    },
+    "rep": ["ins_code", "date", "previous", "current"]
+}
+
+_all_index = {
+    "rename": {
+        "insCode": "industry_code",
+        "lVal30": "name",
+        "hEven": "time",
+        "xDrNivJIdx004": "close",
+        "xPbNivJIdx004": "low",
+        "xPhNivJIdx004": "high",
+        "indexChange": "change",
+        "xVarIdxJRfV": "pct_change"
+    },
+    "rep": ["industry_code", "name", "time", "close", "low", "high", "change", "pct_change"]
+}
+
+_index_hist = {
+    "rename": {"insCode": "industry_code", "dEven": "date", "xNivInuClMresIbs": "close", "xNivInuPbMresIbs": "low",
+               "xNivInuPhMresIbs": "high"}
+
+}
+
 mw = Property(
     rename=_mw.get("rename"), drop=_mw.get("drop"), rep=_mw.get("rep")
 )  # market-watch
@@ -181,6 +215,24 @@ option_info_comp = Property(
     drop=_option_info_comp.get("drop"),
     rep=_option_info_comp.get("rep"),
 )
+share_change = Property(
+    rename=_share_change.get("rename"),
+    drop=_share_change.get("drop"),
+    rep=_share_change.get("rep"),
+)
+
+all_index = Property(
+    rename=_all_index.get("rename"),
+    drop=_all_index.get("drop"),
+    rep=_all_index.get("rep"),
+)
+
+index_hist = Property(
+    rename=_index_hist.get("rename"),
+    drop=_index_hist.get("drop"),
+    rep=_index_hist.get("rep"),
+)
+
 cols = Cols(
     mw=mw,
     mw_ob=mw_ob,
@@ -189,4 +241,7 @@ cols = Cols(
     option_info=option_info,
     client_type=client_type,
     option_info_comp=option_info_comp,
+    share_change=share_change,
+    all_index=all_index,
+    index_hist= index_hist
 )
