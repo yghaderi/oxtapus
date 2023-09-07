@@ -20,11 +20,11 @@ from oxtapus.ise import TSETMC
 tsetmc = TSETMC()
 
 # ------------- market watch -------------
-stock_mw = tsetmc.market_watch(stock=True) #stoock
-ifb_paye_mw = tsetmc.market_watch(ifb_paye=True) # پایه‌یٍ فرابورس
-mortgage_mw = tsetmc.market_watch(mortgage=True) # اوراقٍ مسکن
+tsetmc.market_watch(stock=True) #stoock
+tsetmc.market_watch(ifb_paye=True) # پایه‌یٍ فرابورس
+tsetmc.market_watch(mortgage=True) # اوراقٍ مسکن
 # cum_right, bond, option, futures, etf, commodity دیگر پارامترها شامل اینها است که می‌توان با-هم هم افزوده شوند 
-m_mw = tsetmc.market_watch(stock=True, cum_right=True,etf=True )
+tsetmc.market_watch(stock=True, cum_right=True,etf=True )
 
 # ------------- option market watch -------------
 tsetmc.option_market_watch()
@@ -63,14 +63,15 @@ codal = Codal()
 codal.symbol = "شبندر"
 
 # ------------- income-statements -------------
-income_statements = codal.income_statements() # صورتِ سود یا زیان
-balance_sheet = codal.balance_sheet() # صورت-وضعیتِ مالی
+codal.income_statements() # صورتِ سود یا زیان
+codal.balance_sheet() # صورت-وضعیتِ مالی
 ```
 
 ### Rahavard
 ```python
 from oxtapus.ise import Rahavard
 rah = Rahavard()
+
 # ------------- balance-sheet -------------
 rah.balance_sheet("شبندر")
 
@@ -80,12 +81,14 @@ rah.balance_sheet("شبندر")
 ```python
 from oxtapus.econ import TGJU
 tgju = TGJU()
+
 # ------------- sekke -------------
-sekke_emami = tgju.sekke_emami() # امامی
-nim_sekke = tgju.nim_sekke() # نیم
-rob_sekke = tgju.rob_sekke() # رُبع
-ons = tgju.ons() # xauusd (اُنس جهانی)
+tgju.sekke_emami() # امامی
+tgju.nim_sekke() # نیم
+tgju.rob_sekke() # رُبع
+tgju.ons() # xauusd (اُنس جهانی)
+
 # ------------- currency -------------
-usd_irr = tgju.usd_irr()
+tgju.usd_irr()
 ```
 ### ICB (Iran Central Bank)
