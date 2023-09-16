@@ -12,7 +12,9 @@ Cols = namedtuple(
         "option_info_comp",
         "share_change",
         "all_index",
-        "index_hist"
+        "index_hist",
+        "intraday_trades",
+        "last_ins_info",
     ],
 )
 Property = namedtuple("Property", ["rename", "drop", "rep"])
@@ -163,7 +165,7 @@ _share_change = {
         "numberOfShareNew": "current",
         "numberOfShareOld": "previous",
     },
-    "rep": ["ins_code", "date", "previous", "current"]
+    "rep": ["ins_code", "date", "previous", "current"],
 }
 
 _all_index = {
@@ -175,15 +177,79 @@ _all_index = {
         "xPbNivJIdx004": "low",
         "xPhNivJIdx004": "high",
         "indexChange": "change",
-        "xVarIdxJRfV": "pct_change"
+        "xVarIdxJRfV": "pct_change",
     },
-    "rep": ["industry_code", "name", "time", "close", "low", "high", "change", "pct_change"]
+    "rep": [
+        "industry_code",
+        "name",
+        "time",
+        "close",
+        "low",
+        "high",
+        "change",
+        "pct_change",
+    ],
 }
 
 _index_hist = {
-    "rename": {"insCode": "industry_code", "dEven": "date", "xNivInuClMresIbs": "close", "xNivInuPbMresIbs": "low",
-               "xNivInuPhMresIbs": "high"}
+    "rename": {
+        "insCode": "industry_code",
+        "dEven": "date",
+        "xNivInuClMresIbs": "close",
+        "xNivInuPbMresIbs": "low",
+        "xNivInuPhMresIbs": "high",
+    }
+}
 
+_intraday_trades = {
+    "rename": {
+        "nTran": "trade_number",
+        "hEven": "time",
+        "qTitTran": "volume",
+        "pTran": "price",
+    },
+    "rep": ["datetime", "trade_number", "price", "volume"],
+}
+
+_last_ins_info = {
+    "rename": {
+        "cEtaval": "status",
+        "cEtavalTitle": "status_far",
+        "lastHEven": "time",
+        "finalLastDate": "date",
+        "priceMin": "low",
+        "priceMax": "high",
+        "priceYesterday": "y_final",
+        "priceFirst": "open",
+        "dEven": "event_date",
+        "hEven": "event_time",
+        "pClosing": "final",
+        "iClose": "i_close",
+        "yClose": "y_close",
+        "pDrCotVal": "close",
+        "zTotTran": "trade_count",
+        "qTotTran5J": "volume",
+        "qTotCap": "value",
+    },
+    "rep": [
+        "date",
+        "time",
+        "status",
+        "status_far",
+        "open",
+        "low",
+        "high",
+        "close",
+        "final",
+        "y_final",
+        "trade_count",
+        "volume",
+        "value",
+        "event_date",
+        "event_time",
+        "i_close",
+        "y_close",
+    ],
 }
 
 mw = Property(
@@ -233,6 +299,18 @@ index_hist = Property(
     rep=_index_hist.get("rep"),
 )
 
+intraday_trades = Property(
+    rename=_intraday_trades.get("rename"),
+    drop=_intraday_trades.get("drop"),
+    rep=_intraday_trades.get("rep"),
+)
+
+last_ins_info = Property(
+    rename=_last_ins_info.get("rename"),
+    drop=_last_ins_info.get("drop"),
+    rep=_last_ins_info.get("rep"),
+)
+
 cols = Cols(
     mw=mw,
     mw_ob=mw_ob,
@@ -243,5 +321,7 @@ cols = Cols(
     option_info_comp=option_info_comp,
     share_change=share_change,
     all_index=all_index,
-    index_hist= index_hist
+    index_hist=index_hist,
+    intraday_trades=intraday_trades,
+    last_ins_info=last_ins_info,
 )

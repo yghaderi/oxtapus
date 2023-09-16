@@ -83,4 +83,3 @@ class Codal(URL):
                 print(e)
                 print(url)
         return df[cols.balance_sheet.rep]
-

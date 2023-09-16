@@ -1,5 +1,6 @@
 import functools
 import asyncio
+import datetime
 import pandas as pd
 from ..utils import get, async_get
 from .tsetmc_utils import cols, URL, ced
@@ -41,7 +42,7 @@ class TSETMC:
         for i in data:
             try:
                 if (
-                        ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
+                    ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
                 ) and (i["lastDate"] == 1):
                     return i["insCode"]
             except:
@@ -161,14 +162,18 @@ class TSETMC:
         :return: pandas data-frame
         """
         main = get(self.url.share_change(ins_code)).json().get("instrumentShareChange")
-        df = pd.DataFrame(main).rename(columns=cols.share_change.rename)[cols.share_change.rep]
+        df = pd.DataFrame(main).rename(columns=cols.share_change.rename)[
+            cols.share_change.rep
+        ]
         return ced.date(df)
 
     def all_index(self):
         """Get the latest data of all index
         :return pandas data-frame"""
         main = get(self.url.all_index()).json()["indexB1"]
-        return pd.DataFrame(main).rename(columns=cols.all_index.rename)[cols.all_index.rep]
+        return pd.DataFrame(main).rename(columns=cols.all_index.rename)[
+            cols.all_index.rep
+        ]
 
     def index_ticker_symbols(self, index_code):
         """Get associated symbols that track by index
@@ -182,3 +187,40 @@ class TSETMC:
         main = get((self.url.index_hist(index_code))).json()["indexB2"]
         df = pd.DataFrame(main).rename(columns=cols.index_hist.rename)
         return ced.date(df)
+
+    @handle_args
+    def last_ins_info(self, symbol_far="فولاد", ins_code=None):
+        main = get(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"]
+        df = pd.DataFrame([ced.last_ins_info(main)]).rename(
+            columns=cols.last_ins_info.rename
+        )[cols.last_ins_info.rep]
+        return df
+
+    @handle_args
+    def intraday_trades(self, symbol_far="فولاد", ins_code=None):
+        """Get intraday instrument trade"""
+        main = get(url=self.url.intraday_trades(ins_code)).json()["trade"]
+        date = get(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"][
+            "finalLastDate"
+        ]
+        df = pd.DataFrame(main).rename(columns=cols.intraday_trades.rename)
+        df = df.assign(
+            datetime=df.time.apply(
+                lambda x: datetime.datetime.strptime(f"{date} {x}", "%Y%m%d %H%M%S")
+            )
+        )
+        return df[cols.intraday_trades.rep]
+
+    def intraday_trades_base_timeframe(
+        self, symbol_far="فولاد", ins_code=None, timeframe: "str" = "5T"
+    ) -> pd.DataFrame:
+        """Get intraday instrument trade base on time-frame
+        :param timeframe: str like 5T -> 5 minute, 30S -> 30 second , ..."""
+        df = self.intraday_trades(symbol_far=symbol_far, ins_code=ins_code).set_index(
+            "datetime"
+        )
+        df = df.resample(timeframe.upper()).agg(
+            {"price": ["first", "min", "max", "last"], "volume": "sum"}
+        )
+        df.columns = ["open", "low", "high", "close", "volume"]
+        return df

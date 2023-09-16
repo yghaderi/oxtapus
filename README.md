@@ -54,6 +54,24 @@ tsetmc.all_index() # همه‌یِ شاخص‌ها-شاملِ نام، کد، و
 tsetmc.index_ticker_symbols(index_code=13235969998952202) # نمادهایی که شاخصِ *** دنبال می‌کند
 tsetmc.index_hist(index_code=13235969998952202)
 
+# ------------- intraday trade -------------
+tsetmc.intraday_trades(symbol_far= "شبندر") 
+# اگر میخواهید بر اساس کد نماد داده دریافت کنید
+tsetmc.intraday_trades(ins_code= "35366681030756042") 
+
+# برای دریافتِ معاملاتِ درو-روزی بر اساسِ تایم-فریم
+# T به معنایِ دقیقه
+# S به معنای ثانیه.
+tsetmc.intraday_trades_base_timeframe(symbol_far= "شبندر", timeframe="5T") 
+# اگر میخواهید بر اساس کد نماد داده دریافت کنید
+tsetmc.intraday_trades_base_timeframe(ins_code= "35366681030756042",timeframe= "5T") 
+
+# ------------- last ins info -------------
+# آخرین اطلاعات مربوط به قیمت و حجم و ارزش معامله‌هایِ نماد بر رویِ تابلو
+tsetmc.last_ins_info(symbol_far= "شبندر") 
+# اگر میخواهید بر اساس کد نماد داده دریافت کنید
+tsetmc.last_ins_info(ins_code= "35366681030756042") 
+
 ```
 ### Codal(codal.ir)
 ###### beta version!

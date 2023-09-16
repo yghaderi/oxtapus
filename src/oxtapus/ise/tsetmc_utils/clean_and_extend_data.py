@@ -4,7 +4,19 @@ import re
 import pandas as pd
 from .columns import cols
 
-Ced = namedtuple("Ced", ["mw", "omw", "arabic_char", "ins_info", "date", "adj_price", "index_traker_symbols"])
+Ced = namedtuple(
+    "Ced",
+    [
+        "mw",
+        "omw",
+        "arabic_char",
+        "ins_info",
+        "date",
+        "adj_price",
+        "index_traker_symbols",
+        "last_ins_info",
+    ],
+)
 
 
 def mw(df):
@@ -14,7 +26,7 @@ def mw(df):
     """
     return df.rename(columns=cols.mw.rename).rename(columns=cols.mw_ob.rename)[
         cols.mw.rep + cols.mw_ob.rep
-        ]
+    ]
 
 
 def date(df: pd.DataFrame, jdate: bool = True):
@@ -112,8 +124,18 @@ def index_traker_symbols(index_code: int, data: dict):
     :param data: dict
     :return list of dict
     """
-    return [{"industry_code": index_code, 'instrument_code': ins["instrument"]['insCode'],
-             "symbol_far": ins["instrument"]["lVal18AFC"]} for ins in data]
+    return [
+        {
+            "industry_code": index_code,
+            "instrument_code": ins["instrument"]["insCode"],
+            "symbol_far": ins["instrument"]["lVal18AFC"],
+        }
+        for ins in data
+    ]
+
+
+def last_ins_info(last_info: dict) -> dict:
+    return {**last_info.pop("instrumentState"), **last_info}
 
 
 ced = Ced(
@@ -123,5 +145,6 @@ ced = Ced(
     ins_info=ins_info,
     date=date,
     adj_price=adj_price,
-    index_traker_symbols=index_traker_symbols
+    index_traker_symbols=index_traker_symbols,
+    last_ins_info=last_ins_info,
 )

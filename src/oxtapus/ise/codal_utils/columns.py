@@ -125,4 +125,6 @@ balance_sheet = Property(
     rep=_balance_sheet.get("rep"),
 )
 
-cols = Cols(letters=letters, income_statements=income_statements, balance_sheet=balance_sheet)
+cols = Cols(
+    letters=letters, income_statements=income_statements, balance_sheet=balance_sheet
+)

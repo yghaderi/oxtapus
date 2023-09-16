@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oxtapus"
-version = "0.2.3"
+version = "0.2.4"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
@@ -19,6 +19,9 @@ jdatetime = "^4.1.1"
 hazm = "^0.9.3"
 aiohttp = "^3.8.5"
 requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+html5lib = "^1.1"
+lxml = "^4.9.3"
 
 
 [build-system]

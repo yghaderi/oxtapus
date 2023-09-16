@@ -2,7 +2,7 @@ from urllib.parse import urlencode
 
 
 class URL:
-    def __init__(self, base_url="http://cdn.tsetmc.com/api/"):
+    def __init__(self, base_url="http://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
     def mw(
@@ -58,31 +58,37 @@ class URL:
             "showTraded": "false",
             "withBestLimits": "true",
         }
-        return f"{self.base_url}ClosingPrice/GetMarketWatch?{urlencode(param)}"
+        return f"{self.base_url}/ClosingPrice/GetMarketWatch?{urlencode(param)}"
 
     def search_ins_code(self, symbol_far):
-        return f"{self.base_url}Instrument/getinstrumentsearch/{symbol_far}"
+        return f"{self.base_url}/Instrument/getinstrumentsearch/{symbol_far}"
 
     def ins_info(self, ins_code):
-        return f"{self.base_url}Instrument/GetInstrumentInfo/{ins_code}"
+        return f"{self.base_url}/Instrument/GetInstrumentInfo/{ins_code}"
 
     def hist_price(self, ins_code):
-        return f"{self.base_url}ClosingPrice/GetClosingPriceDailyList/{ins_code}/0"
+        return f"{self.base_url}/ClosingPrice/GetClosingPriceDailyList/{ins_code}/0"
 
     def client_type(self, ins_code):
-        f"{self.base_url}ClientType/GetClientTypeHistory/{ins_code}"
+        f"{self.base_url}/ClientType/GetClientTypeHistory/{ins_code}"
 
     def share_change(self, ins_code):
-        return f"{self.base_url}Instrument/GetInstrumentShareChange/{ins_code}"
+        return f"{self.base_url}/Instrument/GetInstrumentShareChange/{ins_code}"
 
     def option_info_comp(self, ins_id):
-        return f"{self.base_url}Instrument/GetInstrumentOptionByInstrumentID/{ins_id}"
+        return f"{self.base_url}/Instrument/GetInstrumentOptionByInstrumentID/{ins_id}"
 
     def all_index(self):
-        return f"{self.base_url}Index/GetIndexB1LastAll/All/1"
+        return f"{self.base_url}/Index/GetIndexB1LastAll/All/1"
 
     def index_ticker_symbols(self, index_code):
-        return f"{self.base_url}ClosingPrice/GetIndexCompany/{index_code}"
+        return f"{self.base_url}/ClosingPrice/GetIndexCompany/{index_code}"
 
     def index_hist(self, index_code):
-        return f"{self.base_url}Index/GetIndexB2History/{index_code}"
+        return f"{self.base_url}/Index/GetIndexB2History/{index_code}"
+
+    def intraday_trades(self, ins_code):
+        return f"{self.base_url}/Trade/GetTrade/{ins_code}"
+
+    def last_ins_info(self, ins_code):
+        return f"{self.base_url}/ClosingPrice/GetClosingPriceInfo/{ins_code}"

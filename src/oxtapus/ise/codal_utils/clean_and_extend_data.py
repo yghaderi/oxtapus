@@ -36,9 +36,7 @@ def letters(url):
 
 # ------------- balance_sheet -------------
 def clean_balance_sheet(df):
-    df.item = (
-        df.item.fillna("").map(normalizer.normalize).map(fs_items.balance_sheet)
-    )
+    df.item = df.item.fillna("").map(normalizer.normalize).map(fs_items.balance_sheet)
     df.dropna(inplace=True)
     df.iloc[:, 1] = pd.to_numeric(df.iloc[:, 1], errors="raise")
     df.dropna(inplace=True)
@@ -59,7 +57,7 @@ def balance_sheet(r):
     try:
         if dict_["sheets"][0]["tables"][1]["aliasName"] == "BalanceSheet":
             records = dict_["sheets"][0]["tables"][1]["cells"]
-    except :
+    except:
         records = dict_["sheets"][0]["tables"][0]["cells"]
     cols_ = ["item", dict_["periodEndToDate"]]
     df = pd.DataFrame()
@@ -70,7 +68,7 @@ def balance_sheet(r):
     if len_cols > 7:
         df_right = df.iloc[:, :2]
         df_right.columns = cols_
-        df_left = df.iloc[:, int(len_cols / 2):int(len_cols / 2 + 2)]
+        df_left = df.iloc[:, int(len_cols / 2) : int(len_cols / 2 + 2)]
         df_left.columns = cols_
         df = pd.concat([df_right, df_left])
         return clean_balance_sheet(df)
