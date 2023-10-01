@@ -92,3 +92,6 @@ class URL:
 
     def last_ins_info(self, ins_code):
         return f"{self.base_url}/ClosingPrice/GetClosingPriceInfo/{ins_code}"
+
+    def last_market_activity(self):
+        return f"{self.base_url}/MarketData/GetMarketOverview/1"

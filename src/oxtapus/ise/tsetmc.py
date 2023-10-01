@@ -42,7 +42,7 @@ class TSETMC:
         for i in data:
             try:
                 if (
-                    ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
+                        ced.arabic_char(i["lVal18AFC"]) == ced.arabic_char(symbol_far)
                 ) and (i["lastDate"] == 1):
                     return i["insCode"]
             except:
@@ -212,7 +212,7 @@ class TSETMC:
         return df[cols.intraday_trades.rep]
 
     def intraday_trades_base_timeframe(
-        self, symbol_far="فولاد", ins_code=None, timeframe: "str" = "5T"
+            self, symbol_far="فولاد", ins_code=None, timeframe: "str" = "5T"
     ) -> pd.DataFrame:
         """Get intraday instrument trade base on time-frame
         :param timeframe: str like 5T -> 5 minute, 30S -> 30 second , ..."""
@@ -224,3 +224,9 @@ class TSETMC:
         )
         df.columns = ["open", "low", "high", "close", "volume"]
         return df
+
+    def get_last_market_activity_datetime(self):
+        main = get(self.url.last_market_activity()).json().get("marketOverview")
+        date = main.get("marketActivityDEven")
+        time = main.get("marketActivityHEven")
+        return datetime.datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
