@@ -6,11 +6,9 @@ authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
 repository = "https://github.com/yghaderi/oxtapus"
 
-packages = [
-    {include="oxtapus", from="src"},
-    {include="oxtapus/ise", from="src"},
-    {include="oxtapus/econ", from="src"},
-]
+[tool.coverage.run]
+source = ["oxtapus"]
+branch = true
 
 [tool.poetry.dependencies]
 python = "^3.10"

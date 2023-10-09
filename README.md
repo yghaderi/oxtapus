@@ -1,6 +1,21 @@
 # metafid
 ## oxtapus
-این پکیج برای پوششِ بخشی از داده‌های موردِ نیاز در تصمیم‌هایِ مالی-اقتصادی توسعه داده شده است
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/oxtapus)
+![PyPI - Version](https://img.shields.io/pypi/v/oxtapus)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/oxtapus?logoColor=blue&color=blue)
+![GitHub](https://img.shields.io/github/license/yghaderi/oxtapus)
+
+<div dir="rtl">
+اُختاپوس برایِ پوششِ بخشی از داده‌هایِ موردِ نیاز در مدل-سازی‌هایِ مالی-اقتصادی توسعه داده شده است.
+برایِ یاد-گیریِ بیشتر،
+<a href="">
+راهنمایِ بهره-گیران
+</a>
+رو بخونید.
+</div>
+
+
 ## install 
 #### mac , linux
 ```bash
@@ -10,7 +25,6 @@ python3 -m pip install oxtapus
 ```bash
 python -m pip install oxtapus
 ```
-
 
 ## data
 

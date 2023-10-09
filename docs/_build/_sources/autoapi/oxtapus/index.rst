@@ -1,0 +1,16 @@
+:py:mod:`oxtapus`
+=================
+
+.. py:module:: oxtapus
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   econ/index.rst
+   ise/index.rst
+
+

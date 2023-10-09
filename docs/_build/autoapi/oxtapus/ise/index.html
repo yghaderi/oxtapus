@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>oxtapus.ise &#8212; oxtapus 0.2.4 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/oxtapus/ise/index';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="oxtapus.ise.codal" href="codal/index.html" />
+    <link rel="prev" title="oxtapus.econ.tgju" href="../econ/tgju/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">oxtapus 0.2.4 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="../econ/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../econ/cbi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ.cbi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../econ/tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ.tgju</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current active has-children"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.codal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.rahavard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.tsetmc</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/autoapi/oxtapus/ise/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>oxtapus.ise</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.market_watch"><code class="docutils literal notranslate"><span class="pre">TSETMC.market_watch()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_market_watch"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_market_watch()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.search_instrument_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_instrument_code()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.instrument_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.instrument_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_info_comp"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_info_comp()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.stock_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.stock_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.etf_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.etf_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.bond_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.bond_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC.handle_args()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.share_change"><code class="docutils literal notranslate"><span class="pre">TSETMC.share_change()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.all_index"><code class="docutils literal notranslate"><span class="pre">TSETMC.all_index()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.index_ticker_symbols"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_ticker_symbols()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.last_ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_ins_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.intraday_trades"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.intraday_trades_base_timeframe"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades_base_timeframe()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.get_last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.get_last_market_activity_datetime()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.stock()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.symbol_id"><code class="docutils literal notranslate"><span class="pre">Rahavard.symbol_id()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.cash_flow"><code class="docutils literal notranslate"><span class="pre">Rahavard.cash_flow()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal"><code class="docutils literal notranslate"><span class="pre">Codal</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.letters"><code class="docutils literal notranslate"><span class="pre">Codal.letters()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.income_statements"><code class="docutils literal notranslate"><span class="pre">Codal.income_statements()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Codal.balance_sheet()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="module-oxtapus.ise">
+<span id="oxtapus-ise"></span><h1><a class="reference internal" href="#module-oxtapus.ise" title="oxtapus.ise"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise</span></code></a><a class="headerlink" href="#module-oxtapus.ise" title="Permalink to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.codal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.rahavard</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.tsetmc</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading">#</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.ise.TSETMC" title="oxtapus.ise.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.ise.Rahavard" title="oxtapus.ise.Rahavard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rahavard</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.ise.Codal" title="oxtapus.ise.Codal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Codal</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.market_watch">
+<span class="sig-name descname"><span class="pre">market_watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.market_watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.market_watch" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_market_watch">
+<span class="sig-name descname"><span class="pre">option_market_watch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_market_watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_market_watch" title="Permalink to this definition">#</a></dt>
+<dd><p>get option market-watch
+:return: pandas.DataFrame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.search_instrument_code">
+<span class="sig-name descname"><span class="pre">search_instrument_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.search_instrument_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.search_instrument_code" title="Permalink to this definition">#</a></dt>
+<dd><p>get instrument code by search symbol-far
+:return:string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.instrument_info">
+<span class="sig-name descname"><span class="pre">instrument_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.instrument_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.instrument_info" title="Permalink to this definition">#</a></dt>
+<dd><p>get instrument info
+:param ins_code: list of instrument code
+:return: pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_info_comp">
+<span class="sig-name descname"><span class="pre">option_info_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_info_comp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_info_comp" title="Permalink to this definition">#</a></dt>
+<dd><p>get complimentary option info.
+:param ins_id: list, instrument id
+:return: pandas.DataFrame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_info">
+<span class="sig-name descname"><span class="pre">option_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_info" title="Permalink to this definition">#</a></dt>
+<dd><p>get option base info
+:return:pandas.DataFrame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.stock_info">
+<span class="sig-name descname"><span class="pre">stock_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.stock_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.stock_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.etf_info">
+<span class="sig-name descname"><span class="pre">etf_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.etf_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.etf_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.bond_info">
+<span class="sig-name descname"><span class="pre">bond_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.bond_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.bond_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.handle_args">
+<span class="sig-name descname"><span class="pre">handle_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.handle_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.handle_args" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.hist_price">
+<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.hist_price" title="Permalink to this definition">#</a></dt>
+<dd><p>take adjusted price history.
+:param ins_code: int or str, instrument code.
+:param symbol_far: str , instrument symbol
+:return: pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.adj_hist_price">
+<span class="sig-name descname"><span class="pre">adj_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.adj_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.adj_hist_price" title="Permalink to this definition">#</a></dt>
+<dd><p>take adjusted price history.
+:param ins_code: int or str, instrument code.
+:param symbol_far: str , instrument symbol
+:return: pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.client_type">
+<span class="sig-name descname"><span class="pre">client_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.client_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.client_type" title="Permalink to this definition">#</a></dt>
+<dd><p>take Individual and Institutional trade data
+:param ins_code: int or str, instrument code.
+:return: pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.share_change">
+<span class="sig-name descname"><span class="pre">share_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.share_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.share_change" title="Permalink to this definition">#</a></dt>
+<dd><p>Get share change history.
+:param ins_code: int or str, instrument code.
+:param symbol_far: str , instrument symbol
+:return: pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.all_index">
+<span class="sig-name descname"><span class="pre">all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.all_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.all_index" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the latest data of all index
+:return pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.index_ticker_symbols">
+<span class="sig-name descname"><span class="pre">index_ticker_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.index_ticker_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.index_ticker_symbols" title="Permalink to this definition">#</a></dt>
+<dd><p>Get associated symbols that track by index
+:param index_code: int or str
+:return pandas data-frame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.index_hist">
+<span class="sig-name descname"><span class="pre">index_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.index_hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.index_hist" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.last_ins_info">
+<span class="sig-name descname"><span class="pre">last_ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.last_ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.last_ins_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.intraday_trades">
+<span class="sig-name descname"><span class="pre">intraday_trades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades" title="Permalink to this definition">#</a></dt>
+<dd><p>Get intraday instrument trade</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.intraday_trades_base_timeframe">
+<span class="sig-name descname"><span class="pre">intraday_trades_base_timeframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'5T'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades_base_timeframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades_base_timeframe" title="Permalink to this definition">#</a></dt>
+<dd><p>Get intraday instrument trade base on time-frame
+:param timeframe: str like 5T -&gt; 5 minute, 30S -&gt; 30 second , …</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.get_last_market_activity_datetime">
+<span class="sig-name descname"><span class="pre">get_last_market_activity_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.get_last_market_activity_datetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.get_last_market_activity_datetime" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rahavard</span></span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard.stock">
+<span class="sig-name descname"><span class="pre">stock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard.stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard.stock" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard.symbol_id">
+<span class="sig-name descname"><span class="pre">symbol_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard.symbol_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard.symbol_id" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard.balance_sheet">
+<span class="sig-name descname"><span class="pre">balance_sheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard.balance_sheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard.balance_sheet" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard.income_statements">
+<span class="sig-name descname"><span class="pre">income_statements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard.income_statements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard.income_statements" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Rahavard.cash_flow">
+<span class="sig-name descname"><span class="pre">cash_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/rahavard.html#Rahavard.cash_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Rahavard.cash_flow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.ise.Codal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Codal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/codal.html#Codal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Codal" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">oxtapus.ise.codal_utils.URL</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Codal.letters">
+<span class="sig-name descname"><span class="pre">letters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/codal.html#Codal.letters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Codal.letters" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Codal.income_statements">
+<span class="sig-name descname"><span class="pre">income_statements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/codal.html#Codal.income_statements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Codal.income_statements" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.ise.Codal.balance_sheet">
+<span class="sig-name descname"><span class="pre">balance_sheet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/codal.html#Codal.balance_sheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.Codal.balance_sheet" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../econ/tgju/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ.tgju</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="codal/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.codal</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.market_watch"><code class="docutils literal notranslate"><span class="pre">TSETMC.market_watch()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_market_watch"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_market_watch()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.search_instrument_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_instrument_code()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.instrument_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.instrument_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_info_comp"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_info_comp()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.option_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.option_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.stock_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.stock_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.etf_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.etf_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.bond_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.bond_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC.handle_args()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.share_change"><code class="docutils literal notranslate"><span class="pre">TSETMC.share_change()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.all_index"><code class="docutils literal notranslate"><span class="pre">TSETMC.all_index()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.index_ticker_symbols"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_ticker_symbols()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.last_ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_ins_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.intraday_trades"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.intraday_trades_base_timeframe"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades_base_timeframe()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.get_last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.get_last_market_activity_datetime()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.stock()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.symbol_id"><code class="docutils literal notranslate"><span class="pre">Rahavard.symbol_id()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Rahavard.cash_flow"><code class="docutils literal notranslate"><span class="pre">Rahavard.cash_flow()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal"><code class="docutils literal notranslate"><span class="pre">Codal</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.letters"><code class="docutils literal notranslate"><span class="pre">Codal.letters()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.income_statements"><code class="docutils literal notranslate"><span class="pre">Codal.income_statements()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.Codal.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Codal.balance_sheet()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yaghoub Ghaderi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Metafid.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
