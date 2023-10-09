@@ -250,19 +250,19 @@ document.write(`
                   
   <h1>Source code for oxtapus.econ.tgju</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">get</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">get</span>
 
 
 <div class="viewcode-block" id="TGJU"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU">[docs]</a><span class="k">class</span> <span class="nc">TGJU</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.econ.org</span>
+<span class="sd">    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="TGJU.get_hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.get_hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">get_hist_price</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+<div class="viewcode-block" id="TGJU._get_hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU._get_hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">_get_hist_price</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.tgju.org/v1/market/indicator/summary-table-data/</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">main</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -275,38 +275,53 @@ document.write(`
 
 <div class="viewcode-block" id="TGJU.usd_irr"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.usd_irr">[docs]</a>    <span class="k">def</span> <span class="nf">usd_irr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        دلار/ریال</span>
-<span class="sd">        :return:</span>
+<span class="sd">        دریافتِ داده‌هایِ گذشته‌یِ دلار/ریال</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hist_price</span><span class="p">(</span><span class="s2">&quot;price_dollar_rl&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hist_price</span><span class="p">(</span><span class="s2">&quot;price_dollar_rl&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TGJU.sekke_emami"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.sekke_emami">[docs]</a>    <span class="k">def</span> <span class="nf">sekke_emami</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        سکه‌یِ امامی</span>
-<span class="sd">        :return:</span>
+<span class="sd">        دریافتِ داده‌هایِ گذشته‌یِ سکه‌یِ امامی</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hist_price</span><span class="p">(</span><span class="s2">&quot;sekee&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hist_price</span><span class="p">(</span><span class="s2">&quot;sekee&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TGJU.nim_sekke"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.nim_sekke">[docs]</a>    <span class="k">def</span> <span class="nf">nim_sekke</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        نیم-سکه</span>
-<span class="sd">        :return:</span>
+<span class="sd">        دریافتِ داده‌هایِ گذشته‌یِ نیم-سکه</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hist_price</span><span class="p">(</span><span class="s2">&quot;nim&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hist_price</span><span class="p">(</span><span class="s2">&quot;nim&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TGJU.rob_sekke"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.rob_sekke">[docs]</a>    <span class="k">def</span> <span class="nf">rob_sekke</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ربعِ-سکه</span>
-<span class="sd">        :return:</span>
+<span class="sd">        دریافتِ داده‌هایِ گذشته‌یِ ربعِ-سکه</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hist_price</span><span class="p">(</span><span class="s2">&quot;rob&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hist_price</span><span class="p">(</span><span class="s2">&quot;rob&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TGJU.ons"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU.ons">[docs]</a>    <span class="k">def</span> <span class="nf">ons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        اونس طلا</span>
-<span class="sd">        :return:</span>
+<span class="sd">        دریافتِ داده‌هایِ گذشته‌یِ اونس طلا</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hist_price</span><span class="p">(</span><span class="s2">&quot;ons&quot;</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hist_price</span><span class="p">(</span><span class="s2">&quot;ons&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
                 </article>

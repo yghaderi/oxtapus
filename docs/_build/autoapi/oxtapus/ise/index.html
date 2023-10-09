@@ -310,7 +310,7 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.stock_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.stock_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.etf_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.etf_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.bond_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.bond_info()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC.handle_args()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC._handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC._handle_args()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>
@@ -372,7 +372,7 @@ document.write(`
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.ise.TSETMC" title="oxtapus.ise.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Get clean and fast all data from tsetmc.com.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.ise.Rahavard" title="oxtapus.ise.Rahavard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rahavard</span></code></a></p></td>
 <td><p></p></td>
@@ -385,145 +385,348 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC" title="Permalink to this definition">#</a></dt>
-<dd><dl class="py method">
+<dd><p>Get clean and fast all data from tsetmc.com.</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.market_watch">
-<span class="sig-name descname"><span class="pre">market_watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.market_watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.market_watch" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">market_watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifb_paye</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mortgage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cum_right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">futures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commodity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.market_watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.market_watch" title="Permalink to this definition">#</a></dt>
+<dd><p>Get Market Watch data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stock</strong> – if True add stock data, default is False</p></li>
+<li><p><strong>ifb_paye</strong> – if True add ifb_pay data, default is False (فرابورس-پایه)</p></li>
+<li><p><strong>mortgage</strong> – if True add mortgage data, default is False</p></li>
+<li><p><strong>cum_right</strong> – if True add cum_right data, default is False</p></li>
+<li><p><strong>bond</strong> – if True add bond data, default is False</p></li>
+<li><p><strong>option</strong> – if True add option data, default is False</p></li>
+<li><p><strong>futures</strong> – if True add futures data, default is False</p></li>
+<li><p><strong>etf</strong> – if True add etf data, default is False</p></li>
+<li><p><strong>commodity</strong> – if True add commodity data, default is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_market_watch">
 <span class="sig-name descname"><span class="pre">option_market_watch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_market_watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_market_watch" title="Permalink to this definition">#</a></dt>
-<dd><p>get option market-watch
-:return: pandas.DataFrame</p>
+<dd><p>Get Option Market Watch with extending and underling-asset data. That’s all you need to model options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.search_instrument_code">
 <span class="sig-name descname"><span class="pre">search_instrument_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.search_instrument_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.search_instrument_code" title="Permalink to this definition">#</a></dt>
-<dd><p>get instrument code by search symbol-far
-:return:string</p>
+<dd><p>Get instrument code by search symbol-far.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>symbol_far</strong> – farsi name of the symbol.
+نام فارسیِ نماد.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.instrument_info">
-<span class="sig-name descname"><span class="pre">instrument_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.instrument_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.instrument_info" title="Permalink to this definition">#</a></dt>
-<dd><p>get instrument info
-:param ins_code: list of instrument code
-:return: pandas data-frame</p>
+<span class="sig-name descname"><span class="pre">instrument_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.instrument_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.instrument_info" title="Permalink to this definition">#</a></dt>
+<dd><p>Get instrument info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> – list of instrument code</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_info_comp">
-<span class="sig-name descname"><span class="pre">option_info_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_info_comp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_info_comp" title="Permalink to this definition">#</a></dt>
-<dd><p>get complimentary option info.
-:param ins_id: list, instrument id
-:return: pandas.DataFrame</p>
+<span class="sig-name descname"><span class="pre">option_info_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_info_comp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_info_comp" title="Permalink to this definition">#</a></dt>
+<dd><p>Get complimentary option info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_id</strong> – list of instrument id</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.option_info">
 <span class="sig-name descname"><span class="pre">option_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.option_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.option_info" title="Permalink to this definition">#</a></dt>
-<dd><p>get option base info
-:return:pandas.DataFrame</p>
+<dd><p>Get option base info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.stock_info">
 <span class="sig-name descname"><span class="pre">stock_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.stock_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.stock_info" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Get stock info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.etf_info">
 <span class="sig-name descname"><span class="pre">etf_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.etf_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.etf_info" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Get ETFs info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.bond_info">
 <span class="sig-name descname"><span class="pre">bond_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.bond_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.bond_info" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Get bonds info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.ise.TSETMC.handle_args">
-<span class="sig-name descname"><span class="pre">handle_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.handle_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.handle_args" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="oxtapus.ise.TSETMC._handle_args">
+<span class="sig-name descname"><span class="pre">_handle_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC._handle_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC._handle_args" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.hist_price">
-<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.hist_price" title="Permalink to this definition">#</a></dt>
-<dd><p>take adjusted price history.
-:param ins_code: int or str, instrument code.
-:param symbol_far: str , instrument symbol
-:return: pandas data-frame</p>
+<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.hist_price" title="Permalink to this definition">#</a></dt>
+<dd><p>Get price history.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.adj_hist_price">
-<span class="sig-name descname"><span class="pre">adj_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.adj_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.adj_hist_price" title="Permalink to this definition">#</a></dt>
-<dd><p>take adjusted price history.
-:param ins_code: int or str, instrument code.
-:param symbol_far: str , instrument symbol
-:return: pandas data-frame</p>
+<span class="sig-name descname"><span class="pre">adj_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.adj_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.adj_hist_price" title="Permalink to this definition">#</a></dt>
+<dd><p>Get adjusted price history.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.client_type">
-<span class="sig-name descname"><span class="pre">client_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.client_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.client_type" title="Permalink to this definition">#</a></dt>
-<dd><p>take Individual and Institutional trade data
-:param ins_code: int or str, instrument code.
-:return: pandas data-frame</p>
+<span class="sig-name descname"><span class="pre">client_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.client_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.client_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Get Individual and Institutional (حقیقی-حقوقی) trade data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> – instrument code</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.share_change">
-<span class="sig-name descname"><span class="pre">share_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.share_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.share_change" title="Permalink to this definition">#</a></dt>
-<dd><p>Get share change history.
-:param ins_code: int or str, instrument code.
-:param symbol_far: str , instrument symbol
-:return: pandas data-frame</p>
+<span class="sig-name descname"><span class="pre">share_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.share_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.share_change" title="Permalink to this definition">#</a></dt>
+<dd><p>Get share change history.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.all_index">
 <span class="sig-name descname"><span class="pre">all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.all_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.all_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Get the latest data of all index
-:return pandas data-frame</p>
+<dd><p>Get the latest data of all index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.index_ticker_symbols">
 <span class="sig-name descname"><span class="pre">index_ticker_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.index_ticker_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.index_ticker_symbols" title="Permalink to this definition">#</a></dt>
-<dd><p>Get associated symbols that track by index
-:param index_code: int or str
-:return pandas data-frame</p>
+<dd><p>Get associated symbols that track by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index_code</strong> – index code</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.index_hist">
 <span class="sig-name descname"><span class="pre">index_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.index_hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.index_hist" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Get index history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index_code</strong> – index code</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.last_ins_info">
-<span class="sig-name descname"><span class="pre">last_ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.last_ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.last_ins_info" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">last_ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.last_ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.last_ins_info" title="Permalink to this definition">#</a></dt>
+<dd><p>Get last instrument info that show on main stock page.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.intraday_trades">
-<span class="sig-name descname"><span class="pre">intraday_trades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades" title="Permalink to this definition">#</a></dt>
-<dd><p>Get intraday instrument trade</p>
+<span class="sig-name descname"><span class="pre">intraday_trades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades" title="Permalink to this definition">#</a></dt>
+<dd><p>Get intraday instrument trade.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.intraday_trades_base_timeframe">
-<span class="sig-name descname"><span class="pre">intraday_trades_base_timeframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'5T'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades_base_timeframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades_base_timeframe" title="Permalink to this definition">#</a></dt>
-<dd><p>Get intraday instrument trade base on time-frame
-:param timeframe: str like 5T -&gt; 5 minute, 30S -&gt; 30 second , …</p>
+<span class="sig-name descname"><span class="pre">intraday_trades_base_timeframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'5T'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.intraday_trades_base_timeframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.intraday_trades_base_timeframe" title="Permalink to this definition">#</a></dt>
+<dd><p>Get intraday instrument trade base on time-frame.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>سرعتِ گرفتن داده با استفاده از <strong>کدِ نماد</strong> حدودن ۲ برابرِ <strong>نماد</strong> است</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>یا <strong>کدِ نماد</strong> رو وارد کنید یا <strong>نماد</strong> رو</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ins_code</strong> – instrument code</p></li>
+<li><p><strong>symbol_far</strong> – instrument symbol</p></li>
+<li><p><strong>timeframe</strong> – like 5T -&gt; 5 minute, 30S -&gt; 30 second</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.ise.TSETMC.get_last_market_activity_datetime">
 <span class="sig-name descname"><span class="pre">get_last_market_activity_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/ise/tsetmc.html#TSETMC.get_last_market_activity_datetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.ise.TSETMC.get_last_market_activity_datetime" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Get last market activity datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.datetime</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -639,7 +842,7 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.stock_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.stock_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.etf_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.etf_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.bond_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.bond_info()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC.handle_args()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC._handle_args"><code class="docutils literal notranslate"><span class="pre">TSETMC._handle_args()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.ise.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>

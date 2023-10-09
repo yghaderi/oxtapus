@@ -252,26 +252,79 @@ document.write(`
 <span></span><span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">get</span><span class="p">,</span> <span class="n">async_get</span>
 <span class="kn">from</span> <span class="nn">.tsetmc_utils</span> <span class="kn">import</span> <span class="n">cols</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">ced</span>
 
 
 <div class="viewcode-block" id="TSETMC"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC">[docs]</a><span class="k">class</span> <span class="nc">TSETMC</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get clean and fast all data from tsetmc.com.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">()</span>
 
-<div class="viewcode-block" id="TSETMC.market_watch"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.market_watch">[docs]</a>    <span class="k">def</span> <span class="nf">market_watch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;marketwatch&quot;</span><span class="p">]</span>
+<div class="viewcode-block" id="TSETMC.market_watch"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.market_watch">[docs]</a>    <span class="k">def</span> <span class="nf">market_watch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stock</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">ifb_paye</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">mortgage</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">cum_right</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">bond</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">option</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">futures</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">etf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                     <span class="n">commodity</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Market Watch data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        stock</span>
+<span class="sd">            if True add stock data, default is False</span>
+<span class="sd">        ifb_paye</span>
+<span class="sd">            if True add ifb_pay data, default is False (فرابورس-پایه)</span>
+<span class="sd">        mortgage</span>
+<span class="sd">            if True add mortgage data, default is False</span>
+<span class="sd">        cum_right</span>
+<span class="sd">            if True add cum_right data, default is False</span>
+<span class="sd">        bond</span>
+<span class="sd">            if True add bond data, default is False</span>
+<span class="sd">        option</span>
+<span class="sd">            if True add option data, default is False</span>
+<span class="sd">        futures</span>
+<span class="sd">            if True add futures data, default is False</span>
+<span class="sd">        etf</span>
+<span class="sd">            if True add etf data, default is False</span>
+<span class="sd">        commodity</span>
+<span class="sd">            if True add commodity data, default is False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span>
+                               <span class="n">ifb_paye</span><span class="p">,</span>
+                               <span class="n">mortgage</span><span class="p">,</span>
+                               <span class="n">cum_right</span><span class="p">,</span>
+                               <span class="n">bond</span><span class="p">,</span>
+                               <span class="n">option</span><span class="p">,</span>
+                               <span class="n">futures</span><span class="p">,</span>
+                               <span class="n">etf</span><span class="p">,</span>
+                               <span class="n">commodity</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;marketwatch&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span>
             <span class="n">main</span><span class="p">,</span> <span class="s2">&quot;blDs&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">cols</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">rename</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">record_prefix</span><span class="o">=</span><span class="s2">&quot;ob_&quot;</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TSETMC.option_market_watch"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.option_market_watch">[docs]</a>    <span class="k">def</span> <span class="nf">option_market_watch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get option market-watch</span>
-<span class="sd">        :return: pandas.DataFrame</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Option Market Watch with extending and underling-asset data. That&#39;s all you need to model options.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># option df</span>
         <span class="n">option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">market_watch</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cols</span><span class="o">.</span><span class="n">omw</span><span class="o">.</span><span class="n">drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -286,8 +339,18 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">omw</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TSETMC.search_instrument_code"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.search_instrument_code">[docs]</a>    <span class="k">def</span> <span class="nf">search_instrument_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get instrument code by search symbol-far</span>
-<span class="sd">        :return:string</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get instrument code by search symbol-far.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            farsi name of the symbol.</span>
+<span class="sd">            نام فارسیِ نماد.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol_far</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;instrumentSearch&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
@@ -299,10 +362,18 @@ document.write(`
             <span class="k">except</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please enter the valid symbol! &#39;</span><span class="si">{</span><span class="n">symbol_far</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="TSETMC.instrument_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.instrument_info">[docs]</a>    <span class="k">def</span> <span class="nf">instrument_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get instrument info</span>
-<span class="sd">        :param ins_code: list of instrument code</span>
-<span class="sd">        :return: pandas data-frame</span>
+<div class="viewcode-block" id="TSETMC.instrument_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.instrument_info">[docs]</a>    <span class="k">def</span> <span class="nf">instrument_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get instrument info.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            list of instrument code</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">task</span> <span class="o">=</span> <span class="p">[</span><span class="n">async_get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
@@ -322,10 +393,18 @@ document.write(`
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">ins_info</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="TSETMC.option_info_comp"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.option_info_comp">[docs]</a>    <span class="k">def</span> <span class="nf">option_info_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get complimentary option info.</span>
-<span class="sd">        :param ins_id: list, instrument id</span>
-<span class="sd">        :return: pandas.DataFrame</span>
+<div class="viewcode-block" id="TSETMC.option_info_comp"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.option_info_comp">[docs]</a>    <span class="k">def</span> <span class="nf">option_info_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get complimentary option info.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_id</span>
+<span class="sd">            list of instrument id</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">task</span> <span class="o">=</span> <span class="p">[</span><span class="n">async_get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">option_info_comp</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_id</span><span class="p">]</span>
 
@@ -346,8 +425,11 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span></div>
 
 <div class="viewcode-block" id="TSETMC.option_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.option_info">[docs]</a>    <span class="k">def</span> <span class="nf">option_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get option base info</span>
-<span class="sd">        :return:pandas.DataFrame</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get option base info.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">option_mw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">market_watch</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_info</span><span class="p">(</span><span class="n">option_mw</span><span class="p">[</span><span class="s2">&quot;ins_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())[</span>
@@ -357,15 +439,33 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_comp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ins_code&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TSETMC.stock_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.stock_info">[docs]</a>    <span class="k">def</span> <span class="nf">stock_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get stock info.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">market_watch</span><span class="p">(</span><span class="n">stock</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;ins_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="TSETMC.etf_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.etf_info">[docs]</a>    <span class="k">def</span> <span class="nf">etf_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get ETFs info.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">market_watch</span><span class="p">(</span><span class="n">etf</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;ins_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="TSETMC.bond_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.bond_info">[docs]</a>    <span class="k">def</span> <span class="nf">bond_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get bonds info.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">market_watch</span><span class="p">(</span><span class="n">bond</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;ins_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="TSETMC.handle_args"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.handle_args">[docs]</a>    <span class="k">def</span> <span class="nf">handle_args</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="TSETMC._handle_args"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC._handle_args">[docs]</a>    <span class="k">def</span> <span class="nf">_handle_args</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">ins_code</span><span class="p">:</span>
@@ -374,43 +474,93 @@ document.write(`
 
         <span class="k">return</span> <span class="n">wrapper</span></div>
 
-    <span class="nd">@handle_args</span>
-<div class="viewcode-block" id="TSETMC.hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;take adjusted price history.</span>
-<span class="sd">        :param ins_code: int or str, instrument code.</span>
-<span class="sd">        :param symbol_far: str , instrument symbol</span>
-<span class="sd">        :return: pandas data-frame</span>
+    <span class="nd">@_handle_args</span>
+<div class="viewcode-block" id="TSETMC.hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get price history.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceDaily&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">hist_price</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
-    <span class="nd">@handle_args</span>
-<div class="viewcode-block" id="TSETMC.adj_hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.adj_hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">adj_hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        take adjusted price history.</span>
-<span class="sd">        :param ins_code: int or str, instrument code.</span>
-<span class="sd">        :param symbol_far: str , instrument symbol</span>
-<span class="sd">        :return: pandas data-frame</span>
+    <span class="nd">@_handle_args</span>
+<div class="viewcode-block" id="TSETMC.adj_hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.adj_hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">adj_hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get adjusted price history.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">adj_price</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="TSETMC.client_type"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.client_type">[docs]</a>    <span class="k">def</span> <span class="nf">client_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;take Individual and Institutional trade data</span>
-<span class="sd">        :param ins_code: int or str, instrument code.</span>
-<span class="sd">        :return: pandas data-frame</span>
+<div class="viewcode-block" id="TSETMC.client_type"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.client_type">[docs]</a>    <span class="k">def</span> <span class="nf">client_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Individual and Institutional (حقیقی-حقوقی) trade data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;clientType&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">client_type</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span><span class="n">cols</span><span class="o">.</span><span class="n">client_type</span><span class="o">.</span><span class="n">rep</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
-    <span class="nd">@handle_args</span>
-<div class="viewcode-block" id="TSETMC.share_change"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.share_change">[docs]</a>    <span class="k">def</span> <span class="nf">share_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get share change history.</span>
-<span class="sd">        :param ins_code: int or str, instrument code.</span>
-<span class="sd">        :param symbol_far: str , instrument symbol</span>
-<span class="sd">        :return: pandas data-frame</span>
+    <span class="nd">@_handle_args</span>
+<div class="viewcode-block" id="TSETMC.share_change"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.share_change">[docs]</a>    <span class="k">def</span> <span class="nf">share_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get share change history.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">share_change</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span>
@@ -419,37 +569,101 @@ document.write(`
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TSETMC.all_index"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.all_index">[docs]</a>    <span class="k">def</span> <span class="nf">all_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the latest data of all index</span>
-<span class="sd">        :return pandas data-frame&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the latest data of all index.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">all_index</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB1&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">all_index</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span>
             <span class="n">cols</span><span class="o">.</span><span class="n">all_index</span><span class="o">.</span><span class="n">rep</span>
         <span class="p">]</span></div>
 
 <div class="viewcode-block" id="TSETMC.index_ticker_symbols"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.index_ticker_symbols">[docs]</a>    <span class="k">def</span> <span class="nf">index_ticker_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get associated symbols that track by index</span>
-<span class="sd">        :param index_code: int or str</span>
-<span class="sd">        :return pandas data-frame</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get associated symbols that track by index.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        index_code</span>
+<span class="sd">            index code</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_ticker_symbols</span><span class="p">(</span><span class="n">index_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexCompany&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ced</span><span class="o">.</span><span class="n">index_traker_symbols</span><span class="p">(</span><span class="n">index_code</span><span class="p">,</span> <span class="n">main</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="TSETMC.index_hist"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.index_hist">[docs]</a>    <span class="k">def</span> <span class="nf">index_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get index history.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        index_code</span>
+<span class="sd">            index code</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_hist</span><span class="p">(</span><span class="n">index_code</span><span class="p">)))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB2&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">index_hist</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
-    <span class="nd">@handle_args</span>
-<div class="viewcode-block" id="TSETMC.last_ins_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.last_ins_info">[docs]</a>    <span class="k">def</span> <span class="nf">last_ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nd">@_handle_args</span>
+<div class="viewcode-block" id="TSETMC.last_ins_info"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.last_ins_info">[docs]</a>    <span class="k">def</span> <span class="nf">last_ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get last instrument info that show on main stock page.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">ced</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">main</span><span class="p">)])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">last_ins_info</span><span class="o">.</span><span class="n">rename</span>
         <span class="p">)[</span><span class="n">cols</span><span class="o">.</span><span class="n">last_ins_info</span><span class="o">.</span><span class="n">rep</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
-    <span class="nd">@handle_args</span>
-<div class="viewcode-block" id="TSETMC.intraday_trades"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.intraday_trades">[docs]</a>    <span class="k">def</span> <span class="nf">intraday_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get intraday instrument trade&quot;&quot;&quot;</span>
+    <span class="nd">@_handle_args</span>
+<div class="viewcode-block" id="TSETMC.intraday_trades"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.intraday_trades">[docs]</a>    <span class="k">def</span> <span class="nf">intraday_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get intraday instrument trade.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;trade&quot;</span><span class="p">]</span>
         <span class="n">date</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">][</span>
             <span class="s2">&quot;finalLastDate&quot;</span>
@@ -463,10 +677,30 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="o">.</span><span class="n">intraday_trades</span><span class="o">.</span><span class="n">rep</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="TSETMC.intraday_trades_base_timeframe"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.intraday_trades_base_timeframe">[docs]</a>    <span class="k">def</span> <span class="nf">intraday_trades_base_timeframe</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="o">=</span><span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeframe</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span> <span class="o">=</span> <span class="s2">&quot;5T&quot;</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeframe</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;5T&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get intraday instrument trade base on time-frame</span>
-<span class="sd">        :param timeframe: str like 5T -&gt; 5 minute, 30S -&gt; 30 second , ...&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get intraday instrument trade base on time-frame.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">             سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            یا **کدِ نماد** رو وارد کنید یا **نماد** رو</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ins_code</span>
+<span class="sd">            instrument code</span>
+<span class="sd">        symbol_far</span>
+<span class="sd">            instrument symbol</span>
+<span class="sd">        timeframe</span>
+<span class="sd">            like 5T -&gt; 5 minute, 30S -&gt; 30 second</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">symbol_far</span><span class="o">=</span><span class="n">symbol_far</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="n">ins_code</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
             <span class="s2">&quot;datetime&quot;</span>
         <span class="p">)</span>
@@ -477,6 +711,13 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span></div>
 
 <div class="viewcode-block" id="TSETMC.get_last_market_activity_datetime"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.get_last_market_activity_datetime">[docs]</a>    <span class="k">def</span> <span class="nf">get_last_market_activity_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get last market activity datetime.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        datetime.datetime</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_market_activity</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketOverview&quot;</span><span class="p">)</span>
         <span class="n">date</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityDEven&quot;</span><span class="p">)</span>
         <span class="n">time</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityHEven&quot;</span><span class="p">)</span>

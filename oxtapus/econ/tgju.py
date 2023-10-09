@@ -1,17 +1,17 @@
 import pandas as pd
-from ..utils import get
+from oxtapus.utils import get
 
 
 class TGJU:
     """
-    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.econ.org
+    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org
     """
 
     def __init__(self):
         pass
 
     @staticmethod
-    def get_hist_price(item):
+    def _get_hist_price(item):
         url = f"https://api.tgju.org/v1/market/indicator/summary-table-data/{item}"
         main = get(url=url, timeout=(2, 6), verify=True).json()
         df = pd.DataFrame().from_records(main["data"]).drop([4, 5], axis=1)
@@ -24,35 +24,50 @@ class TGJU:
 
     def usd_irr(self):
         """
-        دلار/ریال
-        :return:
+        دریافتِ داده‌هایِ گذشته‌یِ دلار/ریال
+
+        Returns
+        -------
+        pandas.DataFrame
         """
-        return self.get_hist_price("price_dollar_rl")
+        return self._get_hist_price("price_dollar_rl")
 
     def sekke_emami(self):
         """
-        سکه‌یِ امامی
-        :return:
+        دریافتِ داده‌هایِ گذشته‌یِ سکه‌یِ امامی
+
+        Returns
+        -------
+        pandas.DataFrame
         """
-        return self.get_hist_price("sekee")
+        return self._get_hist_price("sekee")
 
     def nim_sekke(self):
         """
-        نیم-سکه
-        :return:
+        دریافتِ داده‌هایِ گذشته‌یِ نیم-سکه
+
+        Returns
+        -------
+        pandas.DataFrame
         """
-        return self.get_hist_price("nim")
+        return self._get_hist_price("nim")
 
     def rob_sekke(self):
         """
-        ربعِ-سکه
-        :return:
+        دریافتِ داده‌هایِ گذشته‌یِ ربعِ-سکه
+
+        Returns
+        -------
+        pandas.DataFrame
         """
-        return self.get_hist_price("rob")
+        return self._get_hist_price("rob")
 
     def ons(self):
         """
-        اونس طلا
-        :return:
+        دریافتِ داده‌هایِ گذشته‌یِ اونس طلا
+
+        Returns
+        -------
+        pandas.DataFrame
         """
-        return self.get_hist_price("ons")
+        return self._get_hist_price("ons")

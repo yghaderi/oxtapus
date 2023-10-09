@@ -20,40 +20,45 @@ Classes
 .. py:class:: TGJU
 
 
-   دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.econ.org
+   دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org
 
-   .. py:method:: get_hist_price(item)
+   .. py:method:: _get_hist_price(item)
       :staticmethod:
 
 
    .. py:method:: usd_irr()
 
-      دلار/ریال
-      :return:
+      دریافتِ داده‌هایِ گذشته‌یِ دلار/ریال
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: sekke_emami()
 
-      سکه‌یِ امامی
-      :return:
+      دریافتِ داده‌هایِ گذشته‌یِ سکه‌یِ امامی
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: nim_sekke()
 
-      نیم-سکه
-      :return:
+      دریافتِ داده‌هایِ گذشته‌یِ نیم-سکه
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: rob_sekke()
 
-      ربعِ-سکه
-      :return:
+      دریافتِ داده‌هایِ گذشته‌یِ ربعِ-سکه
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: ons()
 
-      اونس طلا
-      :return:
+      دریافتِ داده‌هایِ گذشته‌یِ اونس طلا
+
+      :rtype: pandas.DataFrame
 
 
 

@@ -33,115 +33,227 @@ Classes
 .. py:class:: TSETMC(**kwargs)
 
 
-   .. py:method:: market_watch(**kwargs)
+   Get clean and fast all data from tsetmc.com.
+
+   .. py:method:: market_watch(stock: bool = False, ifb_paye: bool = False, mortgage: bool = False, cum_right: bool = False, bond: bool = False, option: bool = False, futures: bool = False, etf: bool = False, commodity: bool = False)
+
+      Get Market Watch data.
+
+      :param stock: if True add stock data, default is False
+      :param ifb_paye: if True add ifb_pay data, default is False (فرابورس-پایه)
+      :param mortgage: if True add mortgage data, default is False
+      :param cum_right: if True add cum_right data, default is False
+      :param bond: if True add bond data, default is False
+      :param option: if True add option data, default is False
+      :param futures: if True add futures data, default is False
+      :param etf: if True add etf data, default is False
+      :param commodity: if True add commodity data, default is False
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: option_market_watch()
 
-      get option market-watch
-      :return: pandas.DataFrame
+      Get Option Market Watch with extending and underling-asset data. That's all you need to model options.
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: search_instrument_code(symbol_far: str)
 
-      get instrument code by search symbol-far
-      :return:string
+      Get instrument code by search symbol-far.
+
+      :param symbol_far: farsi name of the symbol.
+                         نام فارسیِ نماد.
+
+      :rtype: str
 
 
-   .. py:method:: instrument_info(ins_code: list)
+   .. py:method:: instrument_info(ins_code: List[str])
 
-      get instrument info
+      Get instrument info.
+
       :param ins_code: list of instrument code
-      :return: pandas data-frame
+
+      :rtype: pandas.DataFrame
 
 
-   .. py:method:: option_info_comp(ins_id: list)
+   .. py:method:: option_info_comp(ins_id: List[str])
 
-      get complimentary option info.
-      :param ins_id: list, instrument id
-      :return: pandas.DataFrame
+      Get complimentary option info.
+
+      :param ins_id: list of instrument id
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: option_info()
 
-      get option base info
-      :return:pandas.DataFrame
+      Get option base info.
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: stock_info()
 
+      Get stock info.
+
+      :rtype: pandas.DataFrame
+
 
    .. py:method:: etf_info()
+
+      Get ETFs info.
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: bond_info()
 
+      Get bonds info.
 
-   .. py:method:: handle_args()
-
-
-   .. py:method:: hist_price(symbol_far='فولاد', ins_code=None)
-
-      take adjusted price history.
-      :param ins_code: int or str, instrument code.
-      :param symbol_far: str , instrument symbol
-      :return: pandas data-frame
+      :rtype: pandas.DataFrame
 
 
-   .. py:method:: adj_hist_price(symbol_far='فولاد', ins_code=None)
-
-      take adjusted price history.
-      :param ins_code: int or str, instrument code.
-      :param symbol_far: str , instrument symbol
-      :return: pandas data-frame
+   .. py:method:: _handle_args()
 
 
-   .. py:method:: client_type(ins_code)
+   .. py:method:: hist_price(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
 
-      take Individual and Institutional trade data
-      :param ins_code: int or str, instrument code.
-      :return: pandas data-frame
+      Get price history.
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+
+      :rtype: pandas.DataFrame
 
 
-   .. py:method:: share_change(symbol_far='فولاد', ins_code=None)
+   .. py:method:: adj_hist_price(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
+
+      Get adjusted price history.
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: client_type(ins_code: str)
+
+      Get Individual and Institutional (حقیقی-حقوقی) trade data.
+
+      :param ins_code: instrument code
+
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: share_change(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
 
       Get share change history.
-      :param ins_code: int or str, instrument code.
-      :param symbol_far: str , instrument symbol
-      :return: pandas data-frame
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: all_index()
 
-      Get the latest data of all index
-      :return pandas data-frame
+      Get the latest data of all index.
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: index_ticker_symbols(index_code)
 
-      Get associated symbols that track by index
-      :param index_code: int or str
-      :return pandas data-frame
+      Get associated symbols that track by index.
+
+      :param index_code: index code
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: index_hist(index_code)
 
+      Get index history.
 
-   .. py:method:: last_ins_info(symbol_far='فولاد', ins_code=None)
+      :param index_code: index code
 
-
-   .. py:method:: intraday_trades(symbol_far='فولاد', ins_code=None)
-
-      Get intraday instrument trade
+      :rtype: pandas.DataFrame
 
 
-   .. py:method:: intraday_trades_base_timeframe(symbol_far='فولاد', ins_code=None, timeframe: str = '5T') -> pandas.DataFrame
+   .. py:method:: last_ins_info(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
 
-      Get intraday instrument trade base on time-frame
-      :param timeframe: str like 5T -> 5 minute, 30S -> 30 second , ...
+      Get last instrument info that show on main stock page.
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: intraday_trades(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
+
+      Get intraday instrument trade.
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: intraday_trades_base_timeframe(symbol_far: str | None = 'فولاد', ins_code: str | None = None, timeframe: str = '5T') -> pandas.DataFrame
+
+      Get intraday instrument trade base on time-frame.
+
+      .. warning::
+           سرعتِ گرفتن داده با استفاده از **کدِ نماد** حدودن ۲ برابرِ **نماد** است
+
+      .. note::
+          یا **کدِ نماد** رو وارد کنید یا **نماد** رو
+
+      :param ins_code: instrument code
+      :param symbol_far: instrument symbol
+      :param timeframe: like 5T -> 5 minute, 30S -> 30 second
+
+      :rtype: pandas.DataFrame
 
 
    .. py:method:: get_last_market_activity_datetime()
+
+      Get last market activity datetime.
+
+      :rtype: datetime.datetime
 
 
 

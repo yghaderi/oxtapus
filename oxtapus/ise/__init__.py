@@ -1,3 +1,3 @@
-from .tsetmc import TSETMC
-from .rahavard import Rahavard
-from .codal import Codal
+from oxtapus.ise.tsetmc import TSETMC
+from oxtapus.ise.rahavard import Rahavard
+from oxtapus.ise.codal import Codal

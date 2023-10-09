@@ -301,7 +301,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.get_hist_price"><code class="docutils literal notranslate"><span class="pre">TGJU.get_hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU._get_hist_price"><code class="docutils literal notranslate"><span class="pre">TGJU._get_hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
@@ -342,52 +342,72 @@ document.write(`
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.econ.TGJU" title="oxtapus.econ.TGJU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TGJU</span></code></a></p></td>
-<td><p>دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.econ.org</p></td>
+<td><p>دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TGJU</span></span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU" title="Permalink to this definition">#</a></dt>
-<dd><p>دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.econ.org</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.econ.TGJU.get_hist_price">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.get_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.get_hist_price" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="oxtapus.econ.TGJU._get_hist_price">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_get_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU._get_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU._get_hist_price" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU.usd_irr">
 <span class="sig-name descname"><span class="pre">usd_irr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.usd_irr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.usd_irr" title="Permalink to this definition">#</a></dt>
-<dd><p>دلار/ریال
-:return:</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ دلار/ریال</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU.sekke_emami">
 <span class="sig-name descname"><span class="pre">sekke_emami</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.sekke_emami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.sekke_emami" title="Permalink to this definition">#</a></dt>
-<dd><p>سکه‌یِ امامی
-:return:</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ سکه‌یِ امامی</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU.nim_sekke">
 <span class="sig-name descname"><span class="pre">nim_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.nim_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.nim_sekke" title="Permalink to this definition">#</a></dt>
-<dd><p>نیم-سکه
-:return:</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ نیم-سکه</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU.rob_sekke">
 <span class="sig-name descname"><span class="pre">rob_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.rob_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.rob_sekke" title="Permalink to this definition">#</a></dt>
-<dd><p>ربعِ-سکه
-:return:</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ ربعِ-سکه</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.econ.TGJU.ons">
 <span class="sig-name descname"><span class="pre">ons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/econ/tgju.html#TGJU.ons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.econ.TGJU.ons" title="Permalink to this definition">#</a></dt>
-<dd><p>اونس طلا
-:return:</p>
+<dd><p>دریافتِ داده‌هایِ گذشته‌یِ اونس طلا</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -444,7 +464,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.get_hist_price"><code class="docutils literal notranslate"><span class="pre">TGJU.get_hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU._get_hist_price"><code class="docutils literal notranslate"><span class="pre">TGJU._get_hist_price()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.econ.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
