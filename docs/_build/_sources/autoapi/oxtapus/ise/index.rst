@@ -118,7 +118,7 @@ Classes
    .. py:method:: _handle_args()
 
 
-   .. py:method:: hist_price(symbol_far: str | None = 'فولاد', ins_code: str | None = None)
+   .. py:method:: hist_price(symbol_far: str | None = 'فولاد', ins_code: str | None = None, start: str | None = None, end: str | None = None)
 
       Get price history.
 
@@ -130,6 +130,12 @@ Classes
 
       :param ins_code: instrument code
       :param symbol_far: instrument symbol
+      :param start: Start jalali date. If pass ``None`` the data will be downloaded from the first day. Format: `%H%m%d`,
+                    e.g '1402-01-01'. Default: ``None``
+      :type start: str
+      :param end: End jalali date. If pass ``None`` the data will be downloaded until the last day. Format: `%H%m%d`,
+                  e.g '1402-01-01'. Default: ``None``
+      :type end: str
 
       :rtype: pandas.DataFrame
 

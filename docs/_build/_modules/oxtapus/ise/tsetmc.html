@@ -475,7 +475,8 @@ document.write(`
         <span class="k">return</span> <span class="n">wrapper</span></div>
 
     <span class="nd">@_handle_args</span>
-<div class="viewcode-block" id="TSETMC.hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="TSETMC.hist_price"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.hist_price">[docs]</a>    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;فولاد&quot;</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get price history.</span>
 
 <span class="sd">        .. warning::</span>
@@ -490,6 +491,12 @@ document.write(`
 <span class="sd">            instrument code</span>
 <span class="sd">        symbol_far</span>
 <span class="sd">            instrument symbol</span>
+<span class="sd">        start: str</span>
+<span class="sd">            Start jalali date. If pass ``None`` the data will be downloaded from the first day. Format: `%H%m%d`,</span>
+<span class="sd">            e.g &#39;1402-01-01&#39;. Default: ``None``</span>
+<span class="sd">        end: str</span>
+<span class="sd">            End jalali date. If pass ``None`` the data will be downloaded until the last day. Format: `%H%m%d`,</span>
+<span class="sd">            e.g &#39;1402-01-01&#39;. Default: ``None``</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

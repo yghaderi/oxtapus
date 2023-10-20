@@ -4,7 +4,7 @@ import datetime
 from typing import List
 import pandas as pd
 
-from ..utils import get, async_get
+from oxtapus.utils import get, async_get, JDate
 from .tsetmc_utils import cols, URL, ced
 
 
@@ -223,8 +223,17 @@ class TSETMC:
 
         return wrapper
 
+    @staticmethod
+    def _handle_jalali_start_and_end_date(start: str, end: str):
+        if start:
+            start = JDate(start).jalali_to_gregorian()
+        if end:
+            end = JDate(end).jalali_to_gregorian()
+        
+
     @_handle_args
-    def hist_price(self, symbol_far: str | None = "فولاد", ins_code: str | None = None):
+    def hist_price(self, symbol_far: str | None = "فولاد", ins_code: str | None = None, start: str | None = None,
+                   end: str | None = None):
         """Get price history.
 
         .. warning::
@@ -239,6 +248,12 @@ class TSETMC:
             instrument code
         symbol_far
             instrument symbol
+        start: str
+            Start jalali date. If pass ``None`` the data will be downloaded from the first day. Format: `%H%m%d`,
+            e.g '1402-01-01'. Default: ``None``
+        end: str
+            End jalali date. If pass ``None`` the data will be downloaded until the last day. Format: `%H%m%d`,
+            e.g '1402-01-01'. Default: ``None``
 
         Returns
         -------

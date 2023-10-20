@@ -20,7 +20,7 @@ Classes
 .. py:class:: TGJU
 
 
-   دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org
+   دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgju.org
 
    .. py:method:: _get_hist_price(item)
       :staticmethod:

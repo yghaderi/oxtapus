@@ -4,7 +4,7 @@ from oxtapus.utils import get
 
 class TGJU:
     """
-    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgiu.org
+    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgju.org
     """
 
     def __init__(self):
