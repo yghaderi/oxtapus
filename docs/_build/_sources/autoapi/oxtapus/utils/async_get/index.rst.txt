@@ -1,0 +1,39 @@
+:py:mod:`oxtapus.utils.async_get`
+=================================
+
+.. py:module:: oxtapus.utils.async_get
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.utils.async_get.concurrency_limit_decorator
+   oxtapus.utils.async_get.async_get
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.utils.async_get.headers
+
+
+.. py:data:: headers
+
+   
+
+.. py:function:: concurrency_limit_decorator(limit=3, retry_limit=5)
+
+
+.. py:function:: async_get(url, timeout=3, response_: str = 'json')
+   :async:
+
+

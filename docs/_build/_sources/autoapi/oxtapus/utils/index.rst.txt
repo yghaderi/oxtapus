@@ -1,0 +1,79 @@
+:py:mod:`oxtapus.utils`
+=======================
+
+.. py:module:: oxtapus.utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   async_get/index.rst
+   get/index.rst
+   jdate/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.utils.JDate
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.utils.get
+   oxtapus.utils.async_get
+   oxtapus.utils.concurrency_limit_decorator
+
+
+
+.. py:function:: get(url, timeout=(1, 3), verify=False)
+
+
+.. py:function:: async_get(url, timeout=3, response_: str = 'json')
+   :async:
+
+
+.. py:function:: concurrency_limit_decorator(limit=3, retry_limit=5)
+
+
+.. py:class:: JDate(jdate: str)
+
+
+   .. py:method:: parse_jdate()
+
+      فر تبدیلِ رشته‌یِ تاریخِ جلالی به فرمتِ تاریخ
+      :return: jdatetime.date
+
+
+   .. py:method:: jalali_to_gregorian()
+
+      تبدیلِ تاریخِ جلالی به میلادی
+      :return: datetime.date
+
+
+   .. py:method:: days_to_input_date()
+
+      محاسبه‌یِ تعداد‌ِ روزهایِ امروز تا تاریخِ ورودی
+      :return: int
+
+
+   .. py:method:: evenly_spaced_periods(months: int)
+
+      محاسبه‌یِ تعداد‌ِ دوره‌هایِ xماهه تا امروز
+      :param months:
+      :return: تعدادِ دوره‌ی کاملِ ماه‌هایِ وارد شده و روزها‌یِ باقیمانده
+
+
+

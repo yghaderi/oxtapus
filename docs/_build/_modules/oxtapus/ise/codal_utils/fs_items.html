@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oxtapus.ise.codal_utils.fs_items &#8212; oxtapus 0.2.4 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/oxtapus/ise/codal_utils/fs_items';</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">oxtapus 0.2.4 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">oxtapus.ise....</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for oxtapus.ise.codal_utils.fs_items</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">hazm</span> <span class="kn">import</span> <span class="n">Normalizer</span>
+
+<div class="viewcode-block" id="normalizer"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.normalizer">[docs]</a><span class="n">normalizer</span> <span class="o">=</span> <span class="n">Normalizer</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FSItems"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.FSItems">[docs]</a><span class="n">FSItems</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;FSItems&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;income_statements&quot;</span><span class="p">,</span> <span class="s2">&quot;balance_sheet&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="income_statements"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.income_statements">[docs]</a><span class="n">income_statements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;درآمدهای عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;بهاى تمام شده درآمدهای عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;cost_of_goods_sold&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) ناخالص&quot;</span><span class="p">:</span> <span class="s2">&quot;gross_profit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزينه‏‌هاى فروش، ادارى و عمومى&quot;</span><span class="p">:</span> <span class="s2">&quot;sales_general_and_administrative_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزينه‏ هاى فروش، ادارى و عمومى&quot;</span><span class="p">:</span> <span class="s2">&quot;sales_general_and_administrative_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزینه کاهش ارزش دریافتنی‌‏ها (هزینه استثنایی)&quot;</span><span class="p">:</span> <span class="s2">&quot;cost_of_decrease_in_receivables_value(exceptional_cost)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزينه کاهش ارزش دريافتني‏ ها (هزينه استثنايي)&quot;</span><span class="p">:</span> <span class="s2">&quot;cost_of_decrease_in_receivables_value(exceptional_cost)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ساير درآمدها&quot;</span><span class="p">:</span> <span class="s2">&quot;other_operating_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر هزینه‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;other_operating_expenses&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) عملياتي&quot;</span><span class="p">:</span> <span class="s2">&quot;operating_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزينه‏‌هاى مالى&quot;</span><span class="p">:</span> <span class="s2">&quot;finance_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزينه‏ هاى مالى&quot;</span><span class="p">:</span> <span class="s2">&quot;finance_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ساير درآمدها و هزينه ‏هاى غيرعملياتى&quot;</span><span class="p">:</span> <span class="s2">&quot;net_miscellaneous_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر درآمدها و هزینه‌های غیرعملیاتی- درآمد سرمایه‌گذاری‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;net_miscellaneous_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر درآمدها و هزینه‌های غیرعملیاتی- اقلام متفرقه&quot;</span><span class="p">:</span> <span class="s2">&quot;net_miscellaneous_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) عمليات در حال تداوم قبل از ماليات&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income_from_continuing_operations_before_tax&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سال جاری&quot;</span><span class="p">:</span> <span class="s2">&quot;taxes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سال‌های قبل&quot;</span><span class="p">:</span> <span class="s2">&quot;taxes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) خالص عمليات در حال تداوم&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income_from_continuing_operation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) خالص عملیات متوقف شده&quot;</span><span class="p">:</span> <span class="s2">&quot;discontinued_operations_profit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) خالص عمليات متوقف شده&quot;</span><span class="p">:</span> <span class="s2">&quot;discontinued_operations_profit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) خالص&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) خالص هر سهم– ریال&quot;</span><span class="p">:</span> <span class="s2">&quot;earning_per_share&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) خالص هر سهم – ريال&quot;</span><span class="p">:</span> <span class="s2">&quot;earning_per_share&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه&quot;</span><span class="p">:</span> <span class="s2">&quot;listed_capital&quot;</span><span class="p">,</span>
+    <span class="c1"># -------------------------------</span>
+    <span class="s2">&quot;بهای تمام </span><span class="se">\u200c</span><span class="s2">شده درآمدهای عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;cost_of_goods_sold&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) ناخالص&quot;</span><span class="p">:</span> <span class="s2">&quot;gross_profit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزینه</span><span class="se">\u200c</span><span class="s2">های فروش، اداری و عمومی&quot;</span><span class="p">:</span> <span class="s2">&quot;sales_general_and_administrative_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر درآمدهای عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;other_operating_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر هزینه</span><span class="se">\u200c</span><span class="s2">های عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;other_operating_expenses&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) عملیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;operating_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزینه</span><span class="se">\u200c</span><span class="s2">های مالی&quot;</span><span class="p">:</span> <span class="s2">&quot;finance_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;هزینه‏‌های مالی&quot;</span><span class="p">:</span> <span class="s2">&quot;finance_expense&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر درآمدها و هزینه</span><span class="se">\u200c</span><span class="s2">های غیرعملیاتی- درآمد سرمایه</span><span class="se">\u200c</span><span class="s2">گذاری</span><span class="se">\u200c</span><span class="s2">ها&quot;</span><span class="p">:</span> <span class="s2">&quot;net_miscellaneous_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) عملیات در حال تداوم قبل از مالیات&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income_from_continuing_operations_before_tax&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;مالیات بر درآمد&quot;</span><span class="p">:</span> <span class="s2">&quot;taxes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) خالص عملیات در حال تداوم&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income_from_continuing_operation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) عملیات متوقف </span><span class="se">\u200c</span><span class="s2">شده پس از اثر مالیاتی&quot;</span><span class="p">:</span> <span class="s2">&quot;discontinued_operations_profit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) خالص&quot;</span><span class="p">:</span> <span class="s2">&quot;net_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) خالص هر سهم– ریال&quot;</span><span class="p">:</span> <span class="s2">&quot;earning_per_share&quot;</span><span class="p">,</span>
+<span class="p">}</span></div>
+
+<div class="viewcode-block" id="balance_sheet"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.balance_sheet">[docs]</a><span class="n">balance_sheet</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;دارايي‌هاي ثابت مشهود&quot;</span><span class="p">:</span> <span class="s2">&quot;tangible_fixed_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمايه‌گذاري در املاک&quot;</span><span class="p">:</span> <span class="s2">&quot;investment_property&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دارایی‌های نامشهود&quot;</span><span class="p">:</span> <span class="s2">&quot;intangible_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه‌گذاری‌های بلندمدت&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_investments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دريافتني‌هاي بلندمدت&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_receivables&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر دارایی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;other_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع دارايي‌هاي غيرجاري&quot;</span><span class="p">:</span> <span class="s2">&quot;total_non_current_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سفارشات و پیش‌پرداخت‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;prepayments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;موجودی مواد و کالا&quot;</span><span class="p">:</span> <span class="s2">&quot;inventories&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دریافتنی‌های تجاری و سایر دریافتنی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_receivables&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه‌گذاری‌های کوتاه‌مدت&quot;</span><span class="p">:</span> <span class="s2">&quot;short_term_investments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;موجودی نقد&quot;</span><span class="p">:</span> <span class="s2">&quot;cash_and_equivalents&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دارایی‌های نگهداری شده برای فروش&quot;</span><span class="p">:</span> <span class="s2">&quot;asset_for_sale&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع دارایی‌های جاری&quot;</span><span class="p">:</span> <span class="s2">&quot;total_current_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع دارایی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;total_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمايه&quot;</span><span class="p">:</span> <span class="s2">&quot;common_stock&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;افزایش سرمایه در جریان&quot;</span><span class="p">:</span> <span class="s2">&quot;received_for_capital_advance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;صرف سهام&quot;</span><span class="p">:</span> <span class="s2">&quot;capital_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;صرف سهام خزانه&quot;</span><span class="p">:</span> <span class="s2">&quot;treasury_stock_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;اندوخته قانونی&quot;</span><span class="p">:</span> <span class="s2">&quot;legal_reserve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ساير اندوخته‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;expansion_reserve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;مازاد تجدیدارزيابی دارایی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;revaluation_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;تفاوت تسعیر ارز عملیات خارجی&quot;</span><span class="p">:</span> <span class="s2">&quot;exchange_differences_on_translation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زيان) انباشته&quot;</span><span class="p">:</span> <span class="s2">&quot;retained_earnings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سهام خزانه&quot;</span><span class="p">:</span> <span class="s2">&quot;treasury_stock&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع حقوق مالکانه&quot;</span><span class="p">:</span> <span class="s2">&quot;total_shareholders_equity&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پرداختنی‌های بلندمدت&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;تسهیلات مالی بلندمدت&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_debt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ذخیره مزایای پایان خدمت کارکنان&quot;</span><span class="p">:</span> <span class="s2">&quot;allowance_for_post_retirement&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع بدهی‌های غیرجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;total_non_current_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پرداختنی‌های تجاری و سایر پرداختنی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;مالیات پرداختنی&quot;</span><span class="p">:</span> <span class="s2">&quot;deferred_tax_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود سهام پرداختنی&quot;</span><span class="p">:</span> <span class="s2">&quot;dividends_payable&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;تسهیلات مالی&quot;</span><span class="p">:</span> <span class="s2">&quot;loan_payable&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ذخایر&quot;</span><span class="p">:</span> <span class="s2">&quot;provisions&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پیش‌دریافت‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;deferred_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;بدهی‌های ‌مرتبط ‌با دارایی‌های نگهداری‌‌شده برای ‌فروش&quot;</span><span class="p">:</span> <span class="s2">&quot;liabilities_related_to_assets_for_sale&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع بدهی‌های جاری&quot;</span><span class="p">:</span> <span class="s2">&quot;total_current_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع بدهی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;total_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع حقوق مالکانه و بدهی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;total_liabilities_and_shareholders_equities&quot;</span><span class="p">,</span>
+    <span class="c1"># ---------------</span>
+    <span class="s2">&quot;دارایی‌های ثابت مشهود&quot;</span><span class="p">:</span> <span class="s2">&quot;tangible_fixed_assets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه‌گذاری در املاک&quot;</span><span class="p">:</span> <span class="s2">&quot;investment_property&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دریافتنی‌‌های بلندمدت&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_receivables&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پیش پرداخت‌ها و سفارشات&quot;</span><span class="p">:</span> <span class="s2">&quot;prepayments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دریافتنی‌‌های تجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_receivables&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;دریافتنی‌‌های غیرتجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_receivables&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه‌گذاری‌‌های کوتاه مدت&quot;</span><span class="p">:</span> <span class="s2">&quot;short_term_investments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سرمایه&quot;</span><span class="p">:</span> <span class="s2">&quot;common_stock&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;افزایش (کاهش) سرمایه در جریان&quot;</span><span class="p">:</span> <span class="s2">&quot;received_for_capital_advance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;صرف (کسر) سهام&quot;</span><span class="p">:</span> <span class="s2">&quot;capital_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سایر اندوخته‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;expansion_reserve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;مازاد تجدید ارزیابی دارایی‌های نگهداری شده برای فروش&quot;</span><span class="p">:</span> <span class="s2">&quot;revaluation_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;مازاد تجدید ارزیابی دارایی‌ها&quot;</span><span class="p">:</span> <span class="s2">&quot;revaluation_surplus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;تفاوت تسعیر ناشی از تبدیل به واحد پول گزارشگری&quot;</span><span class="p">:</span> <span class="s2">&quot;exchange_differences_on_translation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;اندوخته تسعیر ارز دارایی‌ها و بدهی‌های شرکت‌های دولتی&quot;</span><span class="p">:</span> <span class="s2">&quot;exchange_differences_on_translation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;سود (زیان) انباشته&quot;</span><span class="p">:</span> <span class="s2">&quot;retained_earnings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع حقوق صاحبان سهام&quot;</span><span class="p">:</span> <span class="s2">&quot;total_shareholders_equity&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پیش‌دریافت‌های غیرجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;long_term_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پرداختنی‌های تجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پرداختنی‌های غیرتجاری&quot;</span><span class="p">:</span> <span class="s2">&quot;trade_and_other_liabilities&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;پیش‌دریافت‌های جاری&quot;</span><span class="p">:</span> <span class="s2">&quot;deferred_revenue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;بدهی‌های مرتبط با دارایی‌های نگهداری شده برای فروش&quot;</span><span class="p">:</span> <span class="s2">&quot;liabilities_related_to_assets_for_sale&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;جمع بدهی‌ها و حقوق صاحبان سهام&quot;</span><span class="p">:</span> <span class="s2">&quot;total_liabilities_and_shareholders_equities&quot;</span><span class="p">,</span>
+<span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="normalize_key"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.normalize_key">[docs]</a><span class="k">def</span> <span class="nf">normalize_key</span><span class="p">(</span><span class="n">dict_</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">normalizer</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">key</span><span class="p">):</span> <span class="n">val</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+<div class="viewcode-block" id="fs_items"><a class="viewcode-back" href="../../../../autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.fs_items">[docs]</a><span class="n">fs_items</span> <span class="o">=</span> <span class="n">FSItems</span><span class="p">(</span>
+    <span class="n">income_statements</span><span class="o">=</span><span class="n">normalize_key</span><span class="p">(</span><span class="n">income_statements</span><span class="p">),</span>
+    <span class="n">balance_sheet</span><span class="o">=</span><span class="n">normalize_key</span><span class="p">(</span><span class="n">balance_sheet</span><span class="p">),</span>
+<span class="p">)</span></div>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Metafid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

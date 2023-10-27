@@ -1,0 +1,51 @@
+:py:mod:`oxtapus.ise.rahavard_utils.clean_and_extend_data`
+==========================================================
+
+.. py:module:: oxtapus.ise.rahavard_utils.clean_and_extend_data
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.rahavard_parser
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.balance_sheet
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.income_statements
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.cash_flow
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.Ced
+   oxtapus.ise.rahavard_utils.clean_and_extend_data.ced
+
+
+.. py:data:: Ced
+
+   
+
+.. py:function:: rahavard_parser(t, split0='var layoutModel =', split1=';')
+
+
+.. py:function:: balance_sheet(bs: json)
+
+
+.. py:function:: income_statements(is_: json)
+
+
+.. py:function:: cash_flow(cf: json)
+
+
+.. py:data:: ced
+
+   
+

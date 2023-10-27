@@ -29,8 +29,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
@@ -40,7 +40,8 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -87,8 +88,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -98,24 +99,15 @@
   </div>
   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
   
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
   
-  <div class="sidebar-header-items sidebar-primary__section">
+  <div class="col-lg-3 navbar-header-items__start">
     
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
+      <div class="navbar-item">
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -127,32 +119,134 @@
     <p class="title logo__title">oxtapus 0.2.4 documentation</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/oxtapus/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/oxtapus/econ/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/oxtapus/econ/cbi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ.cbi</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/oxtapus/econ/tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.econ.tgju</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/oxtapus/ise/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/oxtapus/ise/codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.codal</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/oxtapus/ise/rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.rahavard</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/oxtapus/ise/tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.ise.tsetmc</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-    </div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
 </nav></div>
+      
     </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -166,83 +260,12 @@
       <main id="main-content" class="bd-main">
         
         
-
-<div class="sbt-scroll-pixel-helper"></div>
-
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
+              <div class="bd-header-article"></div>
               
               
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-        </div>
-    </div>
-</div>
-
               
                 
 <div id="searchbox"></div>
@@ -252,44 +275,58 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#_"><strong>_</strong></a>
- | <a href="#A"><strong>A</strong></a>
+ <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  
 </div>
-<h2 id="_">_</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU._get_hist_price">_get_hist_price() (TGJU static method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU._get_hist_price">[1]</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC._handle_args">_handle_args() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC._handle_args">[1]</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.adj_hist_price">adj_hist_price() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.adj_hist_price">[1]</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.adj_price">adj_price() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.all_index">all_index (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.all_index">all_index() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.all_index">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.all_index">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.all_index">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.all_index">all_index() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.all_index">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.arabic_char">arabic_char() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.arabic_char">(in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.async_get">async_get() (in module oxtapus.utils)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/async_get/index.html#oxtapus.utils.async_get.async_get">(in module oxtapus.utils.async_get)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.audited">audited (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.audited">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -297,10 +334,24 @@ document.write(`
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.balance_sheet">balance_sheet (in module oxtapus.ise.codal_utils.columns)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.balance_sheet">(in module oxtapus.ise.codal_utils.fs_items)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.balance_sheet">(in module oxtapus.ise.rahavard_utils.columns)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/codal/index.html#oxtapus.ise.codal.Codal.balance_sheet">balance_sheet() (Codal method)</a>, <a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Codal.balance_sheet">[1]</a>
 
       <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.balance_sheet">(in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.balance_sheet">(in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+</li>
         <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.balance_sheet">(Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.balance_sheet">[1]</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#oxtapus.ise.rahavard_utils.constants.URL.balance_sheet">(URL method)</a>, <a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.URL.balance_sheet">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -313,20 +364,110 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.cash_flow">cash_flow() (Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.cash_flow">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.cash_flow">cash_flow (in module oxtapus.ise.rahavard_utils.columns)</a>
 </li>
-      <li><a href="autoapi/oxtapus/econ/cbi/index.html#oxtapus.econ.cbi.CBI">CBI (class in oxtapus.econ.cbi)</a>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.cash_flow">cash_flow() (in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.cash_flow">(Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.cash_flow">[1]</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#oxtapus.ise.rahavard_utils.constants.URL.cash_flow">(URL method)</a>, <a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.URL.cash_flow">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.cash_flows">cash_flows() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.category">category (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.category">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.ced">ced (in module oxtapus.ise.codal_utils)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.Ced">Ced (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.ced">ced (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.ced">(in module oxtapus.ise.rahavard_utils)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.Ced">Ced (in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.ced">ced (in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.ced">(in module oxtapus.ise.tsetmc_utils)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.Ced">Ced (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.ced">ced (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.childes">childes (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.childes">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.clean_balance_sheet">clean_balance_sheet() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.clean_income_statements">clean_income_statements() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.client_type">client_type() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.client_type">[1]</a>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/clean_and_extend_data/index.html#oxtapus.econ.cbi_utils.clean_and_extend_data.clean_tsd_cbi">clean_tsd_cbi() (in module oxtapus.econ.cbi_utils.clean_and_extend_data)</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.client_type">client_type (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.client_type">client_type() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.client_type">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.client_type">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.client_type">[1]</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Codal">Codal (class in oxtapus.ise)</a>
 
       <ul>
         <li><a href="autoapi/oxtapus/ise/codal/index.html#oxtapus.ise.codal.Codal">(class in oxtapus.ise.codal)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.codal_parser">codal_parser() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.cols">cols (in module oxtapus.ise.codal_utils)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.Cols">Cols (in module oxtapus.ise.codal_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.cols">cols (in module oxtapus.ise.codal_utils.columns)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.cols">(in module oxtapus.ise.rahavard_utils)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.Cols">Cols (in module oxtapus.ise.rahavard_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.cols">cols (in module oxtapus.ise.rahavard_utils.columns)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.cols">(in module oxtapus.ise.tsetmc_utils)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.Cols">Cols (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.cols">cols (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.concurrency_limit_decorator">concurrency_limit_decorator() (in module oxtapus.utils)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/async_get/index.html#oxtapus.utils.async_get.concurrency_limit_decorator">(in module oxtapus.utils.async_get)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.date">date() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.days_to_ex_date">days_to_ex_date() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.JDate.days_to_input_date">days_to_input_date() (JDate method)</a>, <a href="autoapi/oxtapus/utils/jdate/index.html#oxtapus.utils.jdate.JDate.days_to_input_date">[1]</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -336,12 +477,44 @@ document.write(`
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.etf_info">etf_info() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.etf_info">[1]</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.JDate.evenly_spaced_periods">evenly_spaced_periods() (JDate method)</a>, <a href="autoapi/oxtapus/utils/jdate/index.html#oxtapus.utils.jdate.JDate.evenly_spaced_periods">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.expiration_date">expiration_date() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.URL.financial_statements">financial_statements() (URL method)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.URL.financial_statements">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.fs_items">fs_items (in module oxtapus.ise.codal_utils.fs_items)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.FSItems">FSItems (in module oxtapus.ise.codal_utils.fs_items)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/session/index.html#oxtapus.econ.cbi_utils.session.get">get() (in module oxtapus.econ.cbi_utils.session)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.get">(in module oxtapus.utils)</a>
+</li>
+        <li><a href="autoapi/oxtapus/utils/get/index.html#oxtapus.utils.get.get">(in module oxtapus.utils.get)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.get_last_market_activity_datetime">get_last_market_activity_datetime() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.get_last_market_activity_datetime">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/constants/index.html#oxtapus.econ.cbi_utils.constants.URL.get_report">get_report() (URL method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -349,51 +522,145 @@ document.write(`
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.hist_price">hist_price() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.hist_price">[1]</a>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/session/index.html#oxtapus.econ.cbi_utils.session.headers">headers (in module oxtapus.econ.cbi_utils.session)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/async_get/index.html#oxtapus.utils.async_get.headers">(in module oxtapus.utils.async_get)</a>
 </li>
+        <li><a href="autoapi/oxtapus/utils/get/index.html#oxtapus.utils.get.headers">(in module oxtapus.utils.get)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/session/index.html#oxtapus.econ.cbi_utils.session.headers_with_cookie">headers_with_cookie() (in module oxtapus.econ.cbi_utils.session)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.hist_price">hist_price (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.hist_price">hist_price() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.hist_price">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.hist_price">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.hist_price">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.income_statements">income_statements (in module oxtapus.ise.codal_utils.columns)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.income_statements">(in module oxtapus.ise.codal_utils.fs_items)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.income_statements">(in module oxtapus.ise.rahavard_utils.columns)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/codal/index.html#oxtapus.ise.codal.Codal.income_statements">income_statements() (Codal method)</a>, <a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Codal.income_statements">[1]</a>
 
       <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.income_statements">(in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.income_statements">(in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+</li>
         <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.income_statements">(Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.income_statements">[1]</a>
 </li>
-      </ul></li>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.index_hist">index_hist() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.index_hist">[1]</a>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#oxtapus.ise.rahavard_utils.constants.URL.income_statements">(URL method)</a>, <a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.URL.income_statements">[1]</a>
 </li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.index_hist">index_hist (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.index_hist">index_hist() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.index_hist">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.index_hist">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.index_hist">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.index_ticker_symbols">index_ticker_symbols() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.index_ticker_symbols">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.index_ticker_symbols">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.index_ticker_symbols">[1]</a>
 </li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.index_traker_symbols">index_traker_symbols() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.ins_info">ins_info() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.ins_info">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.ins_info">[1]</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.instrument_info">instrument_info() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.instrument_info">[1]</a>
 </li>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.intraday_trades">intraday_trades() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.intraday_trades">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.intraday_trades">intraday_trades (in module oxtapus.ise.tsetmc_utils.columns)</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.intraday_trades">intraday_trades() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.intraday_trades">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.intraday_trades">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.intraday_trades">[1]</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.intraday_trades_base_timeframe">intraday_trades_base_timeframe() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.intraday_trades_base_timeframe">[1]</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.JDate.jalali_to_gregorian">jalali_to_gregorian() (JDate method)</a>, <a href="autoapi/oxtapus/utils/jdate/index.html#oxtapus.utils.jdate.JDate.jalali_to_gregorian">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.JDate">JDate (class in oxtapus.utils)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/jdate/index.html#oxtapus.utils.jdate.JDate">(class in oxtapus.utils.jdate)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.last_ins_info">last_ins_info() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.last_ins_info">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.last_ins_info">last_ins_info (in module oxtapus.ise.tsetmc_utils.columns)</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.last_ins_info">last_ins_info() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.last_ins_info">(TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.last_ins_info">[1]</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.last_ins_info">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.last_ins_info">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/ise/codal/index.html#oxtapus.ise.codal.Codal.letters">letters() (Codal method)</a>, <a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Codal.letters">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.last_market_activity">last_market_activity() (URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.last_market_activity">[1]</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.length">length (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.length">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.letters">letters (in module oxtapus.ise.codal_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal/index.html#oxtapus.ise.codal.Codal.letters">letters() (Codal method)</a>, <a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Codal.letters">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.letters">(in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.mains">mains (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.mains">[1]</a>
+</li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.market_watch">market_watch() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.market_watch">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.match_date">match_date() (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
 </li>
       <li>
     module
@@ -403,7 +670,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/econ/index.html#module-oxtapus.econ">oxtapus.econ</a>
 </li>
-        <li><a href="autoapi/oxtapus/econ/cbi/index.html#module-oxtapus.econ.cbi">oxtapus.econ.cbi</a>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/index.html#module-oxtapus.econ.cbi_utils">oxtapus.econ.cbi_utils</a>
+</li>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/clean_and_extend_data/index.html#module-oxtapus.econ.cbi_utils.clean_and_extend_data">oxtapus.econ.cbi_utils.clean_and_extend_data</a>
+</li>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/constants/index.html#module-oxtapus.econ.cbi_utils.constants">oxtapus.econ.cbi_utils.constants</a>
+</li>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/session/index.html#module-oxtapus.econ.cbi_utils.session">oxtapus.econ.cbi_utils.session</a>
 </li>
         <li><a href="autoapi/oxtapus/econ/tgju/index.html#module-oxtapus.econ.tgju">oxtapus.econ.tgju</a>
 </li>
@@ -411,36 +684,102 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/ise/codal/index.html#module-oxtapus.ise.codal">oxtapus.ise.codal</a>
 </li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#module-oxtapus.ise.codal_utils">oxtapus.ise.codal_utils</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#module-oxtapus.ise.codal_utils.clean_and_extend_data">oxtapus.ise.codal_utils.clean_and_extend_data</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#module-oxtapus.ise.codal_utils.columns">oxtapus.ise.codal_utils.columns</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#module-oxtapus.ise.codal_utils.constants">oxtapus.ise.codal_utils.constants</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#module-oxtapus.ise.codal_utils.fs_items">oxtapus.ise.codal_utils.fs_items</a>
+</li>
         <li><a href="autoapi/oxtapus/ise/rahavard/index.html#module-oxtapus.ise.rahavard">oxtapus.ise.rahavard</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/index.html#module-oxtapus.ise.rahavard_utils">oxtapus.ise.rahavard_utils</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#module-oxtapus.ise.rahavard_utils.clean_and_extend_data">oxtapus.ise.rahavard_utils.clean_and_extend_data</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#module-oxtapus.ise.rahavard_utils.columns">oxtapus.ise.rahavard_utils.columns</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#module-oxtapus.ise.rahavard_utils.constants">oxtapus.ise.rahavard_utils.constants</a>
 </li>
         <li><a href="autoapi/oxtapus/ise/tsetmc/index.html#module-oxtapus.ise.tsetmc">oxtapus.ise.tsetmc</a>
 </li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#module-oxtapus.ise.tsetmc_utils">oxtapus.ise.tsetmc_utils</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#module-oxtapus.ise.tsetmc_utils.clean_and_extend_data">oxtapus.ise.tsetmc_utils.clean_and_extend_data</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#module-oxtapus.ise.tsetmc_utils.columns">oxtapus.ise.tsetmc_utils.columns</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#module-oxtapus.ise.tsetmc_utils.constants">oxtapus.ise.tsetmc_utils.constants</a>
+</li>
+        <li><a href="autoapi/oxtapus/utils/index.html#module-oxtapus.utils">oxtapus.utils</a>
+</li>
+        <li><a href="autoapi/oxtapus/utils/async_get/index.html#module-oxtapus.utils.async_get">oxtapus.utils.async_get</a>
+</li>
+        <li><a href="autoapi/oxtapus/utils/get/index.html#module-oxtapus.utils.get">oxtapus.utils.get</a>
+</li>
+        <li><a href="autoapi/oxtapus/utils/jdate/index.html#module-oxtapus.utils.jdate">oxtapus.utils.jdate</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.mw">mw (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.mw">mw() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.mw">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.mw">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.mw_ob">mw_ob (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/econ/cbi/index.html#oxtapus.econ.cbi.CBI.national_accounts">national_accounts() (CBI method)</a>
+      <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.nim_sekke">nim_sekke() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.nim_sekke">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.normalize_key">normalize_key() (in module oxtapus.ise.codal_utils.fs_items)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.nim_sekke">nim_sekke() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.nim_sekke">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#oxtapus.ise.codal_utils.clean_and_extend_data.normalizer">normalizer (in module oxtapus.ise.codal_utils.clean_and_extend_data)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#oxtapus.ise.codal_utils.fs_items.normalizer">(in module oxtapus.ise.codal_utils.fs_items)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.omw">omw (in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.omw">omw() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
       <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.ons">ons() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.ons">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.option_info">option_info (in module oxtapus.ise.tsetmc_utils.columns)</a>
 </li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.option_info">option_info() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.option_info">[1]</a>
 </li>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.option_info_comp">option_info_comp() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.option_info_comp">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.option_info_comp">option_info_comp (in module oxtapus.ise.tsetmc_utils.columns)</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.option_info_comp">option_info_comp() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.option_info_comp">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.option_info_comp">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.option_info_comp">[1]</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.option_market_watch">option_market_watch() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.option_market_watch">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.option_type">option_type() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
 </li>
       <li>
     oxtapus
@@ -457,14 +796,33 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    oxtapus.econ.cbi
+    oxtapus.econ.cbi_utils
 
       <ul>
-        <li><a href="autoapi/oxtapus/econ/cbi/index.html#module-oxtapus.econ.cbi">module</a>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/index.html#module-oxtapus.econ.cbi_utils">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    oxtapus.econ.cbi_utils.clean_and_extend_data
+
+      <ul>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/clean_and_extend_data/index.html#module-oxtapus.econ.cbi_utils.clean_and_extend_data">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.econ.cbi_utils.constants
+
+      <ul>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/constants/index.html#module-oxtapus.econ.cbi_utils.constants">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.econ.cbi_utils.session
+
+      <ul>
+        <li><a href="autoapi/oxtapus/econ/cbi_utils/session/index.html#module-oxtapus.econ.cbi_utils.session">module</a>
+</li>
+      </ul></li>
       <li>
     oxtapus.econ.tgju
 
@@ -487,6 +845,43 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    oxtapus.ise.codal_utils
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#module-oxtapus.ise.codal_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.codal_utils.clean_and_extend_data
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/clean_and_extend_data/index.html#module-oxtapus.ise.codal_utils.clean_and_extend_data">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.codal_utils.columns
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#module-oxtapus.ise.codal_utils.columns">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    oxtapus.ise.codal_utils.constants
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#module-oxtapus.ise.codal_utils.constants">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.codal_utils.fs_items
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/fs_items/index.html#module-oxtapus.ise.codal_utils.fs_items">module</a>
+</li>
+      </ul></li>
+      <li>
     oxtapus.ise.rahavard
 
       <ul>
@@ -494,10 +889,134 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    oxtapus.ise.rahavard_utils
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/index.html#module-oxtapus.ise.rahavard_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.rahavard_utils.clean_and_extend_data
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#module-oxtapus.ise.rahavard_utils.clean_and_extend_data">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.rahavard_utils.columns
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#module-oxtapus.ise.rahavard_utils.columns">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.rahavard_utils.constants
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#module-oxtapus.ise.rahavard_utils.constants">module</a>
+</li>
+      </ul></li>
+      <li>
     oxtapus.ise.tsetmc
 
       <ul>
         <li><a href="autoapi/oxtapus/ise/tsetmc/index.html#module-oxtapus.ise.tsetmc">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.tsetmc_utils
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#module-oxtapus.ise.tsetmc_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.tsetmc_utils.clean_and_extend_data
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#module-oxtapus.ise.tsetmc_utils.clean_and_extend_data">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.tsetmc_utils.columns
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#module-oxtapus.ise.tsetmc_utils.columns">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.ise.tsetmc_utils.constants
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#module-oxtapus.ise.tsetmc_utils.constants">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.utils
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/index.html#module-oxtapus.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.utils.async_get
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/async_get/index.html#module-oxtapus.utils.async_get">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.utils.get
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/get/index.html#module-oxtapus.utils.get">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.utils.jdate
+
+      <ul>
+        <li><a href="autoapi/oxtapus/utils/jdate/index.html#module-oxtapus.utils.jdate">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.page_number">page_number (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.page_number">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.parameters">parameters (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.parameters">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/utils/index.html#oxtapus.utils.JDate.parse_jdate">parse_jdate() (JDate method)</a>, <a href="autoapi/oxtapus/utils/jdate/index.html#oxtapus.utils.jdate.JDate.parse_jdate">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/columns/index.html#oxtapus.ise.codal_utils.columns.Property">Property (in module oxtapus.ise.codal_utils.columns)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/columns/index.html#oxtapus.ise.rahavard_utils.columns.Property">(in module oxtapus.ise.rahavard_utils.columns)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.Property">(in module oxtapus.ise.tsetmc_utils.columns)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.query_parameters">query_parameters (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.query_parameters">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/constants/index.html#oxtapus.econ.cbi_utils.constants.URL.query_report">query_report() (URL method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters">QueryParameters (class in oxtapus.ise.codal_utils)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters">(class in oxtapus.ise.codal_utils.constants)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -514,6 +1033,8 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/rahavard_utils/clean_and_extend_data/index.html#oxtapus.ise.rahavard_utils.clean_and_extend_data.rahavard_parser">rahavard_parser() (in module oxtapus.ise.rahavard_utils.clean_and_extend_data)</a>
+</li>
       <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.rob_sekke">rob_sekke() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.rob_sekke">[1]</a>
 </li>
   </ul></td>
@@ -522,17 +1043,33 @@ document.write(`
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.search_ins_code">search_ins_code() (URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.search_ins_code">[1]</a>
+</li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.search_instrument_code">search_instrument_code() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.search_instrument_code">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.URL.search_url">search_url (URL property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.URL.search_url">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.sekke_emami">sekke_emami() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.sekke_emami">[1]</a>
 </li>
-      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.share_change">share_change() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.share_change">[1]</a>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/columns/index.html#oxtapus.ise.tsetmc_utils.columns.share_change">share_change (in module oxtapus.ise.tsetmc_utils.columns)</a>
 </li>
+      <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.share_change">share_change() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.share_change">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL.share_change">(URL method)</a>, <a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL.share_change">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.stock">stock() (Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.stock">[1]</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#oxtapus.ise.rahavard_utils.constants.URL.stock">(URL method)</a>, <a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.URL.stock">[1]</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.TSETMC.stock_info">stock_info() (TSETMC method)</a>, <a href="autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.tsetmc.TSETMC.stock_info">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.QueryParameters.symbol">symbol (QueryParameters property)</a>, <a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.QueryParameters.symbol">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/ise/index.html#oxtapus.ise.Rahavard.symbol_id">symbol_id() (Rahavard method)</a>, <a href="autoapi/oxtapus/ise/rahavard/index.html#oxtapus.ise.rahavard.Rahavard.symbol_id">[1]</a>
 </li>
@@ -562,6 +1099,26 @@ document.write(`
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/ise/tsetmc_utils/clean_and_extend_data/index.html#oxtapus.ise.tsetmc_utils.clean_and_extend_data.underlying_asset">underlying_asset() (in module oxtapus.ise.tsetmc_utils.clean_and_extend_data)</a>
+</li>
+      <li><a href="autoapi/oxtapus/econ/cbi_utils/constants/index.html#oxtapus.econ.cbi_utils.constants.URL">URL (class in oxtapus.econ.cbi_utils.constants)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/index.html#oxtapus.ise.codal_utils.URL">(class in oxtapus.ise.codal_utils)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/codal_utils/constants/index.html#oxtapus.ise.codal_utils.constants.URL">(class in oxtapus.ise.codal_utils.constants)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/index.html#oxtapus.ise.rahavard_utils.URL">(class in oxtapus.ise.rahavard_utils)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/rahavard_utils/constants/index.html#oxtapus.ise.rahavard_utils.constants.URL">(class in oxtapus.ise.rahavard_utils.constants)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/index.html#oxtapus.ise.tsetmc_utils.URL">(class in oxtapus.ise.tsetmc_utils)</a>
+</li>
+        <li><a href="autoapi/oxtapus/ise/tsetmc_utils/constants/index.html#oxtapus.ise.tsetmc_utils.constants.URL">(class in oxtapus.ise.tsetmc_utils.constants)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/econ/index.html#oxtapus.econ.TGJU.usd_irr">usd_irr() (TGJU method)</a>, <a href="autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.tgju.TGJU.usd_irr">[1]</a>
 </li>
   </ul></td>
@@ -571,7 +1128,6 @@ document.write(`
 
                 </article>
               
-
               
               
               
@@ -590,39 +1146,8 @@ document.write(`
           </div>
           <footer class="bd-footer-content">
             
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Yaghoub Ghaderi
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2023, Metafid.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
           </footer>
         
-
       </main>
     </div>
   </div>
@@ -632,6 +1157,40 @@ By Yaghoub Ghaderi
 <script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Metafid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
   </body>
 </html>

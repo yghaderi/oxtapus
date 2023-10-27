@@ -1,0 +1,76 @@
+:py:mod:`oxtapus.ise.codal_utils.clean_and_extend_data`
+=======================================================
+
+.. py:module:: oxtapus.ise.codal_utils.clean_and_extend_data
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.codal_utils.clean_and_extend_data.codal_parser
+   oxtapus.ise.codal_utils.clean_and_extend_data.arabic_char
+   oxtapus.ise.codal_utils.clean_and_extend_data.match_date
+   oxtapus.ise.codal_utils.clean_and_extend_data.letters
+   oxtapus.ise.codal_utils.clean_and_extend_data.clean_balance_sheet
+   oxtapus.ise.codal_utils.clean_and_extend_data.balance_sheet
+   oxtapus.ise.codal_utils.clean_and_extend_data.clean_income_statements
+   oxtapus.ise.codal_utils.clean_and_extend_data.income_statements
+   oxtapus.ise.codal_utils.clean_and_extend_data.cash_flows
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.codal_utils.clean_and_extend_data.normalizer
+   oxtapus.ise.codal_utils.clean_and_extend_data.Ced
+   oxtapus.ise.codal_utils.clean_and_extend_data.ced
+
+
+.. py:data:: normalizer
+
+   
+
+.. py:data:: Ced
+
+   
+
+.. py:function:: codal_parser(text)
+
+
+.. py:function:: arabic_char(s: str)
+
+
+.. py:function:: match_date(t)
+
+
+.. py:function:: letters(url)
+
+
+.. py:function:: clean_balance_sheet(df)
+
+
+.. py:function:: balance_sheet(r)
+
+
+.. py:function:: clean_income_statements(df)
+
+
+.. py:function:: income_statements(r: str)
+
+
+.. py:function:: cash_flows()
+
+
+.. py:data:: ced
+
+   
+

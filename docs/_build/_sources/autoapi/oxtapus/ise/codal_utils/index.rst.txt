@@ -1,0 +1,92 @@
+:py:mod:`oxtapus.ise.codal_utils`
+=================================
+
+.. py:module:: oxtapus.ise.codal_utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   clean_and_extend_data/index.rst
+   columns/index.rst
+   constants/index.rst
+   fs_items/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.codal_utils.URL
+   oxtapus.ise.codal_utils.QueryParameters
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.codal_utils.cols
+   oxtapus.ise.codal_utils.ced
+
+
+.. py:data:: cols
+
+   
+
+.. py:class:: URL(base_url='https://codal.ir', api='https://search.codal.ir/api/search/v2/q?', **kwargs)
+
+
+   Bases: :py:obj:`QueryParameters`
+
+   .. py:property:: search_url
+
+
+   .. py:method:: financial_statements(letter_url, sheet_id)
+
+
+
+.. py:class:: QueryParameters(**kwargs)
+
+
+   .. py:property:: symbol
+
+
+   .. py:property:: audited
+
+
+   .. py:property:: category
+
+
+   .. py:property:: childes
+
+
+   .. py:property:: length
+
+
+   .. py:property:: mains
+
+
+   .. py:property:: page_number
+
+
+   .. py:property:: parameters
+
+
+   .. py:property:: query_parameters
+
+
+
+.. py:data:: ced
+
+   
+

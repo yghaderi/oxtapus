@@ -1,0 +1,33 @@
+:py:mod:`oxtapus.ise.rahavard_utils.columns`
+============================================
+
+.. py:module:: oxtapus.ise.rahavard_utils.columns
+
+
+Module Contents
+---------------
+
+.. py:data:: Cols
+
+   
+
+.. py:data:: Property
+
+   
+
+.. py:data:: balance_sheet
+
+   
+
+.. py:data:: income_statements
+
+   
+
+.. py:data:: cash_flow
+
+   
+
+.. py:data:: cols
+
+   
+

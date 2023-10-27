@@ -4,7 +4,11 @@ from oxtapus.utils import get
 
 class TGJU:
     """
-    دریافتِ داده‌هایِ گذشته‌یِ سایتِ www.tgju.org
+    .. raw:: html
+
+        <div dir="rtl">
+              داده‌هایِ گذشته‌یِ سایتِ رو بهت می‌ده.
+        </div>
     """
 
     def __init__(self):
@@ -24,7 +28,11 @@ class TGJU:
 
     def usd_irr(self):
         """
-        دریافتِ داده‌هایِ گذشته‌یِ دلار/ریال
+        .. raw:: html
+
+            <div dir="rtl">
+             داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.
+            </div>
 
         Returns
         -------

@@ -1,0 +1,17 @@
+:py:mod:`oxtapus.econ.cbi_utils`
+================================
+
+.. py:module:: oxtapus.econ.cbi_utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   clean_and_extend_data/index.rst
+   constants/index.rst
+   session/index.rst
+
+

@@ -1,0 +1,102 @@
+:py:mod:`oxtapus.ise.tsetmc_utils`
+==================================
+
+.. py:module:: oxtapus.ise.tsetmc_utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   clean_and_extend_data/index.rst
+   columns/index.rst
+   constants/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.tsetmc_utils.URL
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.ise.tsetmc_utils.cols
+   oxtapus.ise.tsetmc_utils.ced
+
+
+.. py:data:: cols
+
+   
+
+.. py:class:: URL(base_url='http://cdn.tsetmc.com/api')
+
+
+   .. py:method:: mw(stock: bool = False, ifb_paye: bool = False, mortgage: bool = False, cum_right: bool = False, bond: bool = False, option: bool = False, futures: bool = False, etf: bool = False, commodity: bool = False)
+
+      ترتیبَ ورودی‌ها مهم است، پس دقت کن!
+      :param stock: bool, if True add stock data, default is False
+      :param ifb_paye: bool, if True add ifb_pay data, default is False (فرابورس-پایه)
+      :param mortgage: bool, if True add mortgage data, default is False
+      :param cum_right: bool, if True add cum_right data, default is False
+      :param bond: bool, if True add bond data, default is False
+      :param option: bool, if True add option data, default is False
+      :param futures: bool, if True add futures data, default is False
+      :param etf: bool, if True add etf data, default is False
+      :param commodity: bool, if True add commodity data, default is False
+      :return: pandas.DataFrame
+
+
+   .. py:method:: search_ins_code(symbol_far)
+
+
+   .. py:method:: ins_info(ins_code)
+
+
+   .. py:method:: hist_price(ins_code)
+
+
+   .. py:method:: client_type(ins_code)
+
+
+   .. py:method:: share_change(ins_code)
+
+
+   .. py:method:: option_info_comp(ins_id)
+
+
+   .. py:method:: all_index()
+
+
+   .. py:method:: index_ticker_symbols(index_code)
+
+
+   .. py:method:: index_hist(index_code)
+
+
+   .. py:method:: intraday_trades(ins_code)
+
+
+   .. py:method:: last_ins_info(ins_code)
+
+
+   .. py:method:: last_market_activity()
+
+
+
+.. py:data:: ced
+
+   
+

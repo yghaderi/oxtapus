@@ -19,28 +19,43 @@ release = '0.2.4'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.napoleon',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.coverage',
-    'sphinx.ext.viewcode',
-    'autoapi.extension',
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.coverage",
+    "sphinx.ext.viewcode",
+    "autoapi.extension",
+    "sphinx_copybutton",
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+copybutton_prompt_text = ">>> "
 
-autoapi_type = 'python'
-autoapi_dirs = ['../oxtapus']
-autoapi_ignore = ['*/oxtapus/*/*utils/*', '*/oxtapus/utils/*']
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "special-members",
+    "imported-members",
+]
+
+mathjax3_config = {"chtml": {"displayAlign": "left"}}
+
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+
+autoapi_type = "python"
+autoapi_dirs = ["../oxtapus"]
+autoapi_ignore = []
 
 autoclass_content = "both"
 
-source_suffix = '.rst'
+source_suffix = ".rst"
 add_module_names = False
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_book_theme'
-html_static_path = ['_static']
+html_theme = "pydata_sphinx_theme"
+html_static_path = ["_static"]
 
