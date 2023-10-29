@@ -1,0 +1,26 @@
+:py:mod:`oxtapus.utils.http.requests`
+=====================================
+
+.. py:module:: oxtapus.utils.http.requests
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.utils.http.requests.requests
+   oxtapus.utils.http.requests.async_requests
+
+
+
+.. py:function:: requests(url: str | List[str], response: str = 'json', timeout=(1, 3))
+
+
+.. py:function:: async_requests(url)
+
+

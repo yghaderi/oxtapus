@@ -307,12 +307,18 @@ document.write(`
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">get</span><span class="p">,</span> <span class="n">async_get</span><span class="p">,</span> <span class="n">JDate</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils.http</span> <span class="kn">import</span> <span class="n">requests</span><span class="p">,</span> <span class="n">async_requests</span>
 <span class="kn">from</span> <span class="nn">.tsetmc_utils</span> <span class="kn">import</span> <span class="n">cols</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">ced</span>
 
 
 <div class="viewcode-block" id="TSETMC"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC">[docs]</a><span class="k">class</span> <span class="nc">TSETMC</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get clean and fast all data from tsetmc.com.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. raw:: html</span>
+
+<span class="sd">        &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">              داده‌هایِ گذشته‌یِ سایتِ tsetmc.com رو بهت می‌ده.</span>
+<span class="sd">        &lt;/div&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -356,7 +362,7 @@ document.write(`
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span>
                                <span class="n">ifb_paye</span><span class="p">,</span>
                                <span class="n">mortgage</span><span class="p">,</span>
                                <span class="n">cum_right</span><span class="p">,</span>
@@ -404,7 +410,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol_far</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;instrumentSearch&quot;</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol_far</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;instrumentSearch&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span>
@@ -562,7 +568,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceDaily&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceDaily&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">hist_price</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
@@ -602,7 +608,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;clientType&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;clientType&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">client_type</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span><span class="n">cols</span><span class="o">.</span><span class="n">client_type</span><span class="o">.</span><span class="n">rep</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
@@ -629,7 +635,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">)</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">share_change</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span>
             <span class="n">cols</span><span class="o">.</span><span class="n">share_change</span><span class="o">.</span><span class="n">rep</span>
         <span class="p">]</span>
@@ -643,7 +649,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">all_index</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB1&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">all_index</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB1&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">all_index</span><span class="o">.</span><span class="n">rename</span><span class="p">)[</span>
             <span class="n">cols</span><span class="o">.</span><span class="n">all_index</span><span class="o">.</span><span class="n">rep</span>
         <span class="p">]</span></div>
@@ -661,7 +667,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_ticker_symbols</span><span class="p">(</span><span class="n">index_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexCompany&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_ticker_symbols</span><span class="p">(</span><span class="n">index_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexCompany&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ced</span><span class="o">.</span><span class="n">index_traker_symbols</span><span class="p">(</span><span class="n">index_code</span><span class="p">,</span> <span class="n">main</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="TSETMC.index_hist"><a class="viewcode-back" href="../../../autoapi/oxtapus/ise/tsetmc/index.html#oxtapus.ise.TSETMC.index_hist">[docs]</a>    <span class="k">def</span> <span class="nf">index_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">):</span>
@@ -677,7 +683,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_hist</span><span class="p">(</span><span class="n">index_code</span><span class="p">)))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB2&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_hist</span><span class="p">(</span><span class="n">index_code</span><span class="p">)))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;indexB2&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">index_hist</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ced</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
@@ -703,7 +709,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">]</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">ced</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">main</span><span class="p">)])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">last_ins_info</span><span class="o">.</span><span class="n">rename</span>
         <span class="p">)[</span><span class="n">cols</span><span class="o">.</span><span class="n">last_ins_info</span><span class="o">.</span><span class="n">rep</span><span class="p">]</span>
@@ -731,8 +737,8 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        pandas.DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;trade&quot;</span><span class="p">]</span>
-        <span class="n">date</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">][</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;trade&quot;</span><span class="p">]</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">][</span>
             <span class="s2">&quot;finalLastDate&quot;</span>
         <span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">intraday_trades</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
@@ -785,7 +791,7 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        datetime.datetime</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_market_activity</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketOverview&quot;</span><span class="p">)</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_market_activity</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketOverview&quot;</span><span class="p">)</span>
         <span class="n">date</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityDEven&quot;</span><span class="p">)</span>
         <span class="n">time</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityHEven&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2"> %H%M%S&quot;</span><span class="p">)</span></div></div>

@@ -12,6 +12,7 @@ Subpackages
 
    econ/index.rst
    ise/index.rst
+   tsetmc/index.rst
    utils/index.rst
 
 

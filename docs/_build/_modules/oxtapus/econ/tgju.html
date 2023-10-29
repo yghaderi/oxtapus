@@ -302,7 +302,7 @@ document.write(`
                   
   <h1>Source code for oxtapus.econ.tgju</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">get</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils.http</span> <span class="kn">import</span> <span class="n">requests</span>
 
 
 <div class="viewcode-block" id="TGJU"><a class="viewcode-back" href="../../../autoapi/oxtapus/econ/tgju/index.html#oxtapus.econ.TGJU">[docs]</a><span class="k">class</span> <span class="nc">TGJU</span><span class="p">:</span>
@@ -310,7 +310,7 @@ document.write(`
 <span class="sd">    .. raw:: html</span>
 
 <span class="sd">        &lt;div dir=&quot;rtl&quot;&gt;</span>
-<span class="sd">              داده‌هایِ گذشته‌یِ سایتِ رو بهت می‌ده.</span>
+<span class="sd">              داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.</span>
 <span class="sd">        &lt;/div&gt;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -320,7 +320,7 @@ document.write(`
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_hist_price</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.tgju.org/v1/market/indicator/summary-table-data/</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">main</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">main</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;jdate&quot;</span><span class="p">]</span>
         <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
@@ -336,8 +336,6 @@ document.write(`
 <span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
 <span class="sd">             داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.</span>
 <span class="sd">            &lt;/div&gt;</span>
-
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

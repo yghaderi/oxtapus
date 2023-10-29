@@ -1,0 +1,29 @@
+:py:mod:`oxtapus.tsetmc.options`
+================================
+
+.. py:module:: oxtapus.tsetmc.options
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.options.Options
+
+
+
+
+.. py:class:: Options
+
+
+   .. py:method:: mw()
+
+
+   .. py:method:: info()
+
+
+

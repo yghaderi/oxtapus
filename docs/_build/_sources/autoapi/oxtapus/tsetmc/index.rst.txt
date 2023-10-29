@@ -1,0 +1,47 @@
+:py:mod:`oxtapus.tsetmc`
+========================
+
+.. py:module:: oxtapus.tsetmc
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   utils/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   options/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.Options
+
+
+
+
+.. py:class:: Options
+
+
+   .. py:method:: mw()
+
+
+   .. py:method:: info()
+
+
+

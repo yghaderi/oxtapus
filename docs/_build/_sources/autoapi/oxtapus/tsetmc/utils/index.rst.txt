@@ -1,0 +1,17 @@
+:py:mod:`oxtapus.tsetmc.utils`
+==============================
+
+.. py:module:: oxtapus.tsetmc.utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   clean_and_extend_data/index.rst
+   columns/index.rst
+   constants/index.rst
+
+
