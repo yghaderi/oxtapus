@@ -4,12 +4,18 @@ import datetime
 from typing import List
 import pandas as pd
 
-from oxtapus.utils import get, async_get, JDate
+from oxtapus.utils.http import requests, async_requests
 from .tsetmc_utils import cols, URL, ced
 
 
 class TSETMC:
-    """Get clean and fast all data from tsetmc.com."""
+    """
+    .. raw:: html
+
+        <div dir="rtl">
+              داده‌هایِ گذشته‌یِ سایتِ tsetmc.com رو بهت می‌ده.
+        </div>
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -53,7 +59,7 @@ class TSETMC:
         pandas.DataFrame
         """
 
-        main = get(self.url.mw(stock,
+        main = requests(self.url.mw(stock,
                                ifb_paye,
                                mortgage,
                                cum_right,
@@ -101,7 +107,7 @@ class TSETMC:
         -------
         str
         """
-        data = get(self.url.search_ins_code(symbol_far)).json()["instrumentSearch"]
+        data = requests(self.url.search_ins_code(symbol_far)).json()["instrumentSearch"]
         for i in data:
             try:
                 if (
@@ -259,7 +265,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(self.url.hist_price(ins_code)).json()["closingPriceDaily"]
+        main = requests(self.url.hist_price(ins_code)).json()["closingPriceDaily"]
         df = pd.DataFrame(main).rename(columns=cols.hist_price.rename)
         return ced.date(df)
 
@@ -299,7 +305,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(self.url.client_type(ins_code)).json()["clientType"]
+        main = requests(self.url.client_type(ins_code)).json()["clientType"]
         df = pd.DataFrame(main)
         df = df.rename(columns=cols.client_type.rename)[cols.client_type.rep]
         return ced.date(df).applymap(int)
@@ -326,7 +332,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(self.url.share_change(ins_code)).json().get("instrumentShareChange")
+        main = requests(self.url.share_change(ins_code)).json().get("instrumentShareChange")
         df = pd.DataFrame(main).rename(columns=cols.share_change.rename)[
             cols.share_change.rep
         ]
@@ -340,7 +346,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(self.url.all_index()).json()["indexB1"]
+        main = requests(self.url.all_index()).json()["indexB1"]
         return pd.DataFrame(main).rename(columns=cols.all_index.rename)[
             cols.all_index.rep
         ]
@@ -358,7 +364,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(self.url.index_ticker_symbols(index_code)).json()["indexCompany"]
+        main = requests(self.url.index_ticker_symbols(index_code)).json()["indexCompany"]
         return pd.DataFrame(ced.index_traker_symbols(index_code, main))
 
     def index_hist(self, index_code):
@@ -374,7 +380,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get((self.url.index_hist(index_code))).json()["indexB2"]
+        main = requests((self.url.index_hist(index_code))).json()["indexB2"]
         df = pd.DataFrame(main).rename(columns=cols.index_hist.rename)
         return ced.date(df)
 
@@ -400,7 +406,7 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"]
+        main = requests(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"]
         df = pd.DataFrame([ced.last_ins_info(main)]).rename(
             columns=cols.last_ins_info.rename
         )[cols.last_ins_info.rep]
@@ -428,8 +434,8 @@ class TSETMC:
         -------
         pandas.DataFrame
         """
-        main = get(url=self.url.intraday_trades(ins_code)).json()["trade"]
-        date = get(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"][
+        main = requests(url=self.url.intraday_trades(ins_code)).json()["trade"]
+        date = requests(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"][
             "finalLastDate"
         ]
         df = pd.DataFrame(main).rename(columns=cols.intraday_trades.rename)
@@ -482,7 +488,7 @@ class TSETMC:
         -------
         datetime.datetime
         """
-        main = get(self.url.last_market_activity()).json().get("marketOverview")
+        main = requests(self.url.last_market_activity()).json().get("marketOverview")
         date = main.get("marketActivityDEven")
         time = main.get("marketActivityHEven")
         return datetime.datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")

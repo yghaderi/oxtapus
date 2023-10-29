@@ -1,5 +1,5 @@
 import pandas as pd
-from oxtapus.utils import get
+from oxtapus.utils.http import requests
 
 
 class TGJU:
@@ -7,7 +7,7 @@ class TGJU:
     .. raw:: html
 
         <div dir="rtl">
-              داده‌هایِ گذشته‌یِ سایتِ رو بهت می‌ده.
+              داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
         </div>
     """
 
@@ -17,7 +17,7 @@ class TGJU:
     @staticmethod
     def _get_hist_price(item):
         url = f"https://api.tgju.org/v1/market/indicator/summary-table-data/{item}"
-        main = get(url=url, timeout=(2, 6), verify=True).json()
+        main = requests(url=url, timeout=(2, 6), verify=True).json()
         df = pd.DataFrame().from_records(main["data"]).drop([4, 5], axis=1)
         df.columns = ["open", "low", "high", "close", "date", "jdate"]
         df[["open", "low", "high", "close"]] = df[
