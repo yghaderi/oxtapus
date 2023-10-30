@@ -1,1 +1,1 @@
-from .options import Options
+from .tsetmc import Options
