@@ -1,20 +1,12 @@
 import functools
-from dataclasses import dataclass
 import polars as pl
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols
-from oxtapus.utils.tsetmc import URL, cols
+from oxtapus.utils.tsetmc import URL, cols, ced
 
-
-@dataclass
-class InsCode:
-    ins_code: int | list[int] | str | list[str] | None
-
-
-@dataclass
-class Symbol:
-    symbol: str | list[str] | None
+InsCode = int | list[int] | str | list[str]
+Symbol = str | list[str] | None
 
 
 class TSETMC:
@@ -64,7 +56,7 @@ class TSETMC:
         >>> tsetmc = TSETMC()
         >>> tsetmc.mw(["stock", "etf", "options"])
         """
-        r = self.requests(self.url.mw(sections), response="json").get("marketwatch")
+        r = self.requests(self.url.mw(sections), response="json")[0].get("marketwatch")
         df = pl.from_dicts(json_normalize(r, "blDs", "ob_"), schema_overrides={"pe": pl.Utf8})
         df = manipulation_cols(df, cols=cols.mw_orderbook)
         df = manipulation_cols(df, cols=cols.mw)
@@ -129,7 +121,7 @@ class TSETMC:
         >>> tsetmc.search_ins_code("شپدیس")
         '20562694899904339'
         """
-        r = self.requests(self.url.search_ins_code(symbol))["instrumentSearch"]
+        r = self.requests(self.url.search_ins_code(symbol))[0]["instrumentSearch"]
         for i in r:
             if (
                     word_normalize(i["lVal18AFC"]) == word_normalize(symbol)
@@ -151,7 +143,7 @@ class TSETMC:
         return wrapper
 
     @_handle_ins_cod_or_symbol
-    def ins_info(self, symbol: Symbol = None, ins_code: InsCode = None):
+    def ins_info(self, symbol: Symbol = None, ins_code: InsCode= None):
         """
         .. raw:: html
 
@@ -172,7 +164,7 @@ class TSETMC:
         if isinstance(ins_code, list):
             url = [self.url.ins_info(i) for i in ins_code]
             r = self.requests(url)
-        else:
-            r = self.requests(self.url.ins_info(ins_code))
+            return pl.DataFrame([ced.ins_info(i.get("instrumentInfo") for i in r)])
 
-
+        r = self.requests(self.url.ins_info(ins_code))
+        return pl.DataFrame(r.get("instrumentInfo"))

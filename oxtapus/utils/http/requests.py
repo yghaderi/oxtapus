@@ -33,11 +33,11 @@ def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
             case "text":
                 return r.text
             case _:
-                return r
+                return [r]
 
 
 @retry(wait=wait_exponential(multiplier=1, min=4, max=10))
-async def _async_requests(url: str, response: str = "json", timeout=(1, 3)):
+async def _async_requests(url: str, response: str, timeout):
     async with httpx.AsyncClient() as client:
         async with asyncio.Semaphore(3):
             r = await client.get(url=url, headers=headers, timeout=timeout)
@@ -50,11 +50,11 @@ async def _async_requests(url: str, response: str = "json", timeout=(1, 3)):
                     return r
 
 
-def async_requests(url: str | list[str]):
+def async_requests(url: str | list[str], response: str = "json", timeout=(1, 3)):
     if isinstance(url, list):
-        task = [_async_requests(url=i) for i in url]
+        task = [_async_requests(i, response, timeout) for i in url]
     else:
-        task = [_async_requests(url)]
+        task = [_async_requests(url, response, timeout)]
 
     async def main():
         return await asyncio.gather(*task)
