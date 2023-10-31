@@ -1,2 +1,2 @@
 from oxtapus.utils.columns import manipulation_cols, ManipulationCols
-from oxtapus.utils.normalize import json_normalize
+from oxtapus.utils.normalize import json_normalize, word_normalize

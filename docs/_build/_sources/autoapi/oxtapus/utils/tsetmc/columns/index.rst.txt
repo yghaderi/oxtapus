@@ -1,0 +1,13 @@
+:py:mod:`oxtapus.utils.tsetmc.columns`
+======================================
+
+.. py:module:: oxtapus.utils.tsetmc.columns
+
+
+Module Contents
+---------------
+
+.. py:data:: cols
+
+   
+

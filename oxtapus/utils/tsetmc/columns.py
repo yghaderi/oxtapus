@@ -1,12 +1,15 @@
 from dataclasses import dataclass
 from oxtapus.utils import ManipulationCols
+
 __all__ = ["cols"]
+
 
 @dataclass
 class Cols:
     mw: ManipulationCols
     mw_orderbook: ManipulationCols
     options_mw: ManipulationCols
+    options_ua_mw: ManipulationCols
 
 
 mw = ManipulationCols(
@@ -34,6 +37,8 @@ mw = ManipulationCols(
         "bv": "base_volume",
         "hEven": "event_time",
     },
+    suffix=None,
+    prefix=None,
     select=[
         "ins_code",
         "ins_id",
@@ -41,8 +46,6 @@ mw = ManipulationCols(
         "name",
         "eps",
         "pe",
-        "bid",
-        "ask",
         "open",
         "high",
         "low",
@@ -57,22 +60,7 @@ mw = ManipulationCols(
         "capital",
         "base_volume",
         "event_time",
-    ],
-    drop=None
-)
-
-mw_orderbook = ManipulationCols(
-    rename={
-        "ob_n": "ob_levels",
-        "ob_zmd": "bid_count",
-        "ob_qmd": "bid_size",
-        "ob_pmd": "bid_price",
-        "ob_pmo": "ask_price",
-        "ob_qmo": "ask_size",
-        "ob_zmo": "ask_count",
-    },
-    select=[
-        "ob_levels",
+        "ob_level",
         "bid_count",
         "bid_size",
         "bid_price",
@@ -83,14 +71,40 @@ mw_orderbook = ManipulationCols(
     drop=None
 )
 
+mw_orderbook = ManipulationCols(
+    rename={
+        "ob_n": "ob_level",
+        "ob_zmd": "bid_count",
+        "ob_qmd": "bid_size",
+        "ob_pmd": "bid_price",
+        "ob_pmo": "ask_price",
+        "ob_qmo": "ask_size",
+        "ob_zmo": "ask_count",
+    },
+    suffix=None,
+    prefix=None,
+    select=None,
+    drop=None
+)
+
 options_mw = ManipulationCols(
-    rename={"ztd": "lot_size"},
+    rename={"capital": "lot_size"},
+    suffix=None,
+    prefix=None,
     select=None,
     drop=["eps", "pe", "bid", "ask", "base_volume"]
 )
 
+options_ua_mw = ManipulationCols(
+    rename=None,
+    suffix=None,
+    prefix="ua_",
+    select=None,
+    drop=None,
+)
 cols = Cols(
     mw=mw,
     mw_orderbook=mw_orderbook,
-    options_mw=options_mw
+    options_mw=options_mw,
+    options_ua_mw=options_ua_mw
 )

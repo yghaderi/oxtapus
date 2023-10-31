@@ -6,16 +6,16 @@ class URL:
         self.base_url = base_url
 
     def mw(
-        self,
-        stock: bool = False,
-        ifb_paye: bool = False,
-        mortgage: bool = False,
-        cum_right: bool = False,
-        bond: bool = False,
-        option: bool = False,
-        futures: bool = False,
-        etf: bool = False,
-        commodity: bool = False,
+            self,
+            stock: bool = False,
+            ifb_paye: bool = False,
+            mortgage: bool = False,
+            cum_right: bool = False,
+            bond: bool = False,
+            option: bool = False,
+            futures: bool = False,
+            etf: bool = False,
+            commodity: bool = False,
     ):
         """
         ترتیبَ ورودی‌ها مهم است، پس دقت کن!

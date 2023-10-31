@@ -12,7 +12,103 @@ Subpackages
 
    econ/index.rst
    ise/index.rst
-   tsetmc/index.rst
    utils/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   tsetmc/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.TSETMC
+
+
+
+
+.. py:class:: TSETMC
+
+
+   .. py:method:: mw(sections: list[str])
+
+      .. raw:: html
+
+          <div dir="rtl">
+              مارکت-واچ رو بر اساسِ بخش‌هایی که می‌خواین استخراج می‌کنه و تمیز شده بهتون می‌ده.
+          </div>
+
+      :param sections:
+                       - stock: سهام
+                       - ifb_paye: پایه‌یِ-فرابورس
+                       - mortgage: اوراقِ مسکن
+                       - cum_right: حقِ-تقدم
+                       - bond: اوراقِ بدهی
+                       - options: اختیارِ معامله
+                       - futures: آتی
+                       - etf: صندوق‌هایِ قابلِ-معامله
+                       - commodity: کالا
+      :type sections: list[str]
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC
+      >>> tsetmc.mw(["stock", "etf", "options"])
+
+
+   .. py:method:: options_mw()
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ صفحه‌یِ مارکت-واچِ مربوط به اخیتارِ-معامله و داراییِ پایه رو استخراج و چند
+              مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
+          </div>
+
+      .. info::
+          .. raw:: html
+
+              <div dir="rtl">
+                  خرجی در کمتر از ۱ ثانیه داده می‌شه. پس اگه بیشتر زمان ببره، احتمالن ی چیزِ دیگه‌ای درست نیست!
+              </div>
+
+
+      :returns: **option-market-watch**
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC
+      >>> tsetmc.options_mw()
+
+
+   .. py:method:: search_ins_code(symbol: str)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
+          </div>
+
+      :param symbol: نماد
+      :type symbol: str
+
+      :returns: **isn-code**
+      :rtype: str
+
 
 

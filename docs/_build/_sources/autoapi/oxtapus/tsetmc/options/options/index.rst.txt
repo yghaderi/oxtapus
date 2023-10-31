@@ -1,0 +1,45 @@
+:py:mod:`oxtapus.tsetmc.options.options`
+========================================
+
+.. py:module:: oxtapus.tsetmc.options.options
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.options.options.mw
+
+
+
+.. py:function:: mw()
+
+   .. raw:: html
+
+       <div dir="rtl">
+           داده‌هایِ صفحه‌یِ مارکت-واچِ مربوط به اخیتارِ-معامله و داراییِ پایه رو استخراج و چند
+           مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
+       </div>
+
+   .. warning::
+       .. raw:: html
+
+           <div dir="rtl">
+               خرجی در کمتر از ۱ ثانیه داده می‌شه. پس اگه بیشتر زمان ببره، احتمالن ی چیزِ دیگه‌ای درست نیست.
+           </div>
+
+
+   :returns: **option-market-watch**
+   :rtype: polars.DataFrame
+
+   .. rubric:: Example
+
+   >>> from oxtapus.tsetmc import options
+   >>> options.mw()
+
+

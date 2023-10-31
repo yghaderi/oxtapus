@@ -8,7 +8,7 @@ class URL:
 
     def mw(
             self,
-            sections: List[str] = ["stock"]
+            sections: List[str]
     ):
         """
         .. raw:: html
@@ -35,26 +35,26 @@ class URL:
         url: str
         """
         papers = {}
-        for i in sections:
-            match i.lower():
+        for i, item in enumerate(sections):
+            match item.lower():
                 case "stock":
-                    papers["paperTypes[0]"] = 1
+                    papers[f"paperTypes[{i}]"] = 1
                 case "ifb_paye":
-                    papers["paperTypes[1]"] = 2
+                    papers[f"paperTypes[{i}]"] = 2
                 case "mortgage":
-                    papers["paperTypes[2]"] = 3
+                    papers[f"paperTypes[{i}]"] = 3
                 case "cum_right":
-                    papers["paperTypes[3]"] = 4
+                    papers[f"paperTypes[{i}]"] = 4
                 case "bond":
-                    papers["paperTypes[4]"] = 5
+                    papers[f"paperTypes[{i}]"] = 5
                 case "options":
-                    papers["paperTypes[5]"] = 6
+                    papers[f"paperTypes[{i}]"] = 6
                 case "futures":
-                    papers["paperTypes[6]"] = 7
+                    papers[f"paperTypes[{i}]"] = 7
                 case "etf":
-                    papers["paperTypes[7]"] = 8
+                    papers[f"paperTypes[{i}]"] = 8
                 case "commodity":
-                    papers["paperTypes[8]"] = 9
+                    papers[f"paperTypes[{i}]"] = 9
 
         param = {
             "market": 0,

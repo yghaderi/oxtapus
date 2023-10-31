@@ -4,3 +4,10 @@
 .. py:module:: oxtapus.tsetmc.utils.columns
 
 
+Module Contents
+---------------
+
+.. py:data:: cols
+
+   
+

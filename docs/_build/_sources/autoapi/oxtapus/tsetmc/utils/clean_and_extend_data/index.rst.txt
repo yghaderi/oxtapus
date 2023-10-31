@@ -4,3 +4,31 @@
 .. py:module:: oxtapus.tsetmc.utils.clean_and_extend_data
 
 
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.utils.clean_and_extend_data.market_watch
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.utils.clean_and_extend_data.url
+
+
+.. py:data:: url
+
+   
+
+.. py:function:: market_watch(sections: list[str])
+
+
