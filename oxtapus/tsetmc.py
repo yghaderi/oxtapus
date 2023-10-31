@@ -1,13 +1,37 @@
+import functools
+from dataclasses import dataclass
 import polars as pl
+
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols
 from oxtapus.utils.tsetmc import URL, cols
-from datetime import date
+
+
+@dataclass
+class InsCode:
+    ins_code: int | list[int] | str | list[str] | None
+
+
+@dataclass
+class Symbol:
+    symbol: str | list[str] | None
 
 
 class TSETMC:
-    def __init__(self):
+    def __init__(self, async_req):
+        self._requests = async_requests if async_req else requests
         self.url = URL()
+
+    @property
+    def requests(self):
+        return self._requests
+
+    @requests.setter
+    def requests(self, async_req):
+        if async_req:
+            self._requests = async_requests
+        else:
+            self._requests = requests
 
     def mw(self, sections: list[str]):
         """
@@ -37,10 +61,10 @@ class TSETMC:
         example
         -------
         >>> from oxtapus import TSETMC
-        >>> tsetmc = TSETMC
+        >>> tsetmc = TSETMC()
         >>> tsetmc.mw(["stock", "etf", "options"])
         """
-        r = requests(self.url.mw(sections), response="json").get("marketwatch")
+        r = self.requests(self.url.mw(sections), response="json").get("marketwatch")
         df = pl.from_dicts(json_normalize(r, "blDs", "ob_"), schema_overrides={"pe": pl.Utf8})
         df = manipulation_cols(df, cols=cols.mw_orderbook)
         df = manipulation_cols(df, cols=cols.mw)
@@ -55,7 +79,7 @@ class TSETMC:
                 مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
             </div>
 
-        .. info::
+        .. note::
             .. raw:: html
 
                 <div dir="rtl">
@@ -70,7 +94,7 @@ class TSETMC:
         example
         -------
         >>> from oxtapus import TSETMC
-        >>> tsetmc = TSETMC
+        >>> tsetmc = TSETMC()
         >>> tsetmc.options_mw()
         """
         o_df = manipulation_cols(self.mw(["options"]), cols=cols.options_mw).with_columns(
@@ -97,15 +121,58 @@ class TSETMC:
         Returns
         -------
         isn-code: str
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.search_ins_code("شپدیس")
+        '20562694899904339'
         """
-        r = requests(self.url.search_ins_code(symbol))["instrumentSearch"]
+        r = self.requests(self.url.search_ins_code(symbol))["instrumentSearch"]
         for i in r:
             if (
                     word_normalize(i["lVal18AFC"]) == word_normalize(symbol)
             ) and (i["lastDate"] == 1):
                 return i["insCode"]
-        raise ValueError(f"Cannot find {symbol}. Enter valid symbol.")
+        raise ValueError(f"Cannot find {symbol!r}. Enter valid symbol.")
 
+    @staticmethod
+    def _handle_ins_cod_or_symbol(func):
+        @functools.wraps(func)
+        def wrapper(self, symbol, ins_code: InsCode):
+            if symbol:
+                if isinstance(symbol, list):
+                    symbol = [self.search_ins_code(i) for i in symbol]
+                else:
+                    symbol = self.search_ins_code(symbol)
+            return func(self, symbol, ins_code)
 
+        return wrapper
+
+    @_handle_ins_cod_or_symbol
+    def ins_info(self, symbol: Symbol = None, ins_code: InsCode = None):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
+            </div>
+
+        Parameters
+        ----------
+        symbol: Symbol
+        ins_code: InsCode
+            نماد
+
+        Returns
+        -------
+        """
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, list):
+            url = [self.url.ins_info(i) for i in ins_code]
+            r = self.requests(url)
+        else:
+            r = self.requests(self.url.ins_info(ins_code))
 
 
