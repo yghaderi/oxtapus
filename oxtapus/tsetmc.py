@@ -1,9 +1,11 @@
 import functools
+import re
 import polars as pl
+from tarix.dateutils import dateutils
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols
-from oxtapus.utils.tsetmc import URL, cols, ced
+from oxtapus.utils.tsetmc import URL, cols, CED
 
 InsCode = int | list[int] | str | list[str]
 Symbol = str | list[str] | None
@@ -89,13 +91,39 @@ class TSETMC:
         >>> tsetmc = TSETMC()
         >>> tsetmc.options_mw()
         """
+
+        def _expiration_date(s: str):
+            ex_date = re.findall("[0-9]+", s)
+            ex_date = "".join(ex_date)
+            match len(ex_date):
+                case 8:
+                    return f"{ex_date[:4]}-{ex_date[4:6]}-{ex_date[6:8]}"
+                case 6:
+                    return f"14{ex_date[:2]}-{ex_date[2:4]}-{ex_date[4:6]}"
+
         o_df = manipulation_cols(self.mw(["options"]), cols=cols.options_mw).with_columns(
             pl.col("ins_id").str.slice(4, length=4).alias("key")
         )
         ua_df = (manipulation_cols(self.mw(["stock", "etf"]), cols=cols.options_ua_mw)
                  .filter(pl.col("ua_ob_level") == 1)
                  .with_columns(pl.col("ua_ins_id").str.slice(4, length=4).alias("key")))
-        return o_df.join(ua_df, on="key", how="inner")
+        df = o_df.join(ua_df, on="key", how="inner")
+        df = df.with_columns(
+            [
+                pl.col("name")
+                .str.splitn("-", 3)
+                .struct.rename_fields(["-", "k", "ex_date"])
+                .alias("fields"),
+            ]
+        ).unnest("fields").with_columns(
+            ex_date=pl.col("ex_date").map_elements(_expiration_date)
+        ).drop("-")
+
+        df = df.with_columns(
+            type=pl.when(pl.col("symbol").str.slice(0) == "ض").then("call").otherwise("put"),
+            t=pl.col("ex_date").map_elements(lambda x: dateutils.days(end=x))
+        )
+        return df
 
     def search_ins_code(self, symbol: str):
         """
@@ -143,7 +171,7 @@ class TSETMC:
         return wrapper
 
     @_handle_ins_cod_or_symbol
-    def ins_info(self, symbol: Symbol = None, ins_code: InsCode= None):
+    def ins_info(self, symbol: Symbol = None, ins_code: InsCode = None):
         """
         .. raw:: html
 
@@ -164,7 +192,7 @@ class TSETMC:
         if isinstance(ins_code, list):
             url = [self.url.ins_info(i) for i in ins_code]
             r = self.requests(url)
-            return pl.DataFrame([ced.ins_info(i.get("instrumentInfo") for i in r)])
+            return pl.DataFrame([CED.ins_info(i.get("instrumentInfo") for i in r)])
 
         r = self.requests(self.url.ins_info(ins_code))
         return pl.DataFrame(r.get("instrumentInfo"))
