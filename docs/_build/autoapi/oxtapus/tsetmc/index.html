@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>oxtapus.tsetmc &#8212; oxtapus 0.2.4 documentation</title>
+    <title>oxtapus.tsetmc &#8212; oxtapus 0.2.6 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../../_static/documentation_options.js?v=6ffd866b"></script>
+    <script src="../../../_static/documentation_options.js?v=fc7d8818"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,7 +118,7 @@
   
   
   
-    <p class="title logo__title">oxtapus 0.2.4 documentation</p>
+    <p class="title logo__title">oxtapus 0.2.6 documentation</p>
   
 </a></div>
     
@@ -332,37 +332,189 @@ document.write(`
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.TSETMC" title="oxtapus.tsetmc.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.URL" title="oxtapus.tsetmc.URL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.tsetmc.TSETMC" title="oxtapus.tsetmc.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h3>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.InsCode" title="oxtapus.tsetmc.InsCode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsCode</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.tsetmc.Symbol" title="oxtapus.tsetmc.Symbol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Symbol</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py data">
-<dt class="sig sig-object py" id="oxtapus.tsetmc.InsCode">
-<span class="sig-name descname"><span class="pre">InsCode</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#InsCode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.InsCode" title="Link to this definition">#</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">URL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'http://cdn.tsetmc.com/api'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.mw">
+<span class="sig-name descname"><span class="pre">mw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.mw" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ مارکت-واچ رو بر اساسِ بخش‌هایی که می‌خواین می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sections</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – <ul class="simple">
+<li><p>stock: سهام</p></li>
+<li><p>ifb_paye: پایه-فرابورس</p></li>
+<li><p>mortgage: اوراقِ مسکن</p></li>
+<li><p>cum_right: حقِ-تقدم</p></li>
+<li><p>bond: اوراقِ بدهی</p></li>
+<li><p>options: اختیارِ معامله</p></li>
+<li><p>futures: آتی</p></li>
+<li><p>etf: صندوق‌هایِ قابلِ-معامله</p></li>
+<li><p>commodity: کالا</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.search_ins_code">
+<span class="sig-name descname"><span class="pre">search_ins_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_far</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.search_ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.search_ins_code" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ جست-و-جوی نماد رو می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>symbol_far</strong> (<em>str</em>) – نمادِ فارسی</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.ins_info">
+<span class="sig-name descname"><span class="pre">ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.ins_info" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ داده‌هایِ مربوط به نماد رو می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> (<em>int</em><em>|</em><em>str</em>) – کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.hist_price">
+<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.hist_price" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ داده‌هایِ مربوط به قیمتِ تاریخیِ نماد رو می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> (<em>int</em><em>|</em><em>str</em>) – کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.client_type">
+<span class="sig-name descname"><span class="pre">client_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.client_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.client_type" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ داده‌هایِ مربوط به حقیقی-حقوقیِ نماد رو می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> (<em>int</em><em>|</em><em>str</em>) – کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.share_change">
+<span class="sig-name descname"><span class="pre">share_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.share_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.share_change" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ داده‌هایِ مربوط به تغییرِ سرمایه‌یِ نماد رو می‌سازه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_code</strong> (<em>int</em><em>|</em><em>str</em>) – کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.specific_option_data">
+<span class="sig-name descname"><span class="pre">specific_option_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.specific_option_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.specific_option_data" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    لینکِ مربوط به داده هایِ خاصِّ اخیارِ-معامله رو می‌سازه
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_id</strong> (<em>str</em>) – کدِ 12 رقمیِ نماد</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.all_index">
+<span class="sig-name descname"><span class="pre">all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.all_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.all_index" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="oxtapus.tsetmc.Symbol">
-<span class="sig-name descname"><span class="pre">Symbol</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#Symbol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.Symbol" title="Link to this definition">#</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.index_ticker_symbols">
+<span class="sig-name descname"><span class="pre">index_ticker_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.index_ticker_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.index_ticker_symbols" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.index_hist">
+<span class="sig-name descname"><span class="pre">index_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.index_hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.index_hist" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.intraday_trades">
+<span class="sig-name descname"><span class="pre">intraday_trades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.intraday_trades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.intraday_trades" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.last_ins_info">
+<span class="sig-name descname"><span class="pre">last_ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.last_ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.last_ins_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.URL.last_market_activity">
+<span class="sig-name descname"><span class="pre">last_market_activity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#URL.last_market_activity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.URL.last_market_activity" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
 <dd><dl class="py property">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.requests">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.requests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.requests" title="Link to this definition">#</a></dt>
@@ -454,15 +606,160 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.ins_info">
-<span class="sig-name descname"><span class="pre">ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Symbol</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">InsCode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.ins_info" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">ins_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.ins_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.ins_info" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
-    کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
-</div><dl class="field-list simple">
+    داده‌هایِ پایه‌‌یِ نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
+</div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div dir="rtl">
+    زمانِ استخراجِ داده با استفاده از
+    <span style="color:#ec4899">ins_code</span>
+    تقریبن نصفِ استفاده از
+    <span style="color:#ec4899">symbol</span>
+    است.
+    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div dir="rtl">
+    یا
+    <span style="color:#ec4899">ins_code</span>
+    رو وارد کن، یا
+    <span style="color:#ec4899">symbol</span>
+    رو.
+اگه هر دو رو وارد کنی،
+    <span style="color:#ec4899">symbol</span>
+نادیده گرفته می‌شه و تنها از
+    <span style="color:#ec4899">ins_code</span>
+    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+</div></div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol</strong> (<em>Symbol</em>) – </p></li>
-<li><p><strong>ins_code</strong> (<em>InsCode</em>) – نماد</p></li>
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ 12 رقمیِ نماد</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;65883838195688438&quot;</span><span class="p">])</span>
+<span class="go">shape: (2, 17)</span>
+<span class="go">┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐</span>
+<span class="go">│ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │</span>
+<span class="go">│ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │</span>
+<span class="go">│            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │</span>
+<span class="go">╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡</span>
+<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │</span>
+<span class="go">│ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │</span>
+<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │</span>
+<span class="go">│ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │</span>
+<span class="go">└────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;شپنا&quot;</span><span class="p">,</span> <span class="s2">&quot;خودرو&quot;</span><span class="p">])</span>
+<span class="go">shape: (2, 17)</span>
+<span class="go">┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐</span>
+<span class="go">│ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │</span>
+<span class="go">│ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │</span>
+<span class="go">│            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │</span>
+<span class="go">╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡</span>
+<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │</span>
+<span class="go">│ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │</span>
+<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │</span>
+<span class="go">│ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │</span>
+<span class="go">└────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.specific_option_data">
+<span class="sig-name descname"><span class="pre">specific_option_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ins_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.specific_option_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.specific_option_data" title="Link to this definition">#</a></dt>
+<dd><p>Get complimentary option info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ins_id</strong> – کدِ 12 رقمیِ نماد</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">specific_option_data</span><span class="p">([</span><span class="s2">&quot;IRO9IKCO2851&quot;</span><span class="p">,</span> <span class="s2">&quot;IRO9IKCO20K1&quot;</span><span class="p">])</span>
+<span class="go">shape: (2, 7)</span>
+<span class="go">┌──────────────────┬───────────────────┬────────────┬──────────┬──────────┬────────┬───────────────┐</span>
+<span class="go">│ ins_code         ┆ ua_ins_code       ┆ begin_date ┆ ex_date  ┆ lot_size ┆ k      ┆ open_interest │</span>
+<span class="go">│ ---              ┆ ---               ┆ ---        ┆ ---      ┆ ---      ┆ ---    ┆ ---           │</span>
+<span class="go">│ str              ┆ str               ┆ i64        ┆ i64      ┆ i64      ┆ f64    ┆ i64           │</span>
+<span class="go">╞══════════════════╪═══════════════════╪════════════╪══════════╪══════════╪════════╪═══════════════╡</span>
+<span class="go">│ 8907495648806531 ┆ 65883838195688438 ┆ 20230930   ┆ 20240221 ┆ 1000     ┆ 2600.0 ┆ 1006          │</span>
+<span class="go">│ 4785638272776115 ┆ 65883838195688438 ┆ 20231028   ┆ 20240327 ┆ 1000     ┆ 3750.0 ┆ 0             │</span>
+<span class="go">└──────────────────┴───────────────────┴────────────┴──────────┴──────────┴────────┴───────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.hist_price">
+<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.hist_price" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج می‌کنه.
+</div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div dir="rtl">
+    زمانِ استخراجِ داده با استفاده از
+    <span style="color:#ec4899">ins_code</span>
+    تقریبن نصفِ استفاده از
+    <span style="color:#ec4899">symbol</span>
+    است.
+    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div dir="rtl">
+    یا
+    <span style="color:#ec4899">ins_code</span>
+    رو وارد کن، یا
+    <span style="color:#ec4899">symbol</span>
+    رو.
+اگه هر دو رو وارد کنی،
+    <span style="color:#ec4899">symbol</span>
+نادیده گرفته می‌شه و تنها از
+    <span style="color:#ec4899">ins_code</span>
+    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+</div></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ 12 رقمیِ نماد</p></li>
+<li><p><strong>start</strong> (<em>str</em><em>, </em><em>default None</em>) – <p>تاریخِ شروع(جلالی).
+اگه هیچی داده نشه، داده‌ها از روزِ اول استخراج می‌شن.</p>
+<blockquote>
+<div><p>format: ‘yyyymmdd’, ‘yyyy-mm-dd’, ‘yyyy/mm/dd’, e.g. ‘1402-05-25’</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>end</strong> (<em>str</em>) – <p>تاریخِ پایان(جلالی).
+اگه هیچی داده نشه، داده‌ها تا روزِ آخر استخراج می‌شن.</p>
+<blockquote>
+<div><p>format: ‘yyyymmdd’, ‘yyyy-mm-dd’, ‘yyyy/mm/dd’, e.g. ‘1402-08-05’</p>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -508,16 +805,31 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.InsCode"><code class="docutils literal notranslate"><span class="pre">InsCode</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.Symbol"><code class="docutils literal notranslate"><span class="pre">Symbol</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL"><code class="docutils literal notranslate"><span class="pre">URL</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.mw"><code class="docutils literal notranslate"><span class="pre">URL.mw()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.search_ins_code"><code class="docutils literal notranslate"><span class="pre">URL.search_ins_code()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.ins_info"><code class="docutils literal notranslate"><span class="pre">URL.ins_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.hist_price"><code class="docutils literal notranslate"><span class="pre">URL.hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.client_type"><code class="docutils literal notranslate"><span class="pre">URL.client_type()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.share_change"><code class="docutils literal notranslate"><span class="pre">URL.share_change()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.specific_option_data"><code class="docutils literal notranslate"><span class="pre">URL.specific_option_data()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.all_index"><code class="docutils literal notranslate"><span class="pre">URL.all_index()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.index_ticker_symbols"><code class="docutils literal notranslate"><span class="pre">URL.index_ticker_symbols()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.index_hist"><code class="docutils literal notranslate"><span class="pre">URL.index_hist()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.intraday_trades"><code class="docutils literal notranslate"><span class="pre">URL.intraday_trades()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.last_ins_info"><code class="docutils literal notranslate"><span class="pre">URL.last_ins_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.URL.last_market_activity"><code class="docutils literal notranslate"><span class="pre">URL.last_market_activity()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.requests"><code class="docutils literal notranslate"><span class="pre">TSETMC.requests</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_info()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.specific_option_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.specific_option_data()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
 </ul>
 </li>
 </ul>

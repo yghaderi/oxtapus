@@ -12,29 +12,149 @@ Classes
 
 .. autoapisummary::
 
+   oxtapus.tsetmc.URL
    oxtapus.tsetmc.TSETMC
 
 
 
 
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   oxtapus.tsetmc.InsCode
-   oxtapus.tsetmc.Symbol
+.. py:class:: URL(base_url='http://cdn.tsetmc.com/api')
 
 
-.. py:data:: InsCode
+   .. py:method:: mw(sections: List[str])
 
-   
+      .. raw:: html
 
-.. py:data:: Symbol
+          <div dir="rtl">
+              لینکِ مارکت-واچ رو بر اساسِ بخش‌هایی که می‌خواین می‌سازه.
+          </div>
 
-   
+      :param sections:
+                       - stock: سهام
+                       - ifb_paye: پایه-فرابورس
+                       - mortgage: اوراقِ مسکن
+                       - cum_right: حقِ-تقدم
+                       - bond: اوراقِ بدهی
+                       - options: اختیارِ معامله
+                       - futures: آتی
+                       - etf: صندوق‌هایِ قابلِ-معامله
+                       - commodity: کالا
+      :type sections: list[str]
 
-.. py:class:: TSETMC(async_req)
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: search_ins_code(symbol_far)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ جست-و-جوی نماد رو می‌سازه.
+          </div>
+
+      :param symbol_far: نمادِ فارسی
+      :type symbol_far: str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: ins_info(ins_code: int | str)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ داده‌هایِ مربوط به نماد رو می‌سازه.
+          </div>
+
+      :param ins_code: کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)
+      :type ins_code: int|str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: hist_price(ins_code)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ داده‌هایِ مربوط به قیمتِ تاریخیِ نماد رو می‌سازه.
+          </div>
+
+      :param ins_code: کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)
+      :type ins_code: int|str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: client_type(ins_code)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ داده‌هایِ مربوط به حقیقی-حقوقیِ نماد رو می‌سازه.
+          </div>
+
+      :param ins_code: کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)
+      :type ins_code: int|str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: share_change(ins_code)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ داده‌هایِ مربوط به تغییرِ سرمایه‌یِ نماد رو می‌سازه.
+          </div>
+
+      :param ins_code: کدِ صفحه‌یِ نماد (عددِ انتهایِ لینکِ صفحه‌یِ نماد)
+      :type ins_code: int|str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: specific_option_data(ins_id)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لینکِ مربوط به داده هایِ خاصِّ اخیارِ-معامله رو می‌سازه
+          </div>
+
+      :param ins_id: کدِ 12 رقمیِ نماد
+      :type ins_id: str
+
+      :returns: **url**
+      :rtype: str
+
+
+   .. py:method:: all_index()
+
+
+   .. py:method:: index_ticker_symbols(index_code)
+
+
+   .. py:method:: index_hist(index_code)
+
+
+   .. py:method:: intraday_trades(ins_code)
+
+
+   .. py:method:: last_ins_info(ins_code)
+
+
+   .. py:method:: last_market_activity()
+
+
+
+.. py:class:: TSETMC(async_req: bool = False)
 
 
    .. py:property:: requests
@@ -118,18 +238,159 @@ Attributes
       '20562694899904339'
 
 
-   .. py:method:: ins_info(symbol: Symbol = None, ins_code: InsCode = None)
+   .. py:method:: ins_info(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None)
 
       .. raw:: html
 
           <div dir="rtl">
-              کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
+              داده‌هایِ پایه‌‌یِ نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
           </div>
 
-      :param symbol:
-      :type symbol: Symbol
-      :param ins_code: نماد
-      :type ins_code: InsCode
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
+
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ 12 رقمیِ نماد
+      :type ins_code: str | list[str] | None
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC(async_req=True)
+      >>> tsetmc.ins_info(ins_code = ["7745894403636165", "65883838195688438"])
+      shape: (2, 17)
+      ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
+      │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
+      │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
+      │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
+      │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
+      ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
+      │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
+      │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
+      │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
+      │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
+      └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+
+      >>> tsetmc.ins_info(symbol = ["شپنا", "خودرو"])
+      shape: (2, 17)
+      ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
+      │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
+      │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
+      │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
+      │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
+      ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
+      │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
+      │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
+      │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
+      │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
+      └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+
+
+   .. py:method:: specific_option_data(ins_id: str | list[str])
+
+      Get complimentary option info.
+
+      :param ins_id: کدِ 12 رقمیِ نماد
+
+      :rtype: pandas.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.specific_option_data(["IRO9IKCO2851", "IRO9IKCO20K1"])
+      shape: (2, 7)
+      ┌──────────────────┬───────────────────┬────────────┬──────────┬──────────┬────────┬───────────────┐
+      │ ins_code         ┆ ua_ins_code       ┆ begin_date ┆ ex_date  ┆ lot_size ┆ k      ┆ open_interest │
+      │ ---              ┆ ---               ┆ ---        ┆ ---      ┆ ---      ┆ ---    ┆ ---           │
+      │ str              ┆ str               ┆ i64        ┆ i64      ┆ i64      ┆ f64    ┆ i64           │
+      ╞══════════════════╪═══════════════════╪════════════╪══════════╪══════════╪════════╪═══════════════╡
+      │ 8907495648806531 ┆ 65883838195688438 ┆ 20230930   ┆ 20240221 ┆ 1000     ┆ 2600.0 ┆ 1006          │
+      │ 4785638272776115 ┆ 65883838195688438 ┆ 20231028   ┆ 20240327 ┆ 1000     ┆ 3750.0 ┆ 0             │
+      └──────────────────┴───────────────────┴────────────┴──────────┴──────────┴────────┴───────────────┘
+
+
+   .. py:method:: hist_price(symbol: str | list[str] | None = 'فولاد', ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج می‌کنه.
+          </div>
+
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ 12 رقمیِ نماد
+      :type ins_code: str | list[str] | None
+      :param start: تاریخِ شروع(جلالی).
+                    اگه هیچی داده نشه، داده‌ها از روزِ اول استخراج می‌شن.
+                        format: 'yyyymmdd', 'yyyy-mm-dd', 'yyyy/mm/dd', e.g. '1402-05-25'
+      :type start: str, default None
+      :param end: تاریخِ پایان(جلالی).
+                  اگه هیچی داده نشه، داده‌ها تا روزِ آخر استخراج می‌شن.
+                      format: 'yyyymmdd', 'yyyy-mm-dd', 'yyyy/mm/dd', e.g. '1402-08-05'
+      :type end: str
+
+      :rtype: pandas.DataFrame
 
 
 
