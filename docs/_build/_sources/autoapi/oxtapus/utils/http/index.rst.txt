@@ -30,6 +30,6 @@ Functions
 .. py:function:: requests(url: str | List[str], response: str = 'json', timeout=(1, 3))
 
 
-.. py:function:: async_requests(url)
+.. py:function:: async_requests(url: str | list[str], response: str = 'json', timeout=(1, 3))
 
 

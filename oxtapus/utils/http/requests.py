@@ -29,9 +29,9 @@ def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
         r = client.get(url=url, headers=headers, timeout=timeout)
         match response:
             case "json":
-                return r.json()
+                return [r.json()]
             case "text":
-                return r.text
+                return [r.text]
             case _:
                 return [r]
 

@@ -68,7 +68,7 @@ mw = ManipulationCols(
         "ask_size",
         "ask_count",
     ],
-    drop=None
+    drop=None,
 )
 
 mw_orderbook = ManipulationCols(
@@ -84,7 +84,7 @@ mw_orderbook = ManipulationCols(
     suffix=None,
     prefix=None,
     select=None,
-    drop=None
+    drop=None,
 )
 
 options_mw = ManipulationCols(
@@ -92,7 +92,7 @@ options_mw = ManipulationCols(
     suffix=None,
     prefix=None,
     select=None,
-    drop=["eps", "pe", "bid", "ask", "base_volume"]
+    drop=["eps", "pe", "bid", "ask", "base_volume"],
 )
 
 options_ua_mw = ManipulationCols(
@@ -103,8 +103,5 @@ options_ua_mw = ManipulationCols(
     drop=None,
 )
 cols = Cols(
-    mw=mw,
-    mw_orderbook=mw_orderbook,
-    options_mw=options_mw,
-    options_ua_mw=options_ua_mw
+    mw=mw, mw_orderbook=mw_orderbook, options_mw=options_mw, options_ua_mw=options_ua_mw
 )

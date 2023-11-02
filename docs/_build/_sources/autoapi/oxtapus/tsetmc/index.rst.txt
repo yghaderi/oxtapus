@@ -17,7 +17,27 @@ Classes
 
 
 
-.. py:class:: TSETMC
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.tsetmc.InsCode
+   oxtapus.tsetmc.Symbol
+
+
+.. py:data:: InsCode
+
+   
+
+.. py:data:: Symbol
+
+   
+
+.. py:class:: TSETMC(async_req)
+
+
+   .. py:property:: requests
 
 
    .. py:method:: mw(sections: list[str])
@@ -45,7 +65,7 @@ Classes
       .. rubric:: Example
 
       >>> from oxtapus import TSETMC
-      >>> tsetmc = TSETMC
+      >>> tsetmc = TSETMC()
       >>> tsetmc.mw(["stock", "etf", "options"])
 
 
@@ -58,7 +78,7 @@ Classes
               مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
           </div>
 
-      .. info::
+      .. note::
           .. raw:: html
 
               <div dir="rtl">
@@ -72,7 +92,7 @@ Classes
       .. rubric:: Example
 
       >>> from oxtapus import TSETMC
-      >>> tsetmc = TSETMC
+      >>> tsetmc = TSETMC()
       >>> tsetmc.options_mw()
 
 
@@ -89,6 +109,27 @@ Classes
 
       :returns: **isn-code**
       :rtype: str
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.search_ins_code("شپدیس")
+      '20562694899904339'
+
+
+   .. py:method:: ins_info(symbol: Symbol = None, ins_code: InsCode = None)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
+          </div>
+
+      :param symbol:
+      :type symbol: Symbol
+      :param ins_code: نماد
+      :type ins_code: InsCode
 
 
 

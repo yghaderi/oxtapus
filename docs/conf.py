@@ -45,7 +45,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 autoapi_type = "python"
 autoapi_dirs = ["../oxtapus"]
-autoapi_ignore = []
+autoapi_ignore = ["*utils*"]
 
 autoclass_content = "both"
 

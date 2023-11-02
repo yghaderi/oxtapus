@@ -6,10 +6,7 @@ class URL:
     def __init__(self, base_url="http://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
-    def mw(
-            self,
-            sections: List[str]
-    ):
+    def mw(self, sections: List[str]):
         """
         .. raw:: html
 
@@ -84,7 +81,7 @@ class URL:
         """
         return f"{self.base_url}/Instrument/getinstrumentsearch/{symbol_far}"
 
-    def ins_info(self, ins_code:int|str):
+    def ins_info(self, ins_code: int | str):
         """
         .. raw:: html
 

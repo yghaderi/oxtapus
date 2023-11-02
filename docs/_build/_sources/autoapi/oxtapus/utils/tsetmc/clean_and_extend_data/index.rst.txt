@@ -7,28 +7,33 @@
 Module Contents
 ---------------
 
-
-Functions
-~~~~~~~~~
-
-.. autoapisummary::
-
-   oxtapus.utils.tsetmc.clean_and_extend_data.market_watch
-
-
-
-Attributes
-~~~~~~~~~~
+Classes
+~~~~~~~
 
 .. autoapisummary::
 
-   oxtapus.utils.tsetmc.clean_and_extend_data.url
+   oxtapus.utils.tsetmc.clean_and_extend_data.CED
 
 
-.. py:data:: url
 
-   
 
-.. py:function:: market_watch(sections: list[str])
+.. py:class:: CED
+
+
+   .. py:method:: ins_info(ins_info_: dict)
+      :classmethod:
+
+
+   .. py:method:: option_type(s: str)
+      :classmethod:
+
+
+   .. py:method:: expiration_date(s: str)
+      :classmethod:
+
+
+   .. py:method:: omw(options: polars.DataFrame, ua: polars.DataFrame)
+      :classmethod:
+
 
 

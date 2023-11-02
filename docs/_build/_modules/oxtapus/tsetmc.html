@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -18,30 +17,30 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/documentation_options.js?v=6ffd866b"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=4ea706d9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/oxtapus/tsetmc';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -111,6 +110,7 @@
   
 
 <a class="navbar-brand logo" href="../../index.html">
+  
   
   
   
@@ -301,18 +301,49 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for oxtapus.tsetmc</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span></span><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">tarix.dateutils</span> <span class="kn">import</span> <span class="n">dateutils</span>
+
 <span class="kn">from</span> <span class="nn">oxtapus.utils.http</span> <span class="kn">import</span> <span class="n">requests</span><span class="p">,</span> <span class="n">async_requests</span>
 <span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">json_normalize</span><span class="p">,</span> <span class="n">word_normalize</span><span class="p">,</span> <span class="n">manipulation_cols</span>
-<span class="kn">from</span> <span class="nn">oxtapus.utils.tsetmc</span> <span class="kn">import</span> <span class="n">URL</span><span class="p">,</span> <span class="n">cols</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils.tsetmc</span> <span class="kn">import</span> <span class="n">URL</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">CED</span>
+
+<div class="viewcode-block" id="InsCode">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.InsCode">[docs]</a>
+<span class="n">InsCode</span> <span class="o">=</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Symbol">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.Symbol">[docs]</a>
+<span class="n">Symbol</span> <span class="o">=</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="TSETMC"><a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC">[docs]</a><span class="k">class</span> <span class="nc">TSETMC</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TSETMC">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC">[docs]</a>
+<span class="k">class</span> <span class="nc">TSETMC</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async_req</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_requests</span> <span class="o">=</span> <span class="n">async_requests</span> <span class="k">if</span> <span class="n">async_req</span> <span class="k">else</span> <span class="n">requests</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">()</span>
 
-<div class="viewcode-block" id="TSETMC.mw"><a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.mw">[docs]</a>    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="TSETMC.requests">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.requests">[docs]</a>
+    <span class="k">def</span> <span class="nf">requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_requests</span></div>
+
+
+    <span class="nd">@requests</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">requests</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async_req</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">async_req</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_requests</span> <span class="o">=</span> <span class="n">async_requests</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_requests</span> <span class="o">=</span> <span class="n">requests</span>
+
+<div class="viewcode-block" id="TSETMC.mw">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.mw">[docs]</a>
+    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -340,16 +371,19 @@ document.write(`
 <span class="sd">        example</span>
 <span class="sd">        -------</span>
 <span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
-<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
 <span class="sd">        &gt;&gt;&gt; tsetmc.mw([&quot;stock&quot;, &quot;etf&quot;, &quot;options&quot;])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">sections</span><span class="p">),</span> <span class="n">response</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketwatch&quot;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">mw</span><span class="p">(</span><span class="n">sections</span><span class="p">),</span> <span class="n">response</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketwatch&quot;</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">(</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;blDs&quot;</span><span class="p">,</span> <span class="s2">&quot;ob_&quot;</span><span class="p">),</span> <span class="n">schema_overrides</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pe&quot;</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">})</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">mw_orderbook</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">mw</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="TSETMC.options_mw"><a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.options_mw">[docs]</a>    <span class="k">def</span> <span class="nf">options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TSETMC.options_mw">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.options_mw">[docs]</a>
+    <span class="k">def</span> <span class="nf">options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -358,7 +392,7 @@ document.write(`
 <span class="sd">                مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.</span>
 <span class="sd">            &lt;/div&gt;</span>
 
-<span class="sd">        .. info::</span>
+<span class="sd">        .. note::</span>
 <span class="sd">            .. raw:: html</span>
 
 <span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
@@ -373,18 +407,47 @@ document.write(`
 <span class="sd">        example</span>
 <span class="sd">        -------</span>
 <span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
-<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
 <span class="sd">        &gt;&gt;&gt; tsetmc.options_mw()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">_expiration_date</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ex_date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[0-9]+&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+            <span class="n">ex_date</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ex_date</span><span class="p">)</span>
+            <span class="k">match</span> <span class="nb">len</span><span class="p">(</span><span class="n">ex_date</span><span class="p">):</span>
+                <span class="k">case</span> <span class="mi">8</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">case</span> <span class="mi">6</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;14</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">ex_date</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
         <span class="n">o_df</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mw</span><span class="p">([</span><span class="s2">&quot;options&quot;</span><span class="p">]),</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">options_mw</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
             <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ins_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">ua_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">manipulation_cols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mw</span><span class="p">([</span><span class="s2">&quot;stock&quot;</span><span class="p">,</span> <span class="s2">&quot;etf&quot;</span><span class="p">]),</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">options_ua_mw</span><span class="p">)</span>
                  <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ua_ob_level&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
                  <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ua_ins_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="n">o_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ua_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span></div>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">o_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ua_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">splitn</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">struct</span><span class="o">.</span><span class="n">rename_fields</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;ex_date&quot;</span><span class="p">])</span>
+                <span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;fields&quot;</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">unnest</span><span class="p">(</span><span class="s2">&quot;fields&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+            <span class="n">ex_date</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ex_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">map_elements</span><span class="p">(</span><span class="n">_expiration_date</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="TSETMC.search_ins_code"><a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.search_ins_code">[docs]</a>    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;symbol&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ض&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="s2">&quot;call&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="s2">&quot;put&quot;</span><span class="p">),</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ex_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">map_elements</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dateutils</span><span class="o">.</span><span class="n">days</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.search_ins_code">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.search_ins_code">[docs]</a>
+    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -400,17 +463,65 @@ document.write(`
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        isn-code: str</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.search_ins_code(&quot;شپدیس&quot;)</span>
+<span class="sd">        &#39;20562694899904339&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol</span><span class="p">))[</span><span class="s2">&quot;instrumentSearch&quot;</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;instrumentSearch&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span>
                     <span class="n">word_normalize</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;lVal18AFC&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">word_normalize</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
             <span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;lastDate&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;insCode&quot;</span><span class="p">]</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">. Enter valid symbol.&quot;</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">symbol</span><span class="si">!r}</span><span class="s2">. Enter valid symbol.&quot;</span><span class="p">)</span></div>
 
 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_handle_ins_cod_or_symbol</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="n">InsCode</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">symbol</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">symbol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span>
 
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
+<div class="viewcode-block" id="TSETMC.ins_info">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.ins_info">[docs]</a>
+    <span class="k">def</span> <span class="nf">ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="n">Symbol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="n">InsCode</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: Symbol</span>
+<span class="sd">        ins_code: InsCode</span>
+<span class="sd">            نماد</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">CED</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentInfo&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">)])</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">ins_code</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentInfo&quot;</span><span class="p">))</span></div>
+</div>
 
 </pre></div>
 
@@ -441,8 +552,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -460,7 +571,7 @@ document.write(`
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -472,7 +583,7 @@ document.write(`
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>

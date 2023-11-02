@@ -1,17 +1,15 @@
-def json_normalize(data: list[dict], record_path: str, prefix: str):
+def json_normalize(data: list[dict], record_path: str, prefix: str | None = None):
     normalized = []
+    prefix = prefix if prefix else ""
     for dict_ in data:
-        for record in dict_.pop(record_path):
-            normalized.append({**dict_, **{f"{prefix}{k}": v for k, v in record.items()}})
+        d = dict_.copy()
+        records = d.pop(record_path)
+        for record in records:
+            normalized.append(
+                {**d, **{f"{prefix}{k}": v for k, v in record.items()}}
+            )
     return normalized
 
 
 def word_normalize(x: str):
-    return x.translate(str.maketrans(
-        {
-            "ي": "ی",
-            "ك": "ک",
-            "‌": "",
-            " ": ""
-        }
-    ))
+    return x.translate(str.maketrans({"ي": "ی", "ك": "ک", "‌": "", " ": ""}))

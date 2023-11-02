@@ -59,7 +59,9 @@ class TSETMC:
         >>> tsetmc.mw(["stock", "etf", "options"])
         """
         r = self.requests(self.url.mw(sections), response="json")[0].get("marketwatch")
-        df = pl.from_dicts(json_normalize(r, "blDs", "ob_"), schema_overrides={"pe": pl.Utf8})
+        df = pl.from_dicts(
+            json_normalize(r, "blDs", "ob_"), schema_overrides={"pe": pl.Utf8}
+        )
         df = manipulation_cols(df, cols=cols.mw_orderbook)
         df = manipulation_cols(df, cols=cols.mw)
         return df
@@ -101,27 +103,43 @@ class TSETMC:
                 case 6:
                     return f"14{ex_date[:2]}-{ex_date[2:4]}-{ex_date[4:6]}"
 
-        o_df = manipulation_cols(self.mw(["options"]), cols=cols.options_mw).with_columns(
-            pl.col("ins_id").str.slice(4, length=4).alias("key")
+        o_df = (
+            manipulation_cols(self.mw(["options"]), cols=cols.options_mw)
+            .filter(
+                (
+                    pl.col("symbol").str.starts_with("ض")
+                    | pl.col("symbol").str.starts_with("ط")
+                )
+                & ((pl.col("ask_size") > 0) | (pl.col("bid_size") > 0))
+            )
+            .with_columns(pl.col("ins_id").str.slice(4, length=4).alias("key"))
         )
-        ua_df = (manipulation_cols(self.mw(["stock", "etf"]), cols=cols.options_ua_mw)
-                 .filter(pl.col("ua_ob_level") == 1)
-                 .with_columns(pl.col("ua_ins_id").str.slice(4, length=4).alias("key")))
+        ua_df = (
+            manipulation_cols(self.mw(["stock", "etf"]), cols=cols.options_ua_mw)
+            .filter(pl.col("ua_ob_level") == 1)
+            .with_columns(pl.col("ua_ins_id").str.slice(4, length=4).alias("key"))
+        )
         df = o_df.join(ua_df, on="key", how="inner")
-        df = df.with_columns(
-            [
-                pl.col("name")
-                .str.splitn("-", 3)
-                .struct.rename_fields(["-", "k", "ex_date"])
-                .alias("fields"),
-            ]
-        ).unnest("fields").with_columns(
-            ex_date=pl.col("ex_date").map_elements(_expiration_date)
-        ).drop("-")
+        df = (
+            df.with_columns(
+                [
+                    pl.col("name")
+                    .str.splitn("-", 3)
+                    .struct.rename_fields(["-", "k", "ex_date"])
+                    .alias("fields"),
+                ]
+            )
+            .unnest("fields")
+            .with_columns(ex_date=pl.col("ex_date").map_elements(_expiration_date))
+            .drop("-")
+        )
 
         df = df.with_columns(
-            type=pl.when(pl.col("symbol").str.slice(0) == "ض").then("call").otherwise("put"),
-            t=pl.col("ex_date").map_elements(lambda x: dateutils.days(end=x))
+            k=pl.col("k").cast(pl.Int64),
+            type=pl.when(pl.col("symbol").str.slice(0) == "ض")
+            .then("call")
+            .otherwise("put"),
+            t=pl.col("ex_date").map_elements(lambda x: dateutils.days(end=x)),
         )
         return df
 
@@ -151,9 +169,9 @@ class TSETMC:
         """
         r = self.requests(self.url.search_ins_code(symbol))[0]["instrumentSearch"]
         for i in r:
-            if (
-                    word_normalize(i["lVal18AFC"]) == word_normalize(symbol)
-            ) and (i["lastDate"] == 1):
+            if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol)) and (
+                i["lastDate"] == 1
+            ):
                 return i["insCode"]
         raise ValueError(f"Cannot find {symbol!r}. Enter valid symbol.")
 
