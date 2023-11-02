@@ -5,9 +5,7 @@ def json_normalize(data: list[dict], record_path: str, prefix: str | None = None
         d = dict_.copy()
         records = d.pop(record_path)
         for record in records:
-            normalized.append(
-                {**d, **{f"{prefix}{k}": v for k, v in record.items()}}
-            )
+            normalized.append({**d, **{f"{prefix}{k}": v for k, v in record.items()}})
     return normalized
 
 

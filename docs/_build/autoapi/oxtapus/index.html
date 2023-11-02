@@ -351,8 +351,8 @@ document.write(`
 <dt class="sig sig-object py" id="oxtapus.TSETMC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC" title="Link to this definition">#</a></dt>
 <dd><dl class="py property">
-<dt class="sig sig-object py" id="oxtapus.TSETMC.requests">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests</span></span><a class="headerlink" href="#oxtapus.TSETMC.requests" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="oxtapus.TSETMC.async_req">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="headerlink" href="#oxtapus.TSETMC.async_req" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -524,7 +524,7 @@ document.write(`
 <dd class="field-odd"><p><strong>ins_id</strong> – کدِ 12 رقمیِ نماد</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pandas.DataFrame</p>
+<dd class="field-even"><p>polars.DataFrame</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
@@ -546,7 +546,7 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.TSETMC.hist_price">
-<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'فولاد'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC.hist_price" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC.hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC.hist_price" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
     داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج می‌کنه.
 </div><div class="admonition warning">
@@ -594,9 +594,128 @@ document.write(`
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pandas.DataFrame</p>
+<dd class="field-even"><p>polars.DataFrame</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;شپنا&quot;</span><span class="p">,</span> <span class="s2">&quot;فملی&quot;</span><span class="p">])</span>
+<span class="go">shape: (7_629, 11)</span>
+<span class="go">┌───────────────────┬────────────┬────────┬────────┬───┬─────────┬──────────────┬───────────┬─────────────┐</span>
+<span class="go">│ ins_code          ┆ date       ┆ open   ┆ high   ┆ … ┆ y_final ┆ volume       ┆ value     ┆ trade_count │</span>
+<span class="go">│ ---               ┆ ---        ┆ ---    ┆ ---    ┆   ┆ ---     ┆ ---          ┆ ---       ┆ ---         │</span>
+<span class="go">│ str               ┆ date       ┆ f64    ┆ f64    ┆   ┆ f64     ┆ f64          ┆ f64       ┆ f64         │</span>
+<span class="go">╞═══════════════════╪════════════╪════════╪════════╪═══╪═════════╪══════════════╪═══════════╪═════════════╡</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-29 ┆ 5800.0 ┆ 5800.0 ┆ … ┆ 0.0     ┆ 1.89389047e8 ┆ 1.0985e12 ┆ 5685.0      │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-30 ┆ 5974.0 ┆ 5974.0 ┆ … ┆ 5800.0  ┆ 1.9643005e7  ┆ 1.1685e11 ┆ 2021.0      │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-01 ┆ 5829.0 ┆ 5839.0 ┆ … ┆ 5948.0  ┆ 2.2646072e7  ┆ 1.3157e11 ┆ 805.0       │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-02 ┆ 5869.0 ┆ 5982.0 ┆ … ┆ 5808.0  ┆ 3.591428e6   ┆ 2.1308e10 ┆ 551.0       │</span>
+<span class="go">│ …                 ┆ …          ┆ …      ┆ …      ┆ … ┆ …       ┆ …            ┆ …         ┆ …           │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-29 ┆ 6810.0 ┆ 6950.0 ┆ … ┆ 6830.0  ┆ 4.195696e7   ┆ 2.8863e11 ┆ 2388.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-30 ┆ 6880.0 ┆ 6990.0 ┆ … ┆ 6880.0  ┆ 2.1627873e7  ┆ 1.4942e11 ┆ 2211.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-31 ┆ 6920.0 ┆ 6950.0 ┆ … ┆ 6910.0  ┆ 3.6062861e7  ┆ 2.4930e11 ┆ 1956.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-11-01 ┆ 6890.0 ┆ 6920.0 ┆ … ┆ 6910.0  ┆ 4.663197e7   ┆ 3.2148e11 ┆ 2028.0      │</span>
+<span class="go">└───────────────────┴────────────┴────────┴────────┴───┴─────────┴──────────────┴───────────┴─────────────┘</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">async_req</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">])</span>
+<span class="go">shape: (7_629, 11)</span>
+<span class="go">┌───────────────────┬────────────┬────────┬────────┬───┬─────────┬──────────────┬───────────┬─────────────┐</span>
+<span class="go">│ ins_code          ┆ date       ┆ open   ┆ high   ┆ … ┆ y_final ┆ volume       ┆ value     ┆ trade_count │</span>
+<span class="go">│ ---               ┆ ---        ┆ ---    ┆ ---    ┆   ┆ ---     ┆ ---          ┆ ---       ┆ ---         │</span>
+<span class="go">│ str               ┆ date       ┆ f64    ┆ f64    ┆   ┆ f64     ┆ f64          ┆ f64       ┆ f64         │</span>
+<span class="go">╞═══════════════════╪════════════╪════════╪════════╪═══╪═════════╪══════════════╪═══════════╪═════════════╡</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-29 ┆ 5800.0 ┆ 5800.0 ┆ … ┆ 0.0     ┆ 1.89389047e8 ┆ 1.0985e12 ┆ 5685.0      │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-30 ┆ 5974.0 ┆ 5974.0 ┆ … ┆ 5800.0  ┆ 1.9643005e7  ┆ 1.1685e11 ┆ 2021.0      │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-01 ┆ 5829.0 ┆ 5839.0 ┆ … ┆ 5948.0  ┆ 2.2646072e7  ┆ 1.3157e11 ┆ 805.0       │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-02 ┆ 5869.0 ┆ 5982.0 ┆ … ┆ 5808.0  ┆ 3.591428e6   ┆ 2.1308e10 ┆ 551.0       │</span>
+<span class="go">│ …                 ┆ …          ┆ …      ┆ …      ┆ … ┆ …       ┆ …            ┆ …         ┆ …           │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-29 ┆ 6810.0 ┆ 6950.0 ┆ … ┆ 6830.0  ┆ 4.195696e7   ┆ 2.8863e11 ┆ 2388.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-30 ┆ 6880.0 ┆ 6990.0 ┆ … ┆ 6880.0  ┆ 2.1627873e7  ┆ 1.4942e11 ┆ 2211.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-31 ┆ 6920.0 ┆ 6950.0 ┆ … ┆ 6910.0  ┆ 3.6062861e7  ┆ 2.4930e11 ┆ 1956.0      │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-11-01 ┆ 6890.0 ┆ 6920.0 ┆ … ┆ 6910.0  ┆ 4.663197e7   ┆ 3.2148e11 ┆ 2028.0      │</span>
+<span class="go">└───────────────────┴────────────┴────────┴────────┴───┴─────────┴──────────────┴───────────┴─────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TSETMC.adj_hist_price">
+<span class="sig-name descname"><span class="pre">adj_hist_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC.adj_hist_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC.adj_hist_price" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به صورتِ تعدیلی برمیگردونه.
+</div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div dir="rtl">
+    زمانِ استخراجِ داده با استفاده از
+    <span style="color:#ec4899">ins_code</span>
+    تقریبن نصفِ استفاده از
+    <span style="color:#ec4899">symbol</span>
+    است.
+    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div dir="rtl">
+    یا
+    <span style="color:#ec4899">ins_code</span>
+    رو وارد کن، یا
+    <span style="color:#ec4899">symbol</span>
+    رو.
+اگه هر دو رو وارد کنی،
+    <span style="color:#ec4899">symbol</span>
+نادیده گرفته می‌شه و تنها از
+    <span style="color:#ec4899">ins_code</span>
+    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+</div></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ 12 رقمیِ نماد</p></li>
+<li><p><strong>start</strong> (<em>str</em><em>, </em><em>default None</em>) – <p>تاریخِ شروع(جلالی).
+اگه هیچی داده نشه، داده‌ها از روزِ اول استخراج می‌شن.</p>
+<blockquote>
+<div><p>format: ‘yyyymmdd’, ‘yyyy-mm-dd’, ‘yyyy/mm/dd’, e.g. ‘1402-05-25’</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>end</strong> (<em>str</em>) – <p>تاریخِ پایان(جلالی).
+اگه هیچی داده نشه، داده‌ها تا روزِ آخر استخراج می‌شن.</p>
+<blockquote>
+<div><p>format: ‘yyyymmdd’, ‘yyyy-mm-dd’, ‘yyyy/mm/dd’, e.g. ‘1402-08-05’</p>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adj_hist_price</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">])</span>
+<span class="go">shape: (7_629, 16)</span>
+<span class="go">┌───────────────────┬────────────┬────────┬────────┬───┬──────────┬──────────┬───────────┬───────────┐</span>
+<span class="go">│ ins_code          ┆ date       ┆ open   ┆ high   ┆ … ┆ adj_high ┆ adj_low  ┆ adj_close ┆ adj_final │</span>
+<span class="go">│ ---               ┆ ---        ┆ ---    ┆ ---    ┆   ┆ ---      ┆ ---      ┆ ---       ┆ ---       │</span>
+<span class="go">│ str               ┆ date       ┆ f64    ┆ f64    ┆   ┆ f64      ┆ f64      ┆ f64       ┆ f64       │</span>
+<span class="go">╞═══════════════════╪════════════╪════════╪════════╪═══╪══════════╪══════════╪═══════════╪═══════════╡</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-29 ┆ 5800.0 ┆ 5800.0 ┆ … ┆ 0.184082 ┆ 0.184082 ┆ 0.184082  ┆ 0.184082  │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-06-30 ┆ 5974.0 ┆ 5974.0 ┆ … ┆ 0.189604 ┆ 0.184114 ┆ 0.188779  ┆ 0.188779  │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-01 ┆ 5829.0 ┆ 5839.0 ┆ … ┆ 0.18532  ┆ 0.183765 ┆ 0.184336  ┆ 0.184336  │</span>
+<span class="go">│ 7745894403636165  ┆ 2008-07-02 ┆ 5869.0 ┆ 5982.0 ┆ … ┆ 0.189858 ┆ 0.184336 ┆ 0.188303  ┆ 0.188303  │</span>
+<span class="go">│ …                 ┆ …          ┆ …      ┆ …      ┆ … ┆ …        ┆ …        ┆ …         ┆ …         │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-29 ┆ 6810.0 ┆ 6950.0 ┆ … ┆ 6950.0   ┆ 6790.0   ┆ 6950.0    ┆ 6880.0    │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-30 ┆ 6880.0 ┆ 6990.0 ┆ … ┆ 6990.0   ┆ 6860.0   ┆ 6910.0    ┆ 6910.0    │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-10-31 ┆ 6920.0 ┆ 6950.0 ┆ … ┆ 6950.0   ┆ 6900.0   ┆ 6910.0    ┆ 6910.0    │</span>
+<span class="go">│ 35425587644337450 ┆ 2023-11-01 ┆ 6890.0 ┆ 6920.0 ┆ … ┆ 6920.0   ┆ 6810.0   ┆ 6920.0    ┆ 6890.0    │</span>
+<span class="go">└───────────────────┴────────────┴────────┴────────┴───┴──────────┴──────────┴───────────┴───────────┘</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -757,13 +876,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.requests"><code class="docutils literal notranslate"><span class="pre">TSETMC.requests</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.specific_option_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.specific_option_data()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">

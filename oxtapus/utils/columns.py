@@ -149,15 +149,16 @@ specific_option_data = ManipulationCols(
     },
     suffix=None,
     prefix=None,
-    select=["ins_code",
-            "ua_ins_code",
-            "begin_date",
-            "ex_date",
-            "lot_size",
-            "k",
-            "open_interest"],
+    select=[
+        "ins_code",
+        "ua_ins_code",
+        "begin_date",
+        "ex_date",
+        "lot_size",
+        "k",
+        "open_interest",
+    ],
     drop=None,
-
 )
 
 hist_price = ManipulationCols(
@@ -172,7 +173,7 @@ hist_price = ManipulationCols(
         "priceYesterday": "y_final",
         "qTotTran5J": "volume",
         "qTotCap": "value",
-        "zTotTran": "trade_count"
+        "zTotTran": "trade_count",
     },
     suffix=None,
     prefix=None,
@@ -187,20 +188,21 @@ hist_price = ManipulationCols(
         "y_final",
         "volume",
         "value",
-        "trade_count"
+        "trade_count",
     ],
     drop=None,
-
 )
 
 tsetmc = TSETMC(
-    mw=mw, mw_orderbook=mw_orderbook, options_mw=options_mw, options_ua_mw=options_ua_mw,
-    specific_option_data=specific_option_data, hist_price=hist_price
+    mw=mw,
+    mw_orderbook=mw_orderbook,
+    options_mw=options_mw,
+    options_ua_mw=options_ua_mw,
+    specific_option_data=specific_option_data,
+    hist_price=hist_price,
 )
 
 ########################################################################################################
 #   ######## cols
 ########################################################################################################
-cols = Cols(
-    tsetmc=tsetmc
-)
+cols = Cols(tsetmc=tsetmc)
