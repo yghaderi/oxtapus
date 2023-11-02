@@ -21,6 +21,9 @@ class TSETMC:
     options_ua_mw: ManipulationCols
     specific_option_data: ManipulationCols
     hist_price: ManipulationCols
+    client_type: ManipulationCols
+    share_change: ManipulationCols
+    indexes: ManipulationCols
 
 
 @dataclass
@@ -178,8 +181,8 @@ hist_price = ManipulationCols(
     suffix=None,
     prefix=None,
     select=[
-        "ins_code",
         "date",
+        "ins_code",
         "open",
         "high",
         "low",
@@ -193,6 +196,65 @@ hist_price = ManipulationCols(
     drop=None,
 )
 
+client_type = ManipulationCols(
+    rename={
+        "recDate": "date",
+        "insCode": "ins_code",
+        "buy_I_Count": "buyers_count_ind",
+        "buy_N_Count": "buyers_count_ins",
+        "sell_I_Count": "sellers_count_ind",
+        "sell_N_Count": "sellers_count_ins",
+        "buy_I_Volume": "vol_purchase_ind",
+        "buy_N_Volume": "vol_purchase_ins",
+        "sell_I_Volume": "vol_sales_ind",
+        "sell_N_Volume": "vol_sales_ins",
+        "buy_I_Value": "val_purchase_ind",
+        "buy_N_Value": "val_purchase_ins",
+        "sell_I_Value": "val_sales_ind",
+        "sell_N_Value": "val_sales_ins",
+    },
+    suffix=None,
+    prefix=None,
+    select=None,
+    drop=None,
+)
+
+share_change = ManipulationCols(
+    rename={
+        "insCode": "ins_code",
+        "dEven": "date",
+        "numberOfShareNew": "current",
+        "numberOfShareOld": "previous",
+    },
+    suffix=None,
+    prefix=None,
+    select=["date", "ins_code", "previous", "current"],
+    drop=None
+)
+indexes = ManipulationCols(
+    rename={
+        "insCode": "ind_code",
+        "lVal30": "name",
+        "hEven": "time",
+        "xDrNivJIdx004": "close",
+        "xPbNivJIdx004": "low",
+        "xPhNivJIdx004": "high",
+        "indexChange": "change",
+        "xVarIdxJRfV": "pct_change",
+    },
+    suffix=None,
+    prefix=None,
+    select=["ind_code",
+            "name",
+            "time",
+            "close",
+            "low",
+            "high",
+            "change",
+            "pct_change"],
+    drop=None
+)
+
 tsetmc = TSETMC(
     mw=mw,
     mw_orderbook=mw_orderbook,
@@ -200,6 +262,9 @@ tsetmc = TSETMC(
     options_ua_mw=options_ua_mw,
     specific_option_data=specific_option_data,
     hist_price=hist_price,
+    client_type=client_type,
+    share_change=share_change,
+    indexes = indexes
 )
 
 ########################################################################################################

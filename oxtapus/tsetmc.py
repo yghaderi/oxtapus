@@ -13,7 +13,7 @@ class URL:
     def __init__(self, base_url="http://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
-    def mw(self, sections: List[str]):
+    def mw(self, sections: List[str]) -> str:
         """
         .. raw:: html
 
@@ -69,7 +69,7 @@ class URL:
         }
         return f"{self.base_url}/ClosingPrice/GetMarketWatch?{urlencode(param)}"
 
-    def search_ins_code(self, symbol_far):
+    def search_ins_code(self, symbol_far) -> str:
         """
         .. raw:: html
 
@@ -88,7 +88,7 @@ class URL:
         """
         return f"{self.base_url}/Instrument/getinstrumentsearch/{symbol_far}"
 
-    def ins_info(self, ins_code: int | str):
+    def ins_info(self, ins_code: int | str) -> str:
         """
         .. raw:: html
 
@@ -107,7 +107,7 @@ class URL:
         """
         return f"{self.base_url}/Instrument/GetInstrumentInfo/{ins_code}"
 
-    def hist_price(self, ins_code):
+    def hist_price(self, ins_code) -> str:
         """
         .. raw:: html
 
@@ -126,7 +126,7 @@ class URL:
         """
         return f"{self.base_url}/ClosingPrice/GetClosingPriceDailyList/{ins_code}/0"
 
-    def client_type(self, ins_code):
+    def client_type(self, ins_code) -> str:
         """
         .. raw:: html
 
@@ -145,7 +145,7 @@ class URL:
         """
         return f"{self.base_url}/ClientType/GetClientTypeHistory/{ins_code}"
 
-    def share_change(self, ins_code):
+    def share_change(self, ins_code) -> str:
         """
         .. raw:: html
 
@@ -164,7 +164,7 @@ class URL:
         """
         return f"{self.base_url}/Instrument/GetInstrumentShareChange/{ins_code}"
 
-    def specific_option_data(self, ins_id):
+    def specific_option_data(self, ins_id) -> str:
         """
         .. raw:: html
 
@@ -183,22 +183,22 @@ class URL:
         """
         return f"{self.base_url}/Instrument/GetInstrumentOptionByInstrumentID/{ins_id}"
 
-    def all_index(self):
+    def indexes(self) -> str:
         return f"{self.base_url}/Index/GetIndexB1LastAll/All/1"
 
-    def index_ticker_symbols(self, index_code):
+    def index_ticker_symbols(self, index_code) -> str:
         return f"{self.base_url}/ClosingPrice/GetIndexCompany/{index_code}"
 
-    def index_hist(self, index_code):
+    def index_hist(self, index_code) -> str:
         return f"{self.base_url}/Index/GetIndexB2History/{index_code}"
 
-    def intraday_trades(self, ins_code):
+    def intraday_trades(self, ins_code) -> str:
         return f"{self.base_url}/Trade/GetTrade/{ins_code}"
 
-    def last_ins_info(self, ins_code):
+    def last_ins_info(self, ins_code) -> str:
         return f"{self.base_url}/ClosingPrice/GetClosingPriceInfo/{ins_code}"
 
-    def last_market_activity(self):
+    def last_market_activity(self) -> str:
         return f"{self.base_url}/MarketData/GetMarketOverview/1"
 
 
@@ -220,7 +220,7 @@ class TSETMC:
         else:
             self.requests = requests
 
-    def mw(self, sections: list[str]):
+    def mw(self, sections: list[str]) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -259,7 +259,7 @@ class TSETMC:
         df = manipulation_cols(df, columns=cols.tsetmc.mw)
         return df
 
-    def options_mw(self):
+    def options_mw(self) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -300,8 +300,8 @@ class TSETMC:
             manipulation_cols(self.mw(["options"]), columns=cols.tsetmc.options_mw)
             .filter(
                 (
-                    pl.col("symbol").str.starts_with("ض")
-                    | pl.col("symbol").str.starts_with("ط")
+                        pl.col("symbol").str.starts_with("ض")
+                        | pl.col("symbol").str.starts_with("ط")
                 )
                 & ((pl.col("ask_size") > 0) | (pl.col("bid_size") > 0))
             )
@@ -338,7 +338,7 @@ class TSETMC:
         )
         return df
 
-    def search_ins_code(self, symbol: str):
+    def search_ins_code(self, symbol: str) -> str:
         """
         .. raw:: html
 
@@ -365,7 +365,7 @@ class TSETMC:
         r = self.requests(self.url.search_ins_code(symbol))[0]["instrumentSearch"]
         for i in r:
             if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol)) and (
-                i["lastDate"] == 1
+                    i["lastDate"] == 1
             ):
                 return i["insCode"]
         raise ValueError(f"Cannot find {symbol!r}. Enter valid symbol.")
@@ -385,10 +385,10 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def ins_info(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-    ):
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+    ) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -470,7 +470,7 @@ class TSETMC:
         └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
         """
 
-        def map_json(data: dict):
+        def map_json(data: dict) -> dict:
             return {
                 "ins_code": data["insCode"],
                 "ins_id": data["instrumentID"],
@@ -499,7 +499,7 @@ class TSETMC:
         r = self.requests(url)
         return pl.from_records([map_json(i.get("instrumentInfo")) for i in r])
 
-    def specific_option_data(self, ins_id: str | list[str]):
+    def specific_option_data(self, ins_id: str | list[str]) -> pl.DataFrame:
         """
         Get complimentary option info.
 
@@ -537,12 +537,12 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
-    ):
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
+    ) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -658,18 +658,19 @@ class TSETMC:
             df = pl.concat([df, df_])
         return df
 
+    @_handle_ins_cod_or_symbol
     def adj_hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
-    ):
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
+    ) -> pl.DataFrame:
         """
         .. raw:: html
 
             <div dir="rtl">
-                داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به صورتِ تعدیلی برمیگردونه.
+                داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به همراهِِ تعدیلی برمی‌گردونه.
             </div>
 
         .. warning::
@@ -768,3 +769,261 @@ class TSETMC:
             .drop("factor")
         )
         return df
+
+    @_handle_ins_cod_or_symbol
+    def client_type(self,
+                    symbol: str | list[str] | None = None,
+                    ins_code: str | list[str] | None = None,
+                    ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                داده‌هایِ تاریخیِ مروبط به معامله‌هایِ حقیقی-حقوقی رو استخراج و پالایش می‌کنه.
+            </div>
+
+        .. warning::
+            .. raw:: html
+
+                <div dir="rtl">
+                    زمانِ استخراجِ داده با استفاده از
+                    <span style="color:#ec4899">ins_code</span>
+                    تقریبن نصفِ استفاده از
+                    <span style="color:#ec4899">symbol</span>
+                    است.
+                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+                </div>
+
+        .. note::
+            .. raw:: html
+
+                <div dir="rtl">
+                    یا
+                    <span style="color:#ec4899">ins_code</span>
+                    رو وارد کن، یا
+                    <span style="color:#ec4899">symbol</span>
+                    رو.
+                اگه هر دو رو وارد کنی،
+                    <span style="color:#ec4899">symbol</span>
+                نادیده گرفته می‌شه و تنها از
+                    <span style="color:#ec4899">ins_code</span>
+                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+                </div>
+
+        Parameters
+        ----------
+        symbol: str | list[str] | None
+            نماد
+        ins_code: str | list[str] | None
+            کدِ 12 رقمیِ نماد
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.client_type(symbol="خودرو")
+        shape: (3_115, 14)
+        ┌────────────┬───────────────────┬──────────────────┬───┬───────────────┬───────────────────┬───────────────────┐
+        │ date       ┆ ins_code          ┆ vol_purchase_ind ┆ … ┆ val_sales_ins ┆ sellers_count_ins ┆ sellers_count_ind │
+        │ ---        ┆ ---               ┆ ---              ┆   ┆ ---           ┆ ---               ┆ ---               │
+        │ date       ┆ str               ┆ f64              ┆   ┆ f64           ┆ i64               ┆ i64               │
+        ╞════════════╪═══════════════════╪══════════════════╪═══╪═══════════════╪═══════════════════╪═══════════════════╡
+        │ 2008-11-26 ┆ 65883838195688438 ┆ 35092.0          ┆ … ┆ 1.54854651e8  ┆ 7                 ┆ 66                │
+        │ 2008-11-29 ┆ 65883838195688438 ┆ 139905.0         ┆ … ┆ 2.62977529e8  ┆ 8                 ┆ 70                │
+        │ 2008-11-30 ┆ 65883838195688438 ┆ 30471.0          ┆ … ┆ 1.85145104e8  ┆ 8                 ┆ 87                │
+        │ 2008-12-01 ┆ 65883838195688438 ┆ 95608.0          ┆ … ┆ 1.50880556e8  ┆ 6                 ┆ 67                │
+        │ …          ┆ …                 ┆ …                ┆ … ┆ …             ┆ …                 ┆ …                 │
+        │ 2023-10-29 ┆ 65883838195688438 ┆ 2.42294804e8     ┆ … ┆ 1.3174e11     ┆ 16                ┆ 1746              │
+        │ 2023-10-30 ┆ 65883838195688438 ┆ 1.8910082e8      ┆ … ┆ 3.7981e10     ┆ 11                ┆ 1912              │
+        │ 2023-10-31 ┆ 65883838195688438 ┆ 1.04700395e8     ┆ … ┆ 5.9403e9      ┆ 3                 ┆ 1191              │
+        │ 2023-11-01 ┆ 65883838195688438 ┆ 1.31498895e8     ┆ … ┆ 6.0731e10     ┆ 10                ┆ 1356              │
+        └────────────┴───────────────────┴──────────────────┴───┴───────────────┴───────────────────┴───────────────────┘
+        """
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, str):
+            ins_code = [ins_code]
+        url = [self.url.client_type(i) for i in ins_code]
+        r = self.requests(url)
+        df = pl.DataFrame()
+        for resp in r:
+            df_ = pl.from_records(resp.get("clientType"), orient="col")
+            df_ = (
+                manipulation_cols(df_, columns=cols.tsetmc.client_type)
+                .with_columns(pl.col("date").cast(pl.Utf8).str.to_date(format="%Y%m%d"))
+                .sort("date")
+            )
+            df = pl.concat([df, df_])
+        return df
+
+    @_handle_ins_cod_or_symbol
+    def share_change(self, symbol: str | list[str] | None = None,
+                     ins_code: str | list[str] | None = None, ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                داده‌هایِ تاریخیِ مروبط به تغییرِ سرمایه رو استخراج و پالایش می‌کنه.
+            </div>
+
+        .. warning::
+            .. raw:: html
+
+                <div dir="rtl">
+                    زمانِ استخراجِ داده با استفاده از
+                    <span style="color:#ec4899">ins_code</span>
+                    تقریبن نصفِ استفاده از
+                    <span style="color:#ec4899">symbol</span>
+                    است.
+                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+                </div>
+
+        .. note::
+            .. raw:: html
+
+                <div dir="rtl">
+                    یا
+                    <span style="color:#ec4899">ins_code</span>
+                    رو وارد کن، یا
+                    <span style="color:#ec4899">symbol</span>
+                    رو.
+                اگه هر دو رو وارد کنی،
+                    <span style="color:#ec4899">symbol</span>
+                نادیده گرفته می‌شه و تنها از
+                    <span style="color:#ec4899">ins_code</span>
+                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+                </div>
+
+        Parameters
+        ----------
+        symbol: str | list[str] | None
+            نماد
+        ins_code: str | list[str] | None
+            کدِ 12 رقمیِ نماد
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.share_change(ins_code = "35425587644337450")
+        shape: (10, 4)
+        ┌────────────┬───────────────────┬───────────┬───────────┐
+        │ date       ┆ ins_code          ┆ previous  ┆ current   │
+        │ ---        ┆ ---               ┆ ---       ┆ ---       │
+        │ date       ┆ str               ┆ f64       ┆ f64       │
+        ╞════════════╪═══════════════════╪═══════════╪═══════════╡
+        │ 2011-07-05 ┆ 35425587644337450 ┆ 5.7896e9  ┆ 1.7369e10 │
+        │ 2013-06-10 ┆ 35425587644337450 ┆ 1.7369e10 ┆ 3.5000e10 │
+        │ 2014-12-02 ┆ 35425587644337450 ┆ 3.5000e10 ┆ 4.3400e10 │
+        │ 2016-07-19 ┆ 35425587644337450 ┆ 4.3400e10 ┆ 5.0000e10 │
+        │ …          ┆ …                 ┆ …         ┆ …         │
+        │ 2020-01-22 ┆ 35425587644337450 ┆ 7.8000e10 ┆ 1.0140e11 │
+        │ 2020-12-06 ┆ 35425587644337450 ┆ 1.0140e11 ┆ 2.0000e11 │
+        │ 2021-11-28 ┆ 35425587644337450 ┆ 2.0000e11 ┆ 4.0000e11 │
+        │ 2023-03-15 ┆ 35425587644337450 ┆ 4.0000e11 ┆ 6.0000e11 │
+        └────────────┴───────────────────┴───────────┴───────────┘
+        """
+
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, str):
+            ins_code = [ins_code]
+        url = [self.url.share_change(i) for i in ins_code]
+        r = self.requests(url)
+        df = pl.DataFrame()
+        for resp in r:
+            df_ = pl.from_records(resp.get("instrumentShareChange"), orient="col")
+            df_ = (
+                manipulation_cols(df_, columns=cols.tsetmc.share_change)
+                .with_columns(pl.col("date").cast(pl.Utf8).str.to_date(format="%Y%m%d"))
+                .sort("date")
+            )
+            df = pl.concat([df, df_])
+
+        return df
+
+    def indexes(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                لیستِ همه‌یِ شاخص‌ها و مقدار و تغییرِ مربوط به آخرین روزِ معاملاتی رو استخراج و پالایش می‌کنه.
+            </div>
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.indexes()
+        """
+        r = requests(self.url.indexes())[0].get("indexB1")
+        df = pl.from_records(r)
+        df = manipulation_cols(df, columns=cols.tsetmc.indexes)
+        return df
+    #
+    # def index_ticker_symbols(self, index_code):
+    #
+    #     main = requests(self.url.index_ticker_symbols(index_code)).json()["indexCompany"]
+    #     return pd.DataFrame(ced.index_traker_symbols(index_code, main))
+    #
+    # def index_hist(self, index_code):
+    #
+    #     main = requests((self.url.index_hist(index_code))).json()["indexB2"]
+    #     df = pd.DataFrame(main).rename(columns=cols.index_hist.rename)
+    #     return ced.date(df)
+    #
+    # @_handle_args
+    # def last_ins_info(self, symbol_far: str | None = "فولاد", ins_code: str | None = None):
+    #
+    #     main = requests(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"]
+    #     df = pd.DataFrame([ced.last_ins_info(main)]).rename(
+    #         columns=cols.last_ins_info.rename
+    #     )[cols.last_ins_info.rep]
+    #     return df
+    #
+    # @_handle_args
+    # def intraday_trades(self, symbol_far: str | None = "فولاد", ins_code: str | None = None):
+    #
+    #     main = requests(url=self.url.intraday_trades(ins_code)).json()["trade"]
+    #     date = requests(url=self.url.last_ins_info(ins_code)).json()["closingPriceInfo"][
+    #         "finalLastDate"
+    #     ]
+    #     df = pd.DataFrame(main).rename(columns=cols.intraday_trades.rename)
+    #     df = df.assign(
+    #         datetime=df.time.apply(
+    #             lambda x: datetime.datetime.strptime(f"{date} {x}", "%Y%m%d %H%M%S")
+    #         )
+    #     )
+    #     return df[cols.intraday_trades.rep]
+    #
+    # def intraday_trades_base_timeframe(
+    #         self, symbol_far: str | None = "فولاد", ins_code: str | None = None, timeframe: str = "5T"
+    # ) -> pd.DataFrame:
+    #
+    #     df = self.intraday_trades(symbol_far=symbol_far, ins_code=ins_code).set_index(
+    #         "datetime"
+    #     )
+    #     df = df.resample(timeframe.upper()).agg(
+    #         {"price": ["first", "min", "max", "last"], "volume": "sum"}
+    #     )
+    #     df.columns = ["open", "low", "high", "close", "volume"]
+    #     return df
+    #
+    # def get_last_market_activity_datetime(self):
+    #
+    #     main = requests(self.url.last_market_activity()).json().get("marketOverview")
+    #     date = main.get("marketActivityDEven")
+    #     time = main.get("marketActivityHEven")
+    #     return datetime.datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
