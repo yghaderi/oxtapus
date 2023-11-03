@@ -209,7 +209,21 @@ files = [
 jdatetime = ">=4.1.1,<5.0.0"
 python-dateutil = ">=2.8.2,<3.0.0"
 
+[[package]]
+name = "tenacity"
+version = "8.2.3"
+description = "Retry code until it succeeds"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tenacity-8.2.3-py3-none-any.whl", hash = "sha256:ce510e327a630c9e1beaf17d42e6ffacc88185044ad85cf74c0a8887c6a0f88c"},
+    {file = "tenacity-8.2.3.tar.gz", hash = "sha256:5398ef0d78e63f40007c1fb4c0bff96e1911394d2fa8d194f77619c05ff6cc8a"},
+]
+
+[package.extras]
+doc = ["reno", "sphinx", "tornado (>=4.5)"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "7f8bd30571aa4d14cca94d1eb146ce38a5d3accad0cabf00dc0afeb9d5a152ff"
+content-hash = "2865ec9405c596578c7bbae50f89c2237ff7450520fd780d83a8e3e62a99aaad"

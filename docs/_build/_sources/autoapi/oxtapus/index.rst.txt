@@ -34,7 +34,7 @@ Classes
    .. py:property:: async_req
 
 
-   .. py:method:: mw(sections: list[str])
+   .. py:method:: mw(sections: list[str]) -> polars.DataFrame
 
       .. raw:: html
 
@@ -63,7 +63,7 @@ Classes
       >>> tsetmc.mw(["stock", "etf", "options"])
 
 
-   .. py:method:: options_mw()
+   .. py:method:: options_mw() -> polars.DataFrame
 
       .. raw:: html
 
@@ -90,7 +90,7 @@ Classes
       >>> tsetmc.options_mw()
 
 
-   .. py:method:: search_ins_code(symbol: str)
+   .. py:method:: search_ins_code(symbol: str) -> str
 
       .. raw:: html
 
@@ -112,7 +112,7 @@ Classes
       '20562694899904339'
 
 
-   .. py:method:: ins_info(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None)
+   .. py:method:: ins_info(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
 
       .. raw:: html
 
@@ -152,7 +152,7 @@ Classes
 
       :param symbol: نماد
       :type symbol: str | list[str] | None
-      :param ins_code: کدِ 12 رقمیِ نماد
+      :param ins_code: کدِ صفحه‌یِ نماد
       :type ins_code: str | list[str] | None
 
       :rtype: polars.DataFrame
@@ -190,7 +190,7 @@ Classes
       └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
 
 
-   .. py:method:: specific_option_data(ins_id: str | list[str])
+   .. py:method:: specific_option_data(ins_id: str | list[str]) -> polars.DataFrame
 
       Get complimentary option info.
 
@@ -214,7 +214,7 @@ Classes
       └──────────────────┴───────────────────┴────────────┴──────────┴──────────┴────────┴───────────────┘
 
 
-   .. py:method:: hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None)
+   .. py:method:: hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None) -> polars.DataFrame
 
       .. raw:: html
 
@@ -253,7 +253,7 @@ Classes
 
       :param symbol: نماد
       :type symbol: str | list[str] | None
-      :param ins_code: کدِ 12 رقمیِ نماد
+      :param ins_code: کدِ صفحه‌یِ نماد
       :type ins_code: str | list[str] | None
       :param start: تاریخِ شروع(جلالی).
                     اگه هیچی داده نشه، داده‌ها از روزِ اول استخراج می‌شن.
@@ -308,12 +308,12 @@ Classes
       └───────────────────┴────────────┴────────┴────────┴───┴─────────┴──────────────┴───────────┴─────────────┘
 
 
-   .. py:method:: adj_hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None)
+   .. py:method:: adj_hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None) -> polars.DataFrame
 
       .. raw:: html
 
           <div dir="rtl">
-              داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به صورتِ تعدیلی برمیگردونه.
+              داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به همراهِِ تعدیلی برمی‌گردونه.
           </div>
 
       .. warning::
@@ -347,7 +347,7 @@ Classes
 
       :param symbol: نماد
       :type symbol: str | list[str] | None
-      :param ins_code: کدِ 12 رقمیِ نماد
+      :param ins_code: کدِ صفحه‌یِ نماد
       :type ins_code: str | list[str] | None
       :param start: تاریخِ شروع(جلالی).
                     اگه هیچی داده نشه، داده‌ها از روزِ اول استخراج می‌شن.
@@ -381,6 +381,389 @@ Classes
       │ 35425587644337450 ┆ 2023-10-31 ┆ 6920.0 ┆ 6950.0 ┆ … ┆ 6950.0     ┆ 6900.0     ┆ 6910.0     ┆ 6910.0     │
       │ 35425587644337450 ┆ 2023-11-01 ┆ 6890.0 ┆ 6920.0 ┆ … ┆ 6920.0     ┆ 6810.0     ┆ 6920.0     ┆ 6890.0     │
       └───────────────────┴────────────┴────────┴────────┴───┴────────────┴────────────┴────────────┴────────────┘
+
+
+   .. py:method:: intraday_trades(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ معامله‌یِ دورن-روزی(ریزِ معامله) رو برای آخرین روزِ معاملاتی استخراج و برمی‌گردونه.
+          </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.intraday_trades("دکپسول")
+      shape: (190, 4)
+      ┌─────────────────────┬───────────┬─────────┬────────┐
+      │ datetime            ┆ trade_nbr ┆ price   ┆ volume │
+      │ ---                 ┆ ---       ┆ ---     ┆ ---    │
+      │ datetime[μs]        ┆ i64       ┆ f64     ┆ i64    │
+      ╞═════════════════════╪═══════════╪═════════╪════════╡
+      │ 2023-11-01 09:10:01 ┆ 1         ┆ 75100.0 ┆ 250    │
+      │ 2023-11-01 09:10:05 ┆ 2         ┆ 75100.0 ┆ 625    │
+      │ 2023-11-01 09:10:05 ┆ 3         ┆ 75100.0 ┆ 48     │
+      │ 2023-11-01 09:11:57 ┆ 4         ┆ 75150.0 ┆ 100    │
+      │ …                   ┆ …         ┆ …       ┆ …      │
+      │ 2023-11-01 12:28:47 ┆ 187       ┆ 77000.0 ┆ 510    │
+      │ 2023-11-01 12:28:47 ┆ 188       ┆ 77000.0 ┆ 89     │
+      │ 2023-11-01 12:29:06 ┆ 189       ┆ 77000.0 ┆ 411    │
+      │ 2023-11-01 12:29:06 ┆ 190       ┆ 77000.0 ┆ 500    │
+      └─────────────────────┴───────────┴─────────┴────────┘
+
+
+   .. py:method:: intraday_trades_based_on_timeframe(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, timeframe: str = '5m') -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ معامله‌یِ دورن-روزی(ریزِ معامله) رو برای آخرین روزِ معاملاتی استخراج و
+              بر مبنایِ تایم-فریمِ وارد شده باز-سازی می‌کنه و برمی‌گردونه.
+          </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
+      :param timeframe: فاصله‌یِ زمانی(تایم-فریم)
+                        `برای آگاهی‌ِ بیشتر این صفحه رو بخون <https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.group_by_dynamic.html>`__.
+      :type timeframe: str, {'1m', '5m', '1h', ...}, default '5m'
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.intraday_trades_based_on_timeframe("دکپسول")
+      shape: (24, 7)
+      ┌─────────────────────┬─────────┬─────────┬─────────┬─────────┬────────┬────────────┐
+      │ datetime            ┆ open    ┆ high    ┆ low     ┆ close   ┆ volume ┆ value      │
+      │ ---                 ┆ ---     ┆ ---     ┆ ---     ┆ ---     ┆ ---    ┆ ---        │
+      │ datetime[μs]        ┆ f64     ┆ f64     ┆ f64     ┆ f64     ┆ i64    ┆ f64        │
+      ╞═════════════════════╪═════════╪═════════╪═════════╪═════════╪════════╪════════════╡
+      │ 2023-11-01 09:10:00 ┆ 75100.0 ┆ 75150.0 ┆ 75100.0 ┆ 75150.0 ┆ 2273   ┆ 1.707698e8 │
+      │ 2023-11-01 09:15:00 ┆ 75200.0 ┆ 75200.0 ┆ 75200.0 ┆ 75200.0 ┆ 106    ┆ 7.9712e6   │
+      │ 2023-11-01 09:25:00 ┆ 75300.0 ┆ 75300.0 ┆ 75000.0 ┆ 75250.0 ┆ 8821   ┆ 6.638115e8 │
+      │ 2023-11-01 09:40:00 ┆ 76500.0 ┆ 76500.0 ┆ 75200.0 ┆ 75200.0 ┆ 4084   ┆ 3.078858e8 │
+      │ …                   ┆ …       ┆ …       ┆ …       ┆ …       ┆ …      ┆ …          │
+      │ 2023-11-01 12:10:00 ┆ 76500.0 ┆ 77350.0 ┆ 76500.0 ┆ 77350.0 ┆ 24590  ┆ 1.8976e9   │
+      │ 2023-11-01 12:15:00 ┆ 77350.0 ┆ 77350.0 ┆ 77000.0 ┆ 77000.0 ┆ 6085   ┆ 4.699499e8 │
+      │ 2023-11-01 12:20:00 ┆ 77000.0 ┆ 77350.0 ┆ 77000.0 ┆ 77350.0 ┆ 7660   ┆ 5.915905e8 │
+      │ 2023-11-01 12:25:00 ┆ 77200.0 ┆ 77200.0 ┆ 77000.0 ┆ 77000.0 ┆ 2981   ┆ 2.29551e8  │
+      └─────────────────────┴─────────┴─────────┴─────────┴─────────┴────────┴────────────┘
+
+
+   .. py:method:: last_ins_data(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ صفحه‌یِ نماد رو استخراج و پالایش می‌کنه.
+          </div>
+
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.last_ins_data(symbol=["خودرو","خساپا"])
+      shape: (2, 17)
+      ┌────────────┬────────┬────────┬────────────┬───┬────────────┬────────────┬─────────┬─────────┐
+      │ date       ┆ time   ┆ status ┆ status_far ┆ … ┆ event_date ┆ event_time ┆ i_close ┆ y_close │
+      │ ---        ┆ ---    ┆ ---    ┆ ---        ┆   ┆ ---        ┆ ---        ┆ ---     ┆ ---     │
+      │ date       ┆ i64    ┆ str    ┆ str        ┆   ┆ date       ┆ i64        ┆ bool    ┆ bool    │
+      ╞════════════╪════════╪════════╪════════════╪═══╪════════════╪════════════╪═════════╪═════════╡
+      │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │
+      │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │
+      └────────────┴────────┴────────┴────────────┴───┴────────────┴────────────┴─────────┴─────────┘
+
+
+   .. py:method:: client_type(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ تاریخیِ مروبط به معامله‌هایِ حقیقی-حقوقی رو استخراج و پالایش می‌کنه.
+          </div>
+
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.client_type(symbol="خودرو")
+      shape: (3_115, 14)
+      ┌────────────┬───────────────────┬──────────────────┬───┬───────────────┬───────────────────┬───────────────────┐
+      │ date       ┆ ins_code          ┆ vol_purchase_ind ┆ … ┆ val_sales_ins ┆ sellers_count_ins ┆ sellers_count_ind │
+      │ ---        ┆ ---               ┆ ---              ┆   ┆ ---           ┆ ---               ┆ ---               │
+      │ date       ┆ str               ┆ f64              ┆   ┆ f64           ┆ i64               ┆ i64               │
+      ╞════════════╪═══════════════════╪══════════════════╪═══╪═══════════════╪═══════════════════╪═══════════════════╡
+      │ 2008-11-26 ┆ 65883838195688438 ┆ 35092.0          ┆ … ┆ 1.54854651e8  ┆ 7                 ┆ 66                │
+      │ 2008-11-29 ┆ 65883838195688438 ┆ 139905.0         ┆ … ┆ 2.62977529e8  ┆ 8                 ┆ 70                │
+      │ 2008-11-30 ┆ 65883838195688438 ┆ 30471.0          ┆ … ┆ 1.85145104e8  ┆ 8                 ┆ 87                │
+      │ 2008-12-01 ┆ 65883838195688438 ┆ 95608.0          ┆ … ┆ 1.50880556e8  ┆ 6                 ┆ 67                │
+      │ …          ┆ …                 ┆ …                ┆ … ┆ …             ┆ …                 ┆ …                 │
+      │ 2023-10-29 ┆ 65883838195688438 ┆ 2.42294804e8     ┆ … ┆ 1.3174e11     ┆ 16                ┆ 1746              │
+      │ 2023-10-30 ┆ 65883838195688438 ┆ 1.8910082e8      ┆ … ┆ 3.7981e10     ┆ 11                ┆ 1912              │
+      │ 2023-10-31 ┆ 65883838195688438 ┆ 1.04700395e8     ┆ … ┆ 5.9403e9      ┆ 3                 ┆ 1191              │
+      │ 2023-11-01 ┆ 65883838195688438 ┆ 1.31498895e8     ┆ … ┆ 6.0731e10     ┆ 10                ┆ 1356              │
+      └────────────┴───────────────────┴──────────────────┴───┴───────────────┴───────────────────┴───────────────────┘
+
+
+   .. py:method:: share_change(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ تاریخیِ مروبط به تغییرِ سرمایه رو استخراج و پالایش می‌کنه.
+          </div>
+
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
+
+      :param symbol: نماد
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.share_change(ins_code = "35425587644337450")
+      shape: (10, 4)
+      ┌────────────┬───────────────────┬───────────┬───────────┐
+      │ date       ┆ ins_code          ┆ previous  ┆ current   │
+      │ ---        ┆ ---               ┆ ---       ┆ ---       │
+      │ date       ┆ str               ┆ f64       ┆ f64       │
+      ╞════════════╪═══════════════════╪═══════════╪═══════════╡
+      │ 2011-07-05 ┆ 35425587644337450 ┆ 5.7896e9  ┆ 1.7369e10 │
+      │ 2013-06-10 ┆ 35425587644337450 ┆ 1.7369e10 ┆ 3.5000e10 │
+      │ 2014-12-02 ┆ 35425587644337450 ┆ 3.5000e10 ┆ 4.3400e10 │
+      │ 2016-07-19 ┆ 35425587644337450 ┆ 4.3400e10 ┆ 5.0000e10 │
+      │ …          ┆ …                 ┆ …         ┆ …         │
+      │ 2020-01-22 ┆ 35425587644337450 ┆ 7.8000e10 ┆ 1.0140e11 │
+      │ 2020-12-06 ┆ 35425587644337450 ┆ 1.0140e11 ┆ 2.0000e11 │
+      │ 2021-11-28 ┆ 35425587644337450 ┆ 2.0000e11 ┆ 4.0000e11 │
+      │ 2023-03-15 ┆ 35425587644337450 ┆ 4.0000e11 ┆ 6.0000e11 │
+      └────────────┴───────────────────┴───────────┴───────────┘
+
+
+   .. py:method:: indexes()
+
+      .. raw:: html
+
+          <div dir="rtl">
+              لیستِ همه‌یِ شاخص‌ها و مقدار و تغییرِ مربوط به آخرین روزِ معاملاتی رو استخراج و پالایش می‌کنه.
+          </div>
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.indexes()
+
+
+   .. py:method:: symbols_that_index_tracks(ind_code: str | list[str])
+
+      .. raw:: html
+
+          <div dir="rtl">
+              نمادهایی که هر شاخص دنبال می‌کنه رو استخراج و پالایش می‌کنه.
+          </div>
+
+      :param ind_code: کدِ صفحه‌یِ شاخص
+      :type ind_code: str or list[str]
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.symbols_that_index_tracks(["21948907150049163", "3615666621538524"])
+      shape: (39, 3)
+      ┌───────────────────┬───────────────────┬────────┐
+      │ ind_code          ┆ ins_code          ┆ symbol │
+      │ ---               ┆ ---               ┆ ---    │
+      │ str               ┆ str               ┆ str    │
+      ╞═══════════════════╪═══════════════════╪════════╡
+      │ 21948907150049163 ┆ 67030488744129337 ┆ قپيرا  │
+      │ 21948907150049163 ┆ 44967158778304588 ┆ قثابت  │
+      │ 21948907150049163 ┆ 15259343650667588 ┆ قزوين  │
+      │ 21948907150049163 ┆ 35964395659427029 ┆ قشكر   │
+      │ …                 ┆ …                 ┆ …      │
+      │ 3615666621538524  ┆ 69090868458637360 ┆ ديران  │
+      │ 3615666621538524  ┆ 36899214178084525 ┆ شفا    │
+      │ 3615666621538524  ┆ 57944184894703821 ┆ والبر  │
+      │ 3615666621538524  ┆ 7183333492448248  ┆ وپخش   │
+      └───────────────────┴───────────────────┴────────┘
+
+
+   .. py:method:: index_hist(ind_code: str | list[str])
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ تاریخیِ مربوط به شاخص‌ها رو استخراج و پالایش می‌کنه.
+          </div>
+
+      :param ind_code: کدِ صفحه‌یِ شاخص
+      :type ind_code: str or list[str]
+
+      :rtype: polars.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tsetmc.index_hist(["21948907150049163", "3615666621538524"])
+      shape: (7_195, 5)
+      ┌────────────┬───────────────────┬──────────┬──────────┬──────────┐
+      │ date       ┆ ind_code          ┆ close    ┆ low      ┆ high     │
+      │ ---        ┆ ---               ┆ ---      ┆ ---      ┆ ---      │
+      │ date       ┆ i64               ┆ f64      ┆ f64      ┆ f64      │
+      ╞════════════╪═══════════════════╪══════════╪══════════╪══════════╡
+      │ 2008-12-05 ┆ 21948907150049163 ┆ 347.0    ┆ 347.0    ┆ 347.0    │
+      │ 2008-12-06 ┆ 21948907150049163 ┆ 347.0    ┆ 347.0    ┆ 347.0    │
+      │ 2008-12-07 ┆ 21948907150049163 ┆ 345.5    ┆ 345.5    ┆ 347.1    │
+      │ 2008-12-08 ┆ 21948907150049163 ┆ 345.6    ┆ 345.6    ┆ 345.6    │
+      │ …          ┆ …                 ┆ …        ┆ …        ┆ …        │
+      │ 2023-10-29 ┆ 3615666621538524  ┆ 183906.0 ┆ 183587.0 ┆ 183990.0 │
+      │ 2023-10-30 ┆ 3615666621538524  ┆ 184755.0 ┆ 183950.0 ┆ 184755.0 │
+      │ 2023-10-31 ┆ 3615666621538524  ┆ 184465.0 ┆ 184465.0 ┆ 184756.0 │
+      │ 2023-11-01 ┆ 3615666621538524  ┆ 184405.0 ┆ 184359.0 ┆ 184622.0 │
+      └────────────┴───────────────────┴──────────┴──────────┴──────────┘
+
+
+   .. py:method:: last_market_activity_datetime()
+
+      .. raw:: html
+
+          <div dir="rtl">
+              تاریخ و زمانِ رو بر مبنایِ آخرین رویدادِ بازار برمی‌گردونه.
+          </div>
+
+      :rtype: datetime.datetime
+
+      .. rubric:: Example
+
+      >>> from datetime import datetime
+      >>> from oxtapus import TSETMC
+      >>> datetime.now()
+      datetime.datetime(2023, 11, 3, 20, 7, 36, 378137)
+      >>> TSETMC().last_market_activity_datetime()
+      datetime.datetime(2023, 11, 1, 19, 21, 24)
 
 
 

@@ -21,9 +21,12 @@ class TSETMC:
     options_ua_mw: ManipulationCols
     specific_option_data: ManipulationCols
     hist_price: ManipulationCols
+    intraday_trades: ManipulationCols
+    last_ins_data: ManipulationCols
     client_type: ManipulationCols
     share_change: ManipulationCols
     indexes: ManipulationCols
+    index_hist: ManipulationCols
 
 
 @dataclass
@@ -195,7 +198,62 @@ hist_price = ManipulationCols(
     ],
     drop=None,
 )
+intraday_trades = ManipulationCols(
+    rename={
+        "nTran": "trade_nbr",
+        "hEven": "time",
+        "qTitTran": "volume",
+        "pTran": "price",
+    },
+    suffix=None,
+    prefix=None,
+    select=["datetime", "trade_nbr", "price", "volume"],
+    drop=None,
+)
 
+last_ins_data = ManipulationCols(
+    rename={
+        "cEtaval": "status",
+        "cEtavalTitle": "status_far",
+        "lastHEven": "time",
+        "finalLastDate": "date",
+        "priceMin": "low",
+        "priceMax": "high",
+        "priceYesterday": "y_final",
+        "priceFirst": "open",
+        "dEven": "event_date",
+        "hEven": "event_time",
+        "pClosing": "final",
+        "iClose": "i_close",
+        "yClose": "y_close",
+        "pDrCotVal": "close",
+        "zTotTran": "trade_count",
+        "qTotTran5J": "volume",
+        "qTotCap": "value",
+    },
+    suffix=None,
+    prefix=None,
+    select=[
+        "date",
+        "time",
+        "status",
+        "status_far",
+        "open",
+        "low",
+        "high",
+        "close",
+        "final",
+        "y_final",
+        "trade_count",
+        "volume",
+        "value",
+        "event_date",
+        "event_time",
+        "i_close",
+        "y_close",
+    ],
+    drop=None,
+)
 client_type = ManipulationCols(
     rename={
         "recDate": "date",
@@ -229,7 +287,7 @@ share_change = ManipulationCols(
     suffix=None,
     prefix=None,
     select=["date", "ins_code", "previous", "current"],
-    drop=None
+    drop=None,
 )
 indexes = ManipulationCols(
     rename={
@@ -244,15 +302,22 @@ indexes = ManipulationCols(
     },
     suffix=None,
     prefix=None,
-    select=["ind_code",
-            "name",
-            "time",
-            "close",
-            "low",
-            "high",
-            "change",
-            "pct_change"],
-    drop=None
+    select=["ind_code", "name", "time", "close", "low", "high", "change", "pct_change"],
+    drop=None,
+)
+
+index_hist = ManipulationCols(
+    rename={
+        "insCode": "ind_code",
+        "dEven": "date",
+        "xNivInuClMresIbs": "close",
+        "xNivInuPbMresIbs": "low",
+        "xNivInuPhMresIbs": "high",
+    },
+    suffix=None,
+    prefix=None,
+    select=["date", "ind_code", "close", "low", "high"],
+    drop=None,
 )
 
 tsetmc = TSETMC(
@@ -262,9 +327,12 @@ tsetmc = TSETMC(
     options_ua_mw=options_ua_mw,
     specific_option_data=specific_option_data,
     hist_price=hist_price,
+    intraday_trades=intraday_trades,
+    last_ins_data=last_ins_data,
     client_type=client_type,
     share_change=share_change,
-    indexes = indexes
+    indexes=indexes,
+    index_hist=index_hist,
 )
 
 ########################################################################################################

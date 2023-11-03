@@ -303,6 +303,7 @@ document.write(`
   <h1>Source code for oxtapus.tsetmc</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
@@ -311,16 +312,14 @@ document.write(`
 <span class="kn">from</span> <span class="nn">oxtapus.utils.http</span> <span class="kn">import</span> <span class="n">requests</span><span class="p">,</span> <span class="n">async_requests</span>
 <span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">json_normalize</span><span class="p">,</span> <span class="n">word_normalize</span><span class="p">,</span> <span class="n">manipulation_cols</span><span class="p">,</span> <span class="n">cols</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TSETMC&quot;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="URL">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL">[docs]</a>
+
 <span class="k">class</span> <span class="nc">URL</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://cdn.tsetmc.com/api&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
 
-<div class="viewcode-block" id="URL.mw">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.mw">[docs]</a>
-    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -374,12 +373,9 @@ document.write(`
             <span class="s2">&quot;showTraded&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
             <span class="s2">&quot;withBestLimits&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetMarketWatch?</span><span class="si">{</span><span class="n">urlencode</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetMarketWatch?</span><span class="si">{</span><span class="n">urlencode</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 
-
-<div class="viewcode-block" id="URL.search_ins_code">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.search_ins_code">[docs]</a>
-    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol_far</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -396,12 +392,9 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/getinstrumentsearch/</span><span class="si">{</span><span class="n">symbol_far</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/getinstrumentsearch/</span><span class="si">{</span><span class="n">symbol_far</span><span class="si">}</span><span class="s2">&quot;</span>
 
-
-<div class="viewcode-block" id="URL.ins_info">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.ins_info">[docs]</a>
-    <span class="k">def</span> <span class="nf">ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -418,12 +411,9 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentInfo/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentInfo/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
-
-<div class="viewcode-block" id="URL.hist_price">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.hist_price">[docs]</a>
-    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hist_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -440,12 +430,9 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetClosingPriceDailyList/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">/0&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetClosingPriceDailyList/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">/0&quot;</span>
 
-
-<div class="viewcode-block" id="URL.client_type">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.client_type">[docs]</a>
-    <span class="k">def</span> <span class="nf">client_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">client_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -462,12 +449,9 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClientType/GetClientTypeHistory/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClientType/GetClientTypeHistory/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
-
-<div class="viewcode-block" id="URL.share_change">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.share_change">[docs]</a>
-    <span class="k">def</span> <span class="nf">share_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">share_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -484,12 +468,9 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentShareChange/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentShareChange/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
-
-<div class="viewcode-block" id="URL.specific_option_data">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.specific_option_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">specific_option_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">specific_option_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -506,45 +487,31 @@ document.write(`
 <span class="sd">        -------</span>
 <span class="sd">        url: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentOptionByInstrumentID/</span><span class="si">{</span><span class="n">ins_id</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentOptionByInstrumentID/</span><span class="si">{</span><span class="n">ins_id</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="k">def</span> <span class="nf">indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Index/GetIndexB1LastAll/All/1&quot;</span>
 
-<div class="viewcode-block" id="URL.all_index">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.all_index">[docs]</a>
-    <span class="k">def</span> <span class="nf">all_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Index/GetIndexB1LastAll/All/1&quot;</span></div>
+    <span class="k">def</span> <span class="nf">symbols_that_index_tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetIndexCompany/</span><span class="si">{</span><span class="n">index_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="k">def</span> <span class="nf">index_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Index/GetIndexB2History/</span><span class="si">{</span><span class="n">index_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<div class="viewcode-block" id="URL.index_ticker_symbols">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.index_ticker_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">index_ticker_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetIndexCompany/</span><span class="si">{</span><span class="n">index_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
+    <span class="k">def</span> <span class="nf">intraday_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Trade/GetTrade/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="k">def</span> <span class="nf">intraday_trades_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Trade/GetTradeHistory/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">/true&quot;</span>
 
-<div class="viewcode-block" id="URL.index_hist">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.index_hist">[docs]</a>
-    <span class="k">def</span> <span class="nf">index_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_code</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Index/GetIndexB2History/</span><span class="si">{</span><span class="n">index_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
+    <span class="k">def</span> <span class="nf">orderbook_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/BestLimits/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="k">def</span> <span class="nf">last_ins_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetClosingPriceInfo/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<div class="viewcode-block" id="URL.intraday_trades">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.intraday_trades">[docs]</a>
-    <span class="k">def</span> <span class="nf">intraday_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Trade/GetTrade/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
-
-
-<div class="viewcode-block" id="URL.last_ins_info">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.last_ins_info">[docs]</a>
-    <span class="k">def</span> <span class="nf">last_ins_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetClosingPriceInfo/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span></div>
-
-
-<div class="viewcode-block" id="URL.last_market_activity">
-<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.URL.last_market_activity">[docs]</a>
-    <span class="k">def</span> <span class="nf">last_market_activity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/MarketData/GetMarketOverview/1&quot;</span></div>
-</div>
-
+    <span class="k">def</span> <span class="nf">last_market_activity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/MarketData/GetMarketOverview/1&quot;</span>
 
 
 <div class="viewcode-block" id="TSETMC">
@@ -572,7 +539,7 @@ document.write(`
 
 <div class="viewcode-block" id="TSETMC.mw">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.mw">[docs]</a>
-    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">mw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -614,7 +581,7 @@ document.write(`
 
 <div class="viewcode-block" id="TSETMC.options_mw">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.options_mw">[docs]</a>
-    <span class="k">def</span> <span class="nf">options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -696,7 +663,7 @@ document.write(`
 
 <div class="viewcode-block" id="TSETMC.search_ins_code">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.search_ins_code">[docs]</a>
-    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search_ins_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -749,7 +716,7 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -792,7 +759,7 @@ document.write(`
 <span class="sd">        symbol: str | list[str] | None</span>
 <span class="sd">            نماد</span>
 <span class="sd">        ins_code: str | list[str] | None</span>
-<span class="sd">            کدِ 12 رقمیِ نماد</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -831,7 +798,7 @@ document.write(`
 <span class="sd">        └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">map_json</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">map_json</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span>
                 <span class="s2">&quot;ins_code&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;insCode&quot;</span><span class="p">],</span>
                 <span class="s2">&quot;ins_id&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;instrumentID&quot;</span><span class="p">],</span>
@@ -863,7 +830,7 @@ document.write(`
 
 <div class="viewcode-block" id="TSETMC.specific_option_data">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.specific_option_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">specific_option_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">specific_option_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get complimentary option info.</span>
 
@@ -909,7 +876,7 @@ document.write(`
         <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">start</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
@@ -951,7 +918,7 @@ document.write(`
 <span class="sd">        symbol: str | list[str] | None</span>
 <span class="sd">            نماد</span>
 <span class="sd">        ins_code: str | list[str] | None</span>
-<span class="sd">            کدِ 12 رقمیِ نماد</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
 
 <span class="sd">        start: str, default None</span>
 <span class="sd">            تاریخِ شروع(جلالی).</span>
@@ -1026,6 +993,7 @@ document.write(`
         <span class="k">return</span> <span class="n">df</span></div>
 
 
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
 <div class="viewcode-block" id="TSETMC.adj_hist_price">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.adj_hist_price">[docs]</a>
     <span class="k">def</span> <span class="nf">adj_hist_price</span><span class="p">(</span>
@@ -1034,12 +1002,12 @@ document.write(`
         <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">start</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. raw:: html</span>
 
 <span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
-<span class="sd">                داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به صورتِ تعدیلی برمیگردونه.</span>
+<span class="sd">                داده‌هایِ تاریخیِ مروبط به معامله‌یِ نماد رو استخراج  و به همراهِِ تعدیلی برمی‌گردونه.</span>
 <span class="sd">            &lt;/div&gt;</span>
 
 <span class="sd">        .. warning::</span>
@@ -1076,7 +1044,7 @@ document.write(`
 <span class="sd">        symbol: str | list[str] | None</span>
 <span class="sd">            نماد</span>
 <span class="sd">        ins_code: str | list[str] | None</span>
-<span class="sd">            کدِ 12 رقمیِ نماد</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
 
 <span class="sd">        start: str, default None</span>
 <span class="sd">            تاریخِ شروع(جلالی).</span>
@@ -1138,6 +1106,606 @@ document.write(`
             <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;factor&quot;</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
+
+
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
+<div class="viewcode-block" id="TSETMC.intraday_trades">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.intraday_trades">[docs]</a>
+    <span class="k">def</span> <span class="nf">intraday_trades</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ معامله‌یِ دورن-روزی(ریزِ معامله) رو برای آخرین روزِ معاملاتی استخراج و برمی‌گردونه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: str | list[str] | None</span>
+<span class="sd">            نماد</span>
+<span class="sd">        ins_code: str | list[str] | None</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.intraday_trades(&quot;دکپسول&quot;)</span>
+<span class="sd">        shape: (190, 4)</span>
+<span class="sd">        ┌─────────────────────┬───────────┬─────────┬────────┐</span>
+<span class="sd">        │ datetime            ┆ trade_nbr ┆ price   ┆ volume │</span>
+<span class="sd">        │ ---                 ┆ ---       ┆ ---     ┆ ---    │</span>
+<span class="sd">        │ datetime[μs]        ┆ i64       ┆ f64     ┆ i64    │</span>
+<span class="sd">        ╞═════════════════════╪═══════════╪═════════╪════════╡</span>
+<span class="sd">        │ 2023-11-01 09:10:01 ┆ 1         ┆ 75100.0 ┆ 250    │</span>
+<span class="sd">        │ 2023-11-01 09:10:05 ┆ 2         ┆ 75100.0 ┆ 625    │</span>
+<span class="sd">        │ 2023-11-01 09:10:05 ┆ 3         ┆ 75100.0 ┆ 48     │</span>
+<span class="sd">        │ 2023-11-01 09:11:57 ┆ 4         ┆ 75150.0 ┆ 100    │</span>
+<span class="sd">        │ …                   ┆ …         ┆ …       ┆ …      │</span>
+<span class="sd">        │ 2023-11-01 12:28:47 ┆ 187       ┆ 77000.0 ┆ 510    │</span>
+<span class="sd">        │ 2023-11-01 12:28:47 ┆ 188       ┆ 77000.0 ┆ 89     │</span>
+<span class="sd">        │ 2023-11-01 12:29:06 ┆ 189       ┆ 77000.0 ┆ 411    │</span>
+<span class="sd">        │ 2023-11-01 12:29:06 ┆ 190       ┆ 77000.0 ┆ 500    │</span>
+<span class="sd">        └─────────────────────┴───────────┴─────────┴────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">url_last_ins_data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_data</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">last_ins_data</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url_last_ins_data</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;trade&quot;</span><span class="p">])</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+                <span class="n">date</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">last_ins_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">][</span><span class="s2">&quot;finalLastDate&quot;</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+                <span class="n">pl</span><span class="o">.</span><span class="n">concat_str</span><span class="p">(</span>
+                    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">),</span>
+                    <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">),</span>
+                    <span class="n">pl</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hEven&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len_bytes</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">concat_str</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">),</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hEven&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)))</span>
+                    <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hEven&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)),</span>
+                <span class="p">)</span>
+                <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2"> %H%M%S&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.intraday_trades_based_on_timeframe">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.intraday_trades_based_on_timeframe">[docs]</a>
+    <span class="k">def</span> <span class="nf">intraday_trades_based_on_timeframe</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeframe</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;5m&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ معامله‌یِ دورن-روزی(ریزِ معامله) رو برای آخرین روزِ معاملاتی استخراج و</span>
+<span class="sd">                بر مبنایِ تایم-فریمِ وارد شده باز-سازی می‌کنه و برمی‌گردونه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: str | list[str] | None</span>
+<span class="sd">            نماد</span>
+<span class="sd">        ins_code: str | list[str] | None</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
+<span class="sd">        timeframe: str, {&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, ...}, default &#39;5m&#39;</span>
+<span class="sd">             فاصله‌یِ زمانی(تایم-فریم)</span>
+<span class="sd">             `برای آگاهی‌ِ بیشتر این صفحه رو بخون &lt;https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.group_by_dynamic.html&gt;`__.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.intraday_trades_based_on_timeframe(&quot;دکپسول&quot;)</span>
+<span class="sd">        shape: (24, 7)</span>
+<span class="sd">        ┌─────────────────────┬─────────┬─────────┬─────────┬─────────┬────────┬────────────┐</span>
+<span class="sd">        │ datetime            ┆ open    ┆ high    ┆ low     ┆ close   ┆ volume ┆ value      │</span>
+<span class="sd">        │ ---                 ┆ ---     ┆ ---     ┆ ---     ┆ ---     ┆ ---    ┆ ---        │</span>
+<span class="sd">        │ datetime[μs]        ┆ f64     ┆ f64     ┆ f64     ┆ f64     ┆ i64    ┆ f64        │</span>
+<span class="sd">        ╞═════════════════════╪═════════╪═════════╪═════════╪═════════╪════════╪════════════╡</span>
+<span class="sd">        │ 2023-11-01 09:10:00 ┆ 75100.0 ┆ 75150.0 ┆ 75100.0 ┆ 75150.0 ┆ 2273   ┆ 1.707698e8 │</span>
+<span class="sd">        │ 2023-11-01 09:15:00 ┆ 75200.0 ┆ 75200.0 ┆ 75200.0 ┆ 75200.0 ┆ 106    ┆ 7.9712e6   │</span>
+<span class="sd">        │ 2023-11-01 09:25:00 ┆ 75300.0 ┆ 75300.0 ┆ 75000.0 ┆ 75250.0 ┆ 8821   ┆ 6.638115e8 │</span>
+<span class="sd">        │ 2023-11-01 09:40:00 ┆ 76500.0 ┆ 76500.0 ┆ 75200.0 ┆ 75200.0 ┆ 4084   ┆ 3.078858e8 │</span>
+<span class="sd">        │ …                   ┆ …       ┆ …       ┆ …       ┆ …       ┆ …      ┆ …          │</span>
+<span class="sd">        │ 2023-11-01 12:10:00 ┆ 76500.0 ┆ 77350.0 ┆ 76500.0 ┆ 77350.0 ┆ 24590  ┆ 1.8976e9   │</span>
+<span class="sd">        │ 2023-11-01 12:15:00 ┆ 77350.0 ┆ 77350.0 ┆ 77000.0 ┆ 77000.0 ┆ 6085   ┆ 4.699499e8 │</span>
+<span class="sd">        │ 2023-11-01 12:20:00 ┆ 77000.0 ┆ 77350.0 ┆ 77000.0 ┆ 77350.0 ┆ 7660   ┆ 5.915905e8 │</span>
+<span class="sd">        │ 2023-11-01 12:25:00 ┆ 77200.0 ┆ 77200.0 ┆ 77000.0 ┆ 77000.0 ┆ 2981   ┆ 2.29551e8  │</span>
+<span class="sd">        └─────────────────────┴─────────┴─────────┴─────────┴─────────┴────────┴────────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">symbol</span><span class="p">,</span> <span class="n">ins_code</span><span class="o">=</span><span class="n">ins_code</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">group_by_dynamic</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">every</span><span class="o">=</span><span class="n">timeframe</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+                <span class="nb">open</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(),</span>
+                <span class="n">high</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="n">low</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="n">close</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">last</span><span class="p">(),</span>
+                <span class="n">volume</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+                <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
+<div class="viewcode-block" id="TSETMC.last_ins_data">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.last_ins_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">last_ins_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ صفحه‌یِ نماد رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    زمانِ استخراجِ داده با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    تقریبن نصفِ استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    است.</span>
+<span class="sd">                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt; داده استخراج کنی.</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    رو وارد کن، یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    رو.</span>
+<span class="sd">                اگه هر دو رو وارد کنی،</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                نادیده گرفته می‌شه و تنها از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: str | list[str] | None</span>
+<span class="sd">            نماد</span>
+<span class="sd">        ins_code: str | list[str] | None</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.last_ins_data(symbol=[&quot;خودرو&quot;,&quot;خساپا&quot;])</span>
+<span class="sd">        shape: (2, 17)</span>
+<span class="sd">        ┌────────────┬────────┬────────┬────────────┬───┬────────────┬────────────┬─────────┬─────────┐</span>
+<span class="sd">        │ date       ┆ time   ┆ status ┆ status_far ┆ … ┆ event_date ┆ event_time ┆ i_close ┆ y_close │</span>
+<span class="sd">        │ ---        ┆ ---    ┆ ---    ┆ ---        ┆   ┆ ---        ┆ ---        ┆ ---     ┆ ---     │</span>
+<span class="sd">        │ date       ┆ i64    ┆ str    ┆ str        ┆   ┆ date       ┆ i64        ┆ bool    ┆ bool    │</span>
+<span class="sd">        ╞════════════╪════════╪════════╪════════════╪═══╪════════════╪════════════╪═════════╪═════════╡</span>
+<span class="sd">        │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │</span>
+<span class="sd">        │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │</span>
+<span class="sd">        └────────────┴────────┴────────┴────────────┴───┴────────────┴────────────┴─────────┴─────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_ins_data</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">dicts</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="o">**</span><span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;instrumentState&quot;</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;closingPriceInfo&quot;</span><span class="p">),</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">r</span>
+        <span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">(</span><span class="n">dicts</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">last_ins_data</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">),</span>
+                <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;event_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
+<div class="viewcode-block" id="TSETMC.client_type">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.client_type">[docs]</a>
+    <span class="k">def</span> <span class="nf">client_type</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ تاریخیِ مروبط به معامله‌هایِ حقیقی-حقوقی رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    زمانِ استخراجِ داده با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    تقریبن نصفِ استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    است.</span>
+<span class="sd">                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt; داده استخراج کنی.</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    رو وارد کن، یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    رو.</span>
+<span class="sd">                اگه هر دو رو وارد کنی،</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                نادیده گرفته می‌شه و تنها از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: str | list[str] | None</span>
+<span class="sd">            نماد</span>
+<span class="sd">        ins_code: str | list[str] | None</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.client_type(symbol=&quot;خودرو&quot;)</span>
+<span class="sd">        shape: (3_115, 14)</span>
+<span class="sd">        ┌────────────┬───────────────────┬──────────────────┬───┬───────────────┬───────────────────┬───────────────────┐</span>
+<span class="sd">        │ date       ┆ ins_code          ┆ vol_purchase_ind ┆ … ┆ val_sales_ins ┆ sellers_count_ins ┆ sellers_count_ind │</span>
+<span class="sd">        │ ---        ┆ ---               ┆ ---              ┆   ┆ ---           ┆ ---               ┆ ---               │</span>
+<span class="sd">        │ date       ┆ str               ┆ f64              ┆   ┆ f64           ┆ i64               ┆ i64               │</span>
+<span class="sd">        ╞════════════╪═══════════════════╪══════════════════╪═══╪═══════════════╪═══════════════════╪═══════════════════╡</span>
+<span class="sd">        │ 2008-11-26 ┆ 65883838195688438 ┆ 35092.0          ┆ … ┆ 1.54854651e8  ┆ 7                 ┆ 66                │</span>
+<span class="sd">        │ 2008-11-29 ┆ 65883838195688438 ┆ 139905.0         ┆ … ┆ 2.62977529e8  ┆ 8                 ┆ 70                │</span>
+<span class="sd">        │ 2008-11-30 ┆ 65883838195688438 ┆ 30471.0          ┆ … ┆ 1.85145104e8  ┆ 8                 ┆ 87                │</span>
+<span class="sd">        │ 2008-12-01 ┆ 65883838195688438 ┆ 95608.0          ┆ … ┆ 1.50880556e8  ┆ 6                 ┆ 67                │</span>
+<span class="sd">        │ …          ┆ …                 ┆ …                ┆ … ┆ …             ┆ …                 ┆ …                 │</span>
+<span class="sd">        │ 2023-10-29 ┆ 65883838195688438 ┆ 2.42294804e8     ┆ … ┆ 1.3174e11     ┆ 16                ┆ 1746              │</span>
+<span class="sd">        │ 2023-10-30 ┆ 65883838195688438 ┆ 1.8910082e8      ┆ … ┆ 3.7981e10     ┆ 11                ┆ 1912              │</span>
+<span class="sd">        │ 2023-10-31 ┆ 65883838195688438 ┆ 1.04700395e8     ┆ … ┆ 5.9403e9      ┆ 3                 ┆ 1191              │</span>
+<span class="sd">        │ 2023-11-01 ┆ 65883838195688438 ┆ 1.31498895e8     ┆ … ┆ 6.0731e10     ┆ 10                ┆ 1356              │</span>
+<span class="sd">        └────────────┴───────────────────┴──────────────────┴───┴───────────────┴───────────────────┴───────────────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;clientType&quot;</span><span class="p">),</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">client_type</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+    <span class="nd">@_handle_ins_cod_or_symbol</span>
+<div class="viewcode-block" id="TSETMC.share_change">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.share_change">[docs]</a>
+    <span class="k">def</span> <span class="nf">share_change</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ins_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ تاریخیِ مروبط به تغییرِ سرمایه رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    زمانِ استخراجِ داده با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    تقریبن نصفِ استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    است.</span>
+<span class="sd">                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt; داده استخراج کنی.</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            .. raw:: html</span>
+
+<span class="sd">                &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                    یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    رو وارد کن، یا</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                    رو.</span>
+<span class="sd">                اگه هر دو رو وارد کنی،</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;symbol&lt;/span&gt;</span>
+<span class="sd">                نادیده گرفته می‌شه و تنها از</span>
+<span class="sd">                    &lt;span style=&quot;color:#ec4899&quot;&gt;ins_code&lt;/span&gt;</span>
+<span class="sd">                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!</span>
+<span class="sd">                &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        symbol: str | list[str] | None</span>
+<span class="sd">            نماد</span>
+<span class="sd">        ins_code: str | list[str] | None</span>
+<span class="sd">            کدِ صفحه‌یِ نماد</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.share_change(ins_code = &quot;35425587644337450&quot;)</span>
+<span class="sd">        shape: (10, 4)</span>
+<span class="sd">        ┌────────────┬───────────────────┬───────────┬───────────┐</span>
+<span class="sd">        │ date       ┆ ins_code          ┆ previous  ┆ current   │</span>
+<span class="sd">        │ ---        ┆ ---               ┆ ---       ┆ ---       │</span>
+<span class="sd">        │ date       ┆ str               ┆ f64       ┆ f64       │</span>
+<span class="sd">        ╞════════════╪═══════════════════╪═══════════╪═══════════╡</span>
+<span class="sd">        │ 2011-07-05 ┆ 35425587644337450 ┆ 5.7896e9  ┆ 1.7369e10 │</span>
+<span class="sd">        │ 2013-06-10 ┆ 35425587644337450 ┆ 1.7369e10 ┆ 3.5000e10 │</span>
+<span class="sd">        │ 2014-12-02 ┆ 35425587644337450 ┆ 3.5000e10 ┆ 4.3400e10 │</span>
+<span class="sd">        │ 2016-07-19 ┆ 35425587644337450 ┆ 4.3400e10 ┆ 5.0000e10 │</span>
+<span class="sd">        │ …          ┆ …                 ┆ …         ┆ …         │</span>
+<span class="sd">        │ 2020-01-22 ┆ 35425587644337450 ┆ 7.8000e10 ┆ 1.0140e11 │</span>
+<span class="sd">        │ 2020-12-06 ┆ 35425587644337450 ┆ 1.0140e11 ┆ 2.0000e11 │</span>
+<span class="sd">        │ 2021-11-28 ┆ 35425587644337450 ┆ 2.0000e11 ┆ 4.0000e11 │</span>
+<span class="sd">        │ 2023-03-15 ┆ 35425587644337450 ┆ 4.0000e11 ┆ 6.0000e11 │</span>
+<span class="sd">        └────────────┴───────────────────┴───────────┴───────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ins_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">),</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">share_change</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.indexes">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.indexes">[docs]</a>
+    <span class="k">def</span> <span class="nf">indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                لیستِ همه‌یِ شاخص‌ها و مقدار و تغییرِ مربوط به آخرین روزِ معاملاتی رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.indexes()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;indexB1&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">indexes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.symbols_that_index_tracks">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.symbols_that_index_tracks">[docs]</a>
+    <span class="k">def</span> <span class="nf">symbols_that_index_tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                نمادهایی که هر شاخص دنبال می‌کنه رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ---------</span>
+<span class="sd">        ind_code: str or list[str]</span>
+<span class="sd">            کدِ صفحه‌یِ شاخص</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.symbols_that_index_tracks([&quot;21948907150049163&quot;, &quot;3615666621538524&quot;])</span>
+<span class="sd">        shape: (39, 3)</span>
+<span class="sd">        ┌───────────────────┬───────────────────┬────────┐</span>
+<span class="sd">        │ ind_code          ┆ ins_code          ┆ symbol │</span>
+<span class="sd">        │ ---               ┆ ---               ┆ ---    │</span>
+<span class="sd">        │ str               ┆ str               ┆ str    │</span>
+<span class="sd">        ╞═══════════════════╪═══════════════════╪════════╡</span>
+<span class="sd">        │ 21948907150049163 ┆ 67030488744129337 ┆ قپيرا  │</span>
+<span class="sd">        │ 21948907150049163 ┆ 44967158778304588 ┆ قثابت  │</span>
+<span class="sd">        │ 21948907150049163 ┆ 15259343650667588 ┆ قزوين  │</span>
+<span class="sd">        │ 21948907150049163 ┆ 35964395659427029 ┆ قشكر   │</span>
+<span class="sd">        │ …                 ┆ …                 ┆ …      │</span>
+<span class="sd">        │ 3615666621538524  ┆ 69090868458637360 ┆ ديران  │</span>
+<span class="sd">        │ 3615666621538524  ┆ 36899214178084525 ┆ شفا    │</span>
+<span class="sd">        │ 3615666621538524  ┆ 57944184894703821 ┆ والبر  │</span>
+<span class="sd">        │ 3615666621538524  ┆ 7183333492448248  ┆ وپخش   │</span>
+<span class="sd">        └───────────────────┴───────────────────┴────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ind_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ind_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">symbols_that_index_tracks</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">resp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;ind_code&quot;</span><span class="p">:</span> <span class="n">ind_code</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="s2">&quot;ins_code&quot;</span><span class="p">:</span> <span class="n">ins</span><span class="p">[</span><span class="s2">&quot;instrument&quot;</span><span class="p">][</span><span class="s2">&quot;insCode&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="n">ins</span><span class="p">[</span><span class="s2">&quot;instrument&quot;</span><span class="p">][</span><span class="s2">&quot;lVal18AFC&quot;</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">ins</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">[</span><span class="s2">&quot;indexCompany&quot;</span><span class="p">]</span>
+            <span class="p">]</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.index_hist">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.index_hist">[docs]</a>
+    <span class="k">def</span> <span class="nf">index_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌هایِ تاریخیِ مربوط به شاخص‌ها رو استخراج و پالایش می‌کنه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ---------</span>
+<span class="sd">        ind_code: str or list[str]</span>
+<span class="sd">            کدِ صفحه‌یِ شاخص</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.index_hist([&quot;21948907150049163&quot;, &quot;3615666621538524&quot;])</span>
+<span class="sd">        shape: (7_195, 5)</span>
+<span class="sd">        ┌────────────┬───────────────────┬──────────┬──────────┬──────────┐</span>
+<span class="sd">        │ date       ┆ ind_code          ┆ close    ┆ low      ┆ high     │</span>
+<span class="sd">        │ ---        ┆ ---               ┆ ---      ┆ ---      ┆ ---      │</span>
+<span class="sd">        │ date       ┆ i64               ┆ f64      ┆ f64      ┆ f64      │</span>
+<span class="sd">        ╞════════════╪═══════════════════╪══════════╪══════════╪══════════╡</span>
+<span class="sd">        │ 2008-12-05 ┆ 21948907150049163 ┆ 347.0    ┆ 347.0    ┆ 347.0    │</span>
+<span class="sd">        │ 2008-12-06 ┆ 21948907150049163 ┆ 347.0    ┆ 347.0    ┆ 347.0    │</span>
+<span class="sd">        │ 2008-12-07 ┆ 21948907150049163 ┆ 345.5    ┆ 345.5    ┆ 347.1    │</span>
+<span class="sd">        │ 2008-12-08 ┆ 21948907150049163 ┆ 345.6    ┆ 345.6    ┆ 345.6    │</span>
+<span class="sd">        │ …          ┆ …                 ┆ …        ┆ …        ┆ …        │</span>
+<span class="sd">        │ 2023-10-29 ┆ 3615666621538524  ┆ 183906.0 ┆ 183587.0 ┆ 183990.0 │</span>
+<span class="sd">        │ 2023-10-30 ┆ 3615666621538524  ┆ 184755.0 ┆ 183950.0 ┆ 184755.0 │</span>
+<span class="sd">        │ 2023-10-31 ┆ 3615666621538524  ┆ 184465.0 ┆ 184465.0 ┆ 184756.0 │</span>
+<span class="sd">        │ 2023-11-01 ┆ 3615666621538524  ┆ 184405.0 ┆ 184359.0 ┆ 184622.0 │</span>
+<span class="sd">        └────────────┴───────────────────┴──────────┴──────────┴──────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ind_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">ind_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind_code</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">index_hist</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind_code</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">resp</span><span class="p">[</span><span class="s2">&quot;indexB2&quot;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">index_hist</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.last_market_activity_datetime">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.last_market_activity_datetime">[docs]</a>
+    <span class="k">def</span> <span class="nf">last_market_activity_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                تاریخ و زمانِ رو بر مبنایِ آخرین رویدادِ بازار برمی‌گردونه.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        datetime.datetime</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from datetime import datetime</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; datetime.now()</span>
+<span class="sd">        datetime.datetime(2023, 11, 3, 20, 7, 36, 378137)</span>
+<span class="sd">        &gt;&gt;&gt; TSETMC().last_market_activity_datetime()</span>
+<span class="sd">        datetime.datetime(2023, 11, 1, 19, 21, 24)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">last_market_activity</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketOverview&quot;</span><span class="p">)</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityDEven&quot;</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;marketActivityHEven&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2"> %H%M%S&quot;</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
