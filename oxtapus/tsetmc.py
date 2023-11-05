@@ -3,6 +3,7 @@ import re
 import datetime
 import polars as pl
 from typing import List
+from pydantic import BaseModel
 from urllib.parse import urlencode
 from tarix.dateutils import dateutils
 
@@ -12,11 +13,23 @@ from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, col
 __all__ = ["TSETMC"]
 
 
+class MWSections(BaseModel):
+    stock: "stock"
+    ifb_paye: "ifb_paye"
+    mortgage: "mortgage"
+    cum_right: "cum_right"
+    bond: "bond"
+    options: "options"
+    futures: "futures"
+    etf: "etf"
+    commodity: "commodity"
+
+
 class URL:
     def __init__(self, base_url="http://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
-    def mw(self, sections: List[str]) -> str:
+    def mw(self, sections: [MWSections]) -> str:
         """
         .. raw:: html
 
@@ -229,7 +242,7 @@ class TSETMC:
         else:
             self.requests = requests
 
-    def mw(self, sections: list[str]) -> pl.DataFrame:
+    def mw(self, sections: [MWSections]) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -309,8 +322,8 @@ class TSETMC:
             manipulation_cols(self.mw(["options"]), columns=cols.tsetmc.options_mw)
             .filter(
                 (
-                    pl.col("symbol").str.starts_with("ض")
-                    | pl.col("symbol").str.starts_with("ط")
+                        pl.col("symbol").str.starts_with("ض")
+                        | pl.col("symbol").str.starts_with("ط")
                 )
                 & ((pl.col("ask_size") > 0) | (pl.col("bid_size") > 0))
             )
@@ -374,7 +387,7 @@ class TSETMC:
         r = self.requests(self.url.search_ins_code(symbol))[0]["instrumentSearch"]
         for i in r:
             if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol)) and (
-                i["lastDate"] == 1
+                    i["lastDate"] == 1
             ):
                 return i["insCode"]
         raise ValueError(f"Cannot find {symbol!r}. Enter valid symbol.")
@@ -394,9 +407,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def ins_info(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -546,11 +559,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -669,11 +682,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def adj_hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -781,9 +794,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def intraday_trades(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -854,10 +867,10 @@ class TSETMC:
         return df
 
     def intraday_trades_based_on_timeframe(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        timeframe: str = "5m",
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            timeframe: str = "5m",
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -920,9 +933,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def last_ins_data(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1010,9 +1023,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def client_type(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1101,9 +1114,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def share_change(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
