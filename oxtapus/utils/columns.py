@@ -150,7 +150,7 @@ specific_option_data = ManipulationCols(
         "contractSize": "lot_size",
         "strikePrice": "k",
         "uaInsCode": "ua_ins_code",
-        "beginDate": "begin_date",
+        "beginDate": "listed_date",
         "endDate": "ex_date",
     },
     suffix=None,
@@ -158,7 +158,7 @@ specific_option_data = ManipulationCols(
     select=[
         "ins_code",
         "ua_ins_code",
-        "begin_date",
+        "listed_date",
         "ex_date",
         "lot_size",
         "k",
