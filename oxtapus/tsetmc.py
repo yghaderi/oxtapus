@@ -353,7 +353,7 @@ class TSETMC:
 
         df = df.with_columns(
             k=pl.col("k").cast(pl.Int64),
-            type=pl.when(pl.col("symbol").str.slice(0) == "ض")
+            type=pl.when(pl.col("symbol").str.starts_with("ض"))
             .then("call")
             .otherwise("put"),
             t=pl.col("ex_date").map_elements(lambda x: dateutils.days(end=x)),
