@@ -1,7 +1,7 @@
 import asyncio
 from typing import List
 import httpx
-from tenacity import retry, wait_exponential
+from tenacity import retry, wait_random, stop_after_delay
 
 __all__ = ["requests", "async_requests"]
 
@@ -10,7 +10,7 @@ headers = {
 }
 
 
-@retry(wait=wait_exponential(multiplier=1, min=4, max=10))
+@retry(wait=wait_random(min=1, max=5), stop=stop_after_delay(90))
 def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
     with httpx.Client() as client:
         if isinstance(url, list):
@@ -36,7 +36,7 @@ def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
                 return [r]
 
 
-@retry(wait=wait_exponential(multiplier=1, min=4, max=10))
+@retry(wait=wait_random(min=1, max=5), stop=stop_after_delay(90))
 async def _async_requests(url: str, response: str, timeout):
     async with httpx.AsyncClient() as client:
         async with asyncio.Semaphore(3):

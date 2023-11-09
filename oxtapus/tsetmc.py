@@ -1,9 +1,10 @@
 import functools
 import re
 import datetime
+from enum import Enum
 import polars as pl
 from typing import List
-from pydantic import BaseModel
+from pydantic import validate_call
 from urllib.parse import urlencode
 from tarix.dateutils import dateutils
 
@@ -13,23 +14,24 @@ from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, col
 __all__ = ["TSETMC"]
 
 
-class MWSections(BaseModel):
-    stock: "stock"
-    ifb_paye: "ifb_paye"
-    mortgage: "mortgage"
-    cum_right: "cum_right"
-    bond: "bond"
-    options: "options"
-    futures: "futures"
-    etf: "etf"
-    commodity: "commodity"
+class MWSections(str, Enum):
+    stock = "stock"
+    ifb_paye = "ifb_paye"
+    mortgage = "mortgage"
+    cum_right = "cum_right"
+    bond = "bond"
+    options = "options"
+    futures = "futures"
+    etf = "etf"
+    commodity = "commodity"
 
 
 class URL:
     def __init__(self, base_url="http://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
-    def mw(self, sections: [MWSections]) -> str:
+    @validate_call
+    def mw(self, sections: List[MWSections] | MWSections) -> str:
         """
         .. raw:: html
 
@@ -39,7 +41,7 @@ class URL:
 
         Parameters
         ----------
-        sections: list[str]
+        sections: List[MWSections]  or MWSections
             - stock: سهام
             - ifb_paye: پایه-فرابورس
             - mortgage: اوراقِ مسکن
@@ -242,7 +244,8 @@ class TSETMC:
         else:
             self.requests = requests
 
-    def mw(self, sections: [MWSections]) -> pl.DataFrame:
+    @validate_call
+    def mw(self, sections: List[MWSections] | MWSections) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -252,7 +255,7 @@ class TSETMC:
 
         Parameters
         ----------
-        sections: list[str]
+        sections: List[MWSections]  or MWSections
             - stock: سهام
             - ifb_paye: پایه‌یِ-فرابورس
             - mortgage: اوراقِ مسکن
