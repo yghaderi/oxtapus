@@ -34,7 +34,7 @@ Classes
    .. py:property:: async_req
 
 
-   .. py:method:: mw(sections: list[str]) -> polars.DataFrame
+   .. py:method:: mw(sections: List[MWSections] | MWSections) -> polars.DataFrame
 
       .. raw:: html
 
@@ -52,7 +52,7 @@ Classes
                        - futures: آتی
                        - etf: صندوق‌هایِ قابلِ-معامله
                        - commodity: کالا
-      :type sections: list[str]
+      :type sections: List[MWSections]  or MWSections
 
       :rtype: polars.DataFrame
 

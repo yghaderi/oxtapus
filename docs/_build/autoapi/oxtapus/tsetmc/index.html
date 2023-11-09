@@ -332,11 +332,74 @@ document.write(`
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.TSETMC" title="oxtapus.tsetmc.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MWSections</span></code></a></p></td>
+<td><p>str(object='') -&gt; str</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.tsetmc.TSETMC" title="oxtapus.tsetmc.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MWSections</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>str(object=’’) -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to ‘strict’.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.stock">
+<span class="sig-name descname"><span class="pre">stock</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'stock'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.stock" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.ifb_paye">
+<span class="sig-name descname"><span class="pre">ifb_paye</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ifb_paye'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.ifb_paye"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.ifb_paye" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.mortgage">
+<span class="sig-name descname"><span class="pre">mortgage</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mortgage'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.mortgage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.mortgage" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.cum_right">
+<span class="sig-name descname"><span class="pre">cum_right</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cum_right'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.cum_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.cum_right" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.bond">
+<span class="sig-name descname"><span class="pre">bond</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bond'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.bond" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.options">
+<span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'options'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.options" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.futures">
+<span class="sig-name descname"><span class="pre">futures</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'futures'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.futures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.futures" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.etf">
+<span class="sig-name descname"><span class="pre">etf</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'etf'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.etf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.etf" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections.commodity">
+<span class="sig-name descname"><span class="pre">commodity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'commodity'</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections.commodity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections.commodity" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
@@ -347,12 +410,12 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.mw">
-<span class="sig-name descname"><span class="pre">mw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.mw" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">mw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><span class="pre">MWSections</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><span class="pre">MWSections</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.mw" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
     مارکت-واچ رو بر اساسِ بخش‌هایی که می‌خواین استخراج می‌کنه و تمیز شده بهتون می‌ده.
 </div><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sections</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – <ul class="simple">
+<dd class="field-odd"><p><strong>sections</strong> (<em>List</em><em>[</em><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><em>MWSections</em></a><em>]  or </em><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><em>MWSections</em></a>) – <ul class="simple">
 <li><p>stock: سهام</p></li>
 <li><p>ifb_paye: پایه‌یِ-فرابورس</p></li>
 <li><p>mortgage: اوراقِ مسکن</p></li>
@@ -1134,6 +1197,18 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections"><code class="docutils literal notranslate"><span class="pre">MWSections</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.stock"><code class="docutils literal notranslate"><span class="pre">MWSections.stock</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.ifb_paye"><code class="docutils literal notranslate"><span class="pre">MWSections.ifb_paye</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.mortgage"><code class="docutils literal notranslate"><span class="pre">MWSections.mortgage</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.cum_right"><code class="docutils literal notranslate"><span class="pre">MWSections.cum_right</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.bond"><code class="docutils literal notranslate"><span class="pre">MWSections.bond</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.options"><code class="docutils literal notranslate"><span class="pre">MWSections.options</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.futures"><code class="docutils literal notranslate"><span class="pre">MWSections.futures</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.etf"><code class="docutils literal notranslate"><span class="pre">MWSections.etf</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.MWSections.commodity"><code class="docutils literal notranslate"><span class="pre">MWSections.commodity</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>

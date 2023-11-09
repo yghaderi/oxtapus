@@ -11,7 +11,7 @@ from tarix.dateutils import dateutils
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols
 
-__all__ = ["TSETMC"]
+__all__ = ["TSETMC", "MWSections"]
 
 
 class MWSections(str, Enum):
