@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oxtapus"
-version = "0.2.7"
+version = "0.2.9"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
@@ -13,7 +13,7 @@ branch = true
 [tool.poetry.dependencies]
 python = "^3.10"
 polars = "^0.19.12"
-tarix = "^0.1.0"
+tarix = "^0.1.1"
 httpx = "^0.25.0"
 tenacity = "^8.2.3"
 

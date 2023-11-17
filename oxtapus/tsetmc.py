@@ -6,7 +6,7 @@ import polars as pl
 from typing import List
 from pydantic import validate_call
 from urllib.parse import urlencode
-from tarix.dateutils import dateutils
+from tarix import count_days
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols
@@ -57,6 +57,8 @@ class URL:
         url: str
         """
         papers = {}
+        if isinstance(sections, str):
+            sections = [sections]
         for i, item in enumerate(sections):
             match item.lower():
                 case "stock":
@@ -359,7 +361,7 @@ class TSETMC:
             type=pl.when(pl.col("symbol").str.starts_with("ض"))
             .then("call")
             .otherwise("put"),
-            t=pl.col("ex_date").map_elements(lambda x: dateutils.days(end=x)),
+            t=pl.col("ex_date").map_elements(lambda x: count_days(end=x)),
         )
         return df
 
