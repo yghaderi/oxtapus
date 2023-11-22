@@ -11,8 +11,8 @@ headers = {
 
 
 @retry(wait=wait_random(min=1, max=5), stop=stop_after_delay(90))
-def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
-    with httpx.Client() as client:
+def requests(url: str | List[str], response: str = "json", timeout=(1, 3), verify: bool = True):
+    with httpx.Client(verify=verify) as client:
         if isinstance(url, list):
             list_r = []
             for i in url:
@@ -37,8 +37,8 @@ def requests(url: str | List[str], response: str = "json", timeout=(1, 3)):
 
 
 @retry(wait=wait_random(min=1, max=5), stop=stop_after_delay(90))
-async def _async_requests(url: str, response: str, timeout):
-    async with httpx.AsyncClient() as client:
+async def _async_requests(url: str, response: str, timeout, verify: bool):
+    async with httpx.AsyncClient(verify=verify) as client:
         async with asyncio.Semaphore(3):
             r = await client.get(url=url, headers=headers, timeout=timeout)
             match response:
@@ -50,11 +50,11 @@ async def _async_requests(url: str, response: str, timeout):
                     return r
 
 
-def async_requests(url: str | list[str], response: str = "json", timeout=(1, 3)):
+def async_requests(url: str | list[str], response: str = "json", timeout=(1, 3), verify: bool = True):
     if isinstance(url, list):
-        task = [_async_requests(i, response, timeout) for i in url]
+        task = [_async_requests(i, response, timeout, verify) for i in url]
     else:
-        task = [_async_requests(url, response, timeout)]
+        task = [_async_requests(url, response, timeout, verify)]
 
     async def main():
         return await asyncio.gather(*task)

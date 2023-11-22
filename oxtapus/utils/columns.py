@@ -146,6 +146,7 @@ options_ua_mw = ManipulationCols(
 specific_option_data = ManipulationCols(
     rename={
         "insCode": "ins_code",
+        "instrumentID": "ins_id",
         "buyOP": "open_interest",
         "contractSize": "lot_size",
         "strikePrice": "k",
@@ -157,6 +158,7 @@ specific_option_data = ManipulationCols(
     prefix=None,
     select=[
         "ins_code",
+        "ins_id",
         "ua_ins_code",
         "listed_date",
         "ex_date",

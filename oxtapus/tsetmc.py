@@ -27,7 +27,7 @@ class MWSections(str, Enum):
 
 
 class URL:
-    def __init__(self, base_url="http://cdn.tsetmc.com/api"):
+    def __init__(self, base_url="https://cdn.tsetmc.com/api"):
         self.base_url = base_url
 
     @validate_call
