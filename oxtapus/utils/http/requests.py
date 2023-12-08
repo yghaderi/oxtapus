@@ -11,7 +11,9 @@ headers = {
 
 
 @retry(wait=wait_random(min=1, max=5), stop=stop_after_delay(90))
-def requests(url: str | List[str], response: str = "json", timeout=(1, 3), verify: bool = True):
+def requests(
+    url: str | List[str], response: str = "json", timeout=(1, 3), verify: bool = True
+):
     with httpx.Client(verify=verify) as client:
         if isinstance(url, list):
             list_r = []
@@ -50,7 +52,9 @@ async def _async_requests(url: str, response: str, timeout, verify: bool):
                     return r
 
 
-def async_requests(url: str | list[str], response: str = "json", timeout=(1, 3), verify: bool = True):
+def async_requests(
+    url: str | list[str], response: str = "json", timeout=(1, 3), verify: bool = True
+):
     if isinstance(url, list):
         task = [_async_requests(i, response, timeout, verify) for i in url]
     else:
