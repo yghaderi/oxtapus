@@ -27,6 +27,7 @@ class TSETMC:
     share_change: ManipulationCols
     indexes: ManipulationCols
     index_hist: ManipulationCols
+    shareholder_list: ManipulationCols
 
 
 @dataclass
@@ -322,6 +323,17 @@ index_hist = ManipulationCols(
     drop=None,
 )
 
+shareholder_list = ManipulationCols(
+    rename={
+        "cIsin": "ins_id", "shareHolderName": "sh_name", "numberOfShares": "shares", "perOfShares": "pct_shares",
+        "changeAmount": "change_amount"
+    },
+    suffix=None,
+    prefix=None,
+    select=["ins_id", "sh_name", "shares", "pct_shares", "change", "change_amount"],
+    drop=None,
+)
+
 tsetmc = TSETMC(
     mw=mw,
     mw_orderbook=mw_orderbook,
@@ -335,6 +347,7 @@ tsetmc = TSETMC(
     share_change=share_change,
     indexes=indexes,
     index_hist=index_hist,
+    shareholder_list=shareholder_list
 )
 
 ########################################################################################################

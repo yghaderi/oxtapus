@@ -227,6 +227,9 @@ class URL:
     def last_market_activity(self) -> str:
         return f"{self.base_url}/MarketData/GetMarketOverview/1"
 
+    def shareholder_list(self, ins_code) -> str:
+        return f"{self.base_url}/Shareholder/GetInstrumentShareHolderLast/{ins_code}"
+
 
 class TSETMC:
     def __init__(self, async_req: bool = False):
@@ -327,8 +330,8 @@ class TSETMC:
             manipulation_cols(self.mw(["options"]), columns=cols.tsetmc.options_mw)
             .filter(
                 (
-                    pl.col("symbol").str.starts_with("ض")
-                    | pl.col("symbol").str.starts_with("ط")
+                        pl.col("symbol").str.starts_with("ض")
+                        | pl.col("symbol").str.starts_with("ط")
                 )
                 & ((pl.col("ask_size") > 0) | (pl.col("bid_size") > 0))
             )
@@ -394,7 +397,7 @@ class TSETMC:
         r = self.requests(self.url.search_ins_code(symbol))[0]["instrumentSearch"]
         for i in r:
             if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol)) and (
-                i["lastDate"] == 1
+                    i["lastDate"] == 1
             ):
                 return i["insCode"]
         raise ValueError(f"Cannot find {symbol!r}. Enter valid symbol.")
@@ -414,9 +417,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def ins_info(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -572,11 +575,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -695,11 +698,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def adj_hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -807,9 +810,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def intraday_trades(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -880,10 +883,10 @@ class TSETMC:
         return df
 
     def intraday_trades_based_on_timeframe(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        timeframe: str = "5m",
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            timeframe: str = "5m",
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -946,9 +949,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def last_ins_data(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1036,9 +1039,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def client_type(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1127,9 +1130,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def share_change(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1377,3 +1380,59 @@ class TSETMC:
         date = r.get("marketActivityDEven")
         time = r.get("marketActivityHEven")
         return datetime.datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
+
+    @_handle_ins_cod_or_symbol
+    def shareholder_list(
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+    ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                داده‌هایِ مربوط به سهامدارهایِ عمده رو استخراج و پالایش می‌کنه.
+            </div>
+
+        Parameters
+        ---------
+        symbol: str | list[str] | None
+            نماد
+        ins_code: str | list[str] | None
+            کدِ صفحه‌یِ نماد
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.shareholder_list(ins_code=["71483646978964608"])
+        shape: (3, 6)
+        ┌──────────────┬───────────────────────────┬──────────────┬────────────┬────────┬───────────────┐
+        │ ins_id       ┆ sh_name                   ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │
+        │ ---          ┆ ---                       ┆ ---          ┆ ---        ┆ ---    ┆ ---           │
+        │ str          ┆ str                       ┆ f64          ┆ f64        ┆ i64    ┆ f64           │
+        ╞══════════════╪═══════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡
+        │ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي      ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
+        │ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │
+        │              ┆ اصفهان…                   ┆              ┆            ┆        ┆               │
+        │ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان   ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │
+        │              ┆ فرهنگيان…                 ┆              ┆            ┆        ┆               │
+        └──────────────┴───────────────────────────┴──────────────┴────────────┴────────┴───────────────┘
+        """
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, str):
+            ins_code = [ins_code]
+        url = [self.url.shareholder_list(i) for i in ins_code]
+        r = self.requests(url)
+        df = pl.DataFrame()
+        for resp in r:
+            df_ = pl.from_dicts(resp.get("shareHolder"))
+            df_ = (
+                manipulation_cols(df_, columns=cols.tsetmc.shareholder_list)
+            )
+            df = pl.concat([df, df_])
+        return df
