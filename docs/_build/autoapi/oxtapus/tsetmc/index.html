@@ -585,14 +585,14 @@ errors defaults to ‘strict’.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">specific_option_data</span><span class="p">([</span><span class="s2">&quot;IRO9IKCO2851&quot;</span><span class="p">,</span> <span class="s2">&quot;IRO9IKCO20K1&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 7)</span>
-<span class="go">┌──────────────────┬───────────────────┬────────────┬──────────┬──────────┬────────┬───────────────┐</span>
-<span class="go">│ ins_code         ┆ ua_ins_code       ┆ begin_date ┆ ex_date  ┆ lot_size ┆ k      ┆ open_interest │</span>
-<span class="go">│ ---              ┆ ---               ┆ ---        ┆ ---      ┆ ---      ┆ ---    ┆ ---           │</span>
-<span class="go">│ str              ┆ str               ┆ i64        ┆ i64      ┆ i64      ┆ f64    ┆ i64           │</span>
-<span class="go">╞══════════════════╪═══════════════════╪════════════╪══════════╪══════════╪════════╪═══════════════╡</span>
-<span class="go">│ 8907495648806531 ┆ 65883838195688438 ┆ 20230930   ┆ 20240221 ┆ 1000     ┆ 2600.0 ┆ 1006          │</span>
-<span class="go">│ 4785638272776115 ┆ 65883838195688438 ┆ 20231028   ┆ 20240327 ┆ 1000     ┆ 3750.0 ┆ 0             │</span>
-<span class="go">└──────────────────┴───────────────────┴────────────┴──────────┴──────────┴────────┴───────────────┘</span>
+<span class="go">┌──────────────────┬───────────────────┬──────────────┬────────────┬──────────┬────────┬───────────────┐</span>
+<span class="go">│ ins_code         ┆ ua_ins_code       ┆ begin_date   ┆ ex_date    ┆ lot_size ┆ k      ┆ open_interest │</span>
+<span class="go">│ ---              ┆ ---               ┆ ---          ┆ ---        ┆ ---      ┆ ---    ┆ ---           │</span>
+<span class="go">│ str              ┆ str               ┆ date         ┆ date       ┆ i64      ┆ f64    ┆ i64           │</span>
+<span class="go">╞══════════════════╪═══════════════════╪══════════════╪════════════╪══════════╪════════╪═══════════════╡</span>
+<span class="go">│ 8907495648806531 ┆ 65883838195688438 ┆ 2023-09-30   ┆ 2024-02-21 ┆ 1000     ┆ 2600.0 ┆ 1006          │</span>
+<span class="go">│ 4785638272776115 ┆ 65883838195688438 ┆ 2023-10-28   ┆ 2024-03-27 ┆ 1000     ┆ 3750.0 ┆ 0             │</span>
+<span class="go">└──────────────────┴───────────────────┴──────────────┴────────────┴──────────┴────────┴───────────────┘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1155,6 +1155,42 @@ errors defaults to ‘strict’.</p>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.shareholder_list">
+<span class="sig-name descname"><span class="pre">shareholder_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.shareholder_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.shareholder_list" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌هایِ مربوط به سهامدارهایِ عمده رو استخراج و پالایش می‌کنه.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ صفحه‌یِ نماد</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;71483646978964608&quot;</span><span class="p">])</span>
+<span class="go">shape: (3, 6)</span>
+<span class="go">┌──────────────┬───────────────────────────┬──────────────┬────────────┬────────┬───────────────┐</span>
+<span class="go">│ ins_id       ┆ sh_name                   ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │</span>
+<span class="go">│ ---          ┆ ---                       ┆ ---          ┆ ---        ┆ ---    ┆ ---           │</span>
+<span class="go">│ str          ┆ str                       ┆ f64          ┆ f64        ┆ i64    ┆ f64           │</span>
+<span class="go">╞══════════════╪═══════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡</span>
+<span class="go">│ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي      ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │</span>
+<span class="go">│ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │</span>
+<span class="go">│              ┆ اصفهان…                   ┆              ┆            ┆        ┆               │</span>
+<span class="go">│ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان   ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │</span>
+<span class="go">│              ┆ فرهنگيان…                 ┆              ┆            ┆        ┆               │</span>
+<span class="go">└──────────────┴───────────────────────────┴──────────────┴────────────┴────────┴───────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1227,6 +1263,7 @@ errors defaults to ‘strict’.</p>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.symbols_that_index_tracks"><code class="docutils literal notranslate"><span class="pre">TSETMC.symbols_that_index_tracks()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_market_activity_datetime()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
 </ul>
 </li>
 </ul>
