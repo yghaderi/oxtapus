@@ -125,31 +125,32 @@ files = [
 
 [[package]]
 name = "polars"
-version = "0.19.12"
+version = "0.20.5"
 description = "Blazingly fast DataFrame library"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "polars-0.19.12-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:c308e501805d9ca256b695fd55974c6267f68e05a98ccd14430071a5f9c97be8"},
-    {file = "polars-0.19.12-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:9a47da843a425fb4d9aa23f69f6e855f0498cdfb9d35a93c0a5e377594649aac"},
-    {file = "polars-0.19.12-cp38-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0ece4c108c749b213fbba006eb39ffb3703be208121a625369bfe47048d321a0"},
-    {file = "polars-0.19.12-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:69c9e6919a5113c75e059ba773f22ac1ff78d966ab5663f07dc0dc5ff916246c"},
-    {file = "polars-0.19.12-cp38-abi3-win_amd64.whl", hash = "sha256:6efbc14c051bfc188c85ead71197ba0bd2fce7e6131061e28e8b280350d37a35"},
-    {file = "polars-0.19.12.tar.gz", hash = "sha256:55b16602bcbf91b5ce888d1a588b47fcd9a35221b1a08c5a27cfe6d7cbd81be2"},
+    {file = "polars-0.20.5-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:19693d0815e7be757b2320a5ed988a209f9a505562ed937084b0c7d59109f6b7"},
+    {file = "polars-0.20.5-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:6b8674a18b4915207ae46855e72b188391e341e519a72f24b9591ce5164b837d"},
+    {file = "polars-0.20.5-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:aa5d8139020688b0a8f4cdf765df17fe9fa4c8defac6361412bd4bc80a12433c"},
+    {file = "polars-0.20.5-cp38-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:d9d069bb4e0cad8efbd7e6211d68e65698d50e77e72490565e52ff035236c08e"},
+    {file = "polars-0.20.5-cp38-abi3-win_amd64.whl", hash = "sha256:4d614503f963cd5a8cea3240e7fd9f56b6e574d00ef80091e8689bb6defaf880"},
+    {file = "polars-0.20.5.tar.gz", hash = "sha256:fa4abc22cee024b5872961ddcd8a13a0a76150df345e21ce4308c2b1a36b47aa"},
 ]
 
 [package.extras]
 adbc = ["adbc_driver_sqlite"]
-all = ["polars[adbc,cloudpickle,connectorx,deltalake,fsspec,gevent,matplotlib,numpy,pandas,pyarrow,pydantic,pyiceberg,sqlalchemy,timezone,xlsx2csv,xlsxwriter]"]
+all = ["polars[adbc,cloudpickle,connectorx,deltalake,fsspec,gevent,numpy,pandas,plot,pyarrow,pydantic,pyiceberg,sqlalchemy,timezone,xlsx2csv,xlsxwriter]"]
 cloudpickle = ["cloudpickle"]
-connectorx = ["connectorx"]
-deltalake = ["deltalake (>=0.10.0)"]
+connectorx = ["connectorx (>=0.3.2)"]
+deltalake = ["deltalake (>=0.14.0)"]
 fsspec = ["fsspec"]
 gevent = ["gevent"]
 matplotlib = ["matplotlib"]
 numpy = ["numpy (>=1.16.0)"]
 openpyxl = ["openpyxl (>=3.0.0)"]
 pandas = ["pandas", "pyarrow (>=7.0.0)"]
+plot = ["hvplot (>=0.9.1)"]
 pyarrow = ["pyarrow (>=7.0.0)"]
 pydantic = ["pydantic"]
 pyiceberg = ["pyiceberg (>=0.5.0)"]
@@ -197,12 +198,12 @@ files = [
 
 [[package]]
 name = "tarix"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "tarix-0.1.0-py3-none-any.whl", hash = "sha256:af326b601d58c9365cfb62fc324c52466acb8fe3c6f69d42bd48134e4fab3933"},
+    {file = "tarix-0.1.1-py3-none-any.whl", hash = "sha256:9f0667fab1fed7c1857e10b0473d7989cd8b563b85e3fc246bab203f2eb6f7e8"},
 ]
 
 [package.dependencies]
@@ -226,4 +227,4 @@ doc = ["reno", "sphinx", "tornado (>=4.5)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2865ec9405c596578c7bbae50f89c2237ff7450520fd780d83a8e3e62a99aaad"
+content-hash = "212b40a9f4e9f1ca768659e26fb24e27ffdda083f57ac1eba187ba8070d0c88a"
