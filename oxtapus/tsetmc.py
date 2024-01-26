@@ -9,7 +9,8 @@ from urllib.parse import urlencode
 from tarix import count_days
 
 from oxtapus.utils.http import requests, async_requests
-from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols
+from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols, normalize_nested_dict
+from oxtapus.utils.models import AdjustPrice
 
 __all__ = ["TSETMC", "MWSections"]
 
@@ -229,6 +230,12 @@ class URL:
 
     def shareholder_list(self, ins_code) -> str:
         return f"{self.base_url}/Shareholder/GetInstrumentShareHolderLast/{ins_code}"
+
+    def tse_adjust_price(self, last_records: int) -> str:
+        return f"{self.base_url}/ClosingPrice/GetPriceAdjustByFlow/1/{last_records}"
+
+    def ifb_adjust_price(self, last_records: int) -> str:
+        return f"{self.base_url}/ClosingPrice/GetPriceAdjustByFlow/2/{last_records}"
 
 
 class TSETMC:
@@ -1433,4 +1440,45 @@ class TSETMC:
                 manipulation_cols(df_, columns=cols.tsetmc.shareholder_list)
             )
             df = pl.concat([df, df_])
+        return df
+
+    def adjust_price_event(self, last_records: int):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                قیمتِ تعدیلی و قبلِ تعدیل نمادهایی که قیمتشون تعدیل شده رو بهت می‌ده.
+            </div>
+
+        Parameters
+        ---------
+        last_records: str | list[str] | None
+            تعدادِ آخرین رکوردهایی که می‌خوای از هر بازارِ بورس و فرابورس بگیری
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.adjust_price_event(2)
+        shape: (4, 5)
+        ┌───────────────────┬────────┬────────────┬───────────┬─────────┐
+        │ ins_code          ┆ symbol ┆ date       ┆ adj_final ┆ final   │
+        │ ---               ┆ ---    ┆ ---        ┆ ---       ┆ ---     │
+        │ str               ┆ str    ┆ date       ┆ f64       ┆ f64     │
+        ╞═══════════════════╪════════╪════════════╪═══════════╪═════════╡
+        │ 27405735172634593 ┆ اتكام  ┆ 2024-01-22 ┆ 4262.0    ┆ 4842.0  │
+        │ 30852391633490755 ┆ ثفارس  ┆ 2024-01-22 ┆ 45820.0   ┆ 45984.0 │
+        │ 55862580907068610 ┆ شملي   ┆ 2024-01-21 ┆ 8090.0    ┆ 8630.0  │
+        │ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │
+        └───────────────────┴────────┴────────────┴───────────┴─────────┘
+
+        """
+        r_tse = requests(self.url.tse_adjust_price(last_records))
+        r_ifb = requests(self.url.ifb_adjust_price(last_records))
+        nnd = normalize_nested_dict([*r_tse[0]["priceAdjust"], *r_ifb[0]["priceAdjust"]], "instrument")
+        df = pl.from_dicts([AdjustPrice(**i).model_dump() for i in nnd])
         return df
