@@ -10,7 +10,7 @@ from tarix import count_days
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols, normalize_nested_dict
-from oxtapus.utils.models import AdjustPrice
+from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow
 
 __all__ = ["TSETMC", "MWSections"]
 
@@ -231,11 +231,17 @@ class URL:
     def shareholder_list(self, ins_code) -> str:
         return f"{self.base_url}/Shareholder/GetInstrumentShareHolderLast/{ins_code}"
 
-    def tse_adjust_price(self, last_records: int) -> str:
+    def tse_adjust_price_flow(self, last_records: int) -> str:
         return f"{self.base_url}/ClosingPrice/GetPriceAdjustByFlow/1/{last_records}"
 
-    def ifb_adjust_price(self, last_records: int) -> str:
+    def ifb_adjust_price_flow(self, last_records: int) -> str:
         return f"{self.base_url}/ClosingPrice/GetPriceAdjustByFlow/2/{last_records}"
+
+    def tse_share_change_flow(self) -> str:
+        return f"{self.base_url}/Instrument/GetInstrumentShareChangeByFlow/1/9999"
+
+    def ifb_share_change_flow(self) -> str:
+        return f"{self.base_url}/Instrument/GetInstrumentShareChangeByFlow/2/9999"
 
 
 class TSETMC:
@@ -1442,7 +1448,7 @@ class TSETMC:
             df = pl.concat([df, df_])
         return df
 
-    def adjust_price_event(self, last_records: int):
+    def adjust_price_flow(self, last_records: int):
         """
         .. raw:: html
 
@@ -1463,7 +1469,7 @@ class TSETMC:
         -------
         >>> from oxtapus import TSETMC
         >>> tsetmc = TSETMC()
-        >>> tsetmc.adjust_price_event(2)
+        >>> tsetmc.adjust_price_flow(2)
         shape: (4, 5)
         ┌───────────────────┬────────┬────────────┬───────────┬─────────┐
         │ ins_code          ┆ symbol ┆ date       ┆ adj_final ┆ final   │
@@ -1475,10 +1481,51 @@ class TSETMC:
         │ 55862580907068610 ┆ شملي   ┆ 2024-01-21 ┆ 8090.0    ┆ 8630.0  │
         │ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │
         └───────────────────┴────────┴────────────┴───────────┴─────────┘
-
         """
-        r_tse = requests(self.url.tse_adjust_price(last_records))
-        r_ifb = requests(self.url.ifb_adjust_price(last_records))
+        r_tse = requests(self.url.tse_adjust_price_flow(last_records))
+        r_ifb = requests(self.url.ifb_adjust_price_flow(last_records))
         nnd = normalize_nested_dict([*r_tse[0]["priceAdjust"], *r_ifb[0]["priceAdjust"]], "instrument")
-        df = pl.from_dicts([AdjustPrice(**i).model_dump() for i in nnd])
+        df = pl.from_dicts([AdjustPriceFlow(**i).model_dump() for i in nnd])
+        return df
+
+    def ins_share_change_flow(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                افزایش/تغییرِ سرمایه‌یِ همه‌یِ شرکت‌ها رو بهت می‌ده.
+            </div>
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.ins_share_change_flow()
+        shape: (2_639, 5)
+        ┌───────────────────┬──────────────┬────────────┬────────────────┬─────────────────┐
+        │ ins_code          ┆ symbol       ┆ date       ┆ current_shares ┆ previous_shares │
+        │ ---               ┆ ---          ┆ ---        ┆ ---            ┆ ---             │
+        │ str               ┆ str          ┆ date       ┆ i64            ┆ i64             │
+        ╞═══════════════════╪══════════════╪════════════╪════════════════╪═════════════════╡
+        │ 30852391633490755 ┆ ثفارس        ┆ 2024-01-24 ┆ 4050000000     ┆ 1800000000      │
+        │ 27405735172634593 ┆ اتكام        ┆ 2024-01-24 ┆ 12400000000    ┆ 8000000000      │
+        │ 30852391633490755 ┆ ثفارس        ┆ 2024-01-22 ┆ 1800000000     ┆ 4050000000      │
+        │ 27405735172634593 ┆ اتكام        ┆ 2024-01-22 ┆ 8000000000     ┆ 12400000000     │
+        │ 19471788163911687 ┆ كفپارس       ┆ 2024-01-21 ┆ 2500000000     ┆ 1619519000      │
+        │ …                 ┆ …            ┆ …          ┆ …              ┆ …               │
+        │ 48287330843249460 ┆ كارآفريني    ┆ 2010-09-28 ┆ 648000000      ┆ 23300000        │
+        │ 35113075091643530 ┆ پترو گچساران ┆ 2010-09-28 ┆ 259700000      ┆ 100000          │
+        │ 9109623461944634  ┆ فريم         ┆ 2010-08-30 ┆ 615256         ┆ 196000000       │
+        │ 28520500657715290 ┆ نكا          ┆ 2010-08-30 ┆ 1781550        ┆ 4900000         │
+        │ 57857218314224912 ┆ پذيره-ستون   ┆ 2010-08-30 ┆ 350000000      ┆ 4900000         │
+        └───────────────────┴──────────────┴────────────┴────────────────┴─────────────────┘
+        """
+        r_tse = requests(self.url.tse_share_change_flow())
+        r_ifb = requests(self.url.ifb_share_change_flow())
+        records = [*r_tse[0]["instrumentShareChange"], *r_ifb[0]["instrumentShareChange"]]
+        df = pl.from_dicts([InsShareChangeFlow(**i).model_dump() for i in records])
         return df
