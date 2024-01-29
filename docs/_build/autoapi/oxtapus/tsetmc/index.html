@@ -260,6 +260,7 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tgju</span></code></a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tsetmc</span></code></a></li>
 </ul>
@@ -463,6 +464,78 @@ errors defaults to ‘strict’.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">options_mw</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.tse_options_mw">
+<span class="sig-name descname"><span class="pre">tse_options_mw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.tse_options_mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.tse_options_mw" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ بورسِ تهران رو بهت می‌ده
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">tse_options_mw</span><span class="p">()</span>
+<span class="go">shape: (652, 41)</span>
+<span class="go">┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬────────────────────────────────┬──────────┬───────────────────┐</span>
+<span class="go">│ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                         ┆ symbol_p ┆ ins_code_p        │</span>
+<span class="go">│ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                            ┆ ---      ┆ ---               │</span>
+<span class="go">│ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                            ┆ str      ┆ str               │</span>
+<span class="go">╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪════════════════════════════════╪══════════╪═══════════════════╡</span>
+<span class="go">│ 17914401175772326 ┆ اهرم      ┆ 21350    ┆ 21450      ┆ … ┆ 0              ┆ اختيارف اهرم-20000-1403/02/26  ┆ طهرم2006 ┆ 13426704534326039 │</span>
+<span class="go">│ 42799209630949274 ┆ بهين رو   ┆ 10620    ┆ 10750      ┆ … ┆ 0              ┆ اختيارف بهين رو-9000-03/03/30  ┆ طهين0303 ┆ 5563327722355764  │</span>
+<span class="go">│ 26824673819862694 ┆ خبهمن     ┆ 1876     ┆ 1887       ┆ … ┆ 0              ┆ اختيارف خبهمن-2200-1403/01/29  ┆ طهمن0107 ┆ 33331632159155756 │</span>
+<span class="go">│ 28320293733348826 ┆ وبصادر    ┆ 1777     ┆ 1799       ┆ … ┆ 0              ┆ اختيارف وبصادر-1538-1403/01/26 ┆ طصاد0103 ┆ 55072364240589915 │</span>
+<span class="go">│ 62235397452612911 ┆ دارا يكم  ┆ 171090   ┆ 173320     ┆ … ┆ 0              ┆ اختيارف ص.دارا-260000-02/12/23 ┆ طدار1222 ┆ 12864975631063372 │</span>
+<span class="go">│ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                              ┆ …        ┆ …                 │</span>
+<span class="go">│ 35425587644337450 ┆ فملي      ┆ 7400     ┆ 7420       ┆ … ┆ 0              ┆ اختيارف فملي-5500-1403/01/19   ┆ طملي0102 ┆ 43306098146722345 │</span>
+<span class="go">│ 51617145873056483 ┆ شتران     ┆ 4064     ┆ 4064       ┆ … ┆ 0              ┆ اختيارف شتران-7000-1403/01/29  ┆ طترا0110 ┆ 2414774786667555  │</span>
+<span class="go">│ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-512-1402/12/09    ┆ طستا1209 ┆ 4273781978909014  │</span>
+<span class="go">│ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-1100-1402/11/11   ┆ طستا1112 ┆ 37402330157677226 │</span>
+<span class="go">│ 71483646978964608 ┆ ذوب       ┆ 4058     ┆ 4225       ┆ … ┆ 0              ┆ اختيارف ذوب-3750-1403/03/23    ┆ طذوب3029 ┆ 45991541533193147 │</span>
+<span class="go">└───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴────────────────────────────────┴──────────┴───────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.ifb_options_mw">
+<span class="sig-name descname"><span class="pre">ifb_options_mw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.ifb_options_mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.ifb_options_mw" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ فرابورس رو بهت می‌ده
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ifb_options_mw</span><span class="p">()</span>
+<span class="go">shape: (440, 41)</span>
+<span class="go">┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬───────────────────────────────┬─────────────┬───────────────────┐</span>
+<span class="go">│ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                        ┆ symbol_p    ┆ ins_code_p        │</span>
+<span class="go">│ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                           ┆ ---         ┆ ---               │</span>
+<span class="go">│ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                           ┆ str         ┆ str               │</span>
+<span class="go">╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪═══════════════════════════════╪═════════════╪═══════════════════╡</span>
+<span class="go">│ 58741071099161284 ┆ فرابورس   ┆ 7930     ┆ 7940       ┆ … ┆ 0              ┆ اختيارف فرابورس-9500-14030302 ┆ طفرابورس320 ┆ 66273163800167301 │</span>
+<span class="go">│ 47041908051542008 ┆ هم وزن    ┆ 15965    ┆ 16007      ┆ … ┆ 0              ┆ اختيارف هم وزن-20000-14030604 ┆ طهم وزن607  ┆ 40521916202949426 │</span>
+<span class="go">│ 50792786683910016 ┆ كرمان     ┆ 1285     ┆ 1323       ┆ … ┆ 0              ┆ اختيارف كرمان-1598-14021214   ┆ طكرمان1208  ┆ 57904258425842305 │</span>
+<span class="go">│ 23557166059925779 ┆ فصبا      ┆ 4841     ┆ 4835       ┆ … ┆ 0              ┆ اختيارف فصبا-7300-14030115    ┆ طفصبا107    ┆ 1626986735378256  │</span>
+<span class="go">│ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-22000-14030327  ┆ طكاريس312   ┆ 55830533232484624 │</span>
+<span class="go">│ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                             ┆ …           ┆ …                 │</span>
+<span class="go">│ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-32000-14030327  ┆ طكاريس317   ┆ 14799246044516392 │</span>
+<span class="go">│ 47563321799863211 ┆ بتهران    ┆ 2689     ┆ 2619       ┆ … ┆ 0              ┆ اختيارف بتهران-2900-14030320  ┆ طبتهران306  ┆ 8853323062606230  │</span>
+<span class="go">│ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-19000-14021214   ┆ طتوان1204   ┆ 12757189046721683 │</span>
+<span class="go">│ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-18000-14030327   ┆ طتوان313    ┆ 43071145059933975 │</span>
+<span class="go">│ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-20000-14030327   ┆ طتوان315    ┆ 67410414240827335 │</span>
+<span class="go">└───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴───────────────────────────────┴─────────────┴───────────────────┘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1176,17 +1249,83 @@ errors defaults to ‘strict’.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;71483646978964608&quot;</span><span class="p">])</span>
 <span class="go">shape: (3, 6)</span>
-<span class="go">┌──────────────┬───────────────────────────┬──────────────┬────────────┬────────┬───────────────┐</span>
-<span class="go">│ ins_id       ┆ sh_name                   ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │</span>
-<span class="go">│ ---          ┆ ---                       ┆ ---          ┆ ---        ┆ ---    ┆ ---           │</span>
-<span class="go">│ str          ┆ str                       ┆ f64          ┆ f64        ┆ i64    ┆ f64           │</span>
-<span class="go">╞══════════════╪═══════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡</span>
-<span class="go">│ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي      ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │</span>
-<span class="go">│ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │</span>
-<span class="go">│              ┆ اصفهان…                   ┆              ┆            ┆        ┆               │</span>
-<span class="go">│ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان   ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │</span>
-<span class="go">│              ┆ فرهنگيان…                 ┆              ┆            ┆        ┆               │</span>
-<span class="go">└──────────────┴───────────────────────────┴──────────────┴────────────┴────────┴───────────────┘</span>
+<span class="go">┌──────────────┬───────────────────────────────────┬──────────────┬────────────┬────────┬───────────────┐</span>
+<span class="go">│ ins_id       ┆ sh_name                           ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │</span>
+<span class="go">│ ---          ┆ ---                               ┆ ---          ┆ ---        ┆ ---    ┆ ---           │</span>
+<span class="go">│ str          ┆ str                               ┆ f64          ┆ f64        ┆ i64    ┆ f64           │</span>
+<span class="go">╞══════════════╪═══════════════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡</span>
+<span class="go">│ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي              ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │</span>
+<span class="go">│ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن اصفهان… ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │</span>
+<span class="go">│ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان فرهنگيان… ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │</span>
+<span class="go">└──────────────┴───────────────────────────────────┴──────────────┴────────────┴────────┴───────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.adjust_price_flow">
+<span class="sig-name descname"><span class="pre">adjust_price_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_records</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.adjust_price_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.adjust_price_flow" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    قیمتِ تعدیلی و قبلِ تعدیل نمادهایی که قیمتشون تعدیل شده رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>last_records</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – تعدادِ آخرین رکوردهایی که می‌خوای از هر بازارِ بورس و فرابورس بگیری</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adjust_price_flow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">shape: (4, 5)</span>
+<span class="go">┌───────────────────┬────────┬────────────┬───────────┬─────────┐</span>
+<span class="go">│ ins_code          ┆ symbol ┆ date       ┆ adj_final ┆ final   │</span>
+<span class="go">│ ---               ┆ ---    ┆ ---        ┆ ---       ┆ ---     │</span>
+<span class="go">│ str               ┆ str    ┆ date       ┆ f64       ┆ f64     │</span>
+<span class="go">╞═══════════════════╪════════╪════════════╪═══════════╪═════════╡</span>
+<span class="go">│ 27405735172634593 ┆ اتكام  ┆ 2024-01-22 ┆ 4262.0    ┆ 4842.0  │</span>
+<span class="go">│ 30852391633490755 ┆ ثفارس  ┆ 2024-01-22 ┆ 45820.0   ┆ 45984.0 │</span>
+<span class="go">│ 55862580907068610 ┆ شملي   ┆ 2024-01-21 ┆ 8090.0    ┆ 8630.0  │</span>
+<span class="go">│ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │</span>
+<span class="go">└───────────────────┴────────┴────────────┴───────────┴─────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.ins_share_change_flow">
+<span class="sig-name descname"><span class="pre">ins_share_change_flow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.ins_share_change_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.ins_share_change_flow" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    افزایش/تغییرِ سرمایه‌یِ همه‌یِ شرکت‌ها رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_share_change_flow</span><span class="p">()</span>
+<span class="go">shape: (2_639, 5)</span>
+<span class="go">┌───────────────────┬──────────────┬────────────┬────────────────┬─────────────────┐</span>
+<span class="go">│ ins_code          ┆ symbol       ┆ date       ┆ current_shares ┆ previous_shares │</span>
+<span class="go">│ ---               ┆ ---          ┆ ---        ┆ ---            ┆ ---             │</span>
+<span class="go">│ str               ┆ str          ┆ date       ┆ i64            ┆ i64             │</span>
+<span class="go">╞═══════════════════╪══════════════╪════════════╪════════════════╪═════════════════╡</span>
+<span class="go">│ 30852391633490755 ┆ ثفارس        ┆ 2024-01-24 ┆ 4050000000     ┆ 1800000000      │</span>
+<span class="go">│ 27405735172634593 ┆ اتكام        ┆ 2024-01-24 ┆ 12400000000    ┆ 8000000000      │</span>
+<span class="go">│ 30852391633490755 ┆ ثفارس        ┆ 2024-01-22 ┆ 1800000000     ┆ 4050000000      │</span>
+<span class="go">│ 27405735172634593 ┆ اتكام        ┆ 2024-01-22 ┆ 8000000000     ┆ 12400000000     │</span>
+<span class="go">│ 19471788163911687 ┆ كفپارس       ┆ 2024-01-21 ┆ 2500000000     ┆ 1619519000      │</span>
+<span class="go">│ …                 ┆ …            ┆ …          ┆ …              ┆ …               │</span>
+<span class="go">│ 48287330843249460 ┆ كارآفريني    ┆ 2010-09-28 ┆ 648000000      ┆ 23300000        │</span>
+<span class="go">│ 35113075091643530 ┆ پترو گچساران ┆ 2010-09-28 ┆ 259700000      ┆ 100000          │</span>
+<span class="go">│ 9109623461944634  ┆ فريم         ┆ 2010-08-30 ┆ 615256         ┆ 196000000       │</span>
+<span class="go">│ 28520500657715290 ┆ نكا          ┆ 2010-08-30 ┆ 1781550        ┆ 4900000         │</span>
+<span class="go">│ 57857218314224912 ┆ پذيره-ستون   ┆ 2010-08-30 ┆ 350000000      ┆ 4900000         │</span>
+<span class="go">└───────────────────┴──────────────┴────────────┴────────────────┴─────────────────┘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1249,6 +1388,8 @@ errors defaults to ‘strict’.</p>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.options_mw()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.tse_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.tse_options_mw()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ifb_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.ifb_options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_info()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.specific_option_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.specific_option_data()</span></code></a></li>
@@ -1264,6 +1405,8 @@ errors defaults to ‘strict’.</p>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_market_activity_datetime()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.adjust_price_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.adjust_price_flow()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ins_share_change_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_share_change_flow()</span></code></a></li>
 </ul>
 </li>
 </ul>

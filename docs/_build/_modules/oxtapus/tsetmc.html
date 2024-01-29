@@ -312,7 +312,14 @@ document.write(`
 <span class="kn">from</span> <span class="nn">tarix</span> <span class="kn">import</span> <span class="n">count_days</span>
 
 <span class="kn">from</span> <span class="nn">oxtapus.utils.http</span> <span class="kn">import</span> <span class="n">requests</span><span class="p">,</span> <span class="n">async_requests</span>
-<span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="n">json_normalize</span><span class="p">,</span> <span class="n">word_normalize</span><span class="p">,</span> <span class="n">manipulation_cols</span><span class="p">,</span> <span class="n">cols</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">json_normalize</span><span class="p">,</span>
+    <span class="n">word_normalize</span><span class="p">,</span>
+    <span class="n">manipulation_cols</span><span class="p">,</span>
+    <span class="n">cols</span><span class="p">,</span>
+    <span class="n">normalize_nested_dict</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">oxtapus.utils.models</span> <span class="kn">import</span> <span class="n">AdjustPriceFlow</span><span class="p">,</span> <span class="n">InsShareChangeFlow</span><span class="p">,</span> <span class="n">OptionsMW</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TSETMC&quot;</span><span class="p">,</span> <span class="s2">&quot;MWSections&quot;</span><span class="p">]</span>
 
@@ -563,6 +570,24 @@ document.write(`
     <span class="k">def</span> <span class="nf">shareholder_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Shareholder/GetInstrumentShareHolderLast/</span><span class="si">{</span><span class="n">ins_code</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="k">def</span> <span class="nf">tse_adjust_price_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_records</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetPriceAdjustByFlow/1/</span><span class="si">{</span><span class="n">last_records</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">ifb_adjust_price_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_records</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/ClosingPrice/GetPriceAdjustByFlow/2/</span><span class="si">{</span><span class="n">last_records</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">tse_share_change_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentShareChangeByFlow/1/9999&quot;</span>
+
+    <span class="k">def</span> <span class="nf">ifb_share_change_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentShareChangeByFlow/2/9999&quot;</span>
+
+    <span class="k">def</span> <span class="nf">tse_options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentOptionMarketWatch/1&quot;</span>
+
+    <span class="k">def</span> <span class="nf">ifb_options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/Instrument/GetInstrumentOptionMarketWatch/2&quot;</span>
+
 
 <div class="viewcode-block" id="TSETMC">
 <a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC">[docs]</a>
@@ -711,6 +736,92 @@ document.write(`
             <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="s2">&quot;put&quot;</span><span class="p">),</span>
             <span class="n">t</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ex_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">map_elements</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">count_days</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
         <span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.tse_options_mw">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.tse_options_mw">[docs]</a>
+    <span class="k">def</span> <span class="nf">tse_options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ بورسِ تهران رو بهت می‌ده</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.tse_options_mw()</span>
+<span class="sd">        shape: (652, 41)</span>
+<span class="sd">        ┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬────────────────────────────────┬──────────┬───────────────────┐</span>
+<span class="sd">        │ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                         ┆ symbol_p ┆ ins_code_p        │</span>
+<span class="sd">        │ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                            ┆ ---      ┆ ---               │</span>
+<span class="sd">        │ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                            ┆ str      ┆ str               │</span>
+<span class="sd">        ╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪════════════════════════════════╪══════════╪═══════════════════╡</span>
+<span class="sd">        │ 17914401175772326 ┆ اهرم      ┆ 21350    ┆ 21450      ┆ … ┆ 0              ┆ اختيارف اهرم-20000-1403/02/26  ┆ طهرم2006 ┆ 13426704534326039 │</span>
+<span class="sd">        │ 42799209630949274 ┆ بهين رو   ┆ 10620    ┆ 10750      ┆ … ┆ 0              ┆ اختيارف بهين رو-9000-03/03/30  ┆ طهين0303 ┆ 5563327722355764  │</span>
+<span class="sd">        │ 26824673819862694 ┆ خبهمن     ┆ 1876     ┆ 1887       ┆ … ┆ 0              ┆ اختيارف خبهمن-2200-1403/01/29  ┆ طهمن0107 ┆ 33331632159155756 │</span>
+<span class="sd">        │ 28320293733348826 ┆ وبصادر    ┆ 1777     ┆ 1799       ┆ … ┆ 0              ┆ اختيارف وبصادر-1538-1403/01/26 ┆ طصاد0103 ┆ 55072364240589915 │</span>
+<span class="sd">        │ 62235397452612911 ┆ دارا يكم  ┆ 171090   ┆ 173320     ┆ … ┆ 0              ┆ اختيارف ص.دارا-260000-02/12/23 ┆ طدار1222 ┆ 12864975631063372 │</span>
+<span class="sd">        │ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                              ┆ …        ┆ …                 │</span>
+<span class="sd">        │ 35425587644337450 ┆ فملي      ┆ 7400     ┆ 7420       ┆ … ┆ 0              ┆ اختيارف فملي-5500-1403/01/19   ┆ طملي0102 ┆ 43306098146722345 │</span>
+<span class="sd">        │ 51617145873056483 ┆ شتران     ┆ 4064     ┆ 4064       ┆ … ┆ 0              ┆ اختيارف شتران-7000-1403/01/29  ┆ طترا0110 ┆ 2414774786667555  │</span>
+<span class="sd">        │ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-512-1402/12/09    ┆ طستا1209 ┆ 4273781978909014  │</span>
+<span class="sd">        │ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-1100-1402/11/11   ┆ طستا1112 ┆ 37402330157677226 │</span>
+<span class="sd">        │ 71483646978964608 ┆ ذوب       ┆ 4058     ┆ 4225       ┆ … ┆ 0              ┆ اختيارف ذوب-3750-1403/03/23    ┆ طذوب3029 ┆ 45991541533193147 │</span>
+<span class="sd">        └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴────────────────────────────────┴──────────┴───────────────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">tse_options_mw</span><span class="p">())</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">([</span><span class="n">OptionsMW</span><span class="p">(</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;instrumentOptMarketWatch&quot;</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.ifb_options_mw">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.ifb_options_mw">[docs]</a>
+    <span class="k">def</span> <span class="nf">ifb_options_mw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ فرابورس رو بهت می‌ده</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.ifb_options_mw()</span>
+<span class="sd">        shape: (440, 41)</span>
+<span class="sd">        ┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬───────────────────────────────┬─────────────┬───────────────────┐</span>
+<span class="sd">        │ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                        ┆ symbol_p    ┆ ins_code_p        │</span>
+<span class="sd">        │ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                           ┆ ---         ┆ ---               │</span>
+<span class="sd">        │ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                           ┆ str         ┆ str               │</span>
+<span class="sd">        ╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪═══════════════════════════════╪═════════════╪═══════════════════╡</span>
+<span class="sd">        │ 58741071099161284 ┆ فرابورس   ┆ 7930     ┆ 7940       ┆ … ┆ 0              ┆ اختيارف فرابورس-9500-14030302 ┆ طفرابورس320 ┆ 66273163800167301 │</span>
+<span class="sd">        │ 47041908051542008 ┆ هم وزن    ┆ 15965    ┆ 16007      ┆ … ┆ 0              ┆ اختيارف هم وزن-20000-14030604 ┆ طهم وزن607  ┆ 40521916202949426 │</span>
+<span class="sd">        │ 50792786683910016 ┆ كرمان     ┆ 1285     ┆ 1323       ┆ … ┆ 0              ┆ اختيارف كرمان-1598-14021214   ┆ طكرمان1208  ┆ 57904258425842305 │</span>
+<span class="sd">        │ 23557166059925779 ┆ فصبا      ┆ 4841     ┆ 4835       ┆ … ┆ 0              ┆ اختيارف فصبا-7300-14030115    ┆ طفصبا107    ┆ 1626986735378256  │</span>
+<span class="sd">        │ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-22000-14030327  ┆ طكاريس312   ┆ 55830533232484624 │</span>
+<span class="sd">        │ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                             ┆ …           ┆ …                 │</span>
+<span class="sd">        │ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-32000-14030327  ┆ طكاريس317   ┆ 14799246044516392 │</span>
+<span class="sd">        │ 47563321799863211 ┆ بتهران    ┆ 2689     ┆ 2619       ┆ … ┆ 0              ┆ اختيارف بتهران-2900-14030320  ┆ طبتهران306  ┆ 8853323062606230  │</span>
+<span class="sd">        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-19000-14021214   ┆ طتوان1204   ┆ 12757189046721683 │</span>
+<span class="sd">        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-18000-14030327   ┆ طتوان313    ┆ 43071145059933975 │</span>
+<span class="sd">        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-20000-14030327   ┆ طتوان315    ┆ 67410414240827335 │</span>
+<span class="sd">        └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴───────────────────────────────┴─────────────┴───────────────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ifb_options_mw</span><span class="p">())</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">([</span><span class="n">OptionsMW</span><span class="p">(</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;instrumentOptMarketWatch&quot;</span><span class="p">]])</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
 
@@ -1799,17 +1910,15 @@ document.write(`
 <span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
 <span class="sd">        &gt;&gt;&gt; tsetmc.shareholder_list(ins_code=[&quot;71483646978964608&quot;])</span>
 <span class="sd">        shape: (3, 6)</span>
-<span class="sd">        ┌──────────────┬───────────────────────────┬──────────────┬────────────┬────────┬───────────────┐</span>
-<span class="sd">        │ ins_id       ┆ sh_name                   ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │</span>
-<span class="sd">        │ ---          ┆ ---                       ┆ ---          ┆ ---        ┆ ---    ┆ ---           │</span>
-<span class="sd">        │ str          ┆ str                       ┆ f64          ┆ f64        ┆ i64    ┆ f64           │</span>
-<span class="sd">        ╞══════════════╪═══════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡</span>
-<span class="sd">        │ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي      ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │</span>
-<span class="sd">        │ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │</span>
-<span class="sd">        │              ┆ اصفهان…                   ┆              ┆            ┆        ┆               │</span>
-<span class="sd">        │ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان   ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │</span>
-<span class="sd">        │              ┆ فرهنگيان…                 ┆              ┆            ┆        ┆               │</span>
-<span class="sd">        └──────────────┴───────────────────────────┴──────────────┴────────────┴────────┴───────────────┘</span>
+<span class="sd">        ┌──────────────┬───────────────────────────────────┬──────────────┬────────────┬────────┬───────────────┐</span>
+<span class="sd">        │ ins_id       ┆ sh_name                           ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │</span>
+<span class="sd">        │ ---          ┆ ---                               ┆ ---          ┆ ---        ┆ ---    ┆ ---           │</span>
+<span class="sd">        │ str          ┆ str                               ┆ f64          ┆ f64        ┆ i64    ┆ f64           │</span>
+<span class="sd">        ╞══════════════╪═══════════════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡</span>
+<span class="sd">        │ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي              ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │</span>
+<span class="sd">        │ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن اصفهان… ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │</span>
+<span class="sd">        │ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان فرهنگيان… ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │</span>
+<span class="sd">        └──────────────┴───────────────────────────────────┴──────────────┴────────────┴────────┴───────────────┘</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ins_code</span> <span class="o">=</span> <span class="n">symbol</span> <span class="k">if</span> <span class="n">symbol</span> <span class="k">else</span> <span class="n">ins_code</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ins_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -1819,10 +1928,101 @@ document.write(`
         <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
             <span class="n">df_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;shareHolder&quot;</span><span class="p">))</span>
-            <span class="n">df_</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">df_</span> <span class="o">=</span> <span class="n">manipulation_cols</span><span class="p">(</span><span class="n">df_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="o">.</span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">)</span>
             <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.adjust_price_flow">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.adjust_price_flow">[docs]</a>
+    <span class="k">def</span> <span class="nf">adjust_price_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_records</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                قیمتِ تعدیلی و قبلِ تعدیل نمادهایی که قیمتشون تعدیل شده رو بهت می‌ده.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ---------</span>
+<span class="sd">        last_records: str | list[str] | None</span>
+<span class="sd">            تعدادِ آخرین رکوردهایی که می‌خوای از هر بازارِ بورس و فرابورس بگیری</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.adjust_price_flow(2)</span>
+<span class="sd">        shape: (4, 5)</span>
+<span class="sd">        ┌───────────────────┬────────┬────────────┬───────────┬─────────┐</span>
+<span class="sd">        │ ins_code          ┆ symbol ┆ date       ┆ adj_final ┆ final   │</span>
+<span class="sd">        │ ---               ┆ ---    ┆ ---        ┆ ---       ┆ ---     │</span>
+<span class="sd">        │ str               ┆ str    ┆ date       ┆ f64       ┆ f64     │</span>
+<span class="sd">        ╞═══════════════════╪════════╪════════════╪═══════════╪═════════╡</span>
+<span class="sd">        │ 27405735172634593 ┆ اتكام  ┆ 2024-01-22 ┆ 4262.0    ┆ 4842.0  │</span>
+<span class="sd">        │ 30852391633490755 ┆ ثفارس  ┆ 2024-01-22 ┆ 45820.0   ┆ 45984.0 │</span>
+<span class="sd">        │ 55862580907068610 ┆ شملي   ┆ 2024-01-21 ┆ 8090.0    ┆ 8630.0  │</span>
+<span class="sd">        │ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │</span>
+<span class="sd">        └───────────────────┴────────┴────────────┴───────────┴─────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r_tse</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">tse_adjust_price_flow</span><span class="p">(</span><span class="n">last_records</span><span class="p">))</span>
+        <span class="n">r_ifb</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ifb_adjust_price_flow</span><span class="p">(</span><span class="n">last_records</span><span class="p">))</span>
+        <span class="n">nnd</span> <span class="o">=</span> <span class="n">normalize_nested_dict</span><span class="p">(</span>
+            <span class="p">[</span><span class="o">*</span><span class="n">r_tse</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;priceAdjust&quot;</span><span class="p">],</span> <span class="o">*</span><span class="n">r_ifb</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;priceAdjust&quot;</span><span class="p">]],</span> <span class="s2">&quot;instrument&quot;</span>
+        <span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">([</span><span class="n">AdjustPriceFlow</span><span class="p">(</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nnd</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="TSETMC.ins_share_change_flow">
+<a class="viewcode-back" href="../../autoapi/oxtapus/tsetmc/index.html#oxtapus.TSETMC.ins_share_change_flow">[docs]</a>
+    <span class="k">def</span> <span class="nf">ins_share_change_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. raw:: html</span>
+
+<span class="sd">            &lt;div dir=&quot;rtl&quot;&gt;</span>
+<span class="sd">                افزایش/تغییرِ سرمایه‌یِ همه‌یِ شرکت‌ها رو بهت می‌ده.</span>
+<span class="sd">            &lt;/div&gt;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polars.DataFrame</span>
+
+<span class="sd">        example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; from oxtapus import TSETMC</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc = TSETMC()</span>
+<span class="sd">        &gt;&gt;&gt; tsetmc.ins_share_change_flow()</span>
+<span class="sd">        shape: (2_639, 5)</span>
+<span class="sd">        ┌───────────────────┬──────────────┬────────────┬────────────────┬─────────────────┐</span>
+<span class="sd">        │ ins_code          ┆ symbol       ┆ date       ┆ current_shares ┆ previous_shares │</span>
+<span class="sd">        │ ---               ┆ ---          ┆ ---        ┆ ---            ┆ ---             │</span>
+<span class="sd">        │ str               ┆ str          ┆ date       ┆ i64            ┆ i64             │</span>
+<span class="sd">        ╞═══════════════════╪══════════════╪════════════╪════════════════╪═════════════════╡</span>
+<span class="sd">        │ 30852391633490755 ┆ ثفارس        ┆ 2024-01-24 ┆ 4050000000     ┆ 1800000000      │</span>
+<span class="sd">        │ 27405735172634593 ┆ اتكام        ┆ 2024-01-24 ┆ 12400000000    ┆ 8000000000      │</span>
+<span class="sd">        │ 30852391633490755 ┆ ثفارس        ┆ 2024-01-22 ┆ 1800000000     ┆ 4050000000      │</span>
+<span class="sd">        │ 27405735172634593 ┆ اتكام        ┆ 2024-01-22 ┆ 8000000000     ┆ 12400000000     │</span>
+<span class="sd">        │ 19471788163911687 ┆ كفپارس       ┆ 2024-01-21 ┆ 2500000000     ┆ 1619519000      │</span>
+<span class="sd">        │ …                 ┆ …            ┆ …          ┆ …              ┆ …               │</span>
+<span class="sd">        │ 48287330843249460 ┆ كارآفريني    ┆ 2010-09-28 ┆ 648000000      ┆ 23300000        │</span>
+<span class="sd">        │ 35113075091643530 ┆ پترو گچساران ┆ 2010-09-28 ┆ 259700000      ┆ 100000          │</span>
+<span class="sd">        │ 9109623461944634  ┆ فريم         ┆ 2010-08-30 ┆ 615256         ┆ 196000000       │</span>
+<span class="sd">        │ 28520500657715290 ┆ نكا          ┆ 2010-08-30 ┆ 1781550        ┆ 4900000         │</span>
+<span class="sd">        │ 57857218314224912 ┆ پذيره-ستون   ┆ 2010-08-30 ┆ 350000000      ┆ 4900000         │</span>
+<span class="sd">        └───────────────────┴──────────────┴────────────┴────────────────┴─────────────────┘</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r_tse</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">tse_share_change_flow</span><span class="p">())</span>
+        <span class="n">r_ifb</span> <span class="o">=</span> <span class="n">requests</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">ifb_share_change_flow</span><span class="p">())</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="o">*</span><span class="n">r_tse</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">],</span>
+            <span class="o">*</span><span class="n">r_ifb</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;instrumentShareChange&quot;</span><span class="p">],</span>
+        <span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">from_dicts</span><span class="p">([</span><span class="n">InsShareChangeFlow</span><span class="p">(</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">records</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">df</span></div>
 </div>
 

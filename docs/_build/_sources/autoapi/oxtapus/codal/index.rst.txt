@@ -1,0 +1,47 @@
+:py:mod:`oxtapus.codal`
+=======================
+
+.. py:module:: oxtapus.codal
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.codal.Codal
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   oxtapus.codal.Category
+
+
+.. py:data:: Category
+
+   
+
+.. py:class:: Codal(query: oxtapus.utils.codal.models.QueryParam, category: Category)
+
+
+   .. py:property:: query
+
+
+   .. py:property:: category
+
+
+   .. py:method:: letter() -> polars.DataFrame
+
+
+   .. py:method:: income_statements(r)
+
+
+
