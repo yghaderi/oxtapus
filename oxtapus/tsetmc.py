@@ -9,8 +9,14 @@ from urllib.parse import urlencode
 from tarix import count_days
 
 from oxtapus.utils.http import requests, async_requests
-from oxtapus.utils import json_normalize, word_normalize, manipulation_cols, cols, normalize_nested_dict
-from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow
+from oxtapus.utils import (
+    json_normalize,
+    word_normalize,
+    manipulation_cols,
+    cols,
+    normalize_nested_dict,
+)
+from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow, OptionsMW
 
 __all__ = ["TSETMC", "MWSections"]
 
@@ -243,6 +249,12 @@ class URL:
     def ifb_share_change_flow(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentShareChangeByFlow/2/9999"
 
+    def tse_options_mw(self):
+        return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/1"
+
+    def ifb_options_mw(self):
+        return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/2"
+
 
 class TSETMC:
     def __init__(self, async_req: bool = False):
@@ -381,6 +393,86 @@ class TSETMC:
             .otherwise("put"),
             t=pl.col("ex_date").map_elements(lambda x: count_days(end=x)),
         )
+        return df
+
+    def tse_options_mw(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ بورسِ تهران رو بهت می‌ده
+            </div>
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.tse_options_mw()
+        shape: (652, 41)
+        ┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬────────────────────────────────┬──────────┬───────────────────┐
+        │ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                         ┆ symbol_p ┆ ins_code_p        │
+        │ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                            ┆ ---      ┆ ---               │
+        │ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                            ┆ str      ┆ str               │
+        ╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪════════════════════════════════╪══════════╪═══════════════════╡
+        │ 17914401175772326 ┆ اهرم      ┆ 21350    ┆ 21450      ┆ … ┆ 0              ┆ اختيارف اهرم-20000-1403/02/26  ┆ طهرم2006 ┆ 13426704534326039 │
+        │ 42799209630949274 ┆ بهين رو   ┆ 10620    ┆ 10750      ┆ … ┆ 0              ┆ اختيارف بهين رو-9000-03/03/30  ┆ طهين0303 ┆ 5563327722355764  │
+        │ 26824673819862694 ┆ خبهمن     ┆ 1876     ┆ 1887       ┆ … ┆ 0              ┆ اختيارف خبهمن-2200-1403/01/29  ┆ طهمن0107 ┆ 33331632159155756 │
+        │ 28320293733348826 ┆ وبصادر    ┆ 1777     ┆ 1799       ┆ … ┆ 0              ┆ اختيارف وبصادر-1538-1403/01/26 ┆ طصاد0103 ┆ 55072364240589915 │
+        │ 62235397452612911 ┆ دارا يكم  ┆ 171090   ┆ 173320     ┆ … ┆ 0              ┆ اختيارف ص.دارا-260000-02/12/23 ┆ طدار1222 ┆ 12864975631063372 │
+        │ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                              ┆ …        ┆ …                 │
+        │ 35425587644337450 ┆ فملي      ┆ 7400     ┆ 7420       ┆ … ┆ 0              ┆ اختيارف فملي-5500-1403/01/19   ┆ طملي0102 ┆ 43306098146722345 │
+        │ 51617145873056483 ┆ شتران     ┆ 4064     ┆ 4064       ┆ … ┆ 0              ┆ اختيارف شتران-7000-1403/01/29  ┆ طترا0110 ┆ 2414774786667555  │
+        │ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-512-1402/12/09    ┆ طستا1209 ┆ 4273781978909014  │
+        │ 2400322364771558  ┆ شستا      ┆ 1166     ┆ 1177       ┆ … ┆ 0              ┆ اختيارف شستا-1100-1402/11/11   ┆ طستا1112 ┆ 37402330157677226 │
+        │ 71483646978964608 ┆ ذوب       ┆ 4058     ┆ 4225       ┆ … ┆ 0              ┆ اختيارف ذوب-3750-1403/03/23    ┆ طذوب3029 ┆ 45991541533193147 │
+        └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴────────────────────────────────┴──────────┴───────────────────┘
+        """
+        r = self.requests(self.url.tse_options_mw())
+        df = pl.from_dicts([OptionsMW(**i).model_dump() for i in r[0]["instrumentOptMarketWatch"]])
+        return df
+
+    def ifb_options_mw(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                داده‌های نمایِ بازارِ اختیارِ-معامله‌یِ فرابورس رو بهت می‌ده
+            </div>
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.ifb_options_mw()
+        shape: (440, 41)
+        ┌───────────────────┬───────────┬──────────┬────────────┬───┬────────────────┬───────────────────────────────┬─────────────┬───────────────────┐
+        │ ins_code_ua       ┆ symbol_ua ┆ final_ua ┆ y_final_ua ┆ … ┆ notional_val_p ┆ name_p                        ┆ symbol_p    ┆ ins_code_p        │
+        │ ---               ┆ ---       ┆ ---      ┆ ---        ┆   ┆ ---            ┆ ---                           ┆ ---         ┆ ---               │
+        │ str               ┆ str       ┆ i64      ┆ i64        ┆   ┆ i64            ┆ str                           ┆ str         ┆ str               │
+        ╞═══════════════════╪═══════════╪══════════╪════════════╪═══╪════════════════╪═══════════════════════════════╪═════════════╪═══════════════════╡
+        │ 58741071099161284 ┆ فرابورس   ┆ 7930     ┆ 7940       ┆ … ┆ 0              ┆ اختيارف فرابورس-9500-14030302 ┆ طفرابورس320 ┆ 66273163800167301 │
+        │ 47041908051542008 ┆ هم وزن    ┆ 15965    ┆ 16007      ┆ … ┆ 0              ┆ اختيارف هم وزن-20000-14030604 ┆ طهم وزن607  ┆ 40521916202949426 │
+        │ 50792786683910016 ┆ كرمان     ┆ 1285     ┆ 1323       ┆ … ┆ 0              ┆ اختيارف كرمان-1598-14021214   ┆ طكرمان1208  ┆ 57904258425842305 │
+        │ 23557166059925779 ┆ فصبا      ┆ 4841     ┆ 4835       ┆ … ┆ 0              ┆ اختيارف فصبا-7300-14030115    ┆ طفصبا107    ┆ 1626986735378256  │
+        │ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-22000-14030327  ┆ طكاريس312   ┆ 55830533232484624 │
+        │ …                 ┆ …         ┆ …        ┆ …          ┆ … ┆ …              ┆ …                             ┆ …           ┆ …                 │
+        │ 69067576215760005 ┆ كاريس     ┆ 22877    ┆ 22905      ┆ … ┆ 0              ┆ اختيارف كاريس-32000-14030327  ┆ طكاريس317   ┆ 14799246044516392 │
+        │ 47563321799863211 ┆ بتهران    ┆ 2689     ┆ 2619       ┆ … ┆ 0              ┆ اختيارف بتهران-2900-14030320  ┆ طبتهران306  ┆ 8853323062606230  │
+        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-19000-14021214   ┆ طتوان1204   ┆ 12757189046721683 │
+        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-18000-14030327   ┆ طتوان313    ┆ 43071145059933975 │
+        │ 41927452991671109 ┆ توان      ┆ 19167    ┆ 19294      ┆ … ┆ 0              ┆ اختيارف توان-20000-14030327   ┆ طتوان315    ┆ 67410414240827335 │
+        └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴───────────────────────────────┴─────────────┴───────────────────┘
+        """
+        r = self.requests(self.url.ifb_options_mw())
+        df = pl.from_dicts([OptionsMW(**i).model_dump() for i in r[0]["instrumentOptMarketWatch"]])
         return df
 
     def search_ins_code(self, symbol: str) -> str:
@@ -1442,9 +1534,7 @@ class TSETMC:
         df = pl.DataFrame()
         for resp in r:
             df_ = pl.from_dicts(resp.get("shareHolder"))
-            df_ = (
-                manipulation_cols(df_, columns=cols.tsetmc.shareholder_list)
-            )
+            df_ = manipulation_cols(df_, columns=cols.tsetmc.shareholder_list)
             df = pl.concat([df, df_])
         return df
 
@@ -1484,7 +1574,9 @@ class TSETMC:
         """
         r_tse = requests(self.url.tse_adjust_price_flow(last_records))
         r_ifb = requests(self.url.ifb_adjust_price_flow(last_records))
-        nnd = normalize_nested_dict([*r_tse[0]["priceAdjust"], *r_ifb[0]["priceAdjust"]], "instrument")
+        nnd = normalize_nested_dict(
+            [*r_tse[0]["priceAdjust"], *r_ifb[0]["priceAdjust"]], "instrument"
+        )
         df = pl.from_dicts([AdjustPriceFlow(**i).model_dump() for i in nnd])
         return df
 
@@ -1526,6 +1618,9 @@ class TSETMC:
         """
         r_tse = requests(self.url.tse_share_change_flow())
         r_ifb = requests(self.url.ifb_share_change_flow())
-        records = [*r_tse[0]["instrumentShareChange"], *r_ifb[0]["instrumentShareChange"]]
+        records = [
+            *r_tse[0]["instrumentShareChange"],
+            *r_ifb[0]["instrumentShareChange"],
+        ]
         df = pl.from_dicts([InsShareChangeFlow(**i).model_dump() for i in records])
         return df

@@ -325,8 +325,11 @@ index_hist = ManipulationCols(
 
 shareholder_list = ManipulationCols(
     rename={
-        "cIsin": "ins_id", "shareHolderName": "sh_name", "numberOfShares": "shares", "perOfShares": "pct_shares",
-        "changeAmount": "change_amount"
+        "cIsin": "ins_id",
+        "shareHolderName": "sh_name",
+        "numberOfShares": "shares",
+        "perOfShares": "pct_shares",
+        "changeAmount": "change_amount",
     },
     suffix=None,
     prefix=None,
@@ -347,7 +350,7 @@ tsetmc = TSETMC(
     share_change=share_change,
     indexes=indexes,
     index_hist=index_hist,
-    shareholder_list=shareholder_list
+    shareholder_list=shareholder_list,
 )
 
 ########################################################################################################

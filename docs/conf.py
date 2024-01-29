@@ -10,10 +10,10 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../oxtapus"))
 
-project = 'oxtapus'
-copyright = '2023, Metafid'
-author = 'Yaghoub Ghaderi'
-release = '0.2.6'
+project = "oxtapus"
+copyright = "2023, Metafid"
+author = "Yaghoub Ghaderi"
+release = "0.2.6"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -58,4 +58,3 @@ add_module_names = False
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
-

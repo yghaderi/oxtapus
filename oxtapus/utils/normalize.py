@@ -9,7 +9,9 @@ def json_normalize(data: list[dict], record_path: str, prefix: str | None = None
     return normalized
 
 
-def normalize_nested_dict(data: list[dict], nested_dict: str, prefix: str | None = None):
+def normalize_nested_dict(
+    data: list[dict], nested_dict: str, prefix: str | None = None
+):
     normalized = []
     prefix = prefix if prefix else ""
     for dict_ in data:

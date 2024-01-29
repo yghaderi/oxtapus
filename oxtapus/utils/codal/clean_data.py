@@ -198,8 +198,8 @@ class HandleIncomeStatement:
             if not "net_facility_and_deposit_income" in df_.columns:
                 df_ = df_.with_columns(
                     (
-                            pl.col("income_on_credit_facilities")
-                            + pl.col("depositors_interest_share")
+                        pl.col("income_on_credit_facilities")
+                        + pl.col("depositors_interest_share")
                     ).alias("net_facility_and_deposit_income")
                 )
 
@@ -213,21 +213,21 @@ class HandleIncomeStatement:
             if not "total_operating_income" in df_.columns:
                 df_ = df_.with_columns(
                     (
-                            pl.col("net_facility_and_deposit_income")
-                            + pl.col("net_commission_income")
-                            + pl.col("income_on_investments_and_deposits")
-                            + pl.col("foreign_exchange_transaction_gain")
-                            + pl.col("other_operating_income_and_expenses")
+                        pl.col("net_facility_and_deposit_income")
+                        + pl.col("net_commission_income")
+                        + pl.col("income_on_investments_and_deposits")
+                        + pl.col("foreign_exchange_transaction_gain")
+                        + pl.col("other_operating_income_and_expenses")
                     ).alias("total_operating_income")
                 )
             df_ = df_.with_columns(
                 (
-                        pl.col("total_operating_income")
-                        + pl.col("net_other_income_and_expenses")
-                        + pl.col("corporate_and_administrative_expenses")
-                        + pl.col("doubtful_debts_expense")
-                        + pl.col("finance_expense")
-                        + pl.col("depreciation_expense")
+                    pl.col("total_operating_income")
+                    + pl.col("net_other_income_and_expenses")
+                    + pl.col("corporate_and_administrative_expenses")
+                    + pl.col("doubtful_debts_expense")
+                    + pl.col("finance_expense")
+                    + pl.col("depreciation_expense")
                 ).alias("earning_before_tax")
             )
             df_ = df_.with_columns(
@@ -237,8 +237,8 @@ class HandleIncomeStatement:
             )
             df_ = df_.with_columns(
                 (
-                        pl.col("net_income_from_continuing_operation")
-                        + pl.col("discontinued_operations_profit")
+                    pl.col("net_income_from_continuing_operation")
+                    + pl.col("discontinued_operations_profit")
                 ).alias("net_income")
             )
             df_ = df_.with_columns(
