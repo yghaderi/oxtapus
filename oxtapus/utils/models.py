@@ -34,7 +34,7 @@ class OptionsMW(BaseModel):
     contract_size: int = Field(alias="contractSize")
     begin_date: str = Field(alias="beginDate")
     end_date: str = Field(alias="endDate")
-    strike_price: int = Field(alias="strikePrice")
+    k: int = Field(alias="strikePrice")
     t: int = Field(alias="remainedDay")
     ins_code_c: str = Field(alias="insCode_C")
     symbol_c: str = Field(alias="lVal18AFC_C")
