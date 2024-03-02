@@ -68,5 +68,3 @@ class OptionsMW(BaseModel):
     name_p: str = Field(alias="lVal30_P")
     symbol_p: str = Field(alias="lVal18AFC_P")
     ins_code_p: str = Field(alias="insCode_P")
-
-
