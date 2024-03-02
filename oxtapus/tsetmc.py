@@ -6,7 +6,7 @@ from typing import List
 from pydantic import validate_call
 from urllib.parse import urlencode
 import itertools
-from tarix import count_days
+from oxtapus.models.tsetmc import HistPrice
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import (
@@ -723,12 +723,7 @@ class TSETMC:
         r = requests(url)
         df = pl.DataFrame()
         for resp in r:
-            df_ = pl.from_records(resp.get("closingPriceDaily"), orient="col")
-            df_ = (
-                manipulation_cols(df_, columns=cols.tsetmc.hist_price)
-                .with_columns(pl.col("date").cast(pl.Utf8).str.to_date(format="%Y%m%d"))
-                .sort("date")
-            )
+            df_ = pl.DataFrame([HistPrice.model_validate(i) for i in resp["closingPriceDaily"]])
             df = pl.concat([df, df_])
         return df
 

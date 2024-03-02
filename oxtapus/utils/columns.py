@@ -20,7 +20,6 @@ class TSETMC:
     options_mw: ManipulationCols
     options_ua_mw: ManipulationCols
     specific_option_data: ManipulationCols
-    hist_price: ManipulationCols
     intraday_trades: ManipulationCols
     last_ins_data: ManipulationCols
     client_type: ManipulationCols
@@ -170,37 +169,6 @@ specific_option_data = ManipulationCols(
     drop=None,
 )
 
-hist_price = ManipulationCols(
-    rename={
-        "insCode": "ins_code",
-        "dEven": "date",
-        "priceFirst": "open",
-        "priceMax": "high",
-        "priceMin": "low",
-        "pDrCotVal": "close",
-        "pClosing": "final",
-        "priceYesterday": "y_final",
-        "qTotTran5J": "volume",
-        "qTotCap": "value",
-        "zTotTran": "trade_count",
-    },
-    suffix=None,
-    prefix=None,
-    select=[
-        "date",
-        "ins_code",
-        "open",
-        "high",
-        "low",
-        "close",
-        "final",
-        "y_final",
-        "volume",
-        "value",
-        "trade_count",
-    ],
-    drop=None,
-)
 intraday_trades = ManipulationCols(
     rename={
         "nTran": "trade_nbr",
@@ -343,7 +311,6 @@ tsetmc = TSETMC(
     options_mw=options_mw,
     options_ua_mw=options_ua_mw,
     specific_option_data=specific_option_data,
-    hist_price=hist_price,
     intraday_trades=intraday_trades,
     last_ins_data=last_ins_data,
     client_type=client_type,

@@ -22,7 +22,7 @@ class InsShareChangeFlow(BaseModel):
     previous_shares: int = Field(alias="numberOfShareOld")
 
     @field_validator("date", mode="before")
-    def parse_birthdate(cls, value):
+    def parse_date(cls, value):
         return dt.datetime.strptime(str(value), "%Y%m%d").date()
 
 
@@ -68,3 +68,5 @@ class OptionsMW(BaseModel):
     name_p: str = Field(alias="lVal30_P")
     symbol_p: str = Field(alias="lVal18AFC_P")
     ins_code_p: str = Field(alias="insCode_P")
+
+
