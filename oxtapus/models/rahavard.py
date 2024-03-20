@@ -38,8 +38,21 @@ class BalanceSheetData(BaseModel):
 
     @field_validator("date", "fiscal_year", mode="before")
     def parse_date(cls, value):
-        return dt.datetime.strptime(str(value), "%Y-%m-%dT%H:%M:%S%z", ).date()
+        return dt.datetime.strptime(
+            str(value),
+            "%Y-%m-%dT%H:%M:%S%z",
+        ).date()
 
 
 class BalanceSheet(BaseModel):
     data: list[BalanceSheetData]
+
+
+class StocksData(BaseModel):
+    name: str
+    asset_id: str
+    exchange_id: str
+
+
+class Stocks(BaseModel):
+    data: list[StocksData]
