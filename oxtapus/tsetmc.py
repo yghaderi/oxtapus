@@ -316,17 +316,11 @@ class TSETMC:
         >>> tsetmc.mw(["stock", "etf", "options"])
         """
         r = self.requests(self.url.mw(sections), response="json")[0].get("marketwatch")
-        # df = pl.from_dicts(
-        #     json_normalize(r, "blDs", "ob_"), schema_overrides={"pe": pl.Utf8}
-        # )
         records = json_normalize(
             data=[MarketWatch.model_validate(i).model_dump() for i in r],
             record_path="order_book",
         )
-        df = pl.DataFrame(records)
-        # df = manipulation_cols(df, columns=cols.tsetmc.mw_orderbook)
-        # df = manipulation_cols(df, columns=cols.tsetmc.mw)
-        return df
+        return pl.DataFrame(records)
 
     def tse_options_mw(self):
         """
