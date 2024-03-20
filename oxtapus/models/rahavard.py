@@ -1,4 +1,8 @@
-from pydantic import BaseModel
+from typing import Optional
+from pydantic import BaseModel, field_validator
+import datetime as dt
+
+__all__ = ["BalanceSheet"]
 
 
 class BalanceSheetItemsField(BaseModel):
@@ -6,7 +10,7 @@ class BalanceSheetItemsField(BaseModel):
     english_title: str
     account: str
     is_parent: bool
-    parent: str
+    parent: Optional[str]
     index_view: int
     id: str
     sign_neg: bool
@@ -16,7 +20,7 @@ class BalanceSheetItemsField(BaseModel):
 
 class BalanceSheetItems(BaseModel):
     field: BalanceSheetItemsField
-    value: int
+    value: float
 
 
 class FinancialViewType(BaseModel):
@@ -24,13 +28,17 @@ class FinancialViewType(BaseModel):
 
 
 class BalanceSheetData(BaseModel):
-    date: str
-    fiscal_year: str
+    date: dt.date
+    fiscal_year: dt.date
     announcement_type: str
     financial_view_type: FinancialViewType
     report_id: str
     id: str
     items: list[BalanceSheetItems]
+
+    @field_validator("date", "fiscal_year", mode="before")
+    def parse_date(cls, value):
+        return dt.datetime.strptime(str(value), "%Y-%m-%dT%H:%M:%S%z", ).date()
 
 
 class BalanceSheet(BaseModel):
