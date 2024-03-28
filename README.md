@@ -220,8 +220,96 @@ shape: (3_688, 6)
 
 </div>
 
+## Rahavard365 (rahavard365.com)
+<div dir="rtl">
+فعلن داده‌هایِ صورت‌هایِ مالی رو پوشش می‌ده.
+<br>
+<br>
+نمونه (برای راهنمایِ کامل 
+<a href="https://yghaderi.github.io/oxtapus/">
+راهنمایِ بهره-گیران
+</a>
+رو بخونید)
+:
+</div>
 
+```python
+>>> from oxtapus import Rahavard
+>>> rah = Rahavard()
+>>> bsh = rah.balance_sheet("آسیا")
+>>> bsh.data
+shape: (5, 48)
+┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
+│ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │
+│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
+│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
+│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
+│ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+│ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+│ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+│ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │
+│ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+│ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │
+│ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │
+└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
+
+>>> bsh.base_info
+BaseInfo(announcement_type='1', financial_view_type='3')
+
+>>> bsh.field_info
+shape: (46, 10)
+┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐
+│ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │
+│ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │
+│ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │
+│     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │
+╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡
+│ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │
+│     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │
+│     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │
+│ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │
+│     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │
+│ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │
+│     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │
+│ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │
+│     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │
+│     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │
+│ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │
+│     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │
+│     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │
+│ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │
+│ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │
+│     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │
+│ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │
+│     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │
+│     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │
+│     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │
+│ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │
+│     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │
+│     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │
+│     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │
+│ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │
+│     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │
+│     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │
+│     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │
+│ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │
+│     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │
+│     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │
+└─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
+```
 
 <a href="https://metafid.com/sponsor">
        <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
 </a>
+
+
