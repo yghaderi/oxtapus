@@ -80,8 +80,13 @@ Classes
       
 
 
-.. py:class:: TSETMC(async_req: bool = False)
+.. py:class:: TSETMC(async_req: bool = False, get_all_ins_code: bool = False)
 
+
+   :param async_req:
+   :type async_req: bool, default False
+   :param get_all_ins_code: اگه 'True' باشه نمادهای حذف-شده(تغییرٍ بازار) رو هم میاره
+   :type get_all_ins_code: bool, default False
 
    .. py:property:: async_req
 
@@ -113,33 +118,6 @@ Classes
       >>> from oxtapus import TSETMC
       >>> tsetmc = TSETMC()
       >>> tsetmc.mw(["stock", "etf", "options"])
-
-
-   .. py:method:: options_mw() -> polars.DataFrame
-
-      .. raw:: html
-
-          <div dir="rtl">
-              داده‌هایِ صفحه‌یِ مارکت-واچِ مربوط به اخیتارِ-معامله و داراییِ پایه رو استخراج و چند
-              مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
-          </div>
-
-      .. note::
-          .. raw:: html
-
-              <div dir="rtl">
-                  خرجی در کمتر از ۱ ثانیه داده می‌شه. پس اگه بیشتر زمان ببره، احتمالن ی چیزِ دیگه‌ای درست نیست!
-              </div>
-
-
-      :returns: **option-market-watch**
-      :rtype: polars.DataFrame
-
-      .. rubric:: Example
-
-      >>> from oxtapus import TSETMC
-      >>> tsetmc = TSETMC()
-      >>> tsetmc.options_mw()
 
 
    .. py:method:: tse_options_mw()
@@ -212,7 +190,7 @@ Classes
       └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴───────────────────────────────┴─────────────┴───────────────────┘
 
 
-   .. py:method:: search_ins_code(symbol: str) -> str
+   .. py:method:: search_ins_code(symbol: str) -> list[str]
 
       .. raw:: html
 
@@ -231,7 +209,7 @@ Classes
       >>> from oxtapus import TSETMC
       >>> tsetmc = TSETMC()
       >>> tsetmc.search_ins_code("شپدیس")
-      '20562694899904339'
+      ['20562694899904339']
 
 
    .. py:method:: ins_info(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame

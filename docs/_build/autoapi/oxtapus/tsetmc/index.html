@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>oxtapus.tsetmc &#8212; oxtapus 0.2.6 documentation</title>
+    <title>oxtapus.tsetmc &#8212; oxtapus 0.3.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../../_static/documentation_options.js?v=fc7d8818"></script>
+    <script src="../../../_static/documentation_options.js?v=e259d695"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -118,7 +118,7 @@
   
   
   
-    <p class="title logo__title">oxtapus 0.2.6 documentation</p>
+    <p class="title logo__title">oxtapus 0.3.0 documentation</p>
   
 </a></div>
     
@@ -260,7 +260,13 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../models/rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.rahavard</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models/tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.tsetmc</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.rahavard</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tgju</span></code></a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tsetmc</span></code></a></li>
 </ul>
@@ -337,7 +343,11 @@ document.write(`
 <td><p>str(object='') -&gt; str</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.tsetmc.TSETMC" title="oxtapus.tsetmc.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param async_req<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -403,8 +413,16 @@ errors defaults to ‘strict’.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
-<dd><dl class="py property">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>async_req</strong> (<em>bool</em><em>, </em><em>default False</em>) – </p></li>
+<li><p><strong>get_all_ins_code</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘True’ باشه نمادهای حذف-شده(تغییرٍ بازار) رو هم میاره</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.async_req">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.async_req"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.async_req" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -437,33 +455,6 @@ errors defaults to ‘strict’.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">mw</span><span class="p">([</span><span class="s2">&quot;stock&quot;</span><span class="p">,</span> <span class="s2">&quot;etf&quot;</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.options_mw">
-<span class="sig-name descname"><span class="pre">options_mw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.options_mw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.options_mw" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
-    داده‌هایِ صفحه‌یِ مارکت-واچِ مربوط به اخیتارِ-معامله و داراییِ پایه رو استخراج و چند
-    مشخصه‌یِ دیگه که برایِ مدل-سازی‌های اختیارِ-معالمه نیاز است رو  اضافه می‌کنه.
-</div><div class="admonition note">
-<p class="admonition-title">Note</p>
-<div dir="rtl">
-    خرجی در کمتر از ۱ ثانیه داده می‌شه. پس اگه بیشتر زمان ببره، احتمالن ی چیزِ دیگه‌ای درست نیست!
-</div></div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>option-market-watch</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>polars.DataFrame</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">options_mw</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -542,7 +533,7 @@ errors defaults to ‘strict’.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.search_ins_code">
-<span class="sig-name descname"><span class="pre">search_ins_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.search_ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.search_ins_code" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">search_ins_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.search_ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.search_ins_code" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
     کدِ صفحه‌ی نماد/ابزارِ-معاملاتی رو استخراج می‌کنه.
 </div><dl class="field-list simple">
@@ -560,7 +551,7 @@ errors defaults to ‘strict’.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="s2">&quot;شپدیس&quot;</span><span class="p">)</span>
-<span class="go">&#39;20562694899904339&#39;</span>
+<span class="go">[&#39;20562694899904339&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1387,7 +1378,6 @@ errors defaults to ‘strict’.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.tse_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.tse_options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ifb_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.ifb_options_mw()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
