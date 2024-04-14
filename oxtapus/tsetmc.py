@@ -831,7 +831,7 @@ class TSETMC:
 
         df = self.hist_price(ins_code=ins_code)
         df = (
-            df.with_columns(
+            df.sort("date").with_columns(
                 factor=(pl.col("y_final").shift(-1) / pl.col("final"))
                 .fill_null(1)
                 .reverse()
