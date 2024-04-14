@@ -12,6 +12,18 @@ class MarketWatchOrderBook(BaseModel):
     ask_count: int = Field(alias="zmo")
 
 
+class MarketWatchAll(BaseModel):
+    ins_code: str = Field(alias="insCode")
+    buy_vol_ind: float = Field(alias="buy_I_Volume")
+    buy_vol_ins: float = Field(alias="buy_N_Volume")
+    buy_count_ind: int = Field(alias="buy_CountI")
+    buy_count_ins: int = Field(alias="buy_CountN")
+    sell_vol_ind: float = Field(alias="sell_I_Volume")
+    sell_vol_ins: float = Field(alias="sell_N_Volume")
+    sell_count_ind: int = Field(alias="sell_CountI")
+    sell_count_ins: int = Field(alias="sell_CountN")
+
+
 class MarketWatch(BaseModel):
     ins_code: str = Field(alias="insCode")
     ins_id: str = Field(alias="insID")

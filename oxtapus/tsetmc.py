@@ -96,6 +96,9 @@ class URL:
         }
         return f"{self.base_url}/ClosingPrice/GetMarketWatch?{urlencode(param)}"
 
+    def client_type(self):
+        return f"{self.base_url}/ClientType/GetClientTypeAll"
+
     def search_ins_code(self, symbol_far) -> str:
         """
         .. raw:: html
@@ -437,7 +440,7 @@ class TSETMC:
                     i["insCode"]
                     for i in r
                     if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol))
-                    and (i["lastDate"] == 1)
+                       and (i["lastDate"] == 1)
                 ]
             return [
                 i["insCode"]
@@ -462,9 +465,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def ins_info(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -620,11 +623,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -740,11 +743,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def adj_hist_price(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        start: str | None = None,
-        end: str | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            start: str | None = None,
+            end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -852,9 +855,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def intraday_trades(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -925,10 +928,10 @@ class TSETMC:
         return df
 
     def intraday_trades_based_on_timeframe(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
-        timeframe: str = "5m",
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
+            timeframe: str = "5m",
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -991,9 +994,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def last_ins_data(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1081,9 +1084,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def client_type(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1172,9 +1175,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def share_change(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1425,9 +1428,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def shareholder_list(
-        self,
-        symbol: str | list[str] | None = None,
-        ins_code: str | list[str] | None = None,
+            self,
+            symbol: str | list[str] | None = None,
+            ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
