@@ -12,7 +12,7 @@ class MarketWatchOrderBook(BaseModel):
     ask_count: int = Field(alias="zmo")
 
 
-class MarketWatchAll(BaseModel):
+class ClientTypeAll(BaseModel):
     ins_code: str = Field(alias="insCode")
     buy_vol_ind: float = Field(alias="buy_I_Volume")
     buy_vol_ins: float = Field(alias="buy_N_Volume")

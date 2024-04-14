@@ -6,7 +6,7 @@ from typing import List
 from pydantic import validate_call
 from urllib.parse import urlencode
 import itertools
-from oxtapus.models.tsetmc import HistPrice, MarketWatch
+from oxtapus.models.tsetmc import HistPrice, MarketWatch, ClientTypeAll
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import (
@@ -96,7 +96,7 @@ class URL:
         }
         return f"{self.base_url}/ClosingPrice/GetMarketWatch?{urlencode(param)}"
 
-    def client_type(self):
+    def client_type_all(self):
         return f"{self.base_url}/ClientType/GetClientTypeAll"
 
     def search_ins_code(self, symbol_far) -> str:
@@ -319,11 +319,15 @@ class TSETMC:
         >>> tsetmc.mw(["stock", "etf", "options"])
         """
         r = self.requests(self.url.mw(sections), response="json")[0].get("marketwatch")
+        r_client_type = self.requests(self.url.client_type_all())[0]["clientTypeAllDto"]
         records = json_normalize(
             data=[MarketWatch.model_validate(i).model_dump() for i in r],
             record_path="order_book",
         )
-        return pl.DataFrame(records)
+        df = pl.DataFrame(records)
+        df_ct = pl.from_dicts([ClientTypeAll(**i).model_dump() for i in r_client_type])
+        df = df.join(df_ct, on=["ins_code"], how="left")
+        return df
 
     def tse_options_mw(self):
         """
