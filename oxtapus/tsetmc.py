@@ -6,7 +6,7 @@ from typing import List
 from pydantic import validate_call
 from urllib.parse import urlencode
 import itertools
-from oxtapus.models.tsetmc import HistPrice, MarketWatch, ClientTypeAll
+from oxtapus.models.tsetmc import HistPrice, MarketWatch, ClientTypeAll, InsInfo
 
 from oxtapus.utils.http import requests, async_requests
 from oxtapus.utils import (
@@ -17,6 +17,7 @@ from oxtapus.utils import (
     normalize_nested_dict,
 )
 from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow, OptionsMW
+
 
 __all__ = ["TSETMC", "MWSections"]
 
@@ -444,7 +445,7 @@ class TSETMC:
                     i["insCode"]
                     for i in r
                     if (word_normalize(i["lVal18AFC"]) == word_normalize(symbol))
-                       and (i["lastDate"] == 1)
+                    and (i["lastDate"] == 1)
                 ]
             return [
                 i["insCode"]
@@ -469,9 +470,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def ins_info(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -526,54 +527,41 @@ class TSETMC:
         >>> from oxtapus import TSETMC
         >>> tsetmc = TSETMC(async_req=True)
         >>> tsetmc.ins_info(ins_code = ["7745894403636165", "65883838195688438"])
-        shape: (2, 17)
-        ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
-        │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
-        │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
-        │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
-        │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
-        ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
-        │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
-        │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
-        │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
-        │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
-        └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+        shape: (2, 24)
+        ┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐
+        │ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │
+        │ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │
+        │ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │
+        │            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │
+        ╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡
+        │ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │
+        │ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+        │ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │
+        │ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+        └────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘
 
         >>> tsetmc.ins_info(symbol = ["شپنا", "خودرو"])
-        shape: (2, 17)
-        ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
-        │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
-        │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
-        │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
-        │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
-        ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
-        │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
-        │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
-        │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
-        │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
-        └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+        shape: (2, 24)
+        ┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐
+        │ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │
+        │ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │
+        │ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │
+        │            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │
+        ╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡
+        │ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │
+        │ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+        │ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │
+        │ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │
+        │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+        └────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘
         """
-
-        def map_json(data: dict) -> dict:
-            return {
-                "ins_code": data["insCode"],
-                "ins_id": data["instrumentID"],
-                "symbol_en": data["cIsin"][4:8],
-                "name_en": data["lVal18"],
-                "symbol": data["lVal18AFC"],
-                "name": data["lVal30"],
-                "capital": data["zTitad"],
-                "sector_name": data["sector"]["lSecVal"],
-                "sector_code": data["sector"]["cSecVal"].replace(" ", ""),
-                "group_type": data["cgrValCot"],
-                "market_name": data["flowTitle"],
-                "market_code": data["flow"],
-                "market_type": data["cgrValCotTitle"],
-                "base_vol": data["baseVol"],
-                "eps": data["eps"]["estimatedEPS"],
-                "pct_float_shares": data["kAjCapValCpsIdx"],
-                "contract_size": data["contractSize"],
-            }
 
         ins_code = symbol if symbol else ins_code
 
@@ -581,7 +569,11 @@ class TSETMC:
             ins_code = [ins_code]
         url = [self.url.ins_info(i) for i in ins_code]
         r = self.requests(url)
-        return pl.from_records([map_json(i.get("instrumentInfo")) for i in r])
+        records = [
+            InsInfo.model_validate(i.get("instrumentInfo")).model_dump() for i in r
+        ]
+        df = pl.from_dicts(records)
+        return df
 
     def specific_option_data(self, ins_id: str | list[str]) -> pl.DataFrame:
         """
@@ -627,11 +619,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def hist_price(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
-            start: str | None = None,
-            end: str | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
+        start: str | None = None,
+        end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -747,11 +739,11 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def adj_hist_price(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
-            start: str | None = None,
-            end: str | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
+        start: str | None = None,
+        end: str | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -838,7 +830,8 @@ class TSETMC:
 
         df = self.hist_price(ins_code=ins_code)
         df = (
-            df.sort("date").with_columns(
+            df.sort("date")
+            .with_columns(
                 factor=(pl.col("y_final").shift(-1) / pl.col("final"))
                 .fill_null(1)
                 .reverse()
@@ -859,9 +852,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def intraday_trades(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -932,10 +925,10 @@ class TSETMC:
         return df
 
     def intraday_trades_based_on_timeframe(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
-            timeframe: str = "5m",
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
+        timeframe: str = "5m",
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -998,9 +991,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def last_ins_data(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1088,9 +1081,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def client_type(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1179,9 +1172,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def share_change(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
@@ -1432,9 +1425,9 @@ class TSETMC:
 
     @_handle_ins_cod_or_symbol
     def shareholder_list(
-            self,
-            symbol: str | list[str] | None = None,
-            ins_code: str | list[str] | None = None,
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
     ) -> pl.DataFrame:
         """
         .. raw:: html
