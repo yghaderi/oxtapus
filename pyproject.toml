@@ -17,6 +17,7 @@ tarix = "^0.1.1"
 httpx = "^0.25.0"
 tenacity = "^8.2.3"
 pydantic = "^2.5.3"
+requests = "^2.32.2"
 
 
 

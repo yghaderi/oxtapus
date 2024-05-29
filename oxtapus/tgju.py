@@ -1,5 +1,5 @@
 import polars as pl
-from oxtapus.utils.http import requests
+import requests
 
 
 class TGJU:
@@ -16,7 +16,7 @@ class TGJU:
 
     def _get_hist_price(self, item):
         url = f"{self.base_url}/market/indicator/summary-table-data/{item}"
-        r = requests(url=url, timeout=(2, 6))
+        r = requests.get(url=url, timeout=(2, 6)).json()
         cols = ["open", "low", "high", "close", "_", "__", "date", "jdate"]
         df = pl.from_records(r["data"], schema=cols, orient="row")
         df = df.with_columns(
