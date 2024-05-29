@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 import itertools
 from oxtapus.models.tsetmc import HistPrice, MarketWatch, ClientTypeAll, InsInfo
 
-from oxtapus.utils.http import requests, async_requests
+from oxtapus.utils.http import get, async_requests
 from oxtapus.utils import (
     json_normalize,
     word_normalize,
@@ -272,7 +272,7 @@ class TSETMC:
     def __init__(self, async_req: bool = False, get_all_ins_code: bool = False):
         self._async_req = async_req
         self.get_all_ins_code = get_all_ins_code
-        self.requests = async_requests if self._async_req else requests
+        self.requests = async_requests if self._async_req else get
         self.url = URL()
 
     @property
@@ -285,7 +285,7 @@ class TSETMC:
         if async_req:
             self.requests = async_requests
         else:
-            self.requests = requests
+            self.requests = get
 
     @validate_call
     def mw(self, sections: List[MWSections] | MWSections) -> pl.DataFrame:
@@ -606,7 +606,7 @@ class TSETMC:
         if isinstance(ins_id, str):
             ins_id = [ins_id]
         url = [self.url.specific_option_data(i) for i in ins_id]
-        r = requests(url)
+        r = get(url)
         df = pl.from_records([i.get("instrumentOption") for i in r])
         df = manipulation_cols(df, columns=cols.tsetmc.specific_option_data)
         df = df.with_columns(
@@ -728,7 +728,7 @@ class TSETMC:
         if isinstance(ins_code, str):
             ins_code = [ins_code]
         url = [self.url.hist_price(i) for i in ins_code]
-        r = requests(url)
+        r = get(url)
         df = pl.DataFrame()
         for resp in r:
             df_ = pl.DataFrame(
@@ -901,8 +901,8 @@ class TSETMC:
             ins_code = [ins_code]
         url = [self.url.intraday_trades(i) for i in ins_code]
         url_last_ins_data = [self.url.last_ins_data(i) for i in ins_code]
-        r = requests(url)
-        last_ins_data = requests(url_last_ins_data)
+        r = get(url)
+        last_ins_data = get(url_last_ins_data)
         df = pl.DataFrame()
         for i, record in enumerate(r):
             df_ = pl.from_dicts(record["trade"])
@@ -1061,7 +1061,7 @@ class TSETMC:
         if isinstance(ins_code, str):
             ins_code = [ins_code]
         url = [self.url.last_ins_data(i) for i in ins_code]
-        r = requests(url)
+        r = get(url)
         dicts = [
             {
                 **record.get("closingPriceInfo").pop("instrumentState"),
@@ -1281,7 +1281,7 @@ class TSETMC:
         >>> tsetmc = TSETMC()
         >>> tsetmc.indexes()
         """
-        r = requests(self.url.indexes())[0].get("indexB1")
+        r = get(self.url.indexes())[0].get("indexB1")
         df = pl.from_records(r)
         df = manipulation_cols(df, columns=cols.tsetmc.indexes)
         return df
@@ -1418,7 +1418,7 @@ class TSETMC:
         >>> TSETMC().last_market_activity_datetime()
         datetime.datetime(2023, 11, 1, 19, 21, 24)
         """
-        r = requests(self.url.last_market_activity())[0].get("marketOverview")
+        r = get(self.url.last_market_activity())[0].get("marketOverview")
         date = r.get("marketActivityDEven")
         time = r.get("marketActivityHEven")
         return datetime.datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
@@ -1509,8 +1509,8 @@ class TSETMC:
         │ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │
         └───────────────────┴────────┴────────────┴───────────┴─────────┘
         """
-        r_tse = requests(self.url.tse_adjust_price_flow(last_records))
-        r_ifb = requests(self.url.ifb_adjust_price_flow(last_records))
+        r_tse = get(self.url.tse_adjust_price_flow(last_records))
+        r_ifb = get(self.url.ifb_adjust_price_flow(last_records))
         nnd = normalize_nested_dict(
             [*r_tse[0]["priceAdjust"], *r_ifb[0]["priceAdjust"]], "instrument"
         )
@@ -1553,8 +1553,8 @@ class TSETMC:
         │ 57857218314224912 ┆ پذيره-ستون   ┆ 2010-08-30 ┆ 350000000      ┆ 4900000         │
         └───────────────────┴──────────────┴────────────┴────────────────┴─────────────────┘
         """
-        r_tse = requests(self.url.tse_share_change_flow())
-        r_ifb = requests(self.url.ifb_share_change_flow())
+        r_tse = get(self.url.tse_share_change_flow())
+        r_ifb = get(self.url.ifb_share_change_flow())
         records = [
             *r_tse[0]["instrumentShareChange"],
             *r_ifb[0]["instrumentShareChange"],
