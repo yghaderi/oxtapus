@@ -11,8 +11,8 @@ source = ["oxtapus"]
 branch = true
 
 [tool.poetry.dependencies]
-python = "^3.10"
-polars = "^0.20.3"
+python = "^3.11"
+polars = "^1.0.0"
 tarix = "^0.1.1"
 httpx = "^0.25.0"
 tenacity = "^8.2.3"
