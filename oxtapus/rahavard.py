@@ -204,7 +204,7 @@ class Rahavard:
             )
             field_info = pl.concat([field_info, f_info])
         df = df.pivot(
-            columns="id",
+            on="id",
             values="value",
             index=["date", "fiscal_year"],
         ).fill_null(0)
@@ -345,7 +345,7 @@ class Rahavard:
             )
             field_info = pl.concat([field_info, f_info])
         df = df.pivot(
-            columns="id", values="value", index=["date", "fiscal_year"]
+            on="id", values="value", index=["date", "fiscal_year"]
         ).fill_null(0)
         df.columns = list(map(lambda x: handel_clos(x), df.columns))
         base_info = BaseInfo(

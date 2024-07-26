@@ -25,5 +25,7 @@ requests = "^2.32.2"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-
-
+[tool.pyright]
+root="valpy"
+venvPath = "."
+venv = ".venv"
