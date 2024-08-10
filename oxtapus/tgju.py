@@ -136,3 +136,17 @@ class TGJU:
         pandas.DataFrame
         """
         return self._get_hist_price("ons")
+
+    def silver(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+             داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
+            </div>
+
+        Returns
+        -------
+        pandas.DataFrame
+        """
+        return self._get_hist_price("silver")
