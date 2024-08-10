@@ -12,12 +12,12 @@ branch = true
 
 [tool.poetry.dependencies]
 python = "^3.11"
-polars = "^1.0.0"
-tarix = "^0.1.1"
+polars = "1.4.1"
 httpx = "^0.25.0"
 tenacity = "^8.2.3"
-pydantic = "^2.5.3"
+pydantic = "2.8.2"
 requests = "^2.32.2"
+jdatetime = "^5.0.0"
 
 
 
