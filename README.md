@@ -308,4 +308,8 @@ shape: (46, 10)
 └─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
 ```
 
-<div class="daramet-embed-donate" id="1341"><script src="https://daramet.com/embed/script.js"></script></div>
+
+<div dir="rtl">
+<buttom  style="font-size:20px;background:rgb(190 24 93 / 10%);border:2px solid rgb(190 24 93);border-radius:10px;padding:3px 10px 3px 10px;">
+<a href="https://daramet.com/yghaderi"  style="text-decoration: none;color:rgb(190 24 93 )">یه ☕🧸🍪 مهمونم کن!</a></buttom>
+</div>
