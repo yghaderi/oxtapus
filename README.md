@@ -16,7 +16,7 @@
 </div>
 
 
-## install 
+## install
 #### mac , linux
 ```bash
 python3 -m pip install oxtapus
@@ -30,11 +30,11 @@ python -m pip install oxtapus
 ## TSETMC (tsetmc.com)
 
 <div dir="rtl">
-تقریبن همه‌یِ داده‌هایِ وب-سایتِ tsetmc.com رو پوشش می‌ده. 
+تقریبن همه‌یِ داده‌هایِ وب-سایتِ tsetmc.com رو پوشش می‌ده.
 <br>
 <br>
 نمونه
-(برای راهنمایِ کامل 
+(برای راهنمایِ کامل
 <a href="https://yghaderi.github.io/oxtapus/">
 راهنمایِ بهره-گیران
 </a>
@@ -159,10 +159,10 @@ shape: (190, 4)
 
 ## TGJU (tgju.org)
 <div dir="rtl">
-داده‌هایِ طلا و دلارِ وب-سایتِ tsetmc.com رو پوشش می‌ده. و در آینده کالاهایی که به بورسِ ایران مربوطه و از آنجا قابلِ دریافته رو پوشش خواهد داد. 
+داده‌هایِ طلا و دلارِ وب-سایتِ tsetmc.com رو پوشش می‌ده. و در آینده کالاهایی که به بورسِ ایران مربوطه و از آنجا قابلِ دریافته رو پوشش خواهد داد.
 <br>
 <br>
-نمونه (برای راهنمایِ کامل 
+نمونه (برای راهنمایِ کامل
 <a href="https://yghaderi.github.io/oxtapus/">
 راهنمایِ بهره-گیران
 </a>
@@ -211,7 +211,7 @@ shape: (3_688, 6)
 </li>
 
 <li>
-ربعِ-سکه (rob-sekke) 
+ربعِ-سکه (rob-sekke)
 </li>
 
 <li>
@@ -225,7 +225,7 @@ shape: (3_688, 6)
 فعلن داده‌هایِ صورت‌هایِ مالی رو پوشش می‌ده.
 <br>
 <br>
-نمونه (برای راهنمایِ کامل 
+نمونه (برای راهنمایِ کامل
 <a href="https://yghaderi.github.io/oxtapus/">
 راهنمایِ بهره-گیران
 </a>
@@ -308,8 +308,4 @@ shape: (46, 10)
 └─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
 ```
 
-<a href="https://metafid.com/sponsor">
-       <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
-</a>
-
-
+<div class="daramet-embed-donate" id="1341"><script src="https://daramet.com/embed/script.js"></script></div>

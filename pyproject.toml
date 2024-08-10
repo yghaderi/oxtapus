@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oxtapus"
-version = "0.3.4"
+version = "0.3.5"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
@@ -20,12 +20,11 @@ requests = "^2.32.2"
 jdatetime = "^5.0.0"
 
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
-root="valpy"
+root = "valpy"
 venvPath = "."
 venv = ".venv"
