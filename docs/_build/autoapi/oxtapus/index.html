@@ -2,43 +2,43 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>oxtapus &#8212; oxtapus 0.3.0 documentation</title>
+    <title>oxtapus &#8212; oxtapus 0.3.5 documentation</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e259d695"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/documentation_options.js?v=ba50482b"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=4ea706d9"></script>
@@ -56,28 +56,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -99,17 +94,25 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../index.html">
@@ -119,7 +122,7 @@
   
   
   
-    <p class="title logo__title">oxtapus 0.3.0 documentation</p>
+    <p class="title logo__title">oxtapus 0.3.5 documentation</p>
   
 </a></div>
     
@@ -129,21 +132,16 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -154,9 +152,10 @@
       
         <div class="navbar-item navbar-persistent--container">
           
+
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -167,12 +166,13 @@
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -183,9 +183,10 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
+
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -196,16 +197,19 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -216,23 +220,21 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -241,12 +243,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -256,22 +259,23 @@ document.write(`
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="models/rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.rahavard</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.tsetmc</span></code></a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="models/index.html">oxtapus.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="models/rahavard/index.html">oxtapus.models.rahavard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/tsetmc/index.html">oxtapus.models.tsetmc</a></li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.rahavard</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tgju</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tsetmc</span></code></a></li>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="fipiran/index.html">oxtapus.fipiran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rahavard/index.html">oxtapus.rahavard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tgju/index.html">oxtapus.tgju</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tsetmc/index.html">oxtapus.tsetmc</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -286,13 +290,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -301,7 +305,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -312,7 +316,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+    <li class="breadcrumb-item active" aria-current="page">oxtapus</li>
   </ul>
 </nav>
 </div>
@@ -327,19 +331,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="module-oxtapus">
-<span id="oxtapus"></span><h1><a class="reference internal" href="#module-oxtapus" title="oxtapus"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><a class="headerlink" href="#module-oxtapus" title="Link to this heading">#</a></h1>
+<span id="oxtapus"></span><h1>oxtapus<a class="headerlink" href="#module-oxtapus" title="Link to this heading">#</a></h1>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models/rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.rahavard</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.tsetmc</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="models/index.html">oxtapus.models</a></li>
 </ul>
 </div>
 </section>
@@ -347,25 +347,19 @@ document.write(`
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.rahavard</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tgju</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tsetmc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="fipiran/index.html">oxtapus.fipiran</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rahavard/index.html">oxtapus.rahavard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tgju/index.html">oxtapus.tgju</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsetmc/index.html">oxtapus.tsetmc</a></li>
 </ul>
 </div>
 </section>
-<section id="package-contents">
-<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">#</a></h2>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h3>
-<table class="autosummary longtable table autosummary">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.TSETMC" title="oxtapus.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param async_req<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.Rahavard" title="oxtapus.Rahavard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rahavard</span></code></a></p></td>
 <td><p></p></td>
@@ -375,17 +369,36 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.TSETMC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>async_req</strong> (<em>bool</em><em>, </em><em>default False</em>) – </p></li>
+<li><p><strong>async_req</strong> (<em>bool</em><em>, </em><em>default False</em>)</p></li>
 <li><p><strong>get_all_ins_code</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘True’ باشه نمادهای حذف-شده(تغییرٍ بازار) رو هم میاره</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.TSETMC.get_all_ins_code">
+<span class="sig-name descname"><span class="pre">get_all_ins_code</span></span><a class="headerlink" href="#oxtapus.TSETMC.get_all_ins_code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.TSETMC.requests">
+<span class="sig-name descname"><span class="pre">requests</span></span><a class="headerlink" href="#oxtapus.TSETMC.requests" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.TSETMC.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#oxtapus.TSETMC.url" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="oxtapus.TSETMC.async_req">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="headerlink" href="#oxtapus.TSETMC.async_req" title="Link to this definition">#</a></dt>
@@ -565,33 +578,41 @@ document.write(`
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;65883838195688438&quot;</span><span class="p">])</span>
-<span class="go">shape: (2, 17)</span>
-<span class="go">┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐</span>
-<span class="go">│ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │</span>
-<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │</span>
-<span class="go">│ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │</span>
-<span class="go">│            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │</span>
-<span class="go">╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡</span>
-<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │</span>
-<span class="go">│ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │</span>
-<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │</span>
-<span class="go">│ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │</span>
-<span class="go">└────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘</span>
+<span class="go">shape: (2, 24)</span>
+<span class="go">┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐</span>
+<span class="go">│ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │</span>
+<span class="go">│ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │</span>
+<span class="go">╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡</span>
+<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │</span>
+<span class="go">│ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │</span>
+<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │</span>
+<span class="go">│ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │</span>
+<span class="go">└────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;شپنا&quot;</span><span class="p">,</span> <span class="s2">&quot;خودرو&quot;</span><span class="p">])</span>
-<span class="go">shape: (2, 17)</span>
-<span class="go">┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐</span>
-<span class="go">│ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │</span>
-<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │</span>
-<span class="go">│ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │</span>
-<span class="go">│            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │</span>
-<span class="go">╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡</span>
-<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │</span>
-<span class="go">│ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │</span>
-<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │</span>
-<span class="go">│ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │</span>
-<span class="go">└────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘</span>
+<span class="go">shape: (2, 24)</span>
+<span class="go">┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐</span>
+<span class="go">│ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │</span>
+<span class="go">│ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │</span>
+<span class="go">╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡</span>
+<span class="go">│ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │</span>
+<span class="go">│ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │</span>
+<span class="go">│ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │</span>
+<span class="go">│ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │</span>
+<span class="go">│            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │</span>
+<span class="go">└────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1290,7 +1311,17 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.Rahavard">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rahavard</span></span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard" title="Link to this definition">#</a></dt>
-<dd><dl class="py method">
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#oxtapus.Rahavard.url" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.last_get_stocks">
+<span class="sig-name descname"><span class="pre">last_get_stocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#oxtapus.Rahavard.last_get_stocks" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.Rahavard.stocks">
 <span class="sig-name descname"><span class="pre">stocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.stocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.stocks" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1494,7 +1525,12 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TGJU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.tgju.org/v1'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
       داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
-</div><dl class="py method">
+</div><dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.TGJU.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#oxtapus.TGJU.base_url" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="oxtapus.TGJU.usd_irr">
 <span class="sig-name descname"><span class="pre">usd_irr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.usd_irr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.usd_irr" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
@@ -1592,9 +1628,20 @@ document.write(`
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.silver">
+<span class="sig-name descname"><span class="pre">silver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.silver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.silver" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
-</section>
+</dd></dl>
+
 </section>
 </section>
 
@@ -1605,8 +1652,8 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../index.html"
@@ -1622,7 +1669,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></p>
+        <p class="prev-next-title">oxtapus.models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1635,55 +1682,63 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.tse_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.tse_options_mw()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ifb_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.ifb_options_mw()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_info()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.specific_option_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.specific_option_data()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.intraday_trades"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.intraday_trades_based_on_timeframe"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades_based_on_timeframe()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.last_ins_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_ins_data()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.share_change"><code class="docutils literal notranslate"><span class="pre">TSETMC.share_change()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.indexes"><code class="docutils literal notranslate"><span class="pre">TSETMC.indexes()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.symbols_that_index_tracks"><code class="docutils literal notranslate"><span class="pre">TSETMC.symbols_that_index_tracks()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_market_activity_datetime()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adjust_price_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.adjust_price_flow()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_share_change_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_share_change_flow()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.get_all_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.get_all_ins_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.requests"><code class="docutils literal notranslate"><span class="pre">TSETMC.requests</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.url"><code class="docutils literal notranslate"><span class="pre">TSETMC.url</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.async_req"><code class="docutils literal notranslate"><span class="pre">TSETMC.async_req</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.mw()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.tse_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.tse_options_mw()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ifb_options_mw"><code class="docutils literal notranslate"><span class="pre">TSETMC.ifb_options_mw()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.search_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.search_ins_code()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_info"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.specific_option_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.specific_option_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.hist_price()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adj_hist_price"><code class="docutils literal notranslate"><span class="pre">TSETMC.adj_hist_price()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.intraday_trades"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.intraday_trades_based_on_timeframe"><code class="docutils literal notranslate"><span class="pre">TSETMC.intraday_trades_based_on_timeframe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.last_ins_data"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_ins_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.client_type"><code class="docutils literal notranslate"><span class="pre">TSETMC.client_type()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.share_change"><code class="docutils literal notranslate"><span class="pre">TSETMC.share_change()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.indexes"><code class="docutils literal notranslate"><span class="pre">TSETMC.indexes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.symbols_that_index_tracks"><code class="docutils literal notranslate"><span class="pre">TSETMC.symbols_that_index_tracks()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.index_hist"><code class="docutils literal notranslate"><span class="pre">TSETMC.index_hist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.last_market_activity_datetime"><code class="docutils literal notranslate"><span class="pre">TSETMC.last_market_activity_datetime()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adjust_price_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.adjust_price_flow()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_share_change_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_share_change_flow()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.stocks()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.handle_get_stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.handle_get_stock()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.url"><code class="docutils literal notranslate"><span class="pre">Rahavard.url</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.last_get_stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.last_get_stocks</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.stocks()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.handle_get_stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.handle_get_stock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.rob_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.rob_sekke()</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.ons"><code class="docutils literal notranslate"><span class="pre">TGJU.ons()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.base_url"><code class="docutils literal notranslate"><span class="pre">TGJU.base_url</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.rob_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.rob_sekke()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.ons"><code class="docutils literal notranslate"><span class="pre">TGJU.ons()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.silver"><code class="docutils literal notranslate"><span class="pre">TGJU.silver()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1692,6 +1747,7 @@ document.write(`
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../../_sources/autoapi/oxtapus/index.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -1712,8 +1768,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1721,6 +1777,7 @@ document.write(`
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2023, Metafid.
@@ -1730,8 +1787,9 @@ document.write(`
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>
@@ -1742,8 +1800,9 @@ document.write(`
   
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

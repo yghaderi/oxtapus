@@ -2,50 +2,50 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>oxtapus.models.tsetmc &#8212; oxtapus 0.3.0 documentation</title>
+    <title>oxtapus.models.tsetmc &#8212; oxtapus 0.3.5 documentation</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../../_static/documentation_options.js?v=e259d695"></script>
-    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=4ea706d9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/oxtapus/models/tsetmc/index';</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="oxtapus.codal" href="../../codal/index.html" />
+    <link rel="next" title="oxtapus.fipiran" href="../../fipiran/index.html" />
     <link rel="prev" title="oxtapus.models.rahavard" href="../rahavard/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -56,28 +56,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -99,17 +94,25 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../../index.html">
@@ -119,7 +122,7 @@
   
   
   
-    <p class="title logo__title">oxtapus 0.3.0 documentation</p>
+    <p class="title logo__title">oxtapus 0.3.5 documentation</p>
   
 </a></div>
     
@@ -129,21 +132,16 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../../index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -154,9 +152,10 @@
       
         <div class="navbar-item navbar-persistent--container">
           
+
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -167,12 +166,13 @@
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -183,9 +183,10 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
+
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -196,16 +197,19 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -216,23 +220,21 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../../index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -241,12 +243,13 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -256,22 +259,23 @@ document.write(`
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.rahavard</span></code></a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.tsetmc</span></code></a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html">oxtapus.models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../rahavard/index.html">oxtapus.models.rahavard</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">oxtapus.models.tsetmc</a></li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../codal/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rahavard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.rahavard</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tgju/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tgju</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tsetmc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.tsetmc</span></code></a></li>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fipiran/index.html">oxtapus.fipiran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rahavard/index.html">oxtapus.rahavard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tgju/index.html">oxtapus.tgju</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tsetmc/index.html">oxtapus.tsetmc</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -286,13 +290,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -303,7 +307,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -318,9 +322,9 @@ document.write(`
     <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
     
     
-    <li class="breadcrumb-item"><a href="../index.html" class="nav-link"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models</span></code></a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">oxtapus.models</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+    <li class="breadcrumb-item active" aria-current="page">oxtapus.mode...</li>
   </ul>
 </nav>
 </div>
@@ -335,32 +339,49 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="module-oxtapus.models.tsetmc">
-<span id="oxtapus-models-tsetmc"></span><h1><a class="reference internal" href="#module-oxtapus.models.tsetmc" title="oxtapus.models.tsetmc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.tsetmc</span></code></a><a class="headerlink" href="#module-oxtapus.models.tsetmc" title="Link to this heading">#</a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<span id="oxtapus-models-tsetmc"></span><h1>oxtapus.models.tsetmc<a class="headerlink" href="#module-oxtapus.models.tsetmc" title="Link to this heading">#</a></h1>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h3>
-<table class="autosummary longtable table autosummary">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.MarketWatchOrderBook" title="oxtapus.models.tsetmc.MarketWatchOrderBook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarketWatchOrderBook</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.MarketWatch" title="oxtapus.models.tsetmc.MarketWatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarketWatch</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.ClientTypeAll" title="oxtapus.models.tsetmc.ClientTypeAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientTypeAll</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.HistPrice" title="oxtapus.models.tsetmc.HistPrice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HistPrice</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.MarketWatch" title="oxtapus.models.tsetmc.MarketWatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarketWatch</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.HistPrice" title="oxtapus.models.tsetmc.HistPrice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HistPrice</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.EPS" title="oxtapus.models.tsetmc.EPS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EPS</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.Sector" title="oxtapus.models.tsetmc.Sector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sector</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.StaticThreshold" title="oxtapus.models.tsetmc.StaticThreshold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StaticThreshold</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.tsetmc.InsInfo" title="oxtapus.models.tsetmc.InsInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsInfo</span></code></a></p></td>
+<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.tsetmc.MarketWatchOrderBook">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarketWatchOrderBook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#MarketWatchOrderBook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.MarketWatchOrderBook" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarketWatchOrderBook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#MarketWatchOrderBook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.MarketWatchOrderBook" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.tsetmc.MarketWatchOrderBook.__class_vars__">
@@ -499,10 +520,162 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="oxtapus.models.tsetmc.MarketWatch">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarketWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#MarketWatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.MarketWatch" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ClientTypeAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of classvars defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The signature for instantiating the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the values of extra fields from validation when
+<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the names of fields explicitly set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.ins_code">
+<span class="sig-name descname"><span class="pre">ins_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.ins_code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ind">
+<span class="sig-name descname"><span class="pre">buy_vol_ind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.buy_vol_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ind" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ins">
+<span class="sig-name descname"><span class="pre">buy_vol_ins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.buy_vol_ins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ins" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.buy_count_ind">
+<span class="sig-name descname"><span class="pre">buy_count_ind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.buy_count_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_count_ind" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.buy_count_ins">
+<span class="sig-name descname"><span class="pre">buy_count_ins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.buy_count_ins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_count_ins" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ind">
+<span class="sig-name descname"><span class="pre">sell_vol_ind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.sell_vol_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ind" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ins">
+<span class="sig-name descname"><span class="pre">sell_vol_ins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.sell_vol_ins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ins" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.sell_count_ind">
+<span class="sig-name descname"><span class="pre">sell_count_ind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.sell_count_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_count_ind" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.ClientTypeAll.sell_count_ins">
+<span class="sig-name descname"><span class="pre">sell_count_ins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#ClientTypeAll.sell_count_ins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_count_ins" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.MarketWatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarketWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#MarketWatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.MarketWatch" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.tsetmc.MarketWatch.__class_vars__">
@@ -727,9 +900,9 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.tsetmc.HistPrice">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HistPrice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#HistPrice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.HistPrice" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HistPrice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#HistPrice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.HistPrice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.5/concepts/models/">https://docs.pydantic.dev/2.5/concepts/models/</a></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.tsetmc.HistPrice.__class_vars__">
@@ -892,7 +1065,589 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 </dd></dl>
 
-</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#EPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.EPS" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of classvars defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The signature for instantiating the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#EPS.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#EPS.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the values of extra fields from validation when
+<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the names of fields explicitly set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.eps">
+<span class="sig-name descname"><span class="pre">eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#EPS.eps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.eps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.EPS.sector_pe">
+<span class="sig-name descname"><span class="pre">sector_pe</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#EPS.sector_pe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.EPS.sector_pe" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#Sector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.Sector" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of classvars defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The signature for instantiating the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#Sector.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#Sector.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the values of extra fields from validation when
+<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the names of fields explicitly set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.code">
+<span class="sig-name descname"><span class="pre">code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#Sector.code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.Sector.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#Sector.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.Sector.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StaticThreshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#StaticThreshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of classvars defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The signature for instantiating the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#StaticThreshold.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#StaticThreshold.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the values of extra fields from validation when
+<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the names of fields explicitly set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.min_threshold">
+<span class="sig-name descname"><span class="pre">min_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#StaticThreshold.min_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.min_threshold" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.StaticThreshold.max_threshold">
+<span class="sig-name descname"><span class="pre">max_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#StaticThreshold.max_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.StaticThreshold.max_threshold" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InsInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of classvars defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The signature for instantiating the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the values of extra fields from validation when
+<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>An instance attribute with the names of fields explicitly set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.ins_code">
+<span class="sig-name descname"><span class="pre">ins_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.ins_code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.ins_id">
+<span class="sig-name descname"><span class="pre">ins_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.ins_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.ins_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.isin">
+<span class="sig-name descname"><span class="pre">isin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.isin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.isin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.symbol">
+<span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.symbol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.symbol" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.name_en">
+<span class="sig-name descname"><span class="pre">name_en</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.name_en"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.name_en" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.eps">
+<span class="sig-name descname"><span class="pre">eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.eps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.eps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.sector_pe">
+<span class="sig-name descname"><span class="pre">sector_pe</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.sector_pe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.sector_pe" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.static_threshold">
+<span class="sig-name descname"><span class="pre">static_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#oxtapus.models.tsetmc.StaticThreshold" title="oxtapus.models.tsetmc.StaticThreshold"><span class="pre">StaticThreshold</span></a></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.static_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.static_threshold" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.min_week">
+<span class="sig-name descname"><span class="pre">min_week</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.min_week"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.min_week" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.max_week">
+<span class="sig-name descname"><span class="pre">max_week</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.max_week"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.max_week" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.min_year">
+<span class="sig-name descname"><span class="pre">min_year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.min_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.min_year" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.max_year">
+<span class="sig-name descname"><span class="pre">max_year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.max_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.max_year" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.mean_vol_monthly">
+<span class="sig-name descname"><span class="pre">mean_vol_monthly</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.mean_vol_monthly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.mean_vol_monthly" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.pct_float_shares">
+<span class="sig-name descname"><span class="pre">pct_float_shares</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.pct_float_shares"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.pct_float_shares" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.base_vol">
+<span class="sig-name descname"><span class="pre">base_vol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.base_vol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.base_vol" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.capital">
+<span class="sig-name descname"><span class="pre">capital</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.capital"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.capital" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.contract_size">
+<span class="sig-name descname"><span class="pre">contract_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.contract_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.contract_size" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.sector_code">
+<span class="sig-name descname"><span class="pre">sector_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.sector_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.sector_code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.sector_name">
+<span class="sig-name descname"><span class="pre">sector_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.sector_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.sector_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.market_name">
+<span class="sig-name descname"><span class="pre">market_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.market_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.market_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.market_code">
+<span class="sig-name descname"><span class="pre">market_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.market_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.market_code" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.market_type">
+<span class="sig-name descname"><span class="pre">market_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.market_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.market_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.group_type">
+<span class="sig-name descname"><span class="pre">group_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.group_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.group_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.models.tsetmc.InsInfo.flatten_eps_sector">
+<span class="sig-name descname"><span class="pre">flatten_eps_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.v1.utils.GetterDict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/tsetmc.html#InsInfo.flatten_eps_sector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.tsetmc.InsInfo.flatten_eps_sector" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -903,8 +1658,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../rahavard/index.html"
@@ -912,15 +1667,15 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.models.rahavard</span></code></p>
+        <p class="prev-next-title">oxtapus.models.rahavard</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../codal/index.html"
+       href="../../fipiran/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oxtapus.codal</span></code></p>
+        <p class="prev-next-title">oxtapus.fipiran</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -933,114 +1688,250 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__class_vars__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__class_vars__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__private_attributes__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__signature__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__signature__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_complete__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_core_schema__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_custom_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_decorators__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_generic_metadata__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_parent_namespace__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_post_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_root_model__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_serializer__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_validator__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_extra__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_fields_set__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_private__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ob_level"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ob_level</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_count"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_count</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_size"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_size</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_price"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_price</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_price"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_price</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_size"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_size</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_count"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_count</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__class_vars__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__signature__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ob_level"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ob_level</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_count"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_count</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_size"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_size</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_price"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.bid_price</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_price"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_price</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_size"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_size</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_count"><code class="docutils literal notranslate"><span class="pre">MarketWatchOrderBook.ask_count</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch"><code class="docutils literal notranslate"><span class="pre">MarketWatch</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__class_vars__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__class_vars__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__private_attributes__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__signature__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__signature__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_complete__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_core_schema__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_custom_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_decorators__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_generic_metadata__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_parent_namespace__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_post_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_root_model__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_serializer__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_validator__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_extra__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_fields_set__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_private__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ins_code"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ins_code</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ins_id"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ins_id</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.symbol"><code class="docutils literal notranslate"><span class="pre">MarketWatch.symbol</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.name"><code class="docutils literal notranslate"><span class="pre">MarketWatch.name</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.eps"><code class="docutils literal notranslate"><span class="pre">MarketWatch.eps</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.pe"><code class="docutils literal notranslate"><span class="pre">MarketWatch.pe</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.bid"><code class="docutils literal notranslate"><span class="pre">MarketWatch.bid</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ask"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ask</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.open"><code class="docutils literal notranslate"><span class="pre">MarketWatch.open</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.high"><code class="docutils literal notranslate"><span class="pre">MarketWatch.high</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.low"><code class="docutils literal notranslate"><span class="pre">MarketWatch.low</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.close"><code class="docutils literal notranslate"><span class="pre">MarketWatch.close</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.final"><code class="docutils literal notranslate"><span class="pre">MarketWatch.final</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.y_final"><code class="docutils literal notranslate"><span class="pre">MarketWatch.y_final</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.value"><code class="docutils literal notranslate"><span class="pre">MarketWatch.value</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.volume"><code class="docutils literal notranslate"><span class="pre">MarketWatch.volume</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.trade_count"><code class="docutils literal notranslate"><span class="pre">MarketWatch.trade_count</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.max_lim"><code class="docutils literal notranslate"><span class="pre">MarketWatch.max_lim</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.min_lim"><code class="docutils literal notranslate"><span class="pre">MarketWatch.min_lim</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.capital"><code class="docutils literal notranslate"><span class="pre">MarketWatch.capital</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.base_volume"><code class="docutils literal notranslate"><span class="pre">MarketWatch.base_volume</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.event_time"><code class="docutils literal notranslate"><span class="pre">MarketWatch.event_time</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.order_book"><code class="docutils literal notranslate"><span class="pre">MarketWatch.order_book</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.parce_pe"><code class="docutils literal notranslate"><span class="pre">MarketWatch.parce_pe()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__class_vars__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__signature__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.ins_code"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.ins_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ind"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.buy_vol_ind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_vol_ins"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.buy_vol_ins</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_count_ind"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.buy_count_ind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.buy_count_ins"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.buy_count_ins</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ind"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.sell_vol_ind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ins"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.sell_vol_ins</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_count_ind"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.sell_count_ind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.ClientTypeAll.sell_count_ins"><code class="docutils literal notranslate"><span class="pre">ClientTypeAll.sell_count_ins</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice"><code class="docutils literal notranslate"><span class="pre">HistPrice</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__class_vars__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__class_vars__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__private_attributes__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__signature__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__signature__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_complete__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_core_schema__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_custom_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_decorators__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_generic_metadata__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_parent_namespace__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_post_init__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_root_model__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_serializer__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_validator__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_extra__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_fields_set__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_private__</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.date"><code class="docutils literal notranslate"><span class="pre">HistPrice.date</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.ins_code"><code class="docutils literal notranslate"><span class="pre">HistPrice.ins_code</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.open"><code class="docutils literal notranslate"><span class="pre">HistPrice.open</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.high"><code class="docutils literal notranslate"><span class="pre">HistPrice.high</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.low"><code class="docutils literal notranslate"><span class="pre">HistPrice.low</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.close"><code class="docutils literal notranslate"><span class="pre">HistPrice.close</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.final"><code class="docutils literal notranslate"><span class="pre">HistPrice.final</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.y_final"><code class="docutils literal notranslate"><span class="pre">HistPrice.y_final</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.volume"><code class="docutils literal notranslate"><span class="pre">HistPrice.volume</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.value"><code class="docutils literal notranslate"><span class="pre">HistPrice.value</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.trade_count"><code class="docutils literal notranslate"><span class="pre">HistPrice.trade_count</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.parse_date"><code class="docutils literal notranslate"><span class="pre">HistPrice.parse_date()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch"><code class="docutils literal notranslate"><span class="pre">MarketWatch</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__class_vars__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__signature__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">MarketWatch.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ins_code"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ins_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ins_id"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ins_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.symbol"><code class="docutils literal notranslate"><span class="pre">MarketWatch.symbol</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.name"><code class="docutils literal notranslate"><span class="pre">MarketWatch.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.eps"><code class="docutils literal notranslate"><span class="pre">MarketWatch.eps</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.pe"><code class="docutils literal notranslate"><span class="pre">MarketWatch.pe</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.bid"><code class="docutils literal notranslate"><span class="pre">MarketWatch.bid</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.ask"><code class="docutils literal notranslate"><span class="pre">MarketWatch.ask</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.open"><code class="docutils literal notranslate"><span class="pre">MarketWatch.open</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.high"><code class="docutils literal notranslate"><span class="pre">MarketWatch.high</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.low"><code class="docutils literal notranslate"><span class="pre">MarketWatch.low</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.close"><code class="docutils literal notranslate"><span class="pre">MarketWatch.close</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.final"><code class="docutils literal notranslate"><span class="pre">MarketWatch.final</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.y_final"><code class="docutils literal notranslate"><span class="pre">MarketWatch.y_final</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.value"><code class="docutils literal notranslate"><span class="pre">MarketWatch.value</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.volume"><code class="docutils literal notranslate"><span class="pre">MarketWatch.volume</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.trade_count"><code class="docutils literal notranslate"><span class="pre">MarketWatch.trade_count</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.max_lim"><code class="docutils literal notranslate"><span class="pre">MarketWatch.max_lim</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.min_lim"><code class="docutils literal notranslate"><span class="pre">MarketWatch.min_lim</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.capital"><code class="docutils literal notranslate"><span class="pre">MarketWatch.capital</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.base_volume"><code class="docutils literal notranslate"><span class="pre">MarketWatch.base_volume</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.event_time"><code class="docutils literal notranslate"><span class="pre">MarketWatch.event_time</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.order_book"><code class="docutils literal notranslate"><span class="pre">MarketWatch.order_book</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.MarketWatch.parce_pe"><code class="docutils literal notranslate"><span class="pre">MarketWatch.parce_pe()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice"><code class="docutils literal notranslate"><span class="pre">HistPrice</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__class_vars__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__signature__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">HistPrice.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.date"><code class="docutils literal notranslate"><span class="pre">HistPrice.date</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.ins_code"><code class="docutils literal notranslate"><span class="pre">HistPrice.ins_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.open"><code class="docutils literal notranslate"><span class="pre">HistPrice.open</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.high"><code class="docutils literal notranslate"><span class="pre">HistPrice.high</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.low"><code class="docutils literal notranslate"><span class="pre">HistPrice.low</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.close"><code class="docutils literal notranslate"><span class="pre">HistPrice.close</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.final"><code class="docutils literal notranslate"><span class="pre">HistPrice.final</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.y_final"><code class="docutils literal notranslate"><span class="pre">HistPrice.y_final</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.volume"><code class="docutils literal notranslate"><span class="pre">HistPrice.volume</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.value"><code class="docutils literal notranslate"><span class="pre">HistPrice.value</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.trade_count"><code class="docutils literal notranslate"><span class="pre">HistPrice.trade_count</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.HistPrice.parse_date"><code class="docutils literal notranslate"><span class="pre">HistPrice.parse_date()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS"><code class="docutils literal notranslate"><span class="pre">EPS</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__class_vars__"><code class="docutils literal notranslate"><span class="pre">EPS.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">EPS.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__signature__"><code class="docutils literal notranslate"><span class="pre">EPS.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">EPS.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.eps"><code class="docutils literal notranslate"><span class="pre">EPS.eps</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.EPS.sector_pe"><code class="docutils literal notranslate"><span class="pre">EPS.sector_pe</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector"><code class="docutils literal notranslate"><span class="pre">Sector</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__class_vars__"><code class="docutils literal notranslate"><span class="pre">Sector.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">Sector.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__signature__"><code class="docutils literal notranslate"><span class="pre">Sector.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">Sector.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.code"><code class="docutils literal notranslate"><span class="pre">Sector.code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.Sector.name"><code class="docutils literal notranslate"><span class="pre">Sector.name</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold"><code class="docutils literal notranslate"><span class="pre">StaticThreshold</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__class_vars__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__signature__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.min_threshold"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.min_threshold</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.StaticThreshold.max_threshold"><code class="docutils literal notranslate"><span class="pre">StaticThreshold.max_threshold</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo"><code class="docutils literal notranslate"><span class="pre">InsInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__class_vars__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__signature__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">InsInfo.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.ins_code"><code class="docutils literal notranslate"><span class="pre">InsInfo.ins_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.ins_id"><code class="docutils literal notranslate"><span class="pre">InsInfo.ins_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.isin"><code class="docutils literal notranslate"><span class="pre">InsInfo.isin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.symbol"><code class="docutils literal notranslate"><span class="pre">InsInfo.symbol</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.name"><code class="docutils literal notranslate"><span class="pre">InsInfo.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.name_en"><code class="docutils literal notranslate"><span class="pre">InsInfo.name_en</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.eps"><code class="docutils literal notranslate"><span class="pre">InsInfo.eps</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.sector_pe"><code class="docutils literal notranslate"><span class="pre">InsInfo.sector_pe</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.static_threshold"><code class="docutils literal notranslate"><span class="pre">InsInfo.static_threshold</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.min_week"><code class="docutils literal notranslate"><span class="pre">InsInfo.min_week</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.max_week"><code class="docutils literal notranslate"><span class="pre">InsInfo.max_week</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.min_year"><code class="docutils literal notranslate"><span class="pre">InsInfo.min_year</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.max_year"><code class="docutils literal notranslate"><span class="pre">InsInfo.max_year</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.mean_vol_monthly"><code class="docutils literal notranslate"><span class="pre">InsInfo.mean_vol_monthly</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.pct_float_shares"><code class="docutils literal notranslate"><span class="pre">InsInfo.pct_float_shares</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.base_vol"><code class="docutils literal notranslate"><span class="pre">InsInfo.base_vol</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.capital"><code class="docutils literal notranslate"><span class="pre">InsInfo.capital</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.contract_size"><code class="docutils literal notranslate"><span class="pre">InsInfo.contract_size</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.sector_code"><code class="docutils literal notranslate"><span class="pre">InsInfo.sector_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.sector_name"><code class="docutils literal notranslate"><span class="pre">InsInfo.sector_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.market_name"><code class="docutils literal notranslate"><span class="pre">InsInfo.market_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.market_code"><code class="docutils literal notranslate"><span class="pre">InsInfo.market_code</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.market_type"><code class="docutils literal notranslate"><span class="pre">InsInfo.market_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.group_type"><code class="docutils literal notranslate"><span class="pre">InsInfo.group_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.tsetmc.InsInfo.flatten_eps_sector"><code class="docutils literal notranslate"><span class="pre">InsInfo.flatten_eps_sector()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1049,6 +1940,7 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../../../../_sources/autoapi/oxtapus/models/tsetmc/index.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -1069,8 +1961,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1078,6 +1970,7 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2023, Metafid.
@@ -1087,8 +1980,9 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>
@@ -1099,8 +1993,9 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
   
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

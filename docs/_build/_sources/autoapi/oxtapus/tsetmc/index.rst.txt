@@ -1,14 +1,11 @@
-:py:mod:`oxtapus.tsetmc`
-========================
+oxtapus.tsetmc
+==============
 
 .. py:module:: oxtapus.tsetmc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -16,12 +13,13 @@ Classes
    oxtapus.tsetmc.TSETMC
 
 
-
+Module Contents
+---------------
 
 .. py:class:: MWSections
 
-
    Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
 
    str(object='') -> str
    str(bytes_or_buffer[, encoding[, errors]]) -> str
@@ -34,59 +32,68 @@ Classes
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
 
+
    .. py:attribute:: stock
       :value: 'stock'
 
-      
+
 
    .. py:attribute:: ifb_paye
       :value: 'ifb_paye'
 
-      
+
 
    .. py:attribute:: mortgage
       :value: 'mortgage'
 
-      
+
 
    .. py:attribute:: cum_right
       :value: 'cum_right'
 
-      
+
 
    .. py:attribute:: bond
       :value: 'bond'
 
-      
+
 
    .. py:attribute:: options
       :value: 'options'
 
-      
+
 
    .. py:attribute:: futures
       :value: 'futures'
 
-      
+
 
    .. py:attribute:: etf
       :value: 'etf'
 
-      
+
 
    .. py:attribute:: commodity
       :value: 'commodity'
 
-      
 
 
 .. py:class:: TSETMC(async_req: bool = False, get_all_ins_code: bool = False)
-
 
    :param async_req:
    :type async_req: bool, default False
    :param get_all_ins_code: اگه 'True' باشه نمادهای حذف-شده(تغییرٍ بازار) رو هم میاره
    :type get_all_ins_code: bool, default False
+
+
+   .. py:attribute:: get_all_ins_code
+
+
+   .. py:attribute:: requests
+
+
+   .. py:attribute:: url
+
 
    .. py:property:: async_req
 
@@ -118,6 +125,7 @@ Classes
       >>> from oxtapus import TSETMC
       >>> tsetmc = TSETMC()
       >>> tsetmc.mw(["stock", "etf", "options"])
+
 
 
    .. py:method:: tse_options_mw()
@@ -155,6 +163,7 @@ Classes
       └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴────────────────────────────────┴──────────┴───────────────────┘
 
 
+
    .. py:method:: ifb_options_mw()
 
       .. raw:: html
@@ -190,6 +199,7 @@ Classes
       └───────────────────┴───────────┴──────────┴────────────┴───┴────────────────┴───────────────────────────────┴─────────────┴───────────────────┘
 
 
+
    .. py:method:: search_ins_code(symbol: str) -> list[str]
 
       .. raw:: html
@@ -210,6 +220,7 @@ Classes
       >>> tsetmc = TSETMC()
       >>> tsetmc.search_ins_code("شپدیس")
       ['20562694899904339']
+
 
 
    .. py:method:: ins_info(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
@@ -262,32 +273,41 @@ Classes
       >>> from oxtapus import TSETMC
       >>> tsetmc = TSETMC(async_req=True)
       >>> tsetmc.ins_info(ins_code = ["7745894403636165", "65883838195688438"])
-      shape: (2, 17)
-      ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
-      │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
-      │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
-      │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
-      │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
-      ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
-      │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
-      │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
-      │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
-      │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
-      └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+      shape: (2, 24)
+      ┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐
+      │ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │
+      │ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │
+      │ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │
+      │            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │
+      ╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡
+      │ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │
+      │ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+      │ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │
+      │ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+      └────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘
 
       >>> tsetmc.ins_info(symbol = ["شپنا", "خودرو"])
-      shape: (2, 17)
-      ┌────────────┬────────────┬───────────┬────────────┬───┬──────────┬───────┬────────────┬───────────┐
-      │ ins_code   ┆ ins_id     ┆ symbol_en ┆ name_en    ┆ … ┆ base_vol ┆ eps   ┆ pct_float_ ┆ contract_ │
-      │ ---        ┆ ---        ┆ ---       ┆ ---        ┆   ┆ ---      ┆ ---   ┆ shares     ┆ size      │
-      │ str        ┆ str        ┆ str       ┆ str        ┆   ┆ i64      ┆ str   ┆ ---        ┆ ---       │
-      │            ┆            ┆           ┆            ┆   ┆          ┆       ┆ str        ┆ i64       │
-      ╞════════════╪════════════╪═══════════╪════════════╪═══╪══════════╪═══════╪════════════╪═══════════╡
-      │ 7745894403 ┆ IRO1PNES00 ┆ PNES      ┆ S*Isf. Oil ┆ … ┆ 14760148 ┆ 1675  ┆ 43         ┆ 0         │
-      │ 636165     ┆ 01         ┆           ┆ Ref.Co.    ┆   ┆          ┆       ┆            ┆           │
-      │ 6588383819 ┆ IRO1IKCO00 ┆ IKCO      ┆ Iran       ┆ … ┆ 51746442 ┆ -1359 ┆ 36         ┆ 0         │
-      │ 5688438    ┆ 01         ┆           ┆ Khodro     ┆   ┆          ┆       ┆            ┆           │
-      └────────────┴────────────┴───────────┴────────────┴───┴──────────┴───────┴────────────┴───────────┘
+      shape: (2, 24)
+      ┌────────────┬────────────┬───────────┬────────┬───┬───────────┬───────────┬───────────┬───────────┐
+      │ ins_code   ┆ ins_id     ┆ isin      ┆ symbol ┆ … ┆ market_na ┆ market_co ┆ market_ty ┆ group_typ │
+      │ ---        ┆ ---        ┆ ---       ┆ ---    ┆   ┆ me        ┆ de        ┆ pe        ┆ e         │
+      │ str        ┆ str        ┆ str       ┆ str    ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---       │
+      │            ┆            ┆           ┆        ┆   ┆ str       ┆ i64       ┆ str       ┆ str       │
+      ╞════════════╪════════════╪═══════════╪════════╪═══╪═══════════╪═══════════╪═══════════╪═══════════╡
+      │ 7745894403 ┆ IRO1PNES00 ┆ IRO1PNES0 ┆ شپنا   ┆ … ┆ بازار     ┆ 1         ┆ بازار اول ┆ N1        │
+      │ 636165     ┆ 01         ┆ 000       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ اصلی)     ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+      │ 6588383819 ┆ IRO1IKCO00 ┆ IRO1IKCO0 ┆ خودرو  ┆ … ┆ بازار     ┆ 1         ┆ بازار دوم ┆ N2        │
+      │ 5688438    ┆ 01         ┆ 008       ┆        ┆   ┆ بورس      ┆           ┆ (تابلوی   ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ فرعی)     ┆           │
+      │            ┆            ┆           ┆        ┆   ┆           ┆           ┆ بورس      ┆           │
+      └────────────┴────────────┴───────────┴────────┴───┴───────────┴───────────┴───────────┴───────────┘
+
 
 
    .. py:method:: specific_option_data(ins_id: str | list[str]) -> polars.DataFrame
@@ -312,6 +332,7 @@ Classes
       │ 8907495648806531 ┆ 65883838195688438 ┆ 2023-09-30   ┆ 2024-02-21 ┆ 1000     ┆ 2600.0 ┆ 1006          │
       │ 4785638272776115 ┆ 65883838195688438 ┆ 2023-10-28   ┆ 2024-03-27 ┆ 1000     ┆ 3750.0 ┆ 0             │
       └──────────────────┴───────────────────┴──────────────┴────────────┴──────────┴────────┴───────────────┘
+
 
 
    .. py:method:: hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None) -> polars.DataFrame
@@ -408,6 +429,7 @@ Classes
       └───────────────────┴────────────┴────────┴────────┴───┴─────────┴──────────────┴───────────┴─────────────┘
 
 
+
    .. py:method:: adj_hist_price(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, start: str | None = None, end: str | None = None) -> polars.DataFrame
 
       .. raw:: html
@@ -483,6 +505,7 @@ Classes
       └───────────────────┴────────────┴────────┴────────┴───┴────────────┴────────────┴────────────┴────────────┘
 
 
+
    .. py:method:: intraday_trades(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
 
       .. raw:: html
@@ -519,6 +542,7 @@ Classes
       │ 2023-11-01 12:29:06 ┆ 189       ┆ 77000.0 ┆ 411    │
       │ 2023-11-01 12:29:06 ┆ 190       ┆ 77000.0 ┆ 500    │
       └─────────────────────┴───────────┴─────────┴────────┘
+
 
 
    .. py:method:: intraday_trades_based_on_timeframe(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None, timeframe: str = '5m') -> polars.DataFrame
@@ -561,6 +585,7 @@ Classes
       │ 2023-11-01 12:20:00 ┆ 77000.0 ┆ 77350.0 ┆ 77000.0 ┆ 77350.0 ┆ 7660   ┆ 5.915905e8 │
       │ 2023-11-01 12:25:00 ┆ 77200.0 ┆ 77200.0 ┆ 77000.0 ┆ 77000.0 ┆ 2981   ┆ 2.29551e8  │
       └─────────────────────┴─────────┴─────────┴─────────┴─────────┴────────┴────────────┘
+
 
 
    .. py:method:: last_ins_data(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
@@ -621,6 +646,7 @@ Classes
       │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │
       │ 2023-11-01 ┆ 122959 ┆ A      ┆ مجاز       ┆ … ┆ 2023-11-01 ┆ 122959     ┆ false   ┆ false   │
       └────────────┴────────┴────────┴────────────┴───┴────────────┴────────────┴─────────┴─────────┘
+
 
 
    .. py:method:: client_type(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
@@ -690,6 +716,7 @@ Classes
       └────────────┴───────────────────┴──────────────────┴───┴───────────────┴───────────────────┴───────────────────┘
 
 
+
    .. py:method:: share_change(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
 
       .. raw:: html
@@ -757,6 +784,7 @@ Classes
       └────────────┴───────────────────┴───────────┴───────────┘
 
 
+
    .. py:method:: indexes()
 
       .. raw:: html
@@ -772,6 +800,7 @@ Classes
       >>> from oxtapus import TSETMC
       >>> tsetmc = TSETMC()
       >>> tsetmc.indexes()
+
 
 
    .. py:method:: symbols_that_index_tracks(ind_code: str | list[str])
@@ -810,6 +839,7 @@ Classes
       └───────────────────┴───────────────────┴────────┘
 
 
+
    .. py:method:: index_hist(ind_code: str | list[str])
 
       .. raw:: html
@@ -846,6 +876,7 @@ Classes
       └────────────┴───────────────────┴──────────┴──────────┴──────────┘
 
 
+
    .. py:method:: last_market_activity_datetime()
 
       .. raw:: html
@@ -864,6 +895,7 @@ Classes
       datetime.datetime(2023, 11, 3, 20, 7, 36, 378137)
       >>> TSETMC().last_market_activity_datetime()
       datetime.datetime(2023, 11, 1, 19, 21, 24)
+
 
 
    .. py:method:: shareholder_list(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
@@ -898,6 +930,7 @@ Classes
       └──────────────┴───────────────────────────────────┴──────────────┴────────────┴────────┴───────────────┘
 
 
+
    .. py:method:: adjust_price_flow(last_records: int)
 
       .. raw:: html
@@ -927,6 +960,7 @@ Classes
       │ 55862580907068610 ┆ شملي   ┆ 2024-01-21 ┆ 8090.0    ┆ 8630.0  │
       │ 21096748051392414 ┆ سغدير  ┆ 2024-01-20 ┆ 8900.0    ┆ 10090.0 │
       └───────────────────┴────────┴────────────┴───────────┴─────────┘
+
 
 
    .. py:method:: ins_share_change_flow()

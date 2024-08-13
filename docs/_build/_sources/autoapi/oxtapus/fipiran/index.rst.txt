@@ -1,0 +1,19 @@
+oxtapus.fipiran
+===============
+
+.. py:module:: oxtapus.fipiran
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   oxtapus.fipiran.Fipiran
+
+
+Module Contents
+---------------
+
+.. py:class:: Fipiran
+

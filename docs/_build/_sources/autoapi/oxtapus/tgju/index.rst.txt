@@ -1,30 +1,31 @@
-:py:mod:`oxtapus.tgju`
-======================
+oxtapus.tgju
+============
 
 .. py:module:: oxtapus.tgju
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    oxtapus.tgju.TGJU
 
 
-
+Module Contents
+---------------
 
 .. py:class:: TGJU(base_url: str = 'https://api.tgju.org/v1')
-
 
    .. raw:: html
 
        <div dir="rtl">
              داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
        </div>
+
+
+   .. py:attribute:: base_url
+
 
    .. py:method:: usd_irr()
 
@@ -59,6 +60,7 @@ Classes
       └────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘
 
 
+
    .. py:method:: sekke_emami()
 
       .. raw:: html
@@ -86,6 +88,7 @@ Classes
       └────────────┴────────────┴──────────┴──────────┴─────────┴──────────┘
 
 
+
    .. py:method:: nim_sekke()
 
       .. raw:: html
@@ -95,6 +98,7 @@ Classes
           </div>
 
       :rtype: pandas.DataFrame
+
 
 
    .. py:method:: rob_sekke()
@@ -108,12 +112,25 @@ Classes
       :rtype: pandas.DataFrame
 
 
+
    .. py:method:: ons()
 
       .. raw:: html
 
           <div dir="rtl">
            داده‌هایِ گذشته‌یِ اونسِ طلا رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+
+
+   .. py:method:: silver()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
           </div>
 
       :rtype: pandas.DataFrame

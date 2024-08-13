@@ -1,14 +1,11 @@
-:py:mod:`oxtapus.models.rahavard`
-=================================
+oxtapus.models.rahavard
+=======================
 
 .. py:module:: oxtapus.models.rahavard
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -18,14 +15,15 @@ Classes
    oxtapus.models.rahavard.Stocks
 
 
+Module Contents
+---------------
 
-
-.. py:class:: BalanceSheet(**data: Any)
-
+.. py:class:: BalanceSheet(/, **data: Any)
 
    Bases: :py:obj:`pydantic.BaseModel`
 
-   Usage docs: https://docs.pydantic.dev/2.5/concepts/models/
+
+   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
 
    A base class for creating Pydantic models.
 
@@ -96,18 +94,17 @@ Classes
 
       Instance attribute with the values of private attributes set on the model instance.
 
+
    .. py:attribute:: data
-      :type: list[BalanceSheetData]
-
-      
+      :type:  list[BalanceSheetData]
 
 
-.. py:class:: IncomeStatements(**data: Any)
-
+.. py:class:: IncomeStatements(/, **data: Any)
 
    Bases: :py:obj:`pydantic.BaseModel`
 
-   Usage docs: https://docs.pydantic.dev/2.5/concepts/models/
+
+   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
 
    A base class for creating Pydantic models.
 
@@ -178,18 +175,17 @@ Classes
 
       Instance attribute with the values of private attributes set on the model instance.
 
+
    .. py:attribute:: data
-      :type: list[IncomeStatementsData]
-
-      
+      :type:  list[IncomeStatementsData]
 
 
-.. py:class:: CashFlow(**data: Any)
-
+.. py:class:: CashFlow(/, **data: Any)
 
    Bases: :py:obj:`pydantic.BaseModel`
 
-   Usage docs: https://docs.pydantic.dev/2.5/concepts/models/
+
+   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
 
    A base class for creating Pydantic models.
 
@@ -260,18 +256,17 @@ Classes
 
       Instance attribute with the values of private attributes set on the model instance.
 
+
    .. py:attribute:: data
-      :type: list[CashFlowData]
-
-      
+      :type:  list[CashFlowData]
 
 
-.. py:class:: Stocks(**data: Any)
-
+.. py:class:: Stocks(/, **data: Any)
 
    Bases: :py:obj:`pydantic.BaseModel`
 
-   Usage docs: https://docs.pydantic.dev/2.5/concepts/models/
+
+   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
 
    A base class for creating Pydantic models.
 
@@ -342,9 +337,8 @@ Classes
 
       Instance attribute with the values of private attributes set on the model instance.
 
-   .. py:attribute:: data
-      :type: list[StocksData]
 
-      
+   .. py:attribute:: data
+      :type:  list[StocksData]
 
 

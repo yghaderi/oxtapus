@@ -1,14 +1,11 @@
-:py:mod:`oxtapus.rahavard`
-==========================
+oxtapus.rahavard
+================
 
 .. py:module:: oxtapus.rahavard
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,42 +14,41 @@ Classes
    oxtapus.rahavard.Rahavard
 
 
-
+Module Contents
+---------------
 
 .. py:class:: BaseInfo
 
-
    .. py:attribute:: announcement_type
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: financial_view_type
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: Rep
 
-
    .. py:attribute:: data
-      :type: polars.DataFrame
+      :type:  polars.DataFrame
 
-      
 
    .. py:attribute:: base_info
-      :type: BaseInfo
+      :type:  BaseInfo
 
-      
 
    .. py:attribute:: field_info
-      :type: polars.DataFrame
-
-      
+      :type:  polars.DataFrame
 
 
 .. py:class:: Rahavard
+
+   .. py:attribute:: url
+
+
+   .. py:attribute:: last_get_stocks
+      :value: None
+
 
 
    .. py:method:: stocks()
@@ -150,6 +146,7 @@ Classes
       │     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │
       │     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │
       └─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
+
 
 
    .. py:method:: income_statements(symbol: str, quarterly: bool = False)

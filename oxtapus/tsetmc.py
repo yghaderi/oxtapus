@@ -835,7 +835,7 @@ class TSETMC:
                 factor=(pl.col("y_final").shift(-1) / pl.col("final"))
                 .fill_null(1)
                 .reverse()
-                .cumprod()
+                .cum_prod()
                 .reverse()
                 .over("ins_code")
             )

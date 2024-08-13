@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oxtapus"
-version = "0.3.5"
+version = "0.3.6"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"

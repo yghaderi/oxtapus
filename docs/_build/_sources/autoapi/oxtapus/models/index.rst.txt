@@ -1,16 +1,16 @@
-:py:mod:`oxtapus.models`
-========================
+oxtapus.models
+==============
 
 .. py:module:: oxtapus.models
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   rahavard/index.rst
-   tsetmc/index.rst
+   /autoapi/oxtapus/models/rahavard/index
+   /autoapi/oxtapus/models/tsetmc/index
 
 
