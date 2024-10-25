@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oxtapus"
-version = "0.3.6"
+version = "0.3.7"
 description = ""
 authors = ["Yaghoub Ghadri <y.ghaderi@outlook.com>"]
 readme = "README.md"
@@ -12,12 +12,12 @@ branch = true
 
 [tool.poetry.dependencies]
 python = "^3.11"
-polars = "1.4.1"
+polars = "^1.4"
 httpx = "^0.25.0"
-tenacity = "^8.2.3"
-pydantic = "2.8.2"
-requests = "^2.32.2"
-jdatetime = "^5.0.0"
+tenacity = "^8.2"
+pydantic = "^2.8"
+requests = "^2.32"
+jdatetime = "^5.0"
 
 
 [build-system]
