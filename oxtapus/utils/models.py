@@ -29,6 +29,7 @@ class InsShareChangeFlow(BaseModel):
 class OptionsMW(BaseModel):
     ins_code_ua: str = Field(alias="uaInsCode")
     symbol_ua: str = Field(alias="lval30_UA")
+    close_ua: int = Field(alias="pDrCotVal_UA")
     final_ua: int = Field(alias="pClosing_UA")
     y_final_ua: int = Field(alias="priceYesterday_UA")
     contract_size: int = Field(alias="contractSize")
