@@ -137,3 +137,24 @@ Module Contents
 
 
 
+   .. py:method:: commodity(symbol: Literal['zinc', 'aluminium', 'lead', 'copper', 'copper2', 'nickel', 'tin'])
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
+          </div>
+
+      :param symbol: zinc: روی,
+                     aluminum: آلومینیوم,
+                     lead: سرب,
+                     copper:  مس-لندن,
+                     copper2: مس-امریکا,
+                     nickel: نیکل,
+                     tin: قلع
+      :type symbol: Literal[str]
+
+      :rtype: pandas.DataFrame
+
+
+
