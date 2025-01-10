@@ -1,5 +1,7 @@
+from typing import Literal
 import polars as pl
 import requests
+from pydantic import validate_call
 
 
 class TGJU:
@@ -150,3 +152,35 @@ class TGJU:
         pandas.DataFrame
         """
         return self._get_hist_price("silver")
+
+    @validate_call
+    def commodity(self, symbol: Literal["zinc", "aluminium", "lead", "copper", "copper2", "nickel", "tin"]):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+             داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
+            </div>
+
+        Parameters
+        ----------
+        symbol: Literal[str]
+            zinc: روی,
+            aluminum: آلومینیوم,
+            lead: سرب,
+            copper:  مس-لندن,
+            copper2: مس-امریکا,
+            nickel: نیکل,
+            tin: قلع
+
+        Returns
+        -------
+        pandas.DataFrame
+        """
+        endpoint = ""
+        match symbol:
+            case "aluminium":
+                endpoint = symbol
+            case _:
+                endpoint = f"base_global_{symbol}"
+        return self._get_hist_price(endpoint)
