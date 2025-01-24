@@ -9,6 +9,13 @@ class Fipiran:
         pass
 
     def funds(self):
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                ی سری داده‌یِ از صندوق‌هایِ سرمایه-گذاری رو بهت می‌ده.
+            </div>
+        """
         url = "https://fund.fipiran.ir/api/v1/fund/dependencygraph"
         r = get(url)
         items = list(filter(lambda x: self._is_gt(x["netAsset"], 0.0), r[0]["items"]))
