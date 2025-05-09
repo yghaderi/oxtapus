@@ -6,12 +6,11 @@ readme = "README.md"
 authors = [{ "name" = "Yaghoub Ghadri", email = "ghaderi.yaghoub@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
-    "polars>=^1.4",
-    "httpx>=0.25.0",
-    "tenacity>=^8.2",
-    "pydantic>=2.8",
-    "requests>=2.32",
-    "jdatetime>=5.0",
+    "jdatetime>=5.2.0",
+    "polars>=1.29.0",
+    "pydantic>=2.11.4",
+    "requests>=2.32.3",
+    "tenacity>=9.1.2",
 ]
 
 [project.urls]
@@ -25,5 +24,6 @@ venv = ".venv"
 [dependency-groups]
 dev = [
     "black",
-    "isort",
+ "isort",
+ "pre-commit",
 ]
