@@ -8,7 +8,7 @@ class Fipiran:
     def __init__(self) -> None:
         pass
 
-    def funds(self):
+    def funds(self) -> pl.DataFrame:
         """
         .. raw:: html
 
@@ -23,11 +23,11 @@ class Fipiran:
         norm_r = normalize_nested_dict([i.model_dump() for i in validated_r.items], "manager")
         return pl.DataFrame(norm_r)
 
-    def _is_gt(self, x, t: float):
+    def _is_gt(self, x, t: float) -> bool:
         try:
             number = float(x)
-            if number > 0:
+            if number > t:
                 return True
             return False
-        except Exception as e:
+        except Exception:
             return False
