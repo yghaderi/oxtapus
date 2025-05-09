@@ -1,5 +1,6 @@
 import datetime as dt
 from typing import Optional
+
 from pydantic import BaseModel, Field, field_validator, model_validator
 from pydantic.v1.utils import GetterDict
 

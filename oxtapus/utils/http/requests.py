@@ -1,7 +1,8 @@
 import asyncio
+
 import httpx
-from tenacity import retry, wait_random, stop_after_delay
 from requests import Session
+from tenacity import retry, stop_after_delay, wait_random
 
 __all__ = ["get", "async_requests"]
 

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+
 import polars as pl
 
 __all__ = ["manipulation_cols", "cols"]

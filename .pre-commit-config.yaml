@@ -1,8 +1,4 @@
 repos:
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.3
-    hooks:
-      - id: uv-lock
   - repo: https://github.com/psf/black
     rev: 25.1.0
     hooks:
@@ -12,4 +8,9 @@ repos:
     rev: 6.0.1
     hooks:
       - id: isort
+        stages: [pre-push]
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.7.3
+    hooks:
+      - id: uv-lock
         stages: [pre-push]

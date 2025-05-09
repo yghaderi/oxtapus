@@ -1,4 +1,5 @@
 import unittest
+
 from oxtapus.utils.normalize import json_normalize, word_normalize
 
 

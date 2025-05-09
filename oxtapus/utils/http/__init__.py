@@ -1,1 +1,1 @@
-from .requests import get, async_requests
+from .requests import async_requests, get

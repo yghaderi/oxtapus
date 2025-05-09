@@ -1,4 +1,5 @@
 from typing import Literal
+
 import polars as pl
 import requests
 from pydantic import validate_call
@@ -154,7 +155,12 @@ class TGJU:
         return self._get_hist_price("silver")
 
     @validate_call
-    def commodity(self, symbol: Literal["zinc", "aluminium", "lead", "copper", "copper2", "nickel", "tin"]):
+    def commodity(
+        self,
+        symbol: Literal[
+            "zinc", "aluminium", "lead", "copper", "copper2", "nickel", "tin"
+        ],
+    ):
         """
         .. raw:: html
 

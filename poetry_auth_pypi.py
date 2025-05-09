@@ -1,6 +1,6 @@
 import configparser
-import subprocess
 import os
+import subprocess
 
 # Path to the .pypirc file
 pypirc_path = os.path.expanduser("./.pypirc")

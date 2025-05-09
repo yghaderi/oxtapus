@@ -1,9 +1,10 @@
-import requests
 import datetime as dt
-import polars as pl
 from dataclasses import dataclass
 
-from oxtapus.models.rahavard import Stocks, BalanceSheet, IncomeStatements
+import polars as pl
+import requests
+
+from oxtapus.models.rahavard import BalanceSheet, IncomeStatements, Stocks
 
 __all__ = ["Rahavard", "Rep", "BaseInfo"]
 
@@ -344,9 +345,9 @@ class Rahavard:
                 ]
             )
             field_info = pl.concat([field_info, f_info])
-        df = df.pivot(
-            on="id", values="value", index=["date", "fiscal_year"]
-        ).fill_null(0)
+        df = df.pivot(on="id", values="value", index=["date", "fiscal_year"]).fill_null(
+            0
+        )
         df.columns = list(map(lambda x: handel_clos(x), df.columns))
         base_info = BaseInfo(
             announcement_type=d.data[0].announcement_type_id,

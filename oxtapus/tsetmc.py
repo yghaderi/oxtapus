@@ -1,23 +1,19 @@
-import functools
 import datetime
-from enum import Enum
-import polars as pl
-from typing import List
-from pydantic import validate_call
-from urllib.parse import urlencode
+import functools
 import itertools
-from oxtapus.models.tsetmc import HistPrice, MarketWatch, ClientTypeAll, InsInfo
+from enum import Enum
+from typing import List
+from urllib.parse import urlencode
 
-from oxtapus.utils.http import get, async_requests
-from oxtapus.utils import (
-    json_normalize,
-    word_normalize,
-    manipulation_cols,
-    cols,
-    normalize_nested_dict,
-)
+import polars as pl
+from pydantic import validate_call
+
+from oxtapus.models.tsetmc import (ClientTypeAll, HistPrice, InsInfo,
+                                   MarketWatch)
+from oxtapus.utils import (cols, json_normalize, manipulation_cols,
+                           normalize_nested_dict, word_normalize)
+from oxtapus.utils.http import async_requests, get
 from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow, OptionsMW
-
 
 __all__ = ["TSETMC", "MWSections"]
 

@@ -1,5 +1,6 @@
-from typing import Optional
 import datetime as dt
+from typing import Optional
+
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -7,7 +8,9 @@ class Manager(BaseModel):
     address: Optional[str]
     ceo: Optional[str]
     cfi_id: Optional[int] = Field(alias="cfiId")
-    cfiLast_modification_datetime: Optional[str] = Field(alias="cfiLastModificationTime")
+    cfiLast_modification_datetime: Optional[str] = Field(
+        alias="cfiLastModificationTime"
+    )
     is_completed: bool = Field(alias="isCompleted")
     manager_id: Optional[int] = Field(alias="managerId")
     manager_national_no: Optional[str] = Field(alias="managerNationalCode")
