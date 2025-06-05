@@ -1,6 +1,6 @@
 [project]
 name = "oxtapus"
-version = "0.3.11"
+version = "0.4.0"
 description = "گرد-آورِیِ داده هایِ بورسِ تهران و مربوط به آن"
 readme = "README.md"
 authors = [{ "name" = "Yaghoub Ghadri", email = "ghaderi.yaghoub@gmail.com" }]
