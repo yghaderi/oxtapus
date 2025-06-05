@@ -16,29 +16,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=9f76a604"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=4ea706d9"></script>
@@ -48,6 +51,7 @@
     <link rel="prev" title="oxtapus.tgju" href="../tgju/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -152,29 +144,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -183,15 +167,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -210,7 +190,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -243,15 +224,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -264,12 +241,13 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../models/index.html">oxtapus.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../models/fipiran/index.html">oxtapus.models.fipiran</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../models/rahavard/index.html">oxtapus.models.rahavard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../models/tsetmc/index.html">oxtapus.models.tsetmc</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rahavard/index.html">oxtapus.rahavard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tgju/index.html">oxtapus.tgju</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">oxtapus.tsetmc</a></li>
@@ -282,9 +260,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -302,8 +285,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -318,7 +299,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">oxtapus</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">oxtapus.tsetmc</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">oxtapus.tsetmc</span></li>
   </ul>
 </nav>
 </div>
@@ -339,7 +320,7 @@ document.write(`
 <span id="oxtapus-tsetmc"></span><h1>oxtapus.tsetmc<a class="headerlink" href="#module-oxtapus.tsetmc" title="Link to this heading">#</a></h1>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.tsetmc.MWSections" title="oxtapus.tsetmc.MWSections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MWSections</span></code></a></p></td>
 <td><p>str(object='') -&gt; str</p></td>
@@ -355,7 +336,7 @@ document.write(`
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.MWSections">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MWSections</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MWSections</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#MWSections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.MWSections" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>str(object=’’) -&gt; str
 str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
@@ -415,7 +396,7 @@ errors defaults to ‘strict’.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -426,7 +407,7 @@ errors defaults to ‘strict’.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.get_all_ins_code">
-<span class="sig-name descname"><span class="pre">get_all_ins_code</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.get_all_ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.get_all_ins_code" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_all_ins_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.get_all_ins_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.get_all_ins_code" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -441,7 +422,7 @@ errors defaults to ‘strict’.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.async_req">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.async_req"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.async_req" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.async_req"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.async_req" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -469,7 +450,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">mw</span><span class="p">([</span><span class="s2">&quot;stock&quot;</span><span class="p">,</span> <span class="s2">&quot;etf&quot;</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">])</span>
 </pre></div>
@@ -487,7 +468,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">options_mw</span><span class="p">()</span>
 <span class="go">shape: (1_043, 41)</span>
@@ -523,7 +504,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">tse_options_mw</span><span class="p">()</span>
 <span class="go">shape: (652, 41)</span>
@@ -559,7 +540,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ifb_options_mw</span><span class="p">()</span>
 <span class="go">shape: (440, 41)</span>
@@ -601,7 +582,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="s2">&quot;شپدیس&quot;</span><span class="p">)</span>
 <span class="go">[&#39;20562694899904339&#39;]</span>
@@ -651,7 +632,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;65883838195688438&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 24)</span>
@@ -706,7 +687,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">specific_option_data</span><span class="p">([</span><span class="s2">&quot;IRO9IKCO2851&quot;</span><span class="p">,</span> <span class="s2">&quot;IRO9IKCO20K1&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 7)</span>
@@ -776,7 +757,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;شپنا&quot;</span><span class="p">,</span> <span class="s2">&quot;فملی&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_629, 11)</span>
@@ -873,7 +854,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adj_hist_price</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_629, 16)</span>
@@ -913,7 +894,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="s2">&quot;دکپسول&quot;</span><span class="p">)</span>
 <span class="go">shape: (190, 4)</span>
@@ -956,7 +937,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">intraday_trades_based_on_timeframe</span><span class="p">(</span><span class="s2">&quot;دکپسول&quot;</span><span class="p">)</span>
 <span class="go">shape: (24, 7)</span>
@@ -1021,7 +1002,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">last_ins_data</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;خودرو&quot;</span><span class="p">,</span><span class="s2">&quot;خساپا&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 17)</span>
@@ -1079,7 +1060,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;خودرو&quot;</span><span class="p">)</span>
 <span class="go">shape: (3_115, 14)</span>
@@ -1144,7 +1125,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">)</span>
 <span class="go">shape: (10, 4)</span>
@@ -1178,7 +1159,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">indexes</span><span class="p">()</span>
 </pre></div>
@@ -1199,7 +1180,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">symbols_that_index_tracks</span><span class="p">([</span><span class="s2">&quot;21948907150049163&quot;</span><span class="p">,</span> <span class="s2">&quot;3615666621538524&quot;</span><span class="p">])</span>
 <span class="go">shape: (39, 3)</span>
@@ -1236,7 +1217,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">index_hist</span><span class="p">([</span><span class="s2">&quot;21948907150049163&quot;</span><span class="p">,</span> <span class="s2">&quot;3615666621538524&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_195, 5)</span>
@@ -1270,8 +1251,8 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 <span class="go">datetime.datetime(2023, 11, 3, 20, 7, 36, 378137)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TSETMC</span><span class="p">()</span><span class="o">.</span><span class="n">last_market_activity_datetime</span><span class="p">()</span>
@@ -1297,7 +1278,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;71483646978964608&quot;</span><span class="p">])</span>
 <span class="go">shape: (3, 6)</span>
@@ -1328,7 +1309,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adjust_price_flow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">shape: (4, 5)</span>
@@ -1357,7 +1338,7 @@ errors defaults to ‘strict’.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_share_change_flow</span><span class="p">()</span>
 <span class="go">shape: (2_639, 5)</span>
@@ -1378,6 +1359,72 @@ errors defaults to ‘strict’.</p>
 <span class="go">│ 28520500657715290 ┆ نكا          ┆ 2010-08-30 ┆ 1781550        ┆ 4900000         │</span>
 <span class="go">│ 57857218314224912 ┆ پذيره-ستون   ┆ 2010-08-30 ┆ 350000000      ┆ 4900000         │</span>
 <span class="go">└───────────────────┴──────────────┴────────────┴────────────────┴─────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.tsetmc.TSETMC.order_book">
+<span class="sig-name descname"><span class="pre">order_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/oxtapus/tsetmc.html#TSETMC.order_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.tsetmc.TSETMC.order_book" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    سفارش های نماد(ها) رو بهت میده.
+</div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div dir="rtl">
+    زمانِ استخراجِ داده با استفاده از
+    <span style="color:#ec4899">ins_code</span>
+    تقریبن نصفِ استفاده از
+    <span style="color:#ec4899">symbol</span>
+    است.
+    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div dir="rtl">
+    یا
+    <span style="color:#ec4899">ins_code</span>
+    رو وارد کن، یا
+    <span style="color:#ec4899">symbol</span>
+    رو.
+اگه هر دو رو وارد کنی،
+    <span style="color:#ec4899">symbol</span>
+نادیده گرفته می‌شه و تنها از
+    <span style="color:#ec4899">ins_code</span>
+    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+</div></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ صفحه‌یِ نماد</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>polars.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tse</span><span class="o">.</span><span class="n">order_book</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;65883838195688438&quot;</span><span class="p">,</span><span class="s2">&quot;22645269567765904&quot;</span><span class="p">])</span>
+<span class="go">shape: (10, 8)</span>
+<span class="go">┌────────────────────────────┬───────────────────┬───────────┬─────────────┬───────────┬───────────┬────────────┬───────────┐</span>
+<span class="go">│ datetime                   ┆ ins_code          ┆ bid_count ┆ bid_volume  ┆ bid_price ┆ ask_price ┆ ask_volume ┆ ask_count │</span>
+<span class="go">│ ---                        ┆ ---               ┆ ---       ┆ ---         ┆ ---       ┆ ---       ┆ ---        ┆ ---       │</span>
+<span class="go">│ datetime[μs]               ┆ str               ┆ i64       ┆ f64         ┆ f64       ┆ f64       ┆ f64        ┆ i64       │</span>
+<span class="go">╞════════════════════════════╪═══════════════════╪═══════════╪═════════════╪═══════════╪═══════════╪════════════╪═══════════╡</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 2         ┆ 255555.0    ┆ 575.0     ┆ 575.0     ┆ 134386.0   ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 26        ┆ 5.328977e6  ┆ 574.0     ┆ 576.0     ┆ 300000.0   ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 46        ┆ 1.2845421e7 ┆ 573.0     ┆ 577.0     ┆ 5.25633e6  ┆ 17        │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 37        ┆ 1.0567086e7 ┆ 572.0     ┆ 578.0     ┆ 7.207702e6 ┆ 23        │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 22        ┆ 3.943002e6  ┆ 571.0     ┆ 579.0     ┆ 7.031635e6 ┆ 23        │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 1576.0      ┆ 3748.0    ┆ 3749.0    ┆ 282050.0   ┆ 2         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 34799.0     ┆ 3746.0    ┆ 3759.0    ┆ 67324.0    ┆ 3         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 400000.0    ┆ 3742.0    ┆ 3760.0    ┆ 37739.0    ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 3         ┆ 451625.0    ┆ 3740.0    ┆ 3765.0    ┆ 424.0      ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 200000.0    ┆ 3736.0    ┆ 3770.0    ┆ 1272.0     ┆ 3         │</span>
+<span class="go">└────────────────────────────┴───────────────────┴───────────┴─────────────┴───────────┴───────────┴────────────┴───────────┘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1413,7 +1460,8 @@ errors defaults to ‘strict’.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1464,6 +1512,7 @@ errors defaults to ‘strict’.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.adjust_price_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.adjust_price_flow()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.ins_share_change_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_share_change_flow()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.tsetmc.TSETMC.order_book"><code class="docutils literal notranslate"><span class="pre">TSETMC.order_book()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1472,13 +1521,13 @@ errors defaults to ‘strict’.</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../../_sources/autoapi/oxtapus/tsetmc/index.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/autoapi/oxtapus/tsetmc/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -1493,8 +1542,8 @@ errors defaults to ‘strict’.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1514,7 +1563,7 @@ errors defaults to ‘strict’.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1527,7 +1576,8 @@ errors defaults to ‘strict’.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

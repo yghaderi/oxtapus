@@ -16,39 +16,43 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=9f76a604"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=4ea706d9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/oxtapus/index';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="oxtapus.models" href="models/index.html" />
+    <link rel="next" title="oxtapus.fipiran" href="fipiran/index.html" />
     <link rel="prev" title="API Reference" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -64,19 +68,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -84,7 +77,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -92,8 +84,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -153,29 +145,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -184,15 +168,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -211,7 +191,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -244,15 +225,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -265,12 +242,13 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="models/index.html">oxtapus.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="models/fipiran/index.html">oxtapus.models.fipiran</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models/rahavard/index.html">oxtapus.models.rahavard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models/tsetmc/index.html">oxtapus.models.tsetmc</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rahavard/index.html">oxtapus.rahavard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tgju/index.html">oxtapus.tgju</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tsetmc/index.html">oxtapus.tsetmc</a></li>
@@ -283,9 +261,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -303,8 +286,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -316,7 +297,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">oxtapus</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">oxtapus</span></li>
   </ul>
 </nav>
 </div>
@@ -335,19 +316,12 @@ document.write(`
                   
   <section id="module-oxtapus">
 <span id="oxtapus"></span><h1>oxtapus<a class="headerlink" href="#module-oxtapus" title="Link to this heading">#</a></h1>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models/index.html">oxtapus.models</a></li>
-</ul>
-</div>
-</section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="fipiran/index.html">oxtapus.fipiran</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models/index.html">oxtapus.models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rahavard/index.html">oxtapus.rahavard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tgju/index.html">oxtapus.tgju</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsetmc/index.html">oxtapus.tsetmc</a></li>
@@ -356,15 +330,18 @@ document.write(`
 </section>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.TSETMC" title="oxtapus.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.Fipiran" title="oxtapus.Fipiran"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fipiran</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.Rahavard" title="oxtapus.Rahavard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rahavard</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.TGJU" title="oxtapus.TGJU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TGJU</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.TSETMC" title="oxtapus.TSETMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSETMC</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -374,8 +351,375 @@ document.write(`
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.Fipiran">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Fipiran</span></span><a class="reference internal" href="../../_modules/oxtapus/fipiran.html#Fipiran"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Fipiran" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.Fipiran.funds">
+<span class="sig-name descname"><span class="pre">funds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../_modules/oxtapus/fipiran.html#Fipiran.funds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Fipiran.funds" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    ی سری داده‌یِ از صندوق‌هایِ سرمایه-گذاری رو بهت می‌ده.
+</div></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.Rahavard">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rahavard</span></span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#oxtapus.Rahavard.url" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.last_get_stocks">
+<span class="sig-name descname"><span class="pre">last_get_stocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#oxtapus.Rahavard.last_get_stocks" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.stocks">
+<span class="sig-name descname"><span class="pre">stocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.stocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.stocks" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.handle_get_stock">
+<span class="sig-name descname"><span class="pre">handle_get_stock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.handle_get_stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.handle_get_stock" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.balance_sheet">
+<span class="sig-name descname"><span class="pre">balance_sheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarterly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.balance_sheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.balance_sheet" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌هایِ ترازنامه رو بهت می‌ده
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em>) – نماد</p></li>
+<li><p><strong>quarterly</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘فالس’ باشه، داده‌هایِ سالانه می‌ده و اگه ‘ترو’ باشه، فصلی</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="rahavard/index.html#oxtapus.rahavard.Rep" title="oxtapus.rahavard.Rep">Rep</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rahavard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rah</span> <span class="o">=</span> <span class="n">Rahavard</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span> <span class="o">=</span> <span class="n">rah</span><span class="o">.</span><span class="n">balance_sheet</span><span class="p">(</span><span class="s2">&quot;آسیا&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">data</span>
+<span class="go">shape: (5, 48)</span>
+<span class="go">┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐</span>
+<span class="go">│ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │</span>
+<span class="go">│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │</span>
+<span class="go">│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │</span>
+<span class="go">│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡</span>
+<span class="go">│ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
+<span class="go">│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
+<span class="go">│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
+<span class="go">│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │</span>
+<span class="go">│ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │</span>
+<span class="go">│ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │</span>
+<span class="go">└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">base_info</span>
+<span class="go">BaseInfo(announcement_type=&#39;1&#39;, financial_view_type=&#39;3&#39;)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">field_info</span>
+<span class="go">shape: (46, 10)</span>
+<span class="go">┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐</span>
+<span class="go">│ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │</span>
+<span class="go">│ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │</span>
+<span class="go">│ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │</span>
+<span class="go">│     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡</span>
+<span class="go">│ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │</span>
+<span class="go">│ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │</span>
+<span class="go">│     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">│     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │</span>
+<span class="go">└─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.Rahavard.income_statements">
+<span class="sig-name descname"><span class="pre">income_statements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarterly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.income_statements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.income_statements" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+    داده‌هایِ سود/زیان رو بهت می‌ده
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em>) – نماد</p></li>
+<li><p><strong>quarterly</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘فالس’ باشه، داده‌هایِ سالانه می‌ده و اگه ‘ترو’ باشه، فصلی</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="rahavard/index.html#oxtapus.rahavard.Rep" title="oxtapus.rahavard.Rep">Rep</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rahavard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rah</span> <span class="o">=</span> <span class="n">Rahavard</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span> <span class="o">=</span> <span class="n">rah</span><span class="o">.</span><span class="n">income_statements</span><span class="p">(</span><span class="s2">&quot;آسیا&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">data</span>
+<span class="go">shape: (3, 34)</span>
+<span class="go">┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐</span>
+<span class="go">│ date      ┆ fiscal_ye ┆ 49        ┆ 51        ┆ … ┆ 33        ┆ 34        ┆ capital   ┆ pure_eps │</span>
+<span class="go">│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │</span>
+<span class="go">│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │</span>
+<span class="go">│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡</span>
+<span class="go">│ 2023-07-1 ┆ 2023-03-2 ┆ 1.4780e14 ┆ 1.4780e14 ┆ … ┆ 5.8900e11 ┆ 4.8937e12 ┆ 3.1000e13 ┆ 1.8703e8 │</span>
+<span class="go">│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2022-07-1 ┆ 2022-03-2 ┆ 9.6046e13 ┆ 9.6046e13 ┆ … ┆ 2.8958e12 ┆ 7.3677e12 ┆ 2.4132e13 ┆ 2.5000e8 │</span>
+<span class="go">│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">│ 2021-07-0 ┆ 2021-03-1 ┆ 6.8418e13 ┆ 6.8418e13 ┆ … ┆ 2.4132e12 ┆ 5.1905e12 ┆ 2.4132e13 ┆ 3.1084e8 │</span>
+<span class="go">│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
+<span class="go">└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">base_info</span>
+<span class="go">BaseInfo(announcement_type=&#39;1&#39;, financial_view_type=&#39;3&#39;)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">field_info</span>
+<span class="go">shape: (32, 10)</span>
+<span class="go">┌──────────┬────────────┬────────────┬───────────┬───┬───────────┬──────────┬──────────┬───────────┐</span>
+<span class="go">│ id       ┆ title      ┆ english_ti ┆ account   ┆ … ┆ index_vie ┆ sign_neg ┆ sign_pos ┆ neg_natur │</span>
+<span class="go">│ ---      ┆ ---        ┆ tle        ┆ ---       ┆   ┆ w         ┆ ---      ┆ ---      ┆ e         │</span>
+<span class="go">│ str      ┆ str        ┆ ---        ┆ str       ┆   ┆ ---       ┆ bool     ┆ bool     ┆ ---       │</span>
+<span class="go">│          ┆            ┆ str        ┆           ┆   ┆ i64       ┆          ┆          ┆ bool      │</span>
+<span class="go">╞══════════╪════════════╪════════════╪═══════════╪═══╪═══════════╪══════════╪══════════╪═══════════╡</span>
+<span class="go">│ 68       ┆ سایر       ┆ Other      ┆ GrossOthe ┆ … ┆ 2400      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ هزینه‌های   ┆ Premium    ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ بیمه‌ای     ┆ Expenses   ┆ e:OtherPr ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆            ┆ emium…    ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 78       ┆ خالص درآمد ┆ Net        ┆ Operating ┆ … ┆ 3300      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ سرمایه‌گذار ┆ Investment ┆ :NetInves ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ یها از     ┆ Revenue    ┆ tmentReve ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ محل…       ┆ from Othe… ┆ nuefr…    ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 54       ┆ هزینه حق   ┆ Reinsuranc ┆ Insurance ┆ … ┆ 600       ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ بیمه       ┆ e          ┆ Revenue:C ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ اتکائی     ┆ Recoveries ┆ ostPremiu ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ واگذاری    ┆            ┆ m         ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 72       ┆ درآمد سرما ┆ Other      ┆ Operating ┆ … ┆ 3100      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ یه‌گذاری از ┆ Investment ┆ :OtherInv ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ محل سایر   ┆ Revenue    ┆ estmentRe ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ م…         ┆            ┆ venue     ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 55       ┆ درآمد حق   ┆ Insurance  ┆ Insurance ┆ … ┆ 700       ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ بیمه سهم   ┆ Revenue    ┆ Revenue   ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ نگهداری    ┆ (Holding   ┆           ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆ Split…     ┆           ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ …        ┆ …          ┆ …          ┆ …         ┆ … ┆ …         ┆ …        ┆ …        ┆ …         │</span>
+<span class="go">│ 61       ┆ خسارت سهم  ┆ Damage     ┆ ClaimExpe ┆ … ┆ 1300      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ بیمه‌گران   ┆ Share Of   ┆ nse:Reven ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ اتکائی     ┆ reinsuranc ┆ ueClaim   ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆ e insu…    ┆           ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ pure_eps ┆ EPS خالص   ┆ Pure EPS   ┆ -         ┆ … ┆ 100000000 ┆ true     ┆ true     ┆ false     │</span>
+<span class="go">│          ┆            ┆            ┆           ┆   ┆ 02        ┆          ┆          ┆           │</span>
+<span class="go">│ 19       ┆ سود قبل از ┆ Earnings   ┆ Impure    ┆ … ┆ 4100      ┆ true     ┆ true     ┆ false     │</span>
+<span class="go">│          ┆ کسر مالیات ┆ Before Tax ┆           ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆ (EBT)      ┆           ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 66       ┆ کاهش       ┆ Technical  ┆ GrossOthe ┆ … ┆ 1800      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ (افزایش)   ┆ Reserves,  ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ سایر ذخایر ┆ Net        ┆ e:Technic ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆ فنی        ┆ Changes    ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│ 29       ┆ اندوخته    ┆ Legal      ┆ EarningAp ┆ … ┆ 5500      ┆ true     ┆ false    ┆ false     │</span>
+<span class="go">│          ┆ قانونی     ┆ Reserves   ┆ propriate ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆            ┆ dPlan:Leg ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">│          ┆            ┆            ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │</span>
+<span class="go">└──────────┴────────────┴────────────┴───────────┴───┴───────────┴──────────┴──────────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.TGJU">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TGJU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.tgju.org/v1'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+      داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
+</div><dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.TGJU.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.tgju.org/v1'</span></em><a class="headerlink" href="#oxtapus.TGJU.base_url" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.usd_irr">
+<span class="sig-name descname"><span class="pre">usd_irr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.usd_irr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.usd_irr" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TGJU</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span> <span class="o">=</span> <span class="n">TGJU</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span><span class="o">.</span><span class="n">usd_irr</span><span class="p">()</span>
+<span class="go">shape: (3_688, 6)</span>
+<span class="go">┌────────────┬────────────┬──────────┬──────────┬──────────┬──────────┐</span>
+<span class="go">│ date       ┆ jdate      ┆ open     ┆ high     ┆ low      ┆ close    │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---      ┆ ---      │</span>
+<span class="go">│ date       ┆ str        ┆ f64      ┆ f64      ┆ f64      ┆ f64      │</span>
+<span class="go">╞════════════╪════════════╪══════════╪══════════╪══════════╪══════════╡</span>
+<span class="go">│ 2023-11-01 ┆ 1402-08-10 ┆ 514870.0 ┆ 517900.0 ┆ 513380.0 ┆ 516830.0 │</span>
+<span class="go">│ 2023-10-31 ┆ 1402-08-09 ┆ 516770.0 ┆ 518060.0 ┆ 515370.0 ┆ 516600.0 │</span>
+<span class="go">│ 2023-10-30 ┆ 1402-08-08 ┆ 511950.0 ┆ 514600.0 ┆ 510650.0 ┆ 514500.0 │</span>
+<span class="go">│ 2023-10-29 ┆ 1402-08-07 ┆ 519550.0 ┆ 519560.0 ┆ 513350.0 ┆ 513560.0 │</span>
+<span class="go">│ …          ┆ …          ┆ …        ┆ …        ┆ …        ┆ …        │</span>
+<span class="go">│ 2011-11-29 ┆ 1390-09-08 ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  │</span>
+<span class="go">│ 2011-11-28 ┆ 1390-09-07 ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  │</span>
+<span class="go">│ 2011-11-27 ┆ 1390-09-06 ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  │</span>
+<span class="go">│ 2011-11-26 ┆ 1390-09-05 ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  │</span>
+<span class="go">└────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.sekke_emami">
+<span class="sig-name descname"><span class="pre">sekke_emami</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.sekke_emami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.sekke_emami" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ سکه‌یِ امامی رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TGJU</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span> <span class="o">=</span> <span class="n">TGJU</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span><span class="o">.</span><span class="n">sekke_emami</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">shape: (3, 6)</span>
+<span class="go">┌────────────┬────────────┬──────────┬──────────┬─────────┬──────────┐</span>
+<span class="go">│ date       ┆ jdate      ┆ open     ┆ high     ┆ low     ┆ close    │</span>
+<span class="go">│ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---     ┆ ---      │</span>
+<span class="go">│ date       ┆ str        ┆ f64      ┆ f64      ┆ f64     ┆ f64      │</span>
+<span class="go">╞════════════╪════════════╪══════════╪══════════╪═════════╪══════════╡</span>
+<span class="go">│ 2023-11-01 ┆ 1402-08-10 ┆ 2.9351e8 ┆ 2.9901e8 ┆ 2.925e7 ┆ 2.9601e8 │</span>
+<span class="go">│ 2023-10-31 ┆ 1402-08-09 ┆ 2.9301e8 ┆ 2.9701e8 ┆ 2.923e8 ┆ 2.9701e8 │</span>
+<span class="go">│ 2023-10-30 ┆ 1402-08-08 ┆ 2.9201e8 ┆ 2.9201e8 ┆ 2.903e8 ┆ 2.9133e8 │</span>
+<span class="go">└────────────┴────────────┴──────────┴──────────┴─────────┴──────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.nim_sekke">
+<span class="sig-name descname"><span class="pre">nim_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.nim_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.nim_sekke" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ نیم-سکه رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.rob_sekke">
+<span class="sig-name descname"><span class="pre">rob_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.rob_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.rob_sekke" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ ربعِ-سکه رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.ons">
+<span class="sig-name descname"><span class="pre">ons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.ons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.ons" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ اونسِ طلا رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.silver">
+<span class="sig-name descname"><span class="pre">silver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.silver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.silver" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.TGJU.commodity">
+<span class="sig-name descname"><span class="pre">commodity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'zinc'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'aluminium'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lead'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'copper'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'copper2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nickel'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'tin'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.commodity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.commodity" title="Link to this definition">#</a></dt>
+<dd><div dir="rtl">
+ داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
+</div><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>symbol</strong> (<em>Literal</em><em>[</em><em>str</em><em>]</em>) – zinc: روی,
+aluminum: آلومینیوم,
+lead: سرب,
+copper:  مس-لندن,
+copper2: مس-امریکا,
+nickel: نیکل,
+tin: قلع</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.TSETMC">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TSETMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -386,7 +730,7 @@ document.write(`
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.TSETMC.get_all_ins_code">
-<span class="sig-name descname"><span class="pre">get_all_ins_code</span></span><a class="headerlink" href="#oxtapus.TSETMC.get_all_ins_code" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_all_ins_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#oxtapus.TSETMC.get_all_ins_code" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -401,7 +745,7 @@ document.write(`
 
 <dl class="py property">
 <dt class="sig sig-object py" id="oxtapus.TSETMC.async_req">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="headerlink" href="#oxtapus.TSETMC.async_req" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_req</span></span><a class="headerlink" href="#oxtapus.TSETMC.async_req" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -429,7 +773,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">mw</span><span class="p">([</span><span class="s2">&quot;stock&quot;</span><span class="p">,</span> <span class="s2">&quot;etf&quot;</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">])</span>
 </pre></div>
@@ -447,7 +791,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">options_mw</span><span class="p">()</span>
 <span class="go">shape: (1_043, 41)</span>
@@ -483,7 +827,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">tse_options_mw</span><span class="p">()</span>
 <span class="go">shape: (652, 41)</span>
@@ -519,7 +863,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ifb_options_mw</span><span class="p">()</span>
 <span class="go">shape: (440, 41)</span>
@@ -561,7 +905,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">search_ins_code</span><span class="p">(</span><span class="s2">&quot;شپدیس&quot;</span><span class="p">)</span>
 <span class="go">[&#39;20562694899904339&#39;]</span>
@@ -611,7 +955,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_info</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;65883838195688438&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 24)</span>
@@ -666,7 +1010,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">specific_option_data</span><span class="p">([</span><span class="s2">&quot;IRO9IKCO2851&quot;</span><span class="p">,</span> <span class="s2">&quot;IRO9IKCO20K1&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 7)</span>
@@ -736,7 +1080,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">(</span><span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">hist_price</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;شپنا&quot;</span><span class="p">,</span> <span class="s2">&quot;فملی&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_629, 11)</span>
@@ -833,7 +1177,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adj_hist_price</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;7745894403636165&quot;</span><span class="p">,</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_629, 16)</span>
@@ -873,7 +1217,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">intraday_trades</span><span class="p">(</span><span class="s2">&quot;دکپسول&quot;</span><span class="p">)</span>
 <span class="go">shape: (190, 4)</span>
@@ -916,7 +1260,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">intraday_trades_based_on_timeframe</span><span class="p">(</span><span class="s2">&quot;دکپسول&quot;</span><span class="p">)</span>
 <span class="go">shape: (24, 7)</span>
@@ -981,7 +1325,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">last_ins_data</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;خودرو&quot;</span><span class="p">,</span><span class="s2">&quot;خساپا&quot;</span><span class="p">])</span>
 <span class="go">shape: (2, 17)</span>
@@ -1039,7 +1383,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">client_type</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;خودرو&quot;</span><span class="p">)</span>
 <span class="go">shape: (3_115, 14)</span>
@@ -1104,7 +1448,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">share_change</span><span class="p">(</span><span class="n">ins_code</span> <span class="o">=</span> <span class="s2">&quot;35425587644337450&quot;</span><span class="p">)</span>
 <span class="go">shape: (10, 4)</span>
@@ -1138,7 +1482,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">indexes</span><span class="p">()</span>
 </pre></div>
@@ -1159,7 +1503,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">symbols_that_index_tracks</span><span class="p">([</span><span class="s2">&quot;21948907150049163&quot;</span><span class="p">,</span> <span class="s2">&quot;3615666621538524&quot;</span><span class="p">])</span>
 <span class="go">shape: (39, 3)</span>
@@ -1196,7 +1540,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">index_hist</span><span class="p">([</span><span class="s2">&quot;21948907150049163&quot;</span><span class="p">,</span> <span class="s2">&quot;3615666621538524&quot;</span><span class="p">])</span>
 <span class="go">shape: (7_195, 5)</span>
@@ -1230,8 +1574,8 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 <span class="go">datetime.datetime(2023, 11, 3, 20, 7, 36, 378137)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TSETMC</span><span class="p">()</span><span class="o">.</span><span class="n">last_market_activity_datetime</span><span class="p">()</span>
@@ -1257,7 +1601,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">shareholder_list</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;71483646978964608&quot;</span><span class="p">])</span>
 <span class="go">shape: (3, 6)</span>
@@ -1288,7 +1632,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">adjust_price_flow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">shape: (4, 5)</span>
@@ -1317,7 +1661,7 @@ document.write(`
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TSETMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span><span class="o">.</span><span class="n">ins_share_change_flow</span><span class="p">()</span>
 <span class="go">shape: (2_639, 5)</span>
@@ -1342,359 +1686,70 @@ document.write(`
 </div>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="oxtapus.Rahavard">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rahavard</span></span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard" title="Link to this definition">#</a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.url">
-<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#oxtapus.Rahavard.url" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.last_get_stocks">
-<span class="sig-name descname"><span class="pre">last_get_stocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#oxtapus.Rahavard.last_get_stocks" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.stocks">
-<span class="sig-name descname"><span class="pre">stocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.stocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.stocks" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.handle_get_stock">
-<span class="sig-name descname"><span class="pre">handle_get_stock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.handle_get_stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.handle_get_stock" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.balance_sheet">
-<span class="sig-name descname"><span class="pre">balance_sheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarterly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.balance_sheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.balance_sheet" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="oxtapus.TSETMC.order_book">
+<span class="sig-name descname"><span class="pre">order_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ins_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../_modules/oxtapus/tsetmc.html#TSETMC.order_book"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TSETMC.order_book" title="Link to this definition">#</a></dt>
 <dd><div dir="rtl">
-    داده‌هایِ ترازنامه رو بهت می‌ده
-</div><dl class="field-list simple">
+    سفارش های نماد(ها) رو بهت میده.
+</div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div dir="rtl">
+    زمانِ استخراجِ داده با استفاده از
+    <span style="color:#ec4899">ins_code</span>
+    تقریبن نصفِ استفاده از
+    <span style="color:#ec4899">symbol</span>
+    است.
+    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div dir="rtl">
+    یا
+    <span style="color:#ec4899">ins_code</span>
+    رو وارد کن، یا
+    <span style="color:#ec4899">symbol</span>
+    رو.
+اگه هر دو رو وارد کنی،
+    <span style="color:#ec4899">symbol</span>
+نادیده گرفته می‌شه و تنها از
+    <span style="color:#ec4899">ins_code</span>
+    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+</div></div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol</strong> (<em>str</em>) – نماد</p></li>
-<li><p><strong>quarterly</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘فالس’ باشه، داده‌هایِ سالانه می‌ده و اگه ‘ترو’ باشه، فصلی</p></li>
+<li><p><strong>symbol</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – نماد</p></li>
+<li><p><strong>ins_code</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – کدِ صفحه‌یِ نماد</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="rahavard/index.html#oxtapus.rahavard.Rep" title="oxtapus.rahavard.Rep">Rep</a></p>
+<dd class="field-even"><p>polars.DataFrame</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">Rahavard</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rah</span> <span class="o">=</span> <span class="n">Rahavard</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span> <span class="o">=</span> <span class="n">rah</span><span class="o">.</span><span class="n">balance_sheet</span><span class="p">(</span><span class="s2">&quot;آسیا&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">data</span>
-<span class="go">shape: (5, 48)</span>
-<span class="go">┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐</span>
-<span class="go">│ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │</span>
-<span class="go">│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │</span>
-<span class="go">│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │</span>
-<span class="go">│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡</span>
-<span class="go">│ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
-<span class="go">│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
-<span class="go">│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │</span>
-<span class="go">│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │</span>
-<span class="go">│ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │</span>
-<span class="go">│ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │</span>
-<span class="go">└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oxtapus</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSETMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tsetmc</span> <span class="o">=</span> <span class="n">TSETMC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tse</span><span class="o">.</span><span class="n">order_book</span><span class="p">(</span><span class="n">ins_code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;65883838195688438&quot;</span><span class="p">,</span><span class="s2">&quot;22645269567765904&quot;</span><span class="p">])</span>
+<span class="go">shape: (10, 8)</span>
+<span class="go">┌────────────────────────────┬───────────────────┬───────────┬─────────────┬───────────┬───────────┬────────────┬───────────┐</span>
+<span class="go">│ datetime                   ┆ ins_code          ┆ bid_count ┆ bid_volume  ┆ bid_price ┆ ask_price ┆ ask_volume ┆ ask_count │</span>
+<span class="go">│ ---                        ┆ ---               ┆ ---       ┆ ---         ┆ ---       ┆ ---       ┆ ---        ┆ ---       │</span>
+<span class="go">│ datetime[μs]               ┆ str               ┆ i64       ┆ f64         ┆ f64       ┆ f64       ┆ f64        ┆ i64       │</span>
+<span class="go">╞════════════════════════════╪═══════════════════╪═══════════╪═════════════╪═══════════╪═══════════╪════════════╪═══════════╡</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 2         ┆ 255555.0    ┆ 575.0     ┆ 575.0     ┆ 134386.0   ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 26        ┆ 5.328977e6  ┆ 574.0     ┆ 576.0     ┆ 300000.0   ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 46        ┆ 1.2845421e7 ┆ 573.0     ┆ 577.0     ┆ 5.25633e6  ┆ 17        │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 37        ┆ 1.0567086e7 ┆ 572.0     ┆ 578.0     ┆ 7.207702e6 ┆ 23        │</span>
+<span class="go">│ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 22        ┆ 3.943002e6  ┆ 571.0     ┆ 579.0     ┆ 7.031635e6 ┆ 23        │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 1576.0      ┆ 3748.0    ┆ 3749.0    ┆ 282050.0   ┆ 2         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 34799.0     ┆ 3746.0    ┆ 3759.0    ┆ 67324.0    ┆ 3         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 400000.0    ┆ 3742.0    ┆ 3760.0    ┆ 37739.0    ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 3         ┆ 451625.0    ┆ 3740.0    ┆ 3765.0    ┆ 424.0      ┆ 1         │</span>
+<span class="go">│ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 200000.0    ┆ 3736.0    ┆ 3770.0    ┆ 1272.0     ┆ 3         │</span>
+<span class="go">└────────────────────────────┴───────────────────┴───────────┴─────────────┴───────────┴───────────┴────────────┴───────────┘</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">base_info</span>
-<span class="go">BaseInfo(announcement_type=&#39;1&#39;, financial_view_type=&#39;3&#39;)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsh</span><span class="o">.</span><span class="n">field_info</span>
-<span class="go">shape: (46, 10)</span>
-<span class="go">┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐</span>
-<span class="go">│ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │</span>
-<span class="go">│ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │</span>
-<span class="go">│ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │</span>
-<span class="go">│     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡</span>
-<span class="go">│ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │</span>
-<span class="go">│ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │</span>
-<span class="go">│     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">│     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │</span>
-<span class="go">└─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.Rahavard.income_statements">
-<span class="sig-name descname"><span class="pre">income_statements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarterly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/rahavard.html#Rahavard.income_statements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.Rahavard.income_statements" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
-    داده‌هایِ سود/زیان رو بهت می‌ده
-</div><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol</strong> (<em>str</em>) – نماد</p></li>
-<li><p><strong>quarterly</strong> (<em>bool</em><em>, </em><em>default False</em>) – اگه ‘فالس’ باشه، داده‌هایِ سالانه می‌ده و اگه ‘ترو’ باشه، فصلی</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="rahavard/index.html#oxtapus.rahavard.Rep" title="oxtapus.rahavard.Rep">Rep</a></p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">Rahavard</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rah</span> <span class="o">=</span> <span class="n">Rahavard</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span> <span class="o">=</span> <span class="n">rah</span><span class="o">.</span><span class="n">income_statements</span><span class="p">(</span><span class="s2">&quot;آسیا&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">data</span>
-<span class="go">shape: (3, 34)</span>
-<span class="go">┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐</span>
-<span class="go">│ date      ┆ fiscal_ye ┆ 49        ┆ 51        ┆ … ┆ 33        ┆ 34        ┆ capital   ┆ pure_eps │</span>
-<span class="go">│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │</span>
-<span class="go">│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │</span>
-<span class="go">│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡</span>
-<span class="go">│ 2023-07-1 ┆ 2023-03-2 ┆ 1.4780e14 ┆ 1.4780e14 ┆ … ┆ 5.8900e11 ┆ 4.8937e12 ┆ 3.1000e13 ┆ 1.8703e8 │</span>
-<span class="go">│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2022-07-1 ┆ 2022-03-2 ┆ 9.6046e13 ┆ 9.6046e13 ┆ … ┆ 2.8958e12 ┆ 7.3677e12 ┆ 2.4132e13 ┆ 2.5000e8 │</span>
-<span class="go">│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">│ 2021-07-0 ┆ 2021-03-1 ┆ 6.8418e13 ┆ 6.8418e13 ┆ … ┆ 2.4132e12 ┆ 5.1905e12 ┆ 2.4132e13 ┆ 3.1084e8 │</span>
-<span class="go">│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │</span>
-<span class="go">└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">base_info</span>
-<span class="go">BaseInfo(announcement_type=&#39;1&#39;, financial_view_type=&#39;3&#39;)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ist</span><span class="o">.</span><span class="n">field_info</span>
-<span class="go">shape: (32, 10)</span>
-<span class="go">┌──────────┬────────────┬────────────┬───────────┬───┬───────────┬──────────┬──────────┬───────────┐</span>
-<span class="go">│ id       ┆ title      ┆ english_ti ┆ account   ┆ … ┆ index_vie ┆ sign_neg ┆ sign_pos ┆ neg_natur │</span>
-<span class="go">│ ---      ┆ ---        ┆ tle        ┆ ---       ┆   ┆ w         ┆ ---      ┆ ---      ┆ e         │</span>
-<span class="go">│ str      ┆ str        ┆ ---        ┆ str       ┆   ┆ ---       ┆ bool     ┆ bool     ┆ ---       │</span>
-<span class="go">│          ┆            ┆ str        ┆           ┆   ┆ i64       ┆          ┆          ┆ bool      │</span>
-<span class="go">╞══════════╪════════════╪════════════╪═══════════╪═══╪═══════════╪══════════╪══════════╪═══════════╡</span>
-<span class="go">│ 68       ┆ سایر       ┆ Other      ┆ GrossOthe ┆ … ┆ 2400      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ هزینه‌های   ┆ Premium    ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ بیمه‌ای     ┆ Expenses   ┆ e:OtherPr ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆            ┆ emium…    ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 78       ┆ خالص درآمد ┆ Net        ┆ Operating ┆ … ┆ 3300      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ سرمایه‌گذار ┆ Investment ┆ :NetInves ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ یها از     ┆ Revenue    ┆ tmentReve ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ محل…       ┆ from Othe… ┆ nuefr…    ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 54       ┆ هزینه حق   ┆ Reinsuranc ┆ Insurance ┆ … ┆ 600       ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ بیمه       ┆ e          ┆ Revenue:C ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ اتکائی     ┆ Recoveries ┆ ostPremiu ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ واگذاری    ┆            ┆ m         ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 72       ┆ درآمد سرما ┆ Other      ┆ Operating ┆ … ┆ 3100      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ یه‌گذاری از ┆ Investment ┆ :OtherInv ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ محل سایر   ┆ Revenue    ┆ estmentRe ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ م…         ┆            ┆ venue     ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 55       ┆ درآمد حق   ┆ Insurance  ┆ Insurance ┆ … ┆ 700       ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ بیمه سهم   ┆ Revenue    ┆ Revenue   ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ نگهداری    ┆ (Holding   ┆           ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆ Split…     ┆           ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ …        ┆ …          ┆ …          ┆ …         ┆ … ┆ …         ┆ …        ┆ …        ┆ …         │</span>
-<span class="go">│ 61       ┆ خسارت سهم  ┆ Damage     ┆ ClaimExpe ┆ … ┆ 1300      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ بیمه‌گران   ┆ Share Of   ┆ nse:Reven ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ اتکائی     ┆ reinsuranc ┆ ueClaim   ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆ e insu…    ┆           ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ pure_eps ┆ EPS خالص   ┆ Pure EPS   ┆ -         ┆ … ┆ 100000000 ┆ true     ┆ true     ┆ false     │</span>
-<span class="go">│          ┆            ┆            ┆           ┆   ┆ 02        ┆          ┆          ┆           │</span>
-<span class="go">│ 19       ┆ سود قبل از ┆ Earnings   ┆ Impure    ┆ … ┆ 4100      ┆ true     ┆ true     ┆ false     │</span>
-<span class="go">│          ┆ کسر مالیات ┆ Before Tax ┆           ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆ (EBT)      ┆           ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 66       ┆ کاهش       ┆ Technical  ┆ GrossOthe ┆ … ┆ 1800      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ (افزایش)   ┆ Reserves,  ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ سایر ذخایر ┆ Net        ┆ e:Technic ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆ فنی        ┆ Changes    ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│ 29       ┆ اندوخته    ┆ Legal      ┆ EarningAp ┆ … ┆ 5500      ┆ true     ┆ false    ┆ false     │</span>
-<span class="go">│          ┆ قانونی     ┆ Reserves   ┆ propriate ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆            ┆ dPlan:Leg ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">│          ┆            ┆            ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │</span>
-<span class="go">└──────────┴────────────┴────────────┴───────────┴───┴───────────┴──────────┴──────────┴───────────┘</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="oxtapus.TGJU">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TGJU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.tgju.org/v1'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
-      داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
-</div><dl class="py attribute">
-<dt class="sig sig-object py" id="oxtapus.TGJU.base_url">
-<span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#oxtapus.TGJU.base_url" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.usd_irr">
-<span class="sig-name descname"><span class="pre">usd_irr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.usd_irr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.usd_irr" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TGJU</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span> <span class="o">=</span> <span class="n">TGJU</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span><span class="o">.</span><span class="n">usd_irr</span><span class="p">()</span>
-<span class="go">shape: (3_688, 6)</span>
-<span class="go">┌────────────┬────────────┬──────────┬──────────┬──────────┬──────────┐</span>
-<span class="go">│ date       ┆ jdate      ┆ open     ┆ high     ┆ low      ┆ close    │</span>
-<span class="go">│ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---      ┆ ---      │</span>
-<span class="go">│ date       ┆ str        ┆ f64      ┆ f64      ┆ f64      ┆ f64      │</span>
-<span class="go">╞════════════╪════════════╪══════════╪══════════╪══════════╪══════════╡</span>
-<span class="go">│ 2023-11-01 ┆ 1402-08-10 ┆ 514870.0 ┆ 517900.0 ┆ 513380.0 ┆ 516830.0 │</span>
-<span class="go">│ 2023-10-31 ┆ 1402-08-09 ┆ 516770.0 ┆ 518060.0 ┆ 515370.0 ┆ 516600.0 │</span>
-<span class="go">│ 2023-10-30 ┆ 1402-08-08 ┆ 511950.0 ┆ 514600.0 ┆ 510650.0 ┆ 514500.0 │</span>
-<span class="go">│ 2023-10-29 ┆ 1402-08-07 ┆ 519550.0 ┆ 519560.0 ┆ 513350.0 ┆ 513560.0 │</span>
-<span class="go">│ …          ┆ …          ┆ …        ┆ …        ┆ …        ┆ …        │</span>
-<span class="go">│ 2011-11-29 ┆ 1390-09-08 ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  │</span>
-<span class="go">│ 2011-11-28 ┆ 1390-09-07 ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  │</span>
-<span class="go">│ 2011-11-27 ┆ 1390-09-06 ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  │</span>
-<span class="go">│ 2011-11-26 ┆ 1390-09-05 ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  │</span>
-<span class="go">└────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.sekke_emami">
-<span class="sig-name descname"><span class="pre">sekke_emami</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.sekke_emami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.sekke_emami" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ سکه‌یِ امامی رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">oxtapus</span> <span class="kn">import</span> <span class="n">TGJU</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span> <span class="o">=</span> <span class="n">TGJU</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tgju</span><span class="o">.</span><span class="n">sekke_emami</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">shape: (3, 6)</span>
-<span class="go">┌────────────┬────────────┬──────────┬──────────┬─────────┬──────────┐</span>
-<span class="go">│ date       ┆ jdate      ┆ open     ┆ high     ┆ low     ┆ close    │</span>
-<span class="go">│ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---     ┆ ---      │</span>
-<span class="go">│ date       ┆ str        ┆ f64      ┆ f64      ┆ f64     ┆ f64      │</span>
-<span class="go">╞════════════╪════════════╪══════════╪══════════╪═════════╪══════════╡</span>
-<span class="go">│ 2023-11-01 ┆ 1402-08-10 ┆ 2.9351e8 ┆ 2.9901e8 ┆ 2.925e7 ┆ 2.9601e8 │</span>
-<span class="go">│ 2023-10-31 ┆ 1402-08-09 ┆ 2.9301e8 ┆ 2.9701e8 ┆ 2.923e8 ┆ 2.9701e8 │</span>
-<span class="go">│ 2023-10-30 ┆ 1402-08-08 ┆ 2.9201e8 ┆ 2.9201e8 ┆ 2.903e8 ┆ 2.9133e8 │</span>
-<span class="go">└────────────┴────────────┴──────────┴──────────┴─────────┴──────────┘</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.nim_sekke">
-<span class="sig-name descname"><span class="pre">nim_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.nim_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.nim_sekke" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ نیم-سکه رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.rob_sekke">
-<span class="sig-name descname"><span class="pre">rob_sekke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.rob_sekke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.rob_sekke" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ ربعِ-سکه رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.ons">
-<span class="sig-name descname"><span class="pre">ons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.ons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.ons" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ اونسِ طلا رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.silver">
-<span class="sig-name descname"><span class="pre">silver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.silver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.silver" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oxtapus.TGJU.commodity">
-<span class="sig-name descname"><span class="pre">commodity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'zinc'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'aluminium'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lead'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'copper'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'copper2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nickel'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'tin'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/oxtapus/tgju.html#TGJU.commodity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.TGJU.commodity" title="Link to this definition">#</a></dt>
-<dd><div dir="rtl">
- داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
-</div><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>symbol</strong> (<em>Literal</em><em>[</em><em>str</em><em>]</em>) – zinc: روی,
-aluminum: آلومینیوم,
-lead: سرب,
-copper:  مس-لندن,
-copper2: مس-امریکا,
-nickel: نیکل,
-tin: قلع</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pandas.DataFrame</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1722,11 +1777,11 @@ tin: قلع</p>
       </div>
     </a>
     <a class="right-next"
-       href="models/index.html"
+       href="fipiran/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">oxtapus.models</p>
+        <p class="prev-next-title">oxtapus.fipiran</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1737,7 +1792,8 @@ tin: قلع</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1748,10 +1804,33 @@ tin: قلع</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Fipiran"><code class="docutils literal notranslate"><span class="pre">Fipiran</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Fipiran.funds"><code class="docutils literal notranslate"><span class="pre">Fipiran.funds()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.url"><code class="docutils literal notranslate"><span class="pre">Rahavard.url</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.last_get_stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.last_get_stocks</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.stocks()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.handle_get_stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.handle_get_stock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.base_url"><code class="docutils literal notranslate"><span class="pre">TGJU.base_url</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.rob_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.rob_sekke()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.ons"><code class="docutils literal notranslate"><span class="pre">TGJU.ons()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.silver"><code class="docutils literal notranslate"><span class="pre">TGJU.silver()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.commodity"><code class="docutils literal notranslate"><span class="pre">TGJU.commodity()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC"><code class="docutils literal notranslate"><span class="pre">TSETMC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.get_all_ins_code"><code class="docutils literal notranslate"><span class="pre">TSETMC.get_all_ins_code</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.requests"><code class="docutils literal notranslate"><span class="pre">TSETMC.requests</span></code></a></li>
@@ -1778,26 +1857,7 @@ tin: قلع</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.shareholder_list"><code class="docutils literal notranslate"><span class="pre">TSETMC.shareholder_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.adjust_price_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.adjust_price_flow()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.ins_share_change_flow"><code class="docutils literal notranslate"><span class="pre">TSETMC.ins_share_change_flow()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard"><code class="docutils literal notranslate"><span class="pre">Rahavard</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.url"><code class="docutils literal notranslate"><span class="pre">Rahavard.url</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.last_get_stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.last_get_stocks</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.stocks"><code class="docutils literal notranslate"><span class="pre">Rahavard.stocks()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.handle_get_stock"><code class="docutils literal notranslate"><span class="pre">Rahavard.handle_get_stock()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.balance_sheet"><code class="docutils literal notranslate"><span class="pre">Rahavard.balance_sheet()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.Rahavard.income_statements"><code class="docutils literal notranslate"><span class="pre">Rahavard.income_statements()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU"><code class="docutils literal notranslate"><span class="pre">TGJU</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.base_url"><code class="docutils literal notranslate"><span class="pre">TGJU.base_url</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.usd_irr"><code class="docutils literal notranslate"><span class="pre">TGJU.usd_irr()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.sekke_emami"><code class="docutils literal notranslate"><span class="pre">TGJU.sekke_emami()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.nim_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.nim_sekke()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.rob_sekke"><code class="docutils literal notranslate"><span class="pre">TGJU.rob_sekke()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.ons"><code class="docutils literal notranslate"><span class="pre">TGJU.ons()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.silver"><code class="docutils literal notranslate"><span class="pre">TGJU.silver()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TGJU.commodity"><code class="docutils literal notranslate"><span class="pre">TGJU.commodity()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.TSETMC.order_book"><code class="docutils literal notranslate"><span class="pre">TSETMC.order_book()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1806,13 +1866,13 @@ tin: قلع</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/autoapi/oxtapus/index.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/autoapi/oxtapus/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -1827,8 +1887,8 @@ tin: قلع</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1848,7 +1908,7 @@ tin: قلع</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1861,7 +1921,8 @@ tin: قلع</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

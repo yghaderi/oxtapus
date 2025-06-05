@@ -25,6 +25,8 @@ Module Contents
 
 
    .. py:attribute:: base_url
+      :value: 'https://api.tgju.org/v1'
+
 
 
    .. py:method:: usd_irr()

@@ -16,29 +16,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../../_static/documentation_options.js?v=9f76a604"></script>
-    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=4ea706d9"></script>
@@ -46,9 +49,10 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="oxtapus.models.tsetmc" href="../tsetmc/index.html" />
-    <link rel="prev" title="oxtapus.models" href="../index.html" />
+    <link rel="prev" title="oxtapus.models.fipiran" href="../fipiran/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -64,19 +68,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../../search.html"
       method="get">
@@ -84,7 +77,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -92,8 +84,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -153,29 +145,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -184,15 +168,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -211,7 +191,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -244,15 +225,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -265,12 +242,13 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html">oxtapus.models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../fipiran/index.html">oxtapus.models.fipiran</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">oxtapus.models.rahavard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tsetmc/index.html">oxtapus.models.tsetmc</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../../fipiran/index.html">oxtapus.fipiran</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rahavard/index.html">oxtapus.rahavard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tgju/index.html">oxtapus.tgju</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tsetmc/index.html">oxtapus.tsetmc</a></li>
@@ -283,9 +261,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -303,10 +286,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -319,12 +298,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">API Reference</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">oxtapus</a></li>
     
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">oxtapus.models</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">oxtapus.mode...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">oxtapus.models.rahavard</span></li>
   </ul>
 </nav>
 </div>
@@ -345,19 +324,19 @@ document.write(`
 <span id="oxtapus-models-rahavard"></span><h1>oxtapus.models.rahavard<a class="headerlink" href="#module-oxtapus.models.rahavard" title="Link to this heading">#</a></h1>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.rahavard.BalanceSheet" title="oxtapus.models.rahavard.BalanceSheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BalanceSheet</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.rahavard.IncomeStatements" title="oxtapus.models.rahavard.IncomeStatements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IncomeStatements</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.rahavard.CashFlow" title="oxtapus.models.rahavard.CashFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CashFlow</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.rahavard.Stocks" title="oxtapus.models.rahavard.Stocks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stocks</span></code></a></p></td>
-<td><p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
 </tr>
 </tbody>
 </table>
@@ -367,26 +346,29 @@ document.write(`
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BalanceSheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BalanceSheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__class_vars__">
-<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__class_vars__" title="Link to this definition">#</a></dt>
-<dd><p>The names of classvars defined on the model.</p>
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__private_attributes__">
-<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__private_attributes__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__private_attributes__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata about the private attributes of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__signature__">
-<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__signature__" title="Link to this definition">#</a></dt>
-<dd><p>The signature for instantiating the model.</p>
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -397,77 +379,89 @@ document.write(`
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_core_schema__">
-<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_custom_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
 <dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_decorators__">
-<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_decorators__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata containing the decorators defined on the model.
 This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_generic_metadata__">
-<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata for generic models; contains data used for a similar purpose to
 __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_parent_namespace__">
-<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
 <dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_post_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_post_init__" title="Link to this definition">#</a></dt>
 <dd><p>The name of the post-init method for the model, if defined.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_root_model__">
 <span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_root_model__" title="Link to this definition">#</a></dt>
-<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_serializer__">
-<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_serializer__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_validator__">
-<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_validator__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_extra__">
-<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_extra__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the values of extra fields from validation when
-<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_fields_set__">
-<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the names of fields explicitly set.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.BalanceSheet.__pydantic_private__">
-<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_private__" title="Link to this definition">#</a></dt>
-<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#BalanceSheet.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -479,26 +473,29 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IncomeStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IncomeStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__class_vars__">
-<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__class_vars__" title="Link to this definition">#</a></dt>
-<dd><p>The names of classvars defined on the model.</p>
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__private_attributes__">
-<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__private_attributes__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__private_attributes__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata about the private attributes of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__signature__">
-<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__signature__" title="Link to this definition">#</a></dt>
-<dd><p>The signature for instantiating the model.</p>
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -509,77 +506,89 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_core_schema__">
-<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_custom_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
 <dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_decorators__">
-<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_decorators__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata containing the decorators defined on the model.
 This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_generic_metadata__">
-<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata for generic models; contains data used for a similar purpose to
 __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_parent_namespace__">
-<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
 <dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_post_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_post_init__" title="Link to this definition">#</a></dt>
 <dd><p>The name of the post-init method for the model, if defined.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_root_model__">
 <span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_root_model__" title="Link to this definition">#</a></dt>
-<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_serializer__">
-<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_serializer__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_validator__">
-<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_validator__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_extra__">
-<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_extra__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the values of extra fields from validation when
-<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_fields_set__">
-<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the names of fields explicitly set.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.IncomeStatements.__pydantic_private__">
-<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_private__" title="Link to this definition">#</a></dt>
-<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#IncomeStatements.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -591,26 +600,29 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CashFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CashFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__class_vars__">
-<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__class_vars__" title="Link to this definition">#</a></dt>
-<dd><p>The names of classvars defined on the model.</p>
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__private_attributes__">
-<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__private_attributes__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__private_attributes__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata about the private attributes of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__signature__">
-<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__signature__" title="Link to this definition">#</a></dt>
-<dd><p>The signature for instantiating the model.</p>
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -621,77 +633,89 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_core_schema__">
-<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_custom_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
 <dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_decorators__">
-<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_decorators__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata containing the decorators defined on the model.
 This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_generic_metadata__">
-<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata for generic models; contains data used for a similar purpose to
 __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_parent_namespace__">
-<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
 <dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_post_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_post_init__" title="Link to this definition">#</a></dt>
 <dd><p>The name of the post-init method for the model, if defined.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_root_model__">
 <span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_root_model__" title="Link to this definition">#</a></dt>
-<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_serializer__">
-<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_serializer__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_validator__">
-<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_validator__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_extra__">
-<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_extra__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the values of extra fields from validation when
-<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_fields_set__">
-<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the names of fields explicitly set.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.CashFlow.__pydantic_private__">
-<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_private__" title="Link to this definition">#</a></dt>
-<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#CashFlow.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.CashFlow.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -703,26 +727,29 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py class">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
-<p>Usage docs: <a class="reference external" href="https://docs.pydantic.dev/2.8/concepts/models/">https://docs.pydantic.dev/2.8/concepts/models/</a></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
 <p>A base class for creating Pydantic models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__class_vars__">
-<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__class_vars__" title="Link to this definition">#</a></dt>
-<dd><p>The names of classvars defined on the model.</p>
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__private_attributes__">
-<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__private_attributes__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__private_attributes__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata about the private attributes of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__signature__">
-<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__signature__" title="Link to this definition">#</a></dt>
-<dd><p>The signature for instantiating the model.</p>
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -733,77 +760,89 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_core_schema__">
-<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_custom_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
 <dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_decorators__">
-<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_decorators__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata containing the decorators defined on the model.
 This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_generic_metadata__">
-<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
 <dd><p>Metadata for generic models; contains data used for a similar purpose to
 __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_parent_namespace__">
-<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
 <dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_post_init__">
-<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_post_init__" title="Link to this definition">#</a></dt>
 <dd><p>The name of the post-init method for the model, if defined.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_root_model__">
 <span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_root_model__" title="Link to this definition">#</a></dt>
-<dd><p>Whether the model is a <cite>RootModel</cite>.</p>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_serializer__">
-<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_serializer__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaSerializer used to dump instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_validator__">
-<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_validator__" title="Link to this definition">#</a></dt>
-<dd><p>The pydantic-core SchemaValidator used to validate instances of the model.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_extra__">
-<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_extra__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the values of extra fields from validation when
-<cite>model_config[‘extra’] == ‘allow’</cite>.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_fields_set__">
-<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
-<dd><p>An instance attribute with the names of fields explicitly set.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oxtapus.models.rahavard.Stocks.__pydantic_private__">
-<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_private__" title="Link to this definition">#</a></dt>
-<dd><p>Instance attribute with the values of private attributes set on the model instance.</p>
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/rahavard.html#Stocks.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.rahavard.Stocks.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -827,12 +866,12 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="../fipiran/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">oxtapus.models</p>
+        <p class="prev-next-title">oxtapus.models.fipiran</p>
       </div>
     </a>
     <a class="right-next"
@@ -851,7 +890,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -878,6 +918,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_root_model__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_serializer__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_computed_fields__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_extra__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_fields_set__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.BalanceSheet.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">BalanceSheet.__pydantic_private__</span></code></a></li>
@@ -898,6 +940,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_root_model__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_serializer__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_computed_fields__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_extra__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_fields_set__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.IncomeStatements.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__pydantic_private__</span></code></a></li>
@@ -918,6 +962,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_root_model__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_serializer__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_computed_fields__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_extra__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_fields_set__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.CashFlow.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">CashFlow.__pydantic_private__</span></code></a></li>
@@ -938,6 +984,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_root_model__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_serializer__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_computed_fields__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_extra__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_fields_set__</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.rahavard.Stocks.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">Stocks.__pydantic_private__</span></code></a></li>
@@ -950,13 +998,13 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../../../_sources/autoapi/oxtapus/models/rahavard/index.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/oxtapus/models/rahavard/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -971,8 +1019,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -992,7 +1040,7 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1005,7 +1053,8 @@ __args__, __origin__, __parameters__ in typing-module generics. May eventually b
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -4,15 +4,6 @@ oxtapus
 .. py:module:: oxtapus
 
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   /autoapi/oxtapus/models/index
-
-
 Submodules
 ----------
 
@@ -20,6 +11,7 @@ Submodules
    :maxdepth: 1
 
    /autoapi/oxtapus/fipiran/index
+   /autoapi/oxtapus/models/index
    /autoapi/oxtapus/rahavard/index
    /autoapi/oxtapus/tgju/index
    /autoapi/oxtapus/tsetmc/index
@@ -30,13 +22,368 @@ Classes
 
 .. autoapisummary::
 
-   oxtapus.TSETMC
+   oxtapus.Fipiran
    oxtapus.Rahavard
    oxtapus.TGJU
+   oxtapus.TSETMC
 
 
 Package Contents
 ----------------
+
+.. py:class:: Fipiran
+
+   .. py:method:: funds() -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              ی سری داده‌یِ از صندوق‌هایِ سرمایه-گذاری رو بهت می‌ده.
+          </div>
+
+
+
+.. py:class:: Rahavard
+
+   .. py:attribute:: url
+
+
+   .. py:attribute:: last_get_stocks
+      :value: None
+
+
+
+   .. py:method:: stocks()
+
+
+   .. py:method:: handle_get_stock()
+
+
+   .. py:method:: balance_sheet(symbol: str, quarterly: bool = False)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ ترازنامه رو بهت می‌ده
+          </div>
+
+      :param symbol: نماد
+      :type symbol: str
+      :param quarterly: اگه 'فالس' باشه، داده‌هایِ سالانه می‌ده و اگه 'ترو' باشه، فصلی
+      :type quarterly: bool, default False
+
+      :rtype: Rep
+
+      .. rubric:: Example
+
+      >>> from oxtapus import Rahavard
+      >>> rah = Rahavard()
+      >>> bsh = rah.balance_sheet("آسیا")
+      >>> bsh.data
+      shape: (5, 48)
+      ┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
+      │ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │
+      │ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
+      │ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
+      │           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      ╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
+      │ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+      │ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+      │ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
+      │ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │
+      │ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │
+      │ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │
+      └───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
+
+      >>> bsh.base_info
+      BaseInfo(announcement_type='1', financial_view_type='3')
+
+      >>> bsh.field_info
+      shape: (46, 10)
+      ┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐
+      │ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │
+      │ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │
+      │ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │
+      │     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │
+      ╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡
+      │ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │
+      │     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │
+      │ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │
+      │     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │
+      │ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │
+      │     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │
+      │ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │
+      │     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │
+      │ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │
+      │     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │
+      │ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │
+      │ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │
+      │     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │
+      │ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │
+      │     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │
+      │ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │
+      │     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │
+      │ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │
+      │     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │
+      │     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │
+      │ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │
+      │     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │
+      │     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │
+      └─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
+
+
+
+   .. py:method:: income_statements(symbol: str, quarterly: bool = False)
+
+      .. raw:: html
+
+          <div dir="rtl">
+              داده‌هایِ سود/زیان رو بهت می‌ده
+          </div>
+
+      :param symbol: نماد
+      :type symbol: str
+      :param quarterly: اگه 'فالس' باشه، داده‌هایِ سالانه می‌ده و اگه 'ترو' باشه، فصلی
+      :type quarterly: bool, default False
+
+      :rtype: Rep
+
+      .. rubric:: Example
+
+      >>> from oxtapus import Rahavard
+      >>> rah = Rahavard()
+      >>> ist = rah.income_statements("آسیا")
+      >>> ist.data
+      shape: (3, 34)
+      ┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
+      │ date      ┆ fiscal_ye ┆ 49        ┆ 51        ┆ … ┆ 33        ┆ 34        ┆ capital   ┆ pure_eps │
+      │ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
+      │ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
+      │           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      ╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
+      │ 2023-07-1 ┆ 2023-03-2 ┆ 1.4780e14 ┆ 1.4780e14 ┆ … ┆ 5.8900e11 ┆ 4.8937e12 ┆ 3.1000e13 ┆ 1.8703e8 │
+      │ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2022-07-1 ┆ 2022-03-2 ┆ 9.6046e13 ┆ 9.6046e13 ┆ … ┆ 2.8958e12 ┆ 7.3677e12 ┆ 2.4132e13 ┆ 2.5000e8 │
+      │ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      │ 2021-07-0 ┆ 2021-03-1 ┆ 6.8418e13 ┆ 6.8418e13 ┆ … ┆ 2.4132e12 ┆ 5.1905e12 ┆ 2.4132e13 ┆ 3.1084e8 │
+      │ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
+      └───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
+
+      >>> ist.base_info
+      BaseInfo(announcement_type='1', financial_view_type='3')
+
+      >>> ist.field_info
+      shape: (32, 10)
+      ┌──────────┬────────────┬────────────┬───────────┬───┬───────────┬──────────┬──────────┬───────────┐
+      │ id       ┆ title      ┆ english_ti ┆ account   ┆ … ┆ index_vie ┆ sign_neg ┆ sign_pos ┆ neg_natur │
+      │ ---      ┆ ---        ┆ tle        ┆ ---       ┆   ┆ w         ┆ ---      ┆ ---      ┆ e         │
+      │ str      ┆ str        ┆ ---        ┆ str       ┆   ┆ ---       ┆ bool     ┆ bool     ┆ ---       │
+      │          ┆            ┆ str        ┆           ┆   ┆ i64       ┆          ┆          ┆ bool      │
+      ╞══════════╪════════════╪════════════╪═══════════╪═══╪═══════════╪══════════╪══════════╪═══════════╡
+      │ 68       ┆ سایر       ┆ Other      ┆ GrossOthe ┆ … ┆ 2400      ┆ true     ┆ false    ┆ false     │
+      │          ┆ هزینه‌های   ┆ Premium    ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ بیمه‌ای     ┆ Expenses   ┆ e:OtherPr ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆            ┆ emium…    ┆   ┆           ┆          ┆          ┆           │
+      │ 78       ┆ خالص درآمد ┆ Net        ┆ Operating ┆ … ┆ 3300      ┆ true     ┆ false    ┆ false     │
+      │          ┆ سرمایه‌گذار ┆ Investment ┆ :NetInves ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ یها از     ┆ Revenue    ┆ tmentReve ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ محل…       ┆ from Othe… ┆ nuefr…    ┆   ┆           ┆          ┆          ┆           │
+      │ 54       ┆ هزینه حق   ┆ Reinsuranc ┆ Insurance ┆ … ┆ 600       ┆ true     ┆ false    ┆ false     │
+      │          ┆ بیمه       ┆ e          ┆ Revenue:C ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ اتکائی     ┆ Recoveries ┆ ostPremiu ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ واگذاری    ┆            ┆ m         ┆   ┆           ┆          ┆          ┆           │
+      │ 72       ┆ درآمد سرما ┆ Other      ┆ Operating ┆ … ┆ 3100      ┆ true     ┆ false    ┆ false     │
+      │          ┆ یه‌گذاری از ┆ Investment ┆ :OtherInv ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ محل سایر   ┆ Revenue    ┆ estmentRe ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ م…         ┆            ┆ venue     ┆   ┆           ┆          ┆          ┆           │
+      │ 55       ┆ درآمد حق   ┆ Insurance  ┆ Insurance ┆ … ┆ 700       ┆ true     ┆ false    ┆ false     │
+      │          ┆ بیمه سهم   ┆ Revenue    ┆ Revenue   ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ نگهداری    ┆ (Holding   ┆           ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆ Split…     ┆           ┆   ┆           ┆          ┆          ┆           │
+      │ …        ┆ …          ┆ …          ┆ …         ┆ … ┆ …         ┆ …        ┆ …        ┆ …         │
+      │ 61       ┆ خسارت سهم  ┆ Damage     ┆ ClaimExpe ┆ … ┆ 1300      ┆ true     ┆ false    ┆ false     │
+      │          ┆ بیمه‌گران   ┆ Share Of   ┆ nse:Reven ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ اتکائی     ┆ reinsuranc ┆ ueClaim   ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆ e insu…    ┆           ┆   ┆           ┆          ┆          ┆           │
+      │ pure_eps ┆ EPS خالص   ┆ Pure EPS   ┆ -         ┆ … ┆ 100000000 ┆ true     ┆ true     ┆ false     │
+      │          ┆            ┆            ┆           ┆   ┆ 02        ┆          ┆          ┆           │
+      │ 19       ┆ سود قبل از ┆ Earnings   ┆ Impure    ┆ … ┆ 4100      ┆ true     ┆ true     ┆ false     │
+      │          ┆ کسر مالیات ┆ Before Tax ┆           ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆ (EBT)      ┆           ┆   ┆           ┆          ┆          ┆           │
+      │ 66       ┆ کاهش       ┆ Technical  ┆ GrossOthe ┆ … ┆ 1800      ┆ true     ┆ false    ┆ false     │
+      │          ┆ (افزایش)   ┆ Reserves,  ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ سایر ذخایر ┆ Net        ┆ e:Technic ┆   ┆           ┆          ┆          ┆           │
+      │          ┆ فنی        ┆ Changes    ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │
+      │ 29       ┆ اندوخته    ┆ Legal      ┆ EarningAp ┆ … ┆ 5500      ┆ true     ┆ false    ┆ false     │
+      │          ┆ قانونی     ┆ Reserves   ┆ propriate ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆            ┆ dPlan:Leg ┆   ┆           ┆          ┆          ┆           │
+      │          ┆            ┆            ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │
+      └──────────┴────────────┴────────────┴───────────┴───┴───────────┴──────────┴──────────┴───────────┘
+
+
+
+.. py:class:: TGJU(base_url: str = 'https://api.tgju.org/v1')
+
+   .. raw:: html
+
+       <div dir="rtl">
+             داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
+       </div>
+
+
+   .. py:attribute:: base_url
+      :value: 'https://api.tgju.org/v1'
+
+
+
+   .. py:method:: usd_irr()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TGJU
+      >>> tgju = TGJU()
+      >>> tgju.usd_irr()
+      shape: (3_688, 6)
+      ┌────────────┬────────────┬──────────┬──────────┬──────────┬──────────┐
+      │ date       ┆ jdate      ┆ open     ┆ high     ┆ low      ┆ close    │
+      │ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---      ┆ ---      │
+      │ date       ┆ str        ┆ f64      ┆ f64      ┆ f64      ┆ f64      │
+      ╞════════════╪════════════╪══════════╪══════════╪══════════╪══════════╡
+      │ 2023-11-01 ┆ 1402-08-10 ┆ 514870.0 ┆ 517900.0 ┆ 513380.0 ┆ 516830.0 │
+      │ 2023-10-31 ┆ 1402-08-09 ┆ 516770.0 ┆ 518060.0 ┆ 515370.0 ┆ 516600.0 │
+      │ 2023-10-30 ┆ 1402-08-08 ┆ 511950.0 ┆ 514600.0 ┆ 510650.0 ┆ 514500.0 │
+      │ 2023-10-29 ┆ 1402-08-07 ┆ 519550.0 ┆ 519560.0 ┆ 513350.0 ┆ 513560.0 │
+      │ …          ┆ …          ┆ …        ┆ …        ┆ …        ┆ …        │
+      │ 2011-11-29 ┆ 1390-09-08 ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  │
+      │ 2011-11-28 ┆ 1390-09-07 ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  │
+      │ 2011-11-27 ┆ 1390-09-06 ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  │
+      │ 2011-11-26 ┆ 1390-09-05 ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  │
+      └────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+
+   .. py:method:: sekke_emami()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ سکه‌یِ امامی رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+      .. rubric:: Example
+
+      >>> from oxtapus import TGJU
+      >>> tgju = TGJU()
+      >>> tgju.sekke_emami().head(3)
+      shape: (3, 6)
+      ┌────────────┬────────────┬──────────┬──────────┬─────────┬──────────┐
+      │ date       ┆ jdate      ┆ open     ┆ high     ┆ low     ┆ close    │
+      │ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---     ┆ ---      │
+      │ date       ┆ str        ┆ f64      ┆ f64      ┆ f64     ┆ f64      │
+      ╞════════════╪════════════╪══════════╪══════════╪═════════╪══════════╡
+      │ 2023-11-01 ┆ 1402-08-10 ┆ 2.9351e8 ┆ 2.9901e8 ┆ 2.925e7 ┆ 2.9601e8 │
+      │ 2023-10-31 ┆ 1402-08-09 ┆ 2.9301e8 ┆ 2.9701e8 ┆ 2.923e8 ┆ 2.9701e8 │
+      │ 2023-10-30 ┆ 1402-08-08 ┆ 2.9201e8 ┆ 2.9201e8 ┆ 2.903e8 ┆ 2.9133e8 │
+      └────────────┴────────────┴──────────┴──────────┴─────────┴──────────┘
+
+
+
+   .. py:method:: nim_sekke()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ نیم-سکه رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+
+
+   .. py:method:: rob_sekke()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ ربعِ-سکه رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+
+
+   .. py:method:: ons()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ اونسِ طلا رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+
+
+   .. py:method:: silver()
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
+          </div>
+
+      :rtype: pandas.DataFrame
+
+
+
+   .. py:method:: commodity(symbol: Literal['zinc', 'aluminium', 'lead', 'copper', 'copper2', 'nickel', 'tin'])
+
+      .. raw:: html
+
+          <div dir="rtl">
+           داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
+          </div>
+
+      :param symbol: zinc: روی,
+                     aluminum: آلومینیوم,
+                     lead: سرب,
+                     copper:  مس-لندن,
+                     copper2: مس-امریکا,
+                     nickel: نیکل,
+                     tin: قلع
+      :type symbol: Literal[str]
+
+      :rtype: pandas.DataFrame
+
+
 
 .. py:class:: TSETMC(async_req: bool = False, get_all_ins_code: bool = False)
 
@@ -47,6 +394,8 @@ Package Contents
 
 
    .. py:attribute:: get_all_ins_code
+      :value: False
+
 
 
    .. py:attribute:: requests
@@ -995,343 +1344,72 @@ Package Contents
 
 
 
-.. py:class:: Rahavard
-
-   .. py:attribute:: url
-
-
-   .. py:attribute:: last_get_stocks
-      :value: None
-
-
-
-   .. py:method:: stocks()
-
-
-   .. py:method:: handle_get_stock()
-
-
-   .. py:method:: balance_sheet(symbol: str, quarterly: bool = False)
+   .. py:method:: order_book(symbol: str | list[str] | None = None, ins_code: str | list[str] | None = None) -> polars.DataFrame
 
       .. raw:: html
 
           <div dir="rtl">
-              داده‌هایِ ترازنامه رو بهت می‌ده
+              سفارش های نماد(ها) رو بهت میده.
           </div>
+
+      .. warning::
+          .. raw:: html
+
+              <div dir="rtl">
+                  زمانِ استخراجِ داده با استفاده از
+                  <span style="color:#ec4899">ins_code</span>
+                  تقریبن نصفِ استفاده از
+                  <span style="color:#ec4899">symbol</span>
+                  است.
+                  پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                  <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+              </div>
+
+      .. note::
+          .. raw:: html
+
+              <div dir="rtl">
+                  یا
+                  <span style="color:#ec4899">ins_code</span>
+                  رو وارد کن، یا
+                  <span style="color:#ec4899">symbol</span>
+                  رو.
+              اگه هر دو رو وارد کنی،
+                  <span style="color:#ec4899">symbol</span>
+              نادیده گرفته می‌شه و تنها از
+                  <span style="color:#ec4899">ins_code</span>
+                  استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+              </div>
 
       :param symbol: نماد
-      :type symbol: str
-      :param quarterly: اگه 'فالس' باشه، داده‌هایِ سالانه می‌ده و اگه 'ترو' باشه، فصلی
-      :type quarterly: bool, default False
+      :type symbol: str | list[str] | None
+      :param ins_code: کدِ صفحه‌یِ نماد
+      :type ins_code: str | list[str] | None
 
-      :rtype: Rep
-
-      .. rubric:: Example
-
-      >>> from oxtapus import Rahavard
-      >>> rah = Rahavard()
-      >>> bsh = rah.balance_sheet("آسیا")
-      >>> bsh.data
-      shape: (5, 48)
-      ┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
-      │ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │
-      │ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
-      │ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
-      │           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      ╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
-      │ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-      │ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-      │ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-      │ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │
-      │ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │
-      │ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │
-      └───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
-
-      >>> bsh.base_info
-      BaseInfo(announcement_type='1', financial_view_type='3')
-
-      >>> bsh.field_info
-      shape: (46, 10)
-      ┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐
-      │ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │
-      │ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │
-      │ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │
-      │     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │
-      ╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡
-      │ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │
-      │     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │
-      │ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │
-      │     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │
-      │ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │
-      │     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │
-      │ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │
-      │     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │
-      │ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │
-      │     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │
-      │ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │
-      │ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │
-      │     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │
-      │ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │
-      │     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │
-      │ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │
-      │     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │
-      │ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │
-      │     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │
-      │     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │
-      │ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │
-      │     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │
-      │     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │
-      └─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
-
-
-
-   .. py:method:: income_statements(symbol: str, quarterly: bool = False)
-
-      .. raw:: html
-
-          <div dir="rtl">
-              داده‌هایِ سود/زیان رو بهت می‌ده
-          </div>
-
-      :param symbol: نماد
-      :type symbol: str
-      :param quarterly: اگه 'فالس' باشه، داده‌هایِ سالانه می‌ده و اگه 'ترو' باشه، فصلی
-      :type quarterly: bool, default False
-
-      :rtype: Rep
+      :rtype: polars.DataFrame
 
       .. rubric:: Example
 
-      >>> from oxtapus import Rahavard
-      >>> rah = Rahavard()
-      >>> ist = rah.income_statements("آسیا")
-      >>> ist.data
-      shape: (3, 34)
-      ┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
-      │ date      ┆ fiscal_ye ┆ 49        ┆ 51        ┆ … ┆ 33        ┆ 34        ┆ capital   ┆ pure_eps │
-      │ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
-      │ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
-      │           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      ╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
-      │ 2023-07-1 ┆ 2023-03-2 ┆ 1.4780e14 ┆ 1.4780e14 ┆ … ┆ 5.8900e11 ┆ 4.8937e12 ┆ 3.1000e13 ┆ 1.8703e8 │
-      │ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2022-07-1 ┆ 2022-03-2 ┆ 9.6046e13 ┆ 9.6046e13 ┆ … ┆ 2.8958e12 ┆ 7.3677e12 ┆ 2.4132e13 ┆ 2.5000e8 │
-      │ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      │ 2021-07-0 ┆ 2021-03-1 ┆ 6.8418e13 ┆ 6.8418e13 ┆ … ┆ 2.4132e12 ┆ 5.1905e12 ┆ 2.4132e13 ┆ 3.1084e8 │
-      │ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-      └───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
-
-      >>> ist.base_info
-      BaseInfo(announcement_type='1', financial_view_type='3')
-
-      >>> ist.field_info
-      shape: (32, 10)
-      ┌──────────┬────────────┬────────────┬───────────┬───┬───────────┬──────────┬──────────┬───────────┐
-      │ id       ┆ title      ┆ english_ti ┆ account   ┆ … ┆ index_vie ┆ sign_neg ┆ sign_pos ┆ neg_natur │
-      │ ---      ┆ ---        ┆ tle        ┆ ---       ┆   ┆ w         ┆ ---      ┆ ---      ┆ e         │
-      │ str      ┆ str        ┆ ---        ┆ str       ┆   ┆ ---       ┆ bool     ┆ bool     ┆ ---       │
-      │          ┆            ┆ str        ┆           ┆   ┆ i64       ┆          ┆          ┆ bool      │
-      ╞══════════╪════════════╪════════════╪═══════════╪═══╪═══════════╪══════════╪══════════╪═══════════╡
-      │ 68       ┆ سایر       ┆ Other      ┆ GrossOthe ┆ … ┆ 2400      ┆ true     ┆ false    ┆ false     │
-      │          ┆ هزینه‌های   ┆ Premium    ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ بیمه‌ای     ┆ Expenses   ┆ e:OtherPr ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆            ┆ emium…    ┆   ┆           ┆          ┆          ┆           │
-      │ 78       ┆ خالص درآمد ┆ Net        ┆ Operating ┆ … ┆ 3300      ┆ true     ┆ false    ┆ false     │
-      │          ┆ سرمایه‌گذار ┆ Investment ┆ :NetInves ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ یها از     ┆ Revenue    ┆ tmentReve ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ محل…       ┆ from Othe… ┆ nuefr…    ┆   ┆           ┆          ┆          ┆           │
-      │ 54       ┆ هزینه حق   ┆ Reinsuranc ┆ Insurance ┆ … ┆ 600       ┆ true     ┆ false    ┆ false     │
-      │          ┆ بیمه       ┆ e          ┆ Revenue:C ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ اتکائی     ┆ Recoveries ┆ ostPremiu ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ واگذاری    ┆            ┆ m         ┆   ┆           ┆          ┆          ┆           │
-      │ 72       ┆ درآمد سرما ┆ Other      ┆ Operating ┆ … ┆ 3100      ┆ true     ┆ false    ┆ false     │
-      │          ┆ یه‌گذاری از ┆ Investment ┆ :OtherInv ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ محل سایر   ┆ Revenue    ┆ estmentRe ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ م…         ┆            ┆ venue     ┆   ┆           ┆          ┆          ┆           │
-      │ 55       ┆ درآمد حق   ┆ Insurance  ┆ Insurance ┆ … ┆ 700       ┆ true     ┆ false    ┆ false     │
-      │          ┆ بیمه سهم   ┆ Revenue    ┆ Revenue   ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ نگهداری    ┆ (Holding   ┆           ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆ Split…     ┆           ┆   ┆           ┆          ┆          ┆           │
-      │ …        ┆ …          ┆ …          ┆ …         ┆ … ┆ …         ┆ …        ┆ …        ┆ …         │
-      │ 61       ┆ خسارت سهم  ┆ Damage     ┆ ClaimExpe ┆ … ┆ 1300      ┆ true     ┆ false    ┆ false     │
-      │          ┆ بیمه‌گران   ┆ Share Of   ┆ nse:Reven ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ اتکائی     ┆ reinsuranc ┆ ueClaim   ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆ e insu…    ┆           ┆   ┆           ┆          ┆          ┆           │
-      │ pure_eps ┆ EPS خالص   ┆ Pure EPS   ┆ -         ┆ … ┆ 100000000 ┆ true     ┆ true     ┆ false     │
-      │          ┆            ┆            ┆           ┆   ┆ 02        ┆          ┆          ┆           │
-      │ 19       ┆ سود قبل از ┆ Earnings   ┆ Impure    ┆ … ┆ 4100      ┆ true     ┆ true     ┆ false     │
-      │          ┆ کسر مالیات ┆ Before Tax ┆           ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆ (EBT)      ┆           ┆   ┆           ┆          ┆          ┆           │
-      │ 66       ┆ کاهش       ┆ Technical  ┆ GrossOthe ┆ … ┆ 1800      ┆ true     ┆ false    ┆ false     │
-      │          ┆ (افزایش)   ┆ Reserves,  ┆ rInsuranc ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ سایر ذخایر ┆ Net        ┆ e:Technic ┆   ┆           ┆          ┆          ┆           │
-      │          ┆ فنی        ┆ Changes    ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │
-      │ 29       ┆ اندوخته    ┆ Legal      ┆ EarningAp ┆ … ┆ 5500      ┆ true     ┆ false    ┆ false     │
-      │          ┆ قانونی     ┆ Reserves   ┆ propriate ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆            ┆ dPlan:Leg ┆   ┆           ┆          ┆          ┆           │
-      │          ┆            ┆            ┆ alRes…    ┆   ┆           ┆          ┆          ┆           │
-      └──────────┴────────────┴────────────┴───────────┴───┴───────────┴──────────┴──────────┴───────────┘
-
-
-
-.. py:class:: TGJU(base_url: str = 'https://api.tgju.org/v1')
-
-   .. raw:: html
-
-       <div dir="rtl">
-             داده‌هایِ گذشته‌یِ سایتِ tgju.org رو بهت می‌ده.
-       </div>
-
-
-   .. py:attribute:: base_url
-
-
-   .. py:method:: usd_irr()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ دلار/ریال رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-      .. rubric:: Example
-
-      >>> from oxtapus import TGJU
-      >>> tgju = TGJU()
-      >>> tgju.usd_irr()
-      shape: (3_688, 6)
-      ┌────────────┬────────────┬──────────┬──────────┬──────────┬──────────┐
-      │ date       ┆ jdate      ┆ open     ┆ high     ┆ low      ┆ close    │
-      │ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---      ┆ ---      │
-      │ date       ┆ str        ┆ f64      ┆ f64      ┆ f64      ┆ f64      │
-      ╞════════════╪════════════╪══════════╪══════════╪══════════╪══════════╡
-      │ 2023-11-01 ┆ 1402-08-10 ┆ 514870.0 ┆ 517900.0 ┆ 513380.0 ┆ 516830.0 │
-      │ 2023-10-31 ┆ 1402-08-09 ┆ 516770.0 ┆ 518060.0 ┆ 515370.0 ┆ 516600.0 │
-      │ 2023-10-30 ┆ 1402-08-08 ┆ 511950.0 ┆ 514600.0 ┆ 510650.0 ┆ 514500.0 │
-      │ 2023-10-29 ┆ 1402-08-07 ┆ 519550.0 ┆ 519560.0 ┆ 513350.0 ┆ 513560.0 │
-      │ …          ┆ …          ┆ …        ┆ …        ┆ …        ┆ …        │
-      │ 2011-11-29 ┆ 1390-09-08 ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  │
-      │ 2011-11-28 ┆ 1390-09-07 ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  │
-      │ 2011-11-27 ┆ 1390-09-06 ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  │
-      │ 2011-11-26 ┆ 1390-09-05 ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  │
-      └────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘
-
-
-
-   .. py:method:: sekke_emami()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ سکه‌یِ امامی رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-      .. rubric:: Example
-
-      >>> from oxtapus import TGJU
-      >>> tgju = TGJU()
-      >>> tgju.sekke_emami().head(3)
-      shape: (3, 6)
-      ┌────────────┬────────────┬──────────┬──────────┬─────────┬──────────┐
-      │ date       ┆ jdate      ┆ open     ┆ high     ┆ low     ┆ close    │
-      │ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---     ┆ ---      │
-      │ date       ┆ str        ┆ f64      ┆ f64      ┆ f64     ┆ f64      │
-      ╞════════════╪════════════╪══════════╪══════════╪═════════╪══════════╡
-      │ 2023-11-01 ┆ 1402-08-10 ┆ 2.9351e8 ┆ 2.9901e8 ┆ 2.925e7 ┆ 2.9601e8 │
-      │ 2023-10-31 ┆ 1402-08-09 ┆ 2.9301e8 ┆ 2.9701e8 ┆ 2.923e8 ┆ 2.9701e8 │
-      │ 2023-10-30 ┆ 1402-08-08 ┆ 2.9201e8 ┆ 2.9201e8 ┆ 2.903e8 ┆ 2.9133e8 │
-      └────────────┴────────────┴──────────┴──────────┴─────────┴──────────┘
-
-
-
-   .. py:method:: nim_sekke()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ نیم-سکه رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-
-
-   .. py:method:: rob_sekke()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ ربعِ-سکه رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-
-
-   .. py:method:: ons()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ اونسِ طلا رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-
-
-   .. py:method:: silver()
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ اونسِ نقره رو بهت می‌ده.
-          </div>
-
-      :rtype: pandas.DataFrame
-
-
-
-   .. py:method:: commodity(symbol: Literal['zinc', 'aluminium', 'lead', 'copper', 'copper2', 'nickel', 'tin'])
-
-      .. raw:: html
-
-          <div dir="rtl">
-           داده‌هایِ گذشته‌یِ فلزهای پایه رو بهت می‌ده.
-          </div>
-
-      :param symbol: zinc: روی,
-                     aluminum: آلومینیوم,
-                     lead: سرب,
-                     copper:  مس-لندن,
-                     copper2: مس-امریکا,
-                     nickel: نیکل,
-                     tin: قلع
-      :type symbol: Literal[str]
-
-      :rtype: pandas.DataFrame
+      >>> from oxtapus import TSETMC
+      >>> tsetmc = TSETMC()
+      >>> tse.order_book(ins_code=["65883838195688438","22645269567765904"])
+      shape: (10, 8)
+      ┌────────────────────────────┬───────────────────┬───────────┬─────────────┬───────────┬───────────┬────────────┬───────────┐
+      │ datetime                   ┆ ins_code          ┆ bid_count ┆ bid_volume  ┆ bid_price ┆ ask_price ┆ ask_volume ┆ ask_count │
+      │ ---                        ┆ ---               ┆ ---       ┆ ---         ┆ ---       ┆ ---       ┆ ---        ┆ ---       │
+      │ datetime[μs]               ┆ str               ┆ i64       ┆ f64         ┆ f64       ┆ f64       ┆ f64        ┆ i64       │
+      ╞════════════════════════════╪═══════════════════╪═══════════╪═════════════╪═══════════╪═══════════╪════════════╪═══════════╡
+      │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 2         ┆ 255555.0    ┆ 575.0     ┆ 575.0     ┆ 134386.0   ┆ 1         │
+      │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 26        ┆ 5.328977e6  ┆ 574.0     ┆ 576.0     ┆ 300000.0   ┆ 1         │
+      │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 46        ┆ 1.2845421e7 ┆ 573.0     ┆ 577.0     ┆ 5.25633e6  ┆ 17        │
+      │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 37        ┆ 1.0567086e7 ┆ 572.0     ┆ 578.0     ┆ 7.207702e6 ┆ 23        │
+      │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 22        ┆ 3.943002e6  ┆ 571.0     ┆ 579.0     ┆ 7.031635e6 ┆ 23        │
+      │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 1576.0      ┆ 3748.0    ┆ 3749.0    ┆ 282050.0   ┆ 2         │
+      │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 34799.0     ┆ 3746.0    ┆ 3759.0    ┆ 67324.0    ┆ 3         │
+      │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 400000.0    ┆ 3742.0    ┆ 3760.0    ┆ 37739.0    ┆ 1         │
+      │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 3         ┆ 451625.0    ┆ 3740.0    ┆ 3765.0    ┆ 424.0      ┆ 1         │
+      │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 200000.0    ┆ 3736.0    ┆ 3770.0    ┆ 1272.0     ┆ 3         │
+      └────────────────────────────┴───────────────────┴───────────┴─────────────┴───────────┴───────────┴────────────┴───────────┘
 
 
 

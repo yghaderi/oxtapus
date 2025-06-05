@@ -23,4 +23,11 @@ venvPath = "."
 venv = ".venv"
 
 [dependency-groups]
-dev = ["black", "isort", "pre-commit"]
+dev = [
+    "black",
+    "isort",
+    "pre-commit",
+    "pydata-sphinx-theme>=0.16.1",
+    "sphinx-autoapi>=3.6.0",
+    "sphinx-copybutton>=0.5.2",
+]

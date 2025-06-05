@@ -10,6 +10,7 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /autoapi/oxtapus/models/fipiran/index
    /autoapi/oxtapus/models/rahavard/index
    /autoapi/oxtapus/models/tsetmc/index
 

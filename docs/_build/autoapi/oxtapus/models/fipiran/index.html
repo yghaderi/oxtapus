@@ -1,0 +1,1112 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>oxtapus.models.fipiran &#8212; oxtapus 0.3.10 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9f76a604"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=4ea706d9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/oxtapus/models/fipiran/index';</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="oxtapus.models.rahavard" href="../rahavard/index.html" />
+    <link rel="prev" title="oxtapus.models" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">oxtapus 0.3.10 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">oxtapus</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fipiran/index.html">oxtapus.fipiran</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html">oxtapus.models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">oxtapus.models.fipiran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rahavard/index.html">oxtapus.models.rahavard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tsetmc/index.html">oxtapus.models.tsetmc</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rahavard/index.html">oxtapus.rahavard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tgju/index.html">oxtapus.tgju</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tsetmc/index.html">oxtapus.tsetmc</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">oxtapus</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">oxtapus.models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">oxtapus.models.fipiran</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-oxtapus.models.fipiran">
+<span id="oxtapus-models-fipiran"></span><h1>oxtapus.models.fipiran<a class="headerlink" href="#module-oxtapus.models.fipiran" title="Link to this heading">#</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.fipiran.Manager" title="oxtapus.models.fipiran.Manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Manager</span></code></a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oxtapus.models.fipiran.FundItem" title="oxtapus.models.fipiran.FundItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FundItem</span></code></a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oxtapus.models.fipiran.DependencyGraph" title="oxtapus.models.fipiran.DependencyGraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DependencyGraph</span></code></a></p></td>
+<td><p>!!! abstract &quot;Usage Documentation&quot;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.address">
+<span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.address" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.ceo">
+<span class="sig-name descname"><span class="pre">ceo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.ceo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.ceo" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.cfi_id">
+<span class="sig-name descname"><span class="pre">cfi_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.cfi_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.cfi_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.cfiLast_modification_datetime">
+<span class="sig-name descname"><span class="pre">cfiLast_modification_datetime</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.cfiLast_modification_datetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.cfiLast_modification_datetime" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.is_completed">
+<span class="sig-name descname"><span class="pre">is_completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.is_completed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.is_completed" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.manager_id">
+<span class="sig-name descname"><span class="pre">manager_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.manager_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.manager_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.manager_national_no">
+<span class="sig-name descname"><span class="pre">manager_national_no</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.manager_national_no"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.manager_national_no" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.manager_seo_register_no">
+<span class="sig-name descname"><span class="pre">manager_seo_register_no</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.manager_seo_register_no"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.manager_seo_register_no" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.national_id">
+<span class="sig-name descname"><span class="pre">national_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.national_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.national_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.register_date">
+<span class="sig-name descname"><span class="pre">register_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.register_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.register_date" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.register_place">
+<span class="sig-name descname"><span class="pre">register_place</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.register_place"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.register_place" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.register_place_id">
+<span class="sig-name descname"><span class="pre">register_place_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.register_place_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.register_place_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.registered_capital">
+<span class="sig-name descname"><span class="pre">registered_capital</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.registered_capital"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.registered_capital" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.registration_number">
+<span class="sig-name descname"><span class="pre">registration_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.registration_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.registration_number" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.seoRegisterDate">
+<span class="sig-name descname"><span class="pre">seoRegisterDate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.seoRegisterDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.seoRegisterDate" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.tel">
+<span class="sig-name descname"><span class="pre">tel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.tel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.tel" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.Manager.web_site">
+<span class="sig-name descname"><span class="pre">web_site</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#Manager.web_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.Manager.web_site" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FundItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.date">
+<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.date</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.date" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.initiation_date">
+<span class="sig-name descname"><span class="pre">initiation_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.date</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.initiation_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.initiation_date" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.temp_guarantor_name">
+<span class="sig-name descname"><span class="pre">temp_guarantor_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.temp_guarantor_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.temp_guarantor_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.temp_manager_name">
+<span class="sig-name descname"><span class="pre">temp_manager_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.temp_manager_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.temp_manager_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.type_of_invest">
+<span class="sig-name descname"><span class="pre">type_of_invest</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.type_of_invest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.type_of_invest" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.fund_type">
+<span class="sig-name descname"><span class="pre">fund_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.fund_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.fund_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.manager">
+<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#oxtapus.models.fipiran.Manager" title="oxtapus.models.fipiran.Manager"><span class="pre">Manager</span></a></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.manager" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.dividend_interval_period">
+<span class="sig-name descname"><span class="pre">dividend_interval_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.dividend_interval_period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.dividend_interval_period" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.fund_size">
+<span class="sig-name descname"><span class="pre">fund_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.fund_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.fund_size" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.net_asset">
+<span class="sig-name descname"><span class="pre">net_asset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.net_asset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.net_asset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.reg_no">
+<span class="sig-name descname"><span class="pre">reg_no</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.reg_no"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.reg_no" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.issue_nav">
+<span class="sig-name descname"><span class="pre">issue_nav</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.issue_nav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.issue_nav" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.statistical_nav">
+<span class="sig-name descname"><span class="pre">statistical_nav</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.statistical_nav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.statistical_nav" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.cancel_nav">
+<span class="sig-name descname"><span class="pre">cancel_nav</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.cancel_nav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.cancel_nav" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.FundItem.parse_date">
+<span class="sig-name descname"><span class="pre">parse_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#FundItem.parse_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.FundItem.parse_date" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DependencyGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="simple">
+<dt>!!! abstract “Usage Documentation”</dt><dd><p>[Models](../concepts/models.md)</p>
+</dd>
+</dl>
+<p>A base class for creating Pydantic models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__class_vars__">
+<span class="sig-name descname"><span class="pre">__class_vars__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__class_vars__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__class_vars__" title="Link to this definition">#</a></dt>
+<dd><p>The names of the class variables defined on the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__private_attributes__">
+<span class="sig-name descname"><span class="pre">__private_attributes__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__private_attributes__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__private_attributes__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the private attributes of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__signature__">
+<span class="sig-name descname"><span class="pre">__signature__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__signature__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__signature__" title="Link to this definition">#</a></dt>
+<dd><p>The synthesized <cite>__init__</cite> [<cite>Signature</cite>][inspect.Signature] of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_complete__">
+<span class="sig-name descname"><span class="pre">__pydantic_complete__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_complete__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_complete__" title="Link to this definition">#</a></dt>
+<dd><p>Whether model building is completed, or if there are still undefined fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_core_schema__">
+<span class="sig-name descname"><span class="pre">__pydantic_core_schema__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_core_schema__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_core_schema__" title="Link to this definition">#</a></dt>
+<dd><p>The core schema of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_custom_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_custom_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_custom_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_custom_init__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model has a custom <cite>__init__</cite> function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_decorators__">
+<span class="sig-name descname"><span class="pre">__pydantic_decorators__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_decorators__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_decorators__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata containing the decorators defined on the model.
+This replaces <cite>Model.__validators__</cite> and <cite>Model.__root_validators__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_generic_metadata__">
+<span class="sig-name descname"><span class="pre">__pydantic_generic_metadata__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_generic_metadata__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_generic_metadata__" title="Link to this definition">#</a></dt>
+<dd><p>Metadata for generic models; contains data used for a similar purpose to
+__args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_parent_namespace__">
+<span class="sig-name descname"><span class="pre">__pydantic_parent_namespace__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_parent_namespace__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_parent_namespace__" title="Link to this definition">#</a></dt>
+<dd><p>Parent namespace of the model, used for automatic rebuilding of models.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_post_init__">
+<span class="sig-name descname"><span class="pre">__pydantic_post_init__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_post_init__" title="Link to this definition">#</a></dt>
+<dd><p>The name of the post-init method for the model, if defined.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_root_model__">
+<span class="sig-name descname"><span class="pre">__pydantic_root_model__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_root_model__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_root_model__" title="Link to this definition">#</a></dt>
+<dd><p>Whether the model is a [<cite>RootModel</cite>][pydantic.root_model.RootModel].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_serializer__">
+<span class="sig-name descname"><span class="pre">__pydantic_serializer__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_serializer__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_serializer__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaSerializer</cite> used to dump instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_validator__">
+<span class="sig-name descname"><span class="pre">__pydantic_validator__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_validator__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_validator__" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>pydantic-core</cite> <cite>SchemaValidator</cite> used to validate instances of the model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of field names and their corresponding [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_computed_fields__">
+<span class="sig-name descname"><span class="pre">__pydantic_computed_fields__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_computed_fields__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_computed_fields__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding [<cite>ComputedFieldInfo</cite>][pydantic.fields.ComputedFieldInfo] objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_extra__">
+<span class="sig-name descname"><span class="pre">__pydantic_extra__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_extra__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_extra__" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary containing extra values, if [<cite>extra</cite>][pydantic.config.ConfigDict.extra]
+is set to <cite>‘allow’</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_fields_set__">
+<span class="sig-name descname"><span class="pre">__pydantic_fields_set__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_fields_set__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields_set__" title="Link to this definition">#</a></dt>
+<dd><p>The names of fields explicitly set during instantiation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.__pydantic_private__">
+<span class="sig-name descname"><span class="pre">__pydantic_private__</span></span><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.__pydantic_private__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_private__" title="Link to this definition">#</a></dt>
+<dd><p>Values of private attributes set on the model instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oxtapus.models.fipiran.DependencyGraph.items">
+<span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#oxtapus.models.fipiran.FundItem" title="oxtapus.models.fipiran.FundItem"><span class="pre">FundItem</span></a><span class="p"><span class="pre">]</span></span></em><a class="reference internal" href="../../../../_modules/oxtapus/models/fipiran.html#DependencyGraph.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oxtapus.models.fipiran.DependencyGraph.items" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">oxtapus.models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../rahavard/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">oxtapus.models.rahavard</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager"><code class="docutils literal notranslate"><span class="pre">Manager</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__class_vars__"><code class="docutils literal notranslate"><span class="pre">Manager.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">Manager.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__signature__"><code class="docutils literal notranslate"><span class="pre">Manager.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_computed_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">Manager.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.address"><code class="docutils literal notranslate"><span class="pre">Manager.address</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.ceo"><code class="docutils literal notranslate"><span class="pre">Manager.ceo</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.cfi_id"><code class="docutils literal notranslate"><span class="pre">Manager.cfi_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.cfiLast_modification_datetime"><code class="docutils literal notranslate"><span class="pre">Manager.cfiLast_modification_datetime</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.is_completed"><code class="docutils literal notranslate"><span class="pre">Manager.is_completed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.manager_id"><code class="docutils literal notranslate"><span class="pre">Manager.manager_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.manager_national_no"><code class="docutils literal notranslate"><span class="pre">Manager.manager_national_no</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.manager_seo_register_no"><code class="docutils literal notranslate"><span class="pre">Manager.manager_seo_register_no</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.name"><code class="docutils literal notranslate"><span class="pre">Manager.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.national_id"><code class="docutils literal notranslate"><span class="pre">Manager.national_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.register_date"><code class="docutils literal notranslate"><span class="pre">Manager.register_date</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.register_place"><code class="docutils literal notranslate"><span class="pre">Manager.register_place</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.register_place_id"><code class="docutils literal notranslate"><span class="pre">Manager.register_place_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.registered_capital"><code class="docutils literal notranslate"><span class="pre">Manager.registered_capital</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.registration_number"><code class="docutils literal notranslate"><span class="pre">Manager.registration_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.seoRegisterDate"><code class="docutils literal notranslate"><span class="pre">Manager.seoRegisterDate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.tel"><code class="docutils literal notranslate"><span class="pre">Manager.tel</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.type"><code class="docutils literal notranslate"><span class="pre">Manager.type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.Manager.web_site"><code class="docutils literal notranslate"><span class="pre">Manager.web_site</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem"><code class="docutils literal notranslate"><span class="pre">FundItem</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__class_vars__"><code class="docutils literal notranslate"><span class="pre">FundItem.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">FundItem.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__signature__"><code class="docutils literal notranslate"><span class="pre">FundItem.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_computed_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">FundItem.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.date"><code class="docutils literal notranslate"><span class="pre">FundItem.date</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.initiation_date"><code class="docutils literal notranslate"><span class="pre">FundItem.initiation_date</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.name"><code class="docutils literal notranslate"><span class="pre">FundItem.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.temp_guarantor_name"><code class="docutils literal notranslate"><span class="pre">FundItem.temp_guarantor_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.temp_manager_name"><code class="docutils literal notranslate"><span class="pre">FundItem.temp_manager_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.type_of_invest"><code class="docutils literal notranslate"><span class="pre">FundItem.type_of_invest</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.fund_type"><code class="docutils literal notranslate"><span class="pre">FundItem.fund_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.manager"><code class="docutils literal notranslate"><span class="pre">FundItem.manager</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.dividend_interval_period"><code class="docutils literal notranslate"><span class="pre">FundItem.dividend_interval_period</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.fund_size"><code class="docutils literal notranslate"><span class="pre">FundItem.fund_size</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.net_asset"><code class="docutils literal notranslate"><span class="pre">FundItem.net_asset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.reg_no"><code class="docutils literal notranslate"><span class="pre">FundItem.reg_no</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.issue_nav"><code class="docutils literal notranslate"><span class="pre">FundItem.issue_nav</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.statistical_nav"><code class="docutils literal notranslate"><span class="pre">FundItem.statistical_nav</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.cancel_nav"><code class="docutils literal notranslate"><span class="pre">FundItem.cancel_nav</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.FundItem.parse_date"><code class="docutils literal notranslate"><span class="pre">FundItem.parse_date()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph"><code class="docutils literal notranslate"><span class="pre">DependencyGraph</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__class_vars__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__class_vars__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__private_attributes__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__private_attributes__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__signature__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__signature__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_complete__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_complete__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_core_schema__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_core_schema__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_custom_init__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_custom_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_decorators__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_decorators__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_generic_metadata__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_generic_metadata__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_parent_namespace__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_parent_namespace__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_post_init__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_post_init__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_root_model__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_root_model__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_serializer__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_serializer__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_validator__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_validator__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_computed_fields__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_computed_fields__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_extra__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_extra__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields_set__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_fields_set__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.__pydantic_private__"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.__pydantic_private__</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oxtapus.models.fipiran.DependencyGraph.items"><code class="docutils literal notranslate"><span class="pre">DependencyGraph.items</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/oxtapus/models/fipiran/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2023, Metafid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

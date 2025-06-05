@@ -15,29 +15,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9f76a604"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=4ea706d9"></script>
@@ -46,6 +49,7 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -61,19 +65,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -81,7 +74,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -89,8 +81,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -150,29 +142,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -181,15 +165,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -206,7 +186,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -239,15 +220,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -255,9 +232,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -300,6 +282,7 @@ document.write(`
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  | <a href="#Y"><strong>Y</strong></a>
  
 </div>
@@ -313,7 +296,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__class_vars__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__class_vars__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__class_vars__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__class_vars__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__class_vars__">(HistPrice attribute)</a>
 </li>
@@ -321,9 +308,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__class_vars__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__class_vars__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__class_vars__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__class_vars__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__class_vars__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__class_vars__">(Sector attribute)</a>
 </li>
@@ -339,7 +330,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__private_attributes__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__private_attributes__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__private_attributes__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__private_attributes__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__private_attributes__">(HistPrice attribute)</a>
 </li>
@@ -347,9 +342,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__private_attributes__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__private_attributes__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__private_attributes__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__private_attributes__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__private_attributes__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__private_attributes__">(Sector attribute)</a>
 </li>
@@ -365,7 +364,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_complete__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_complete__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_complete__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_complete__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_complete__">(HistPrice attribute)</a>
 </li>
@@ -373,15 +376,53 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_complete__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_complete__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_complete__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_complete__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_complete__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_complete__">(Sector attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.StaticThreshold.__pydantic_complete__">(StaticThreshold attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.Stocks.__pydantic_complete__">(Stocks attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.BalanceSheet.__pydantic_computed_fields__">__pydantic_computed_fields__ (BalanceSheet attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.CashFlow.__pydantic_computed_fields__">(CashFlow attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_computed_fields__">(ClientTypeAll attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_computed_fields__">(DependencyGraph attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_computed_fields__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_computed_fields__">(FundItem attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_computed_fields__">(HistPrice attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.IncomeStatements.__pydantic_computed_fields__">(IncomeStatements attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_computed_fields__">(InsInfo attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_computed_fields__">(Manager attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_computed_fields__">(MarketWatch attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_computed_fields__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_computed_fields__">(OrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_computed_fields__">(Sector attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.StaticThreshold.__pydantic_computed_fields__">(StaticThreshold attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.Stocks.__pydantic_computed_fields__">(Stocks attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.BalanceSheet.__pydantic_core_schema__">__pydantic_core_schema__ (BalanceSheet attribute)</a>
@@ -391,7 +432,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_core_schema__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_core_schema__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_core_schema__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_core_schema__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_core_schema__">(HistPrice attribute)</a>
 </li>
@@ -399,9 +444,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_core_schema__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_core_schema__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_core_schema__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_core_schema__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_core_schema__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_core_schema__">(Sector attribute)</a>
 </li>
@@ -417,7 +466,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_custom_init__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_custom_init__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_custom_init__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_custom_init__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_custom_init__">(HistPrice attribute)</a>
 </li>
@@ -425,9 +478,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_custom_init__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_custom_init__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_custom_init__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_custom_init__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_custom_init__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_custom_init__">(Sector attribute)</a>
 </li>
@@ -443,7 +500,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_decorators__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_decorators__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_decorators__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_decorators__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_decorators__">(HistPrice attribute)</a>
 </li>
@@ -451,9 +512,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_decorators__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_decorators__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_decorators__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_decorators__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_decorators__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_decorators__">(Sector attribute)</a>
 </li>
@@ -469,7 +534,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_extra__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_extra__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_extra__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_extra__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_extra__">(HistPrice attribute)</a>
 </li>
@@ -477,9 +546,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_extra__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_extra__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_extra__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_extra__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_extra__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_extra__">(Sector attribute)</a>
 </li>
@@ -488,6 +561,42 @@ document.write(`
         <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.Stocks.__pydantic_extra__">(Stocks attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields__">__pydantic_fields__ (BalanceSheet attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.CashFlow.__pydantic_fields__">(CashFlow attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_fields__">(ClientTypeAll attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields__">(DependencyGraph attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_fields__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_fields__">(FundItem attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_fields__">(HistPrice attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.IncomeStatements.__pydantic_fields__">(IncomeStatements attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_fields__">(InsInfo attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_fields__">(Manager attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_fields__">(MarketWatch attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_fields__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_fields__">(OrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_fields__">(Sector attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.StaticThreshold.__pydantic_fields__">(StaticThreshold attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.Stocks.__pydantic_fields__">(Stocks attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.BalanceSheet.__pydantic_fields_set__">__pydantic_fields_set__ (BalanceSheet attribute)</a>
 
       <ul>
@@ -495,7 +604,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_fields_set__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_fields_set__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_fields_set__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_fields_set__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_fields_set__">(HistPrice attribute)</a>
 </li>
@@ -503,9 +616,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_fields_set__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_fields_set__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_fields_set__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_fields_set__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_fields_set__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_fields_set__">(Sector attribute)</a>
 </li>
@@ -514,8 +631,6 @@ document.write(`
         <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.Stocks.__pydantic_fields_set__">(Stocks attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.BalanceSheet.__pydantic_generic_metadata__">__pydantic_generic_metadata__ (BalanceSheet attribute)</a>
 
       <ul>
@@ -523,7 +638,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_generic_metadata__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_generic_metadata__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_generic_metadata__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_generic_metadata__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_generic_metadata__">(HistPrice attribute)</a>
 </li>
@@ -531,9 +650,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_generic_metadata__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_generic_metadata__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_generic_metadata__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_generic_metadata__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_generic_metadata__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_generic_metadata__">(Sector attribute)</a>
 </li>
@@ -549,7 +672,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_parent_namespace__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_parent_namespace__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_parent_namespace__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_parent_namespace__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_parent_namespace__">(HistPrice attribute)</a>
 </li>
@@ -557,9 +684,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_parent_namespace__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_parent_namespace__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_parent_namespace__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_parent_namespace__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_parent_namespace__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_parent_namespace__">(Sector attribute)</a>
 </li>
@@ -575,7 +706,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_post_init__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_post_init__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_post_init__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_post_init__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_post_init__">(HistPrice attribute)</a>
 </li>
@@ -583,9 +718,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_post_init__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_post_init__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_post_init__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_post_init__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_post_init__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_post_init__">(Sector attribute)</a>
 </li>
@@ -601,7 +740,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_private__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_private__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_private__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_private__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_private__">(HistPrice attribute)</a>
 </li>
@@ -609,9 +752,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_private__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_private__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_private__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_private__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_private__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_private__">(Sector attribute)</a>
 </li>
@@ -627,7 +774,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_root_model__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_root_model__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_root_model__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_root_model__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_root_model__">(HistPrice attribute)</a>
 </li>
@@ -635,9 +786,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_root_model__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_root_model__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_root_model__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_root_model__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_root_model__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_root_model__">(Sector attribute)</a>
 </li>
@@ -653,7 +808,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_serializer__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_serializer__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_serializer__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_serializer__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_serializer__">(HistPrice attribute)</a>
 </li>
@@ -661,9 +820,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_serializer__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_serializer__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_serializer__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_serializer__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_serializer__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_serializer__">(Sector attribute)</a>
 </li>
@@ -679,7 +842,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__pydantic_validator__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__pydantic_validator__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__pydantic_validator__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__pydantic_validator__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__pydantic_validator__">(HistPrice attribute)</a>
 </li>
@@ -687,9 +854,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__pydantic_validator__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__pydantic_validator__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__pydantic_validator__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__pydantic_validator__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__pydantic_validator__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__pydantic_validator__">(Sector attribute)</a>
 </li>
@@ -705,7 +876,11 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.__signature__">(ClientTypeAll attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.__signature__">(DependencyGraph attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.EPS.__signature__">(EPS attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.__signature__">(FundItem attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.__signature__">(HistPrice attribute)</a>
 </li>
@@ -713,9 +888,13 @@ document.write(`
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.__signature__">(InsInfo attribute)</a>
 </li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.__signature__">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.__signature__">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.__signature__">(MarketWatchOrderBook attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.__signature__">(OrderBook attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.__signature__">(Sector attribute)</a>
 </li>
@@ -730,6 +909,8 @@ document.write(`
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.address">address (Manager attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.adj_hist_price">adj_hist_price() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.adj_hist_price">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.adjust_price_flow">adjust_price_flow() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.adjust_price_flow">[1]</a>
@@ -738,13 +919,23 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.ask">ask (MarketWatch attribute)</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_count">ask_count (MarketWatchOrderBook attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.ask_count">(OrderBook attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_count">ask_count (MarketWatchOrderBook attribute)</a>
-</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_price">ask_price (MarketWatchOrderBook attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.ask_price">(OrderBook attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.ask_size">ask_size (MarketWatchOrderBook attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.ask_volume">ask_volume (OrderBook attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.async_req">async_req (TSETMC property)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.async_req">[1]</a>
 </li>
@@ -770,13 +961,23 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.bid">bid (MarketWatch attribute)</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_count">bid_count (MarketWatchOrderBook attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.bid_count">(OrderBook attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_count">bid_count (MarketWatchOrderBook attribute)</a>
-</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_price">bid_price (MarketWatchOrderBook attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.bid_price">(OrderBook attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.bid_size">bid_size (MarketWatchOrderBook attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.bid_volume">bid_volume (OrderBook attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.MWSections.bond">bond (MWSections attribute)</a>
 </li>
@@ -794,6 +995,8 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.cancel_nav">cancel_nav (FundItem attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.capital">capital (InsInfo attribute)</a>
 
       <ul>
@@ -802,8 +1005,16 @@ document.write(`
       </ul></li>
       <li><a href="autoapi/oxtapus/models/rahavard/index.html#oxtapus.models.rahavard.CashFlow">CashFlow (class in oxtapus.models.rahavard)</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.ceo">ceo (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.cfi_id">cfi_id (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.cfiLast_modification_datetime">cfiLast_modification_datetime (Manager attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.client_type">client_type() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.client_type">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll">ClientTypeAll (class in oxtapus.models.tsetmc)</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.close">close (HistPrice attribute)</a>
@@ -812,8 +1023,6 @@ document.write(`
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.close">(MarketWatch attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.code">code (Sector attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.MWSections.commodity">commodity (MWSections attribute)</a>
@@ -844,7 +1053,15 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.date">date (HistPrice attribute)</a>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.date">date (FundItem attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.date">(HistPrice attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph">DependencyGraph (class in oxtapus.models.fipiran)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.dividend_interval_period">dividend_interval_period (FundItem attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -882,13 +1099,25 @@ document.write(`
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.final">(MarketWatch attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/rahavard/index.html#oxtapus.rahavard.BaseInfo.financial_view_type">financial_view_type (BaseInfo attribute)</a>
 </li>
-      <li><a href="autoapi/oxtapus/fipiran/index.html#oxtapus.fipiran.Fipiran">Fipiran (class in oxtapus.fipiran)</a>
+      <li><a href="autoapi/oxtapus/index.html#oxtapus.Fipiran">Fipiran (class in oxtapus)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/fipiran/index.html#oxtapus.fipiran.Fipiran">(class in oxtapus.fipiran)</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.flatten_eps_sector">flatten_eps_sector() (InsInfo method)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.fund_size">fund_size (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.fund_type">fund_type (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem">FundItem (class in oxtapus.models.fipiran)</a>
+</li>
+      <li><a href="autoapi/oxtapus/fipiran/index.html#oxtapus.fipiran.Fipiran.funds">funds() (Fipiran method)</a>, <a href="autoapi/oxtapus/index.html#oxtapus.Fipiran.funds">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.MWSections.futures">futures (MWSections attribute)</a>
 </li>
@@ -942,6 +1171,8 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.indexes">indexes() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.indexes">[1]</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.initiation_date">initiation_date (FundItem attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.ins_code">ins_code (ClientTypeAll attribute)</a>
 
       <ul>
@@ -970,7 +1201,13 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.intraday_trades_based_on_timeframe">intraday_trades_based_on_timeframe() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.intraday_trades_based_on_timeframe">[1]</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.is_completed">is_completed (Manager attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.isin">isin (InsInfo attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.issue_nav">issue_nav (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.DependencyGraph.items">items (DependencyGraph attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -998,6 +1235,16 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager">Manager (class in oxtapus.models.fipiran)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.manager">manager (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.manager_id">manager_id (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.manager_national_no">manager_national_no (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.manager_seo_register_no">manager_seo_register_no (Manager attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.market_code">market_code (InsInfo attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.market_name">market_name (InsInfo attribute)</a>
@@ -1020,12 +1267,12 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.min_lim">min_lim (MarketWatch attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.StaticThreshold.min_threshold">min_threshold (StaticThreshold attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.min_week">min_week (InsInfo attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.min_year">min_year (InsInfo attribute)</a>
 </li>
       <li>
@@ -1037,6 +1284,8 @@ document.write(`
         <li><a href="autoapi/oxtapus/fipiran/index.html#module-oxtapus.fipiran">oxtapus.fipiran</a>
 </li>
         <li><a href="autoapi/oxtapus/models/index.html#module-oxtapus.models">oxtapus.models</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#module-oxtapus.models.fipiran">oxtapus.models.fipiran</a>
 </li>
         <li><a href="autoapi/oxtapus/models/rahavard/index.html#module-oxtapus.models.rahavard">oxtapus.models.rahavard</a>
 </li>
@@ -1061,9 +1310,13 @@ document.write(`
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.name">name (InsInfo attribute)</a>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.name">name (FundItem attribute)</a>
 
       <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.name">(InsInfo attribute)</a>
+</li>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.name">(Manager attribute)</a>
+</li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.name">(MarketWatch attribute)</a>
 </li>
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.Sector.name">(Sector attribute)</a>
@@ -1072,6 +1325,10 @@ document.write(`
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.name_en">name_en (InsInfo attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.national_id">national_id (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.net_asset">net_asset (FundItem attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TGJU.nim_sekke">nim_sekke() (TGJU method)</a>, <a href="autoapi/oxtapus/tgju/index.html#oxtapus.tgju.TGJU.nim_sekke">[1]</a>
 </li>
@@ -1082,7 +1339,11 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatchOrderBook.ob_level">ob_level (MarketWatchOrderBook attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook.ob_level">(OrderBook attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TGJU.ons">ons() (TGJU method)</a>, <a href="autoapi/oxtapus/tgju/index.html#oxtapus.tgju.TGJU.ons">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.open">open (HistPrice attribute)</a>
@@ -1096,6 +1357,10 @@ document.write(`
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.options_mw">options_mw() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.options_mw">[1]</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.order_book">order_book (MarketWatch attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.order_book">order_book() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.order_book">[1]</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.OrderBook">OrderBook (class in oxtapus.models.tsetmc)</a>
 </li>
       <li>
     oxtapus
@@ -1118,6 +1383,13 @@ document.write(`
 
       <ul>
         <li><a href="autoapi/oxtapus/models/index.html#module-oxtapus.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    oxtapus.models.fipiran
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/fipiran/index.html#module-oxtapus.models.fipiran">module</a>
 </li>
       </ul></li>
       <li>
@@ -1163,8 +1435,12 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.parce_pe">parce_pe() (MarketWatch method)</a>
 </li>
-      <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.parse_date">parse_date() (HistPrice method)</a>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.parse_date">parse_date() (FundItem method)</a>
+
+      <ul>
+        <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.HistPrice.parse_date">(HistPrice method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.pct_float_shares">pct_float_shares (InsInfo attribute)</a>
@@ -1183,8 +1459,20 @@ document.write(`
         <li><a href="autoapi/oxtapus/rahavard/index.html#oxtapus.rahavard.Rahavard">(class in oxtapus.rahavard)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.reg_no">reg_no (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.register_date">register_date (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.register_place">register_place (Manager attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.register_place_id">register_place_id (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.registered_capital">registered_capital (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.registration_number">registration_number (Manager attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/rahavard/index.html#oxtapus.rahavard.Rep">Rep (class in oxtapus.rahavard)</a>
 </li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.requests">requests (TSETMC attribute)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.requests">[1]</a>
@@ -1221,6 +1509,8 @@ document.write(`
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.ClientTypeAll.sell_vol_ins">sell_vol_ins (ClientTypeAll attribute)</a>
 </li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.seoRegisterDate">seoRegisterDate (Manager attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TSETMC.share_change">share_change() (TSETMC method)</a>, <a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC.share_change">[1]</a>
@@ -1234,6 +1524,8 @@ document.write(`
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.InsInfo.static_threshold">static_threshold (InsInfo attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.StaticThreshold">StaticThreshold (class in oxtapus.models.tsetmc)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.statistical_nav">statistical_nav (FundItem attribute)</a>
 </li>
       <li><a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.MWSections.stock">stock (MWSections attribute)</a>
 </li>
@@ -1255,6 +1547,12 @@ document.write(`
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.tel">tel (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.temp_guarantor_name">temp_guarantor_name (FundItem attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.temp_manager_name">temp_manager_name (FundItem attribute)</a>
+</li>
       <li><a href="autoapi/oxtapus/index.html#oxtapus.TGJU">TGJU (class in oxtapus)</a>
 
       <ul>
@@ -1277,6 +1575,10 @@ document.write(`
         <li><a href="autoapi/oxtapus/tsetmc/index.html#oxtapus.tsetmc.TSETMC">(class in oxtapus.tsetmc)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.type">type (Manager attribute)</a>
+</li>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.FundItem.type_of_invest">type_of_invest (FundItem attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1313,6 +1615,14 @@ document.write(`
         <li><a href="autoapi/oxtapus/models/tsetmc/index.html#oxtapus.models.tsetmc.MarketWatch.volume">(MarketWatch attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/oxtapus/models/fipiran/index.html#oxtapus.models.fipiran.Manager.web_site">web_site (Manager attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1357,8 +1667,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1378,7 +1688,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1391,7 +1701,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

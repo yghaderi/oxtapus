@@ -17,6 +17,7 @@ Classes
    oxtapus.models.tsetmc.Sector
    oxtapus.models.tsetmc.StaticThreshold
    oxtapus.models.tsetmc.InsInfo
+   oxtapus.models.tsetmc.OrderBook
 
 
 Module Contents
@@ -27,13 +28,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -41,7 +43,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -49,7 +51,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -75,56 +77,78 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: ob_level
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: bid_count
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: bid_size
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: bid_price
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: ask_price
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: ask_size
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: ask_count
       :type:  int
+      :value: None
+
 
 
 .. py:class:: ClientTypeAll(/, **data: Any)
@@ -132,13 +156,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -146,7 +171,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -154,7 +179,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -180,64 +205,90 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: ins_code
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: buy_vol_ind
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: buy_vol_ins
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: buy_count_ind
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: buy_count_ins
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: sell_vol_ind
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: sell_vol_ins
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: sell_count_ind
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: sell_count_ins
       :type:  int
+      :value: None
+
 
 
 .. py:class:: MarketWatch(/, **data: Any)
@@ -245,13 +296,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -259,7 +311,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -267,7 +319,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -293,120 +345,174 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: ins_code
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: ins_id
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: symbol
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: name
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: eps
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: pe
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: bid
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: ask
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: open
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: high
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: low
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: close
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: final
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: y_final
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: value
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: volume
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: trade_count
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: max_lim
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: min_lim
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: capital
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: base_volume
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: event_time
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: order_book
       :type:  list[MarketWatchOrderBook]
+      :value: None
+
 
 
    .. py:method:: parce_pe(value)
@@ -417,13 +523,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -431,7 +538,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -439,7 +546,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -465,72 +572,102 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: date
       :type:  datetime.date
+      :value: None
+
 
 
    .. py:attribute:: ins_code
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: open
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: high
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: low
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: close
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: final
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: y_final
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: volume
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: value
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: trade_count
       :type:  float
+      :value: None
+
 
 
    .. py:method:: parse_date(value)
@@ -541,13 +678,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -555,7 +693,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -563,7 +701,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -589,36 +727,48 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: eps
       :type:  Optional[float]
+      :value: None
+
 
 
    .. py:attribute:: sector_pe
       :type:  Optional[float]
+      :value: None
+
 
 
 .. py:class:: Sector(/, **data: Any)
@@ -626,13 +776,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -640,7 +791,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -648,7 +799,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -674,36 +825,48 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: code
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: name
       :type:  str
+      :value: None
+
 
 
 .. py:class:: StaticThreshold(/, **data: Any)
@@ -711,13 +874,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -725,7 +889,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -733,7 +897,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -759,36 +923,48 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: min_threshold
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: max_threshold
       :type:  float
+      :value: None
+
 
 
 .. py:class:: InsInfo(/, **data: Any)
@@ -796,13 +972,14 @@ Module Contents
    Bases: :py:obj:`pydantic.BaseModel`
 
 
-   Usage docs: https://docs.pydantic.dev/2.8/concepts/models/
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
 
    A base class for creating Pydantic models.
 
    .. attribute:: __class_vars__
 
-      The names of classvars defined on the model.
+      The names of the class variables defined on the model.
 
    .. attribute:: __private_attributes__
 
@@ -810,7 +987,7 @@ Module Contents
 
    .. attribute:: __signature__
 
-      The signature for instantiating the model.
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
 
    .. attribute:: __pydantic_complete__
 
@@ -818,7 +995,7 @@ Module Contents
 
    .. attribute:: __pydantic_core_schema__
 
-      The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+      The core schema of the model.
 
    .. attribute:: __pydantic_custom_init__
 
@@ -844,52 +1021,72 @@ Module Contents
 
    .. attribute:: __pydantic_root_model__
 
-      Whether the model is a `RootModel`.
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
 
    .. attribute:: __pydantic_serializer__
 
-      The pydantic-core SchemaSerializer used to dump instances of the model.
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
 
    .. attribute:: __pydantic_validator__
 
-      The pydantic-core SchemaValidator used to validate instances of the model.
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
 
    .. attribute:: __pydantic_extra__
 
-      An instance attribute with the values of extra fields from validation when
-      `model_config['extra'] == 'allow'`.
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
 
    .. attribute:: __pydantic_fields_set__
 
-      An instance attribute with the names of fields explicitly set.
+      The names of fields explicitly set during instantiation.
 
    .. attribute:: __pydantic_private__
 
-      Instance attribute with the values of private attributes set on the model instance.
+      Values of private attributes set on the model instance.
 
 
    .. py:attribute:: ins_code
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: ins_id
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: isin
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: symbol
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: name
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: name_en
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: eps
@@ -902,42 +1099,62 @@ Module Contents
 
    .. py:attribute:: static_threshold
       :type:  StaticThreshold
+      :value: None
+
 
 
    .. py:attribute:: min_week
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: max_week
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: min_year
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: max_year
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: mean_vol_monthly
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: pct_float_shares
       :type:  Optional[str]
+      :value: None
+
 
 
    .. py:attribute:: base_vol
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: capital
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: contract_size
       :type:  float
+      :value: None
+
 
 
    .. py:attribute:: sector_code
@@ -950,20 +1167,156 @@ Module Contents
 
    .. py:attribute:: market_name
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: market_code
       :type:  int
+      :value: None
+
 
 
    .. py:attribute:: market_type
       :type:  str
+      :value: None
+
 
 
    .. py:attribute:: group_type
       :type:  str
+      :value: None
+
 
 
    .. py:method:: flatten_eps_sector(values: pydantic.v1.utils.GetterDict)
+
+
+.. py:class:: OrderBook(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   !!! abstract "Usage Documentation"
+       [Models](../concepts/models.md)
+
+   A base class for creating Pydantic models.
+
+   .. attribute:: __class_vars__
+
+      The names of the class variables defined on the model.
+
+   .. attribute:: __private_attributes__
+
+      Metadata about the private attributes of the model.
+
+   .. attribute:: __signature__
+
+      The synthesized `__init__` [`Signature`][inspect.Signature] of the model.
+
+   .. attribute:: __pydantic_complete__
+
+      Whether model building is completed, or if there are still undefined fields.
+
+   .. attribute:: __pydantic_core_schema__
+
+      The core schema of the model.
+
+   .. attribute:: __pydantic_custom_init__
+
+      Whether the model has a custom `__init__` function.
+
+   .. attribute:: __pydantic_decorators__
+
+      Metadata containing the decorators defined on the model.
+      This replaces `Model.__validators__` and `Model.__root_validators__` from Pydantic V1.
+
+   .. attribute:: __pydantic_generic_metadata__
+
+      Metadata for generic models; contains data used for a similar purpose to
+      __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.
+
+   .. attribute:: __pydantic_parent_namespace__
+
+      Parent namespace of the model, used for automatic rebuilding of models.
+
+   .. attribute:: __pydantic_post_init__
+
+      The name of the post-init method for the model, if defined.
+
+   .. attribute:: __pydantic_root_model__
+
+      Whether the model is a [`RootModel`][pydantic.root_model.RootModel].
+
+   .. attribute:: __pydantic_serializer__
+
+      The `pydantic-core` `SchemaSerializer` used to dump instances of the model.
+
+   .. attribute:: __pydantic_validator__
+
+      The `pydantic-core` `SchemaValidator` used to validate instances of the model.
+
+   .. attribute:: __pydantic_fields__
+
+      A dictionary of field names and their corresponding [`FieldInfo`][pydantic.fields.FieldInfo] objects.
+
+   .. attribute:: __pydantic_computed_fields__
+
+      A dictionary of computed field names and their corresponding [`ComputedFieldInfo`][pydantic.fields.ComputedFieldInfo] objects.
+
+   .. attribute:: __pydantic_extra__
+
+      A dictionary containing extra values, if [`extra`][pydantic.config.ConfigDict.extra]
+      is set to `'allow'`.
+
+   .. attribute:: __pydantic_fields_set__
+
+      The names of fields explicitly set during instantiation.
+
+   .. attribute:: __pydantic_private__
+
+      Values of private attributes set on the model instance.
+
+
+   .. py:attribute:: ob_level
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: bid_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: bid_volume
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: bid_price
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: ask_price
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: ask_volume
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: ask_count
+      :type:  int
+      :value: None
+
 
 

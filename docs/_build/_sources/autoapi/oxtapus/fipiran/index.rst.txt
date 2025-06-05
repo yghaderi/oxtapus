@@ -17,3 +17,13 @@ Module Contents
 
 .. py:class:: Fipiran
 
+   .. py:method:: funds() -> polars.DataFrame
+
+      .. raw:: html
+
+          <div dir="rtl">
+              ی سری داده‌یِ از صندوق‌هایِ سرمایه-گذاری رو بهت می‌ده.
+          </div>
+
+
+
