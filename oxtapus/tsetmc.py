@@ -8,10 +8,14 @@ from urllib.parse import urlencode
 import polars as pl
 from pydantic import validate_call
 
-from oxtapus.models.tsetmc import (ClientTypeAll, HistPrice, InsInfo,
-                                   MarketWatch)
-from oxtapus.utils import (cols, json_normalize, manipulation_cols,
-                           normalize_nested_dict, word_normalize)
+from oxtapus.models.tsetmc import ClientTypeAll, HistPrice, InsInfo, MarketWatch, OrderBook
+from oxtapus.utils import (
+    cols,
+    json_normalize,
+    manipulation_cols,
+    normalize_nested_dict,
+    word_normalize,
+)
 from oxtapus.utils.http import async_requests, get
 from oxtapus.utils.models import AdjustPriceFlow, InsShareChangeFlow, OptionsMW
 
@@ -249,15 +253,17 @@ class URL:
     def ifb_share_change_flow(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentShareChangeByFlow/2/9999"
 
-    def options_mw(self):
+    def options_mw(self)->str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/0"
 
-    def tse_options_mw(self):
+    def tse_options_mw(self)->str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/1"
 
-    def ifb_options_mw(self):
+    def ifb_options_mw(self)->str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/2"
 
+    def order_book(self, ins_code: str)-> str:
+        return f"{self.base_url}/BestLimits/{ins_code}"
 
 class TSETMC:
     """
@@ -1601,4 +1607,97 @@ class TSETMC:
             *r_ifb[0]["instrumentShareChange"],
         ]
         df = pl.from_dicts([InsShareChangeFlow(**i).model_dump() for i in records])
+        return df
+
+    @_handle_ins_cod_or_symbol
+    def order_book(
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
+    ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+5 مظنه یِ برترِ سفارش ها رو بهت میده.
+            </div>
+
+        .. warning::
+            .. raw:: html
+
+                <div dir="rtl">
+                    زمانِ استخراجِ داده با استفاده از
+                    <span style="color:#ec4899">ins_code</span>
+                    تقریبن نصفِ استفاده از
+                    <span style="color:#ec4899">symbol</span>
+                    است.
+                    پس بهتره که اطلاعاتِ پایه‌یِ نماد رو در جایی ذخیره کنی و با استفاده از
+                    <span style="color:#ec4899">ins_code</span> داده استخراج کنی.
+                </div>
+
+        .. note::
+            .. raw:: html
+
+                <div dir="rtl">
+                    یا
+                    <span style="color:#ec4899">ins_code</span>
+                    رو وارد کن، یا
+                    <span style="color:#ec4899">symbol</span>
+                    رو.
+                اگه هر دو رو وارد کنی،
+                    <span style="color:#ec4899">symbol</span>
+                نادیده گرفته می‌شه و تنها از
+                    <span style="color:#ec4899">ins_code</span>
+                    استفاده می‌شه. پس الکی‌ خودتو زحمت نده!
+                </div>
+
+        Parameters
+        ----------
+        symbol: str | list[str] | None
+            نماد
+        ins_code: str | list[str] | None
+            کدِ صفحه‌یِ نماد
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tse.order_book(ins_code=["65883838195688438","22645269567765904"])
+        shape: (10, 8)
+        ┌────────────────────────────┬───────────────────┬───────────┬─────────────┬───────────┬───────────┬────────────┬───────────┐
+        │ datetime                   ┆ ins_code          ┆ bid_count ┆ bid_volume  ┆ bid_price ┆ ask_price ┆ ask_volume ┆ ask_count │
+        │ ---                        ┆ ---               ┆ ---       ┆ ---         ┆ ---       ┆ ---       ┆ ---        ┆ ---       │
+        │ datetime[μs]               ┆ str               ┆ i64       ┆ f64         ┆ f64       ┆ f64       ┆ f64        ┆ i64       │
+        ╞════════════════════════════╪═══════════════════╪═══════════╪═════════════╪═══════════╪═══════════╪════════════╪═══════════╡
+        │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 2         ┆ 255555.0    ┆ 575.0     ┆ 575.0     ┆ 134386.0   ┆ 1         │
+        │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 26        ┆ 5.328977e6  ┆ 574.0     ┆ 576.0     ┆ 300000.0   ┆ 1         │
+        │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 46        ┆ 1.2845421e7 ┆ 573.0     ┆ 577.0     ┆ 5.25633e6  ┆ 17        │
+        │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 37        ┆ 1.0567086e7 ┆ 572.0     ┆ 578.0     ┆ 7.207702e6 ┆ 23        │
+        │ 2025-06-05 10:26:21.824355 ┆ 65883838195688438 ┆ 22        ┆ 3.943002e6  ┆ 571.0     ┆ 579.0     ┆ 7.031635e6 ┆ 23        │
+        │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 1576.0      ┆ 3748.0    ┆ 3749.0    ┆ 282050.0   ┆ 2         │
+        │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 34799.0     ┆ 3746.0    ┆ 3759.0    ┆ 67324.0    ┆ 3         │
+        │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 1         ┆ 400000.0    ┆ 3742.0    ┆ 3760.0    ┆ 37739.0    ┆ 1         │
+        │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 3         ┆ 451625.0    ┆ 3740.0    ┆ 3765.0    ┆ 424.0      ┆ 1         │
+        │ 2025-06-05 10:26:21.825021 ┆ 22645269567765904 ┆ 2         ┆ 200000.0    ┆ 3736.0    ┆ 3770.0    ┆ 1272.0     ┆ 3         │
+        └────────────────────────────┴───────────────────┴───────────┴─────────────┴───────────┴───────────┴────────────┴───────────┘
+        """
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, str):
+            ins_code = [ins_code]
+        url = [self.url.order_book(i) for i in ins_code]
+        r = get(url)
+        df = pl.DataFrame()
+        for ins_code, resp in zip(ins_code, r):
+            df_ = pl.DataFrame(
+                [OrderBook.model_validate(i) for i in resp["bestLimits"]]
+            )
+            df_ = df_.with_columns(
+                datetime = pl.lit(datetime.datetime.now()),
+                ins_code = pl.lit(ins_code),
+            ).select(["datetime", "ins_code","bid_count", "bid_volume", "bid_price", "ask_price", "ask_volume", "ask_count"])
+            df = pl.concat([df, df_])
         return df

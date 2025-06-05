@@ -138,3 +138,13 @@ class InsInfo(BaseModel):
         values.pop("sector")
         result.update(values)
         return result
+
+
+class OrderBook(BaseModel):
+    ob_level: int = Field(alias="number")
+    bid_count: int = Field(alias="zOrdMeDem")
+    bid_volume: float = Field(alias="qTitMeDem")
+    bid_price: float = Field(alias="pMeDem")
+    ask_price: float = Field(alias="pMeOf")
+    ask_volume: float = Field(alias="qTitMeOf")
+    ask_count: int = Field(alias="zOrdMeOf")
