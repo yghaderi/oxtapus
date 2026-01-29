@@ -140,6 +140,21 @@ class InsInfo(BaseModel):
         return result
 
 
+class SubSector(BaseModel):
+    id: int = Field(alias="cSoSecVal")
+    name: str = Field(alias="lSoSecVal")
+
+
+class InstrumentIdentity(BaseModel):
+    isin: str = Field(alias="cIsin")
+    instrument_id: str = Field(alias="instrumentID")
+    name: str = Field(alias="lSoc30")
+    symbol: str = Field(alias="lVal18AFC")
+    symbol30: str = Field(alias="lVal30")
+    sector: Sector
+    sub_sector: SubSector = Field(alias="subSector")
+
+
 class OrderBook(BaseModel):
     ob_level: int = Field(alias="number")
     bid_count: int = Field(alias="zOrdMeDem")

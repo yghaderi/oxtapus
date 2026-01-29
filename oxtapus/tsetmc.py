@@ -8,7 +8,14 @@ from urllib.parse import urlencode
 import polars as pl
 from pydantic import validate_call
 
-from oxtapus.models.tsetmc import ClientTypeAll, HistPrice, InsInfo, MarketWatch, OrderBook
+from oxtapus.models.tsetmc import (
+    ClientTypeAll,
+    HistPrice,
+    InsInfo,
+    InstrumentIdentity,
+    MarketWatch,
+    OrderBook,
+)
 from oxtapus.utils import (
     cols,
     json_normalize,
@@ -253,17 +260,21 @@ class URL:
     def ifb_share_change_flow(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentShareChangeByFlow/2/9999"
 
-    def options_mw(self)->str:
+    def options_mw(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/0"
 
-    def tse_options_mw(self)->str:
+    def tse_options_mw(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/1"
 
-    def ifb_options_mw(self)->str:
+    def ifb_options_mw(self) -> str:
         return f"{self.base_url}/Instrument/GetInstrumentOptionMarketWatch/2"
 
-    def order_book(self, ins_code: str)-> str:
+    def order_book(self, ins_code: str) -> str:
         return f"{self.base_url}/BestLimits/{ins_code}"
+
+    def instrument_identity(self, ins_code: str) -> str:
+        return f"{self.base_url}/Instrument/GetInstrumentIdentity/{ins_code}"
+
 
 class TSETMC:
     """
@@ -1696,8 +1707,64 @@ class TSETMC:
                 [OrderBook.model_validate(i) for i in resp["bestLimits"]]
             )
             df_ = df_.with_columns(
-                datetime = pl.lit(datetime.datetime.now()),
-                ins_code = pl.lit(ins_code),
-            ).select(["datetime", "ins_code","bid_count", "bid_volume", "bid_price", "ask_price", "ask_volume", "ask_count"])
+                datetime=pl.lit(datetime.datetime.now()),
+                ins_code=pl.lit(ins_code),
+            ).select(
+                [
+                    "datetime",
+                    "ins_code",
+                    "bid_count",
+                    "bid_volume",
+                    "bid_price",
+                    "ask_price",
+                    "ask_volume",
+                    "ask_count",
+                ]
+            )
+            df = pl.concat([df, df_])
+        return df
+
+    @_handle_ins_cod_or_symbol
+    def instrument_identity(
+        self,
+        symbol: str | list[str] | None = None,
+        ins_code: str | list[str] | None = None,
+    ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+            شناسه یِ نماد رو بهت میده
+            </div>
+
+        Parameters
+        ----------
+        symbol: str | list[str] | None
+            نماد
+        ins_code: str | list[str] | None
+            کدِ صفحه‌یِ نماد
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tse.instrument_identity(ins_code=["65883838195688438","22645269567765904"])"""
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, str):
+            ins_code = [ins_code]
+        url = [self.url.instrument_identity(i) for i in ins_code]
+        r = get(url)
+        df = pl.DataFrame()
+        for ins_code, resp in zip(ins_code, r):
+            data = InstrumentIdentity.model_validate(
+                resp["instrumentIdentity"]
+            ).model_dump()
+            data = normalize_nested_dict([data], "sector", "sector")
+            data = normalize_nested_dict(data, "sub_sector", "sub_sector")
+            df_ = pl.DataFrame(data)
             df = pl.concat([df, df_])
         return df
