@@ -1460,6 +1460,22 @@ class TSETMC:
             df = pl.concat([df, df_])
         return df
 
+
+
+
+    def market_status(self, farsi :bool = False ) -> str :
+        """
+        indicates the current status of the market, whether it is open or closed.
+        if farsi is True, it returns the status in Farsi 'باز' or 'بسته' 
+        otherwise it returns 'Open' or 'Closed'.
+        """
+        r = get(self.url.last_market_activity())[0].get("marketOverview")
+        if farsi is True : 
+            return r.get('marketStateTitle') 
+    
+        return 'Open' if r.get('marketState') == 'S' else 'Closed' # 'F' for 'Closed'
+
+
     def last_market_activity_datetime(self):
         """
         .. raw:: html
@@ -1592,7 +1608,7 @@ class TSETMC:
         ins_code = symbol if symbol else ins_code
         if isinstance(ins_code, list):
             raise Exception("shareholder_history only accept one ins_code or symbol")
-            
+
         url = self.url.shareholder_history(ins_code , shareholder_id , last_records ) 
         resp = get(url) 
 
