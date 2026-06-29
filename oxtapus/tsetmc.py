@@ -1591,7 +1591,8 @@ class TSETMC:
         """
         ins_code = symbol if symbol else ins_code
         if isinstance(ins_code, list):
-            raise Exception("shareholder_history only accept one ins_code or symbol")')
+            raise Exception("shareholder_history only accept one ins_code or symbol")
+            
         url = self.url.shareholder_history(ins_code , shareholder_id , last_records ) 
         resp = get(url) 
 
