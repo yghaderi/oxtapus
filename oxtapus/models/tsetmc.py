@@ -163,3 +163,29 @@ class OrderBook(BaseModel):
     ask_price: float = Field(alias="pMeOf")
     ask_volume: float = Field(alias="qTitMeOf")
     ask_count: int = Field(alias="zOrdMeOf")
+
+
+class Shareholder(BaseModel):
+    ins_id: str = Field(alias="cIsin")
+    shareholder_id: str = Field(alias="shareHolderShareID")
+    shareholder_name: str = Field(alias="shareHolderName")
+    shares: float = Field(alias="numberOfShares")
+    pct_shares: float = Field(alias="perOfShares")
+    change: int
+    change_amount: float = Field(alias="changeAmount")
+
+    @field_validator("ins_id", "shareholder_id", mode="before")
+    def convert_to_str(cls, value):
+        return "" if value is None else str(value)
+
+class ShareholderHistory(BaseModel):
+
+    date : dt.date = Field(alias="dEven")
+    shares: float = Field(alias="numberOfShares")
+    pct_shares: float = Field(alias="perOfShares")
+    change: int 
+    change_amount: float = Field(alias="changeAmount")
+    @field_validator("date", mode="before")
+    def parse_date(cls, value):
+        return dt.datetime.strptime(str(value), "%Y%m%d").date()
+

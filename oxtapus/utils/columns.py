@@ -200,14 +200,15 @@ index_hist = ManipulationCols(
 shareholder_list = ManipulationCols(
     rename={
         "cIsin": "ins_id",
-        "shareHolderName": "sh_name",
+        "shareHolderName": "shareholder_name",
+        "shareHolderShareID": "shareholder_id",
         "numberOfShares": "shares",
         "perOfShares": "pct_shares",
         "changeAmount": "change_amount",
     },
     suffix=None,
     prefix=None,
-    select=["ins_id", "sh_name", "shares", "pct_shares", "change", "change_amount"],
+    select=["ins_id", "shareholder_name", "shareholder_id", "shares", "pct_shares", "change", "change_amount"],
     drop=None,
 )
 

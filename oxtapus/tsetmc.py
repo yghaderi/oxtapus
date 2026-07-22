@@ -15,6 +15,8 @@ from oxtapus.models.tsetmc import (
     InstrumentIdentity,
     MarketWatch,
     OrderBook,
+    Shareholder,
+    ShareholderHistory
 )
 from oxtapus.utils import (
     cols,
@@ -247,6 +249,9 @@ class URL:
 
     def shareholder_list(self, ins_code) -> str:
         return f"{self.base_url}/Shareholder/GetInstrumentShareHolderLast/{ins_code}"
+
+    def shareholder_history(self, ins_code, shareholder_id, last_records:int) -> str:
+        return f"{self.base_url}/Shareholder/GetShareHolderHistory/{ins_code}/{shareholder_id}/{last_records}"
 
     def tse_adjust_price_flow(self, last_records: int) -> str:
         return f"{self.base_url}/ClosingPrice/GetPriceAdjustByFlow/1/{last_records}"
@@ -514,7 +519,7 @@ class TSETMC:
     @staticmethod
     def _handle_ins_cod_or_symbol(func):
         @functools.wraps(func)
-        def wrapper(self, symbol=None, ins_code=None):
+        def wrapper(self, symbol=None, ins_code=None , **kwargs ):
             if symbol:
                 if isinstance(symbol, list):
                     symbol = list(
@@ -522,7 +527,7 @@ class TSETMC:
                     )
                 else:
                     symbol = self.search_ins_code(symbol)
-            return func(self, symbol, ins_code)
+            return func(self, symbol, ins_code , **kwargs)
 
         return wrapper
 
@@ -1455,6 +1460,22 @@ class TSETMC:
             df = pl.concat([df, df_])
         return df
 
+
+
+
+    def market_status(self, farsi :bool = False ) -> str :
+        """
+        indicates the current status of the market, whether it is open or closed.
+        if farsi is True, it returns the status in Farsi 'باز' or 'بسته' 
+        otherwise it returns 'Open' or 'Closed'.
+        """
+        r = get(self.url.last_market_activity())[0].get("marketOverview")
+        if farsi is True : 
+            return r.get('marketStateTitle') 
+    
+        return 'Open' if r.get('marketState') == 'S' else 'Closed' # 'F' for 'Closed'
+
+
     def last_market_activity_datetime(self):
         """
         .. raw:: html
@@ -1510,28 +1531,98 @@ class TSETMC:
         >>> from oxtapus import TSETMC
         >>> tsetmc = TSETMC()
         >>> tsetmc.shareholder_list(ins_code=["71483646978964608"])
-        shape: (3, 6)
-        ┌──────────────┬───────────────────────────────────┬──────────────┬────────────┬────────┬───────────────┐
-        │ ins_id       ┆ sh_name                           ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │
-        │ ---          ┆ ---                               ┆ ---          ┆ ---        ┆ ---    ┆ ---           │
-        │ str          ┆ str                               ┆ f64          ┆ f64        ┆ i64    ┆ f64           │
-        ╞══════════════╪═══════════════════════════════════╪══════════════╪════════════╪════════╪═══════════════╡
-        │ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي              ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
-        │ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن اصفهان… ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │
-        │ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان فرهنگيان… ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │
-        └──────────────┴───────────────────────────────────┴──────────────┴────────────┴────────┴───────────────┘
+        shape: (3, 7)
+        ┌──────────────┬──────────────────────────────┬────────────────┬──────────────┬────────────┬────────┬───────────────┐
+        │ ins_id       ┆ shareholder_name             ┆ shareholder_id ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │
+        │ ---          ┆ ---                          ┆ ---            ┆ ---          ┆ ---        ┆ ---    ┆ ---           │
+        │ str          ┆ str                          ┆ str            ┆ f64          ┆ f64        ┆ i64    ┆ f64           │
+        ╞══════════════╪══════════════════════════════╪════════════════╪══════════════╪════════════╪════════╪═══════════════╡
+        │ IRO1ZOBI0002 ┆ سازمان تامين اجتماعي         ┆ 4634859823     ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
+        │ IRO1ZOBI0002 ┆ شركت پويش بازرگان ذوب آهن ... ┆ 7733690398     ┆ 1.2217e10    ┆ 17.26      ┆ 1      ┆ 0.0           │
+        │ IRO1ZOBI0002 ┆ شركت سرمايه گذاري سامان ...   ┆ 5534279012     ┆ 8.36525894e8 ┆ 1.18       ┆ 1      ┆ 0.0           │
+        └──────────────┴──────────────────────────────┴────────────────┴──────────────┴────────────┴────────┴───────────────┘
         """
         ins_code = symbol if symbol else ins_code
         if isinstance(ins_code, str):
             ins_code = [ins_code]
         url = [self.url.shareholder_list(i) for i in ins_code]
-        r = self.requests(url)
+        resp = self.requests(url)
         df = pl.DataFrame()
-        for resp in r:
-            df_ = pl.from_dicts(resp.get("shareHolder"))
-            df_ = manipulation_cols(df_, columns=cols.tsetmc.shareholder_list)
+        for r in resp :
+            df_ = pl.DataFrame(
+                [Shareholder.model_validate(i) for i in r["shareHolder"]]
+            )
             df = pl.concat([df, df_])
         return df
+
+
+    @_handle_ins_cod_or_symbol
+    def shareholder_history(self,
+        symbol: str | None = None,
+        ins_code: str | None = None,
+        shareholder_id: str | None = None,
+        last_records : int = 9999
+    ) -> pl.DataFrame:
+        """
+        .. raw:: html
+
+            <div dir="rtl">
+                تاریخچه‌یِ تغییراتِ تعداد و درصدِ سهامِ یک سهامدارِ عمده در یک نماد رو برمی‌گردونه.
+            </div>
+
+        Parameters
+        ---------
+        symbol: str | None
+            نماد
+        ins_code: str | None
+            کدِ صفحه‌یِ نماد
+        shareholder_id: str | None
+            شناسه‌یِ سهامدار. این شناسه از ستونِ shareholder_id در خروجیِ shareholder_list به دست می‌آد.
+        last_records: int
+            تعدادِ آخرین رکوردهایی که می‌خوای بگیری
+
+        Returns
+        -------
+        polars.DataFrame
+
+        example
+        -------
+        >>> from oxtapus import TSETMC
+        >>> tsetmc = TSETMC()
+        >>> tsetmc.shareholder_history(
+        ...     ins_code="71483646978964608",
+        ...     shareholder_id="4634859823",
+        ...     last_records=3,
+        ... )
+        shape: (3, 5)
+        ┌────────────┬──────────────┬────────────┬────────┬───────────────┐
+        │ date       ┆ shares       ┆ pct_shares ┆ change ┆ change_amount │
+        │ ---        ┆ ---          ┆ ---        ┆ ---    ┆ ---           │
+        │ date       ┆ f64          ┆ f64        ┆ i64    ┆ f64           │
+        ╞════════════╪══════════════╪════════════╪════════╪═══════════════╡
+        │ 2024-02-13 ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
+        │ 2024-02-12 ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
+        │ 2024-02-11 ┆ 3.9592e10    ┆ 55.93      ┆ 1      ┆ 0.0           │
+        └────────────┴──────────────┴────────────┴────────┴───────────────┘
+        """
+        ins_code = symbol if symbol else ins_code
+        if isinstance(ins_code, list):
+            raise Exception("shareholder_history only accept one ins_code or symbol")
+
+        url = self.url.shareholder_history(ins_code , shareholder_id , last_records ) 
+        resp = get(url) 
+
+        df = pl.DataFrame()
+        for r in resp :
+            df_ = pl.DataFrame(
+                [ShareholderHistory.model_validate(i) for i in r["shareHolder"]]
+            )
+            df = pl.concat([df, df_])
+        return df
+
+
+
+
 
     def adjust_price_flow(self, last_records: int):
         """
