@@ -1,314 +1,140 @@
-# metafid
-## oxtapus
+# Oxtapus 1.0
 
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/oxtapus)
-![PyPI - Version](https://img.shields.io/pypi/v/oxtapus)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/oxtapus?logoColor=blue&color=blue)
-![GitHub](https://img.shields.io/github/license/yghaderi/oxtapus)
+<p align="center">
+  <a href="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml">
+    <img src="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml/badge.svg?branch=master" alt="Test">
+  </a>
+  <a href="https://pypi.org/project/oxtapus/">
+    <img src="https://img.shields.io/pypi/dm/oxtapus?color=%2334D058&amp;label=downloads" alt="PyPI downloads">
+  </a>
+  <a href="https://pypi.org/project/oxtapus/">
+    <img src="https://img.shields.io/pypi/pyversions/oxtapus.svg?color=%2334D058" alt="Supported Python versions">
+  </a>
+  <a href="https://pypi.org/project/oxtapus/">
+    <img src="https://img.shields.io/pypi/v/oxtapus?color=%2334D058&amp;label=pypi%20package" alt="Package version">
+  </a>
+</p>
 
-<div dir="rtl">
-اُختاپوس برایِ پوششِ بخشی از داده‌هایِ موردِ نیاز در مدل-سازی‌هایِ مالی-اقتصادی توسعه داده شده است.
-برایِ یاد-گیریِ بیشتر،
-<a href="https://yghaderi.github.io/oxtapus/">
-راهنمایِ بهره-گیران
-</a>
-رو بخونید.
-</div>
+Oxtapus is a typed, Polars-native Python SDK for Iranian financial market data. Version
+1.0 is a clean architecture and API: a small notebook surface sits over the same typed
+services, provider contracts, resilient HTTPX2 transport, and replayable data pipeline used
+by larger applications.
 
+Oxtapus provides an independent Python interface to public market data published through
+[TSETMC](https://tsetmc.com/) for the Tehran Stock Exchange (TSE) and Iran's capital
+market. It is not affiliated with or endorsed by TSETMC.
 
-## install
-#### mac , linux
-```bash
-python3 -m pip install oxtapus
-```
-#### windows
+برای توسعه‌دهندگان فارسی‌زبان: Oxtapus کتابخانه پایتون دریافت و پردازش داده‌های
+[TSETMC](https://tsetmc.com/)، بورس اوراق بهادار تهران (بورس تهران) و بازار سرمایه ایران
+است.
+
+> Upstream websites can change without notice. Oxtapus reports source/schema metadata but
+> does not promise source availability or grant redistribution rights. Review
+> [DATA_SOURCE_NOTICE.md](DATA_SOURCE_NOTICE.md) before commercial use.
+
+## Install
+
 ```bash
 python -m pip install oxtapus
 ```
 
+Python 3.11–3.14 is supported. Optional integrations are installed explicitly:
 
-## TSETMC (tsetmc.com)
-
-<div dir="rtl">
-تقریبن همه‌یِ داده‌هایِ وب-سایتِ tsetmc.com رو پوشش می‌ده.
-<br>
-<br>
-نمونه
-(برای راهنمایِ کامل
-<a href="https://yghaderi.github.io/oxtapus/">
-راهنمایِ بهره-گیران
-</a>
-رو بخونید)
-:
-</div>
-
-```python
->>> from oxtapus import TSETMC
-
->>> tsetmc = TSETMC()
->>> tsetmc.intraday_trades("دکپسول")
-shape: (190, 4)
-┌─────────────────────┬───────────┬─────────┬────────┐
-│ datetime            ┆ trade_nbr ┆ price   ┆ volume │
-│ ---                 ┆ ---       ┆ ---     ┆ ---    │
-│ datetime[μs]        ┆ i64       ┆ f64     ┆ i64    │
-╞═════════════════════╪═══════════╪═════════╪════════╡
-│ 2023-11-01 09:10:01 ┆ 1         ┆ 75100.0 ┆ 250    │
-│ 2023-11-01 09:10:05 ┆ 2         ┆ 75100.0 ┆ 625    │
-│ 2023-11-01 09:10:05 ┆ 3         ┆ 75100.0 ┆ 48     │
-│ 2023-11-01 09:11:57 ┆ 4         ┆ 75150.0 ┆ 100    │
-│ …                   ┆ …         ┆ …       ┆ …      │
-│ 2023-11-01 12:28:47 ┆ 187       ┆ 77000.0 ┆ 510    │
-│ 2023-11-01 12:28:47 ┆ 188       ┆ 77000.0 ┆ 89     │
-│ 2023-11-01 12:29:06 ┆ 189       ┆ 77000.0 ┆ 411    │
-│ 2023-11-01 12:29:06 ┆ 190       ┆ 77000.0 ┆ 500    │
-└─────────────────────┴───────────┴─────────┴────────┘
+```bash
+python -m pip install 'oxtapus[arrow,pandas,duckdb,http2]'
 ```
 
-<h5 dir="rtl">
-لیستِ داده‌هایِ قابلِ دریافت:
-</h5>
-<div dir="rtl">
-<li>
-دیدبانِ بازار(mw): با واردکردنِ بازار(هایِ) موردِ نیاز آخرین داده‌یِ صفحه‌یِ
-<a href="http://main.tsetmc.com/MarketWatch">ِدیدبانِ بازار</a>
-رو به همراهِ 5 سفارشِ برتر بهت می‌ده.
-</li>
-
-<li>
-دیدبانِ بازارِ اخیتارِ-معامله(option-mw): آخرین داده‌یِ صفحه‌یِ
-<a href="http://main.tsetmc.com/MarketWatch">ِدیدبانِ بازار</a>
-رو به همراهِ 5 سفارشِ برتر، داده‌هایِ داراییِ پایه، قیمتِ اعمال، تاریخِ اعمال، و روز تا سر-رسید بهت می‌ده.
-</li>
-
-<li>
-داده‌هایِ نماد/ابزار (ins-info): داده‌هایِ پایه‌یِ نماد رو بهت می‌ده.
-</li>
-
-<li>
-داده‌هایِ خاصِ اختیارِ-معامله (specific-option-data): داده‌هایی که خاصِ نماد‌هایِ اختیارِ-معامله‌ان، مانندِِ موقعیت‌هایِ بازِ و برخی داده‌هایِ دیگه رو بهت می‌ده.
-</li>
-
-<li>
-تاریخچه‌یِ معامله‌یِ نماد (hist-price): داده‌هایِ مربوط به معامله‌یِ گذشته‌یِ نماد رو بهت میده.
-</li>
-
-<li>
-تاریخچه‌یِ معامله‌یِ نماد (adj-hist-price): داده‌هایِ مربوط به معامله‌یِ گذشته‌یِ نماد رو به صورتِ تعدیلی و غیرِ-تعدیلی بهت میده.
-</li>
-
-<li>
-داده‌هایِ درون-روزیِ معامله (intraday-trades): داده‌هایِ مربوط به ریزِ معامله‌یِ آخرین روزِ معامله رو بهت می‌ده.
-</li>
-
-<li>
-داده‌هایِ درون-روزیِ معامله بر مبنایِ فاصله‌یِ زمانی (intraday-trades-based-on-timeframe): داده‌هایِ مربوط به ریزِ معامله‌یِ آخرین روزِ معامله رو بر مبنایِ تایم-فریمِ وارده شده بهت می‌ده.
-</li>
-
-<li>
-آخرین داده‌یِ نماد (last-ins-data): برخی از داده‌هایِ صفحه‌یِ اصلیِ نماد- مانندِ وضعیتِ نماد و ... - رو بهت می‌ده.
-</li>
-
-<li>
-حقیقی-حقوقی (client-type): داده‌هایِ گذشته‌یِ مربوط به معامله‌هایِ حقیقی-حقوقی رو بهت می‌ده.
-</li>
-
-<li>
-تغییرِ سرمایه (share-change): داده‌هایِ مربوط به تغییرِ سرمایه‌یِ نماد رو بهت می‌ده.
-</li>
-
-<li>
-شاخص‌ها (indexes): لیستِ همه‌یِ شاخص‌ها و مقدار و تغییرِ مربوط به آخرین روزِ معاملاتی رو بهت می‌ده.
-</li>
-
-<li>
-نماد‌هایی که شاخص دنبال‌ می‌کنه (symbols-that-index-tracks): نمادهایی که هر شاخص دنبال می‌کنه رو بهت می‌ده.
-</li>
-
-<li>
-تاریخچه‌یِ شاخص (index-hist): داده‌هایِ مربوط به مقدارِ شاخص‌ها رو بهت می‌ده.
-</li>
-
-<li>
-تاریخ و زمانِ رو بر مبنایِ آخرین رویدادِ بازار (last-market-activity-datetime): تاریخ و زمانِ رو بر مبنایِ آخرین رویدادِ بازار رو بهت می‌ده.
-</li>
-<li>
-داده‌هایِ مربوط به سهامدارهایِ درصدی (shareholder_list): داده‌هایِ مربوط به سهامدارهایِ عمده رو استخراج و پالایش می‌کنه.
-</li>
-<li>
-تاریخچه‌یِ سهامدار درصدی (shareholder_history): تاریخچه‌یِ تغییراتِ تعداد و درصدِ سهامِ یک سهامدارِ عمده در یک نماد رو بهت می‌ده.
-</li>
-<li>
-تعدیلِ قیمت (adjust_price_flow): قیمتِ تعدیلی و قبلِ تعدیل نمادهایی که قیمتشون تعدیل شده رو بهت می‌ده.
-</li>
-<li>
-افزایشِ سرمایه (ins_share_change_flow):  افزایش/تغییرِ سرمایه‌یِ همه‌یِ شرکت‌ها رو بهت می‌ده.
-</li>
-</div>
-
-<h5 dir="rtl">
-لیستِ داده‌هایی در آینده می‌تونی دریافت کنی:
-</h5>
-<div dir="rtl">
-<li>
-داده‌هایِ گذشته‌یِ معامله‌هایِ درون-روزی.
-</li>
-
-<li>
-داده‌هایِ گذشته‌یِ سفارش‌ها-5 مظنه-
-</li>
-
-</div>
-
-## TGJU (tgju.org)
-<div dir="rtl">
-داده‌هایِ طلا و دلارِ وب-سایتِ tsetmc.com رو پوشش می‌ده. و در آینده کالاهایی که به بورسِ ایران مربوطه و از آنجا قابلِ دریافته رو پوشش خواهد داد.
-<br>
-<br>
-نمونه (برای راهنمایِ کامل
-<a href="https://yghaderi.github.io/oxtapus/">
-راهنمایِ بهره-گیران
-</a>
-رو بخونید)
-:
-</div>
+## Five-minute quickstart
 
 ```python
->>> from oxtapus import TGJU
+import oxtapus as ox
 
->>> tgju = TGJU()
->>> tgju.usd_irr()
-shape: (3_688, 6)
-┌────────────┬────────────┬──────────┬──────────┬──────────┬──────────┐
-│ date       ┆ jdate      ┆ open     ┆ high     ┆ low      ┆ close    │
-│ ---        ┆ ---        ┆ ---      ┆ ---      ┆ ---      ┆ ---      │
-│ date       ┆ str        ┆ f64      ┆ f64      ┆ f64      ┆ f64      │
-╞════════════╪════════════╪══════════╪══════════╪══════════╪══════════╡
-│ 2023-11-01 ┆ 1402-08-10 ┆ 514870.0 ┆ 517900.0 ┆ 513380.0 ┆ 516830.0 │
-│ 2023-10-31 ┆ 1402-08-09 ┆ 516770.0 ┆ 518060.0 ┆ 515370.0 ┆ 516600.0 │
-│ 2023-10-30 ┆ 1402-08-08 ┆ 511950.0 ┆ 514600.0 ┆ 510650.0 ┆ 514500.0 │
-│ 2023-10-29 ┆ 1402-08-07 ┆ 519550.0 ┆ 519560.0 ┆ 513350.0 ┆ 513560.0 │
-│ …          ┆ …          ┆ …        ┆ …        ┆ …        ┆ …        │
-│ 2011-11-29 ┆ 1390-09-08 ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  ┆ 13400.0  │
-│ 2011-11-28 ┆ 1390-09-07 ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  ┆ 13350.0  │
-│ 2011-11-27 ┆ 1390-09-06 ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  ┆ 13440.0  │
-│ 2011-11-26 ┆ 1390-09-05 ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  ┆ 13700.0  │
-└────────────┴────────────┴──────────┴──────────┴──────────┴──────────┘
+prices = ox.daily_prices(
+    symbols=["فولاد", "خودرو"],
+    start="2025-01-01",
+    end="2026-01-01",
+    progress=True,
+)
+
+print(prices.select("symbol", "trading_date", "close_price"))
 ```
 
+The simple functions return `polars.DataFrame`. Persian/Arabic Unicode variants are
+normalized, identifiers are resolved explicitly, null values remain null, retries are scoped
+to the failing request, and batch failures are not hidden.
 
-<h5 dir="rtl">
-لیستِ داده‌هایِ قابلِ دریافت:
-</h5>
-<div dir="rtl">
-<li>
-دلار/ریال (usd/irr)
-</li>
-
-<li>
-سکه‌یِ امامی (sekke-emami)
-</li>
-
-<li>
-نیم-سکه (nim-sekke)
-</li>
-
-<li>
-ربعِ-سکه (rob-sekke)
-</li>
-
-<li>
-اونسِ طلا (ons)
-</li>
-
-</div>
-
-## Rahavard365 (rahavard365.com)
-<div dir="rtl">
-فعلن داده‌هایِ صورت‌هایِ مالی رو پوشش می‌ده.
-<br>
-<br>
-نمونه (برای راهنمایِ کامل
-<a href="https://yghaderi.github.io/oxtapus/">
-راهنمایِ بهره-گیران
-</a>
-رو بخونید)
-:
-</div>
+Use a long-lived client when making several calls:
 
 ```python
->>> from oxtapus import Rahavard
->>> rah = Rahavard()
->>> bsh = rah.balance_sheet("آسیا")
->>> bsh.data
-shape: (5, 48)
-┌───────────┬───────────┬───────────┬───────────┬───┬───────────┬───────────┬───────────┬──────────┐
-│ date      ┆ fiscal_ye ┆ 1         ┆ 2         ┆ … ┆ 120       ┆ 8         ┆ 10        ┆ 25       │
-│ ---       ┆ ar        ┆ ---       ┆ ---       ┆   ┆ ---       ┆ ---       ┆ ---       ┆ ---      │
-│ date      ┆ ---       ┆ f64       ┆ f64       ┆   ┆ f64       ┆ f64       ┆ f64       ┆ f64      │
-│           ┆ date      ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-╞═══════════╪═══════════╪═══════════╪═══════════╪═══╪═══════════╪═══════════╪═══════════╪══════════╡
-│ 2023-07-1 ┆ 2023-03-2 ┆ 1.6475e12 ┆ 9.4735e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-│ 7         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-│ 2022-07-1 ┆ 2022-03-2 ┆ 9.7369e11 ┆ 6.8886e13 ┆ … ┆ 1.3831e13 ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-│ 3         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-│ 2021-07-0 ┆ 2021-03-1 ┆ 1.4242e12 ┆ 5.8496e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 0.0       ┆ 0.0      │
-│ 5         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-│ 2020-07-1 ┆ 2020-03-1 ┆ 7.1692e11 ┆ 0.0       ┆ … ┆ 0.0       ┆ 9.7560e11 ┆ 3.2546e13 ┆ 0.0      │
-│ 8         ┆ 9         ┆           ┆           ┆   ┆           ┆           ┆           ┆          │
-│ 2019-07-1 ┆ 2019-03-2 ┆ 6.4080e11 ┆ 1.0119e13 ┆ … ┆ 0.0       ┆ 0.0       ┆ 9.8519e12 ┆ 1.5801e1 │
-│ 6         ┆ 0         ┆           ┆           ┆   ┆           ┆           ┆           ┆ 2        │
-└───────────┴───────────┴───────────┴───────────┴───┴───────────┴───────────┴───────────┴──────────┘
+from oxtapus import Client, Settings
 
->>> bsh.base_info
-BaseInfo(announcement_type='1', financial_view_type='3')
+settings = Settings(concurrency=4, requests_per_second=2, progress=True)
+with Client(settings) as client:
+    snapshot = client.market.market_watch(["equity", "etf"])
+    result = client.market.fetch_daily_prices(["فولاد", "خودرو"])
 
->>> bsh.field_info
-shape: (46, 10)
-┌─────┬─────────────┬─────────────┬────────────┬───┬────────────┬──────────┬──────────┬────────────┐
-│ id  ┆ title       ┆ english_tit ┆ account    ┆ … ┆ index_view ┆ sign_neg ┆ sign_pos ┆ neg_nature │
-│ --- ┆ ---         ┆ le          ┆ ---        ┆   ┆ ---        ┆ ---      ┆ ---      ┆ ---        │
-│ str ┆ str         ┆ ---         ┆ str        ┆   ┆ i64        ┆ bool     ┆ bool     ┆ bool       │
-│     ┆             ┆ str         ┆            ┆   ┆            ┆          ┆          ┆            │
-╞═════╪═════════════╪═════════════╪════════════╪═══╪════════════╪══════════╪══════════╪════════════╡
-│ 120 ┆ تسهیلات     ┆ Loan        ┆ CurrentLia ┆ … ┆ 4000       ┆ false    ┆ false    ┆ false      │
-│     ┆ مالی        ┆ Payables    ┆ bilities:L ┆   ┆            ┆          ┆          ┆            │
-│     ┆ دریافتی     ┆             ┆ oanPayable ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆             ┆ s          ┆   ┆            ┆          ┆          ┆            │
-│ 89  ┆ سایر ذخائر  ┆ Other       ┆ CurrentLia ┆ … ┆ 3800       ┆ false    ┆ false    ┆ false      │
-│     ┆ فنی         ┆ Technical   ┆ bilities:O ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆ Reserves    ┆ therTechni ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆             ┆ ca…        ┆   ┆            ┆          ┆          ┆            │
-│ 17  ┆ سایر        ┆ Other       ┆ NonCurrent ┆ … ┆ 2200       ┆ false    ┆ false    ┆ false      │
-│     ┆ دارایی‌ها    ┆ Assets      ┆ Assets:Oth ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆             ┆ erAssets   ┆   ┆            ┆          ┆          ┆            │
-│ 18  ┆ اموال ماشین ┆ Equipment   ┆ NonCurrent ┆ … ┆ 2300       ┆ false    ┆ false    ┆ false      │
-│     ┆ آلات و      ┆             ┆ Assets:Fix ┆   ┆            ┆          ┆          ┆            │
-│     ┆ تجهیزات     ┆             ┆ edAssets:E ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆             ┆ qu…        ┆   ┆            ┆          ┆          ┆            │
-│ 78  ┆ مطالبات از  ┆ Receivables ┆ CurrentAss ┆ … ┆ 300        ┆ false    ┆ false    ┆ false      │
-│     ┆ بیمه‌گذاران  ┆ from        ┆ ets:Receiv ┆   ┆            ┆          ┆          ┆            │
-│     ┆ و نمایندگ…  ┆ Insured and ┆ ablesfromI ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆ Rep…        ┆ ns…        ┆   ┆            ┆          ┆          ┆            │
-│ …   ┆ …           ┆ …           ┆ …          ┆ … ┆ …          ┆ …        ┆ …        ┆ …          │
-│ 35  ┆ سرمایه      ┆ Common      ┆ Equity:Com ┆ … ┆ 4900       ┆ false    ┆ false    ┆ false      │
-│     ┆             ┆ Stock       ┆ monStock   ┆   ┆            ┆          ┆          ┆            │
-│ 46  ┆ جمع کل      ┆ Total       ┆ Liabilitie ┆ … ┆ 6500       ┆ false    ┆ false    ┆ false      │
-│     ┆ بدهی‌ها و    ┆ Liabilities ┆ sAndEquity ┆   ┆            ┆          ┆          ┆            │
-│     ┆ حقوق صاحبان ┆ and Equity  ┆            ┆   ┆            ┆          ┆          ┆            │
-│     ┆ سها…        ┆             ┆            ┆   ┆            ┆          ┆          ┆            │
-│ 33  ┆ ذخیره       ┆ Pension     ┆ NonCurrent ┆ … ┆ 4500       ┆ false    ┆ false    ┆ false      │
-│     ┆ مزایای      ┆ Reserves    ┆ Liabilitie ┆   ┆            ┆          ┆          ┆            │
-│     ┆ پایان خدمت  ┆             ┆ s:PensionR ┆   ┆            ┆          ┆          ┆            │
-│     ┆ کارکنان     ┆             ┆ es…        ┆   ┆            ┆          ┆          ┆            │
-│ 84  ┆ بدهی به     ┆ Reinsurance ┆ CurrentLia ┆ … ┆ 2700       ┆ false    ┆ false    ┆ false      │
-│     ┆ بیمه‌گذاران  ┆ Issuers     ┆ bilities:R ┆   ┆            ┆          ┆          ┆            │
-│     ┆ اتکایی      ┆ Payables    ┆ einsurance ┆   ┆            ┆          ┆          ┆            │
-│     ┆             ┆             ┆ Is…        ┆   ┆            ┆          ┆          ┆            │
-│ 9   ┆ جمع         ┆ Total       ┆ CurrentAss ┆ … ┆ 1400       ┆ false    ┆ false    ┆ false      │
-│     ┆ دارایی‌های   ┆ Current     ┆ ets        ┆   ┆            ┆          ┆          ┆            │
-│     ┆ جاری        ┆ Asset       ┆            ┆   ┆            ┆          ┆          ┆            │
-└─────┴─────────────┴─────────────┴────────────┴───┴────────────┴──────────┴──────────┴────────────┘
+print(result.failures)
+print(result.lineage.to_dict())
 ```
 
-<div class="daramet-embed-donate" id="1341"><script src="https://daramet.com/embed/script.js"></script></div>
+Native async works directly with Jupyter top-level `await`:
+
+```python
+from oxtapus import AsyncClient
+
+async with AsyncClient() as client:
+    prices = await client.market.daily_prices(["فولاد", "خودرو"])
+```
+
+Oxtapus never starts, nests, restarts, or patches an event loop.
+
+## Public surface
+
+The root package intentionally exports `Client`, `AsyncClient`, `Settings`, `FetchResult`,
+`DataLayer`, `daily_prices`, `market_watch`, `instrument_search`, and `option_chain`.
+Provider implementation classes are internal.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    API[Notebook API / Client / CLI] --> APP[Application services]
+    APP --> PORT[Provider and storage ports]
+    PORT --> TS[TSETMC provider]
+    TS --> HTTP[HTTPX2 transport]
+    APP --> B[Bronze raw evidence]
+    B --> S[Silver canonical]
+    S --> G[Gold curated]
+    S --> PQ[Parquet / Memory]
+    G --> PQ
+    PQ --> DB[Optional DuckDB]
+```
+
+See the [documentation](docs/index.md) for configuration, endpoint evidence, replay,
+storage, schema contracts, testing, and provider development.
+
+## Development
+
+```bash
+uv sync --all-extras --group dev
+uv run ruff format --check .
+uv run ruff check .
+uv run pyright
+uv run pytest -m "not live"
+uv run lint-imports
+uv run mkdocs build --strict
+uv build
+```
+
+Ordinary tests are offline. Live canaries are opt-in with `pytest -m live`.
+
+## Support the project
+
+If Oxtapus makes your work easier, consider supporting its continued open-source
+development.
+
+[![Sponsor Oxtapus](https://img.shields.io/badge/%E2%99%A1-Sponsor%20Oxtapus-ff69b4?style=flat-square)](https://daramet.com/yghaderi)
+
+## License
+
+Oxtapus source code is MIT-licensed. Upstream data is governed separately by its source.

@@ -1,13 +1,44 @@
-# Python-generated files
+# Python
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.coverage
+coverage.xml
+
+# Environments and tools
+.venv/
+.idea/
+.vscode/
+.DS_Store
+.pypirc
+.pre-commit-cache/
+
+# Builds and generated documentation
 build/
 dist/
 wheels/
-*.egg-info
+site/
+docs/_build/
 
-# Virtual environments
-.venv
-.tmp*
-
+# Local data and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
 token.txt
+/data/
+/cache/
+/checkpoints/
+/quarantine/
+*.duckdb
+*.parquet
+.ipynb_checkpoints/
+
+# Temporary files
+.tmp*/
+*.tmp

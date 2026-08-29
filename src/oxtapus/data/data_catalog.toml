@@ -1,0 +1,128 @@
+[catalog]
+version = "1.0.0"
+
+[[dataset]]
+name = "instrument"
+description = "Canonical instrument identity and classification records."
+layer = "silver"
+owner = "reference-data"
+provider_capability = "instrument_search"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "daily"
+freshness_expectation = "one trading day"
+currency = "unknown"
+unit = "record"
+duplicate_policy = "error"
+null_policy = "preserve"
+quality_rules = ["identifier_not_empty", "primary_key_unique"]
+storage_format = "parquet"
+retention_policy = "retain latest and Bronze lineage"
+lineage = "TSETMC source record to canonical instrument"
+
+[[dataset]]
+name = "daily_price"
+description = "Canonical daily OHLCV and official closing-price observations."
+layer = "silver"
+owner = "market-data"
+provider_capability = "daily_prices"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code", "trading_date"]
+partition_columns = ["trading_year"]
+sort_columns = ["tsetmc_instrument_code", "trading_date"]
+update_cadence = "trading day"
+freshness_expectation = "end of trading day"
+currency = "IRR"
+unit = "rial, shares, rial value"
+duplicate_policy = "merge by primary key"
+null_policy = "preserve"
+quality_rules = ["primary_key_unique", "prices_non_negative", "high_not_below_low"]
+storage_format = "parquet"
+retention_policy = "indefinite"
+lineage = "TSETMC closing-price source to canonical daily price"
+
+[[dataset]]
+name = "market_watch"
+description = "Validated canonical observations from the bulk market-watch source."
+layer = "silver"
+owner = "market-data"
+provider_capability = "market_watch"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, shares, rial value"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["primary_key_unique", "prices_non_negative"]
+storage_format = "parquet"
+retention_policy = "configured observation window"
+lineage = "TSETMC compact market-watch source to canonical observations"
+
+[[dataset]]
+name = "option_quote"
+description = "Validated canonical call and put contract observations."
+layer = "silver"
+owner = "derivatives"
+provider_capability = "option_chain"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["underlying_symbol", "expiration_date", "strike_price", "option_type"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, contracts"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["strike_positive", "expiration_valid", "primary_key_unique"]
+storage_format = "parquet"
+retention_policy = "through contract expiry plus configured history"
+lineage = "TSETMC paired contracts to canonical option observations"
+
+[[dataset]]
+name = "market_snapshot"
+description = "Business-ready latest quote snapshot."
+layer = "gold"
+owner = "market-data"
+provider_capability = "market_watch"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = ["snapshot_date"]
+sort_columns = ["symbol"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, shares, rial value"
+duplicate_policy = "replace snapshot"
+null_policy = "preserve"
+quality_rules = ["primary_key_unique", "prices_non_negative"]
+storage_format = "parquet"
+retention_policy = "configurable"
+lineage = "canonical market watch to latest market snapshot"
+
+[[dataset]]
+name = "option_chain"
+description = "Business-ready call and put quotes grouped by underlying and expiry."
+layer = "gold"
+owner = "derivatives"
+provider_capability = "option_chain"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = ["expiration_date"]
+sort_columns = ["underlying_symbol", "expiration_date", "strike_price", "option_type"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, contracts"
+duplicate_policy = "replace latest quote"
+null_policy = "preserve"
+quality_rules = ["strike_positive", "expiration_valid", "primary_key_unique"]
+storage_format = "parquet"
+retention_policy = "through contract expiry plus configured history"
+lineage = "canonical option quote pairs to flattened option chain"
