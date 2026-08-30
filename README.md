@@ -2,49 +2,67 @@
 
 <p align="center">
   <a href="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml">
-    <img src="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml/badge.svg?branch=master" alt="Test">
+    <img src="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml/badge.svg?branch=master" alt="وضعیت تست‌ها">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/dm/oxtapus?color=%2334D058&amp;label=downloads" alt="PyPI downloads">
+    <img src="https://img.shields.io/pypi/dm/oxtapus?color=%2334D058&amp;label=%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF" alt="تعداد دانلودهای PyPI">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/pyversions/oxtapus.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pypi/pyversions/oxtapus.svg?color=%2334D058&amp;label=%D9%BE%D8%A7%DB%8C%D8%AA%D9%88%D9%86" alt="نسخه‌های پشتیبانی‌شده پایتون">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/v/oxtapus?color=%2334D058&amp;label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/oxtapus?color=%2334D058&amp;label=%D9%86%D8%B3%D8%AE%D9%87" alt="نسخه پکیج">
   </a>
 </p>
 
-Oxtapus is a typed, Polars-native Python SDK for Iranian financial market data. Version
-1.0 is a clean architecture and API: a small notebook surface sits over the same typed
-services, provider contracts, resilient HTTPX2 transport, and replayable data pipeline used
-by larger applications.
+<div dir="rtl" align="right">
 
-Oxtapus provides an independent Python interface to public market data published through
-[TSETMC](https://tsetmc.com/) for the Tehran Stock Exchange (TSE) and Iran's capital
-market. It is not affiliated with or endorsed by TSETMC.
+Oxtapus یه بسته توسعه نرم‌افزاری (SDK) پایتون تایپ‌شده و مبتنی بر Polars برای داده‌های بازار
+مالی ایرانه. نسخه 1.0 با یه معماری و رابط برنامه‌نویسی (API) کاملاً تازه ساخته شده؛ یعنی هم
+برای کارهای سریع داخل نوت‌بوک جمع‌وجوره و هم زیرِ همین ظاهر ساده، سرویس‌های تایپ‌شده، قراردادهای
+مشخص برای فراهم‌کننده‌ها، انتقال مقاوم HTTPX2 و خط لوله داده قابل‌بازپخش داره تا توی پروژه‌های
+بزرگ‌تر هم بشه روش حساب کرد.
 
-برای توسعه‌دهندگان فارسی‌زبان: Oxtapus کتابخانه پایتون دریافت و پردازش داده‌های
-[TSETMC](https://tsetmc.com/)، بورس اوراق بهادار تهران (بورس تهران) و بازار سرمایه ایران
-است.
+با Oxtapus می‌تونی به داده‌های عمومی منتشرشده در [TSETMC](https://tsetmc.com/) برای بورس
+اوراق بهادار تهران (بورس تهران) و بازار سرمایه ایران دسترسی داشته باشی. این پروژه مستقل و
+غیررسمیه و هیچ وابستگی یا تأییدی از طرف TSETMC نداره.
 
-> Upstream websites can change without notice. Oxtapus reports source/schema metadata but
-> does not promise source availability or grant redistribution rights. Review
-> [DATA_SOURCE_NOTICE.md](DATA_SOURCE_NOTICE.md) before commercial use.
+به زبان ساده، اگه دنبال یه کتابخونه پایتون برای دریافت و پردازش داده‌های TSETMC و بورس
+تهران هستی، Oxtapus دقیقاً برای همین کار ساخته شده.
 
-## Install
+> حواست باشه سایت‌های منبع ممکنه هر لحظه و بدون اطلاع قبلی تغییر کنن. Oxtapus اطلاعات منبع
+> و نسخه طرح‌واره رو ثبت می‌کنه، ولی در دسترس‌بودن همیشگی منبع یا اجازه بازنشر داده‌ها رو تضمین
+> نمی‌کنه. اگه استفاده تجاری داری، حتماً اول
+> [اطلاعیه منابع داده](DATA_SOURCE_NOTICE.md) رو بخون.
+
+## نصب
+
+برای نصب معمولی این دستور رو اجرا کن:
+
+</div>
 
 ```bash
 python -m pip install oxtapus
 ```
 
-Python 3.11–3.14 is supported. Optional integrations are installed explicitly:
+<div dir="rtl" align="right">
+
+نسخه‌های 3.11 تا 3.14 پایتون پشتیبانی می‌شن. اگه یکپارچه‌سازی‌های اختیاری رو هم می‌خوای،
+باید موقع نصب مشخصشون کنی:
+
+</div>
 
 ```bash
 python -m pip install 'oxtapus[arrow,pandas,duckdb,http2]'
 ```
 
-## Five-minute quickstart
+<div dir="rtl" align="right">
+
+## شروع سریع پنج‌دقیقه‌ای
+
+برای گرفتن قیمت‌های روزانه چند نماد، همین چند خط کافیه:
+
+</div>
 
 ```python
 import oxtapus as ox
@@ -59,11 +77,15 @@ prices = ox.daily_prices(
 print(prices.select("symbol", "trading_date", "close_price"))
 ```
 
-The simple functions return `polars.DataFrame`. Persian/Arabic Unicode variants are
-normalized, identifiers are resolved explicitly, null values remain null, retries are scoped
-to the failing request, and batch failures are not hidden.
+<div dir="rtl" align="right">
 
-Use a long-lived client when making several calls:
+تابع‌های ساده یه `polars.DataFrame` برمی‌گردونن. شکل‌های مختلف حروف فارسی و عربی به‌صورت
+خودکار یکدست می‌شن، شناسه‌ها شفاف پیدا می‌شن، مقدارهای خالی واقعاً خالی می‌مونن، تلاش دوباره
+فقط برای همون درخواست ناموفق انجام می‌شه و خطاهای پردازش گروهی هم قایم نمی‌شن.
+
+اگه قراره چند بار درخواست بفرستی، بهتره یه کلاینت `Client` بسازی و همون رو نگه داری:
+
+</div>
 
 ```python
 from oxtapus import Client, Settings
@@ -77,7 +99,11 @@ print(result.failures)
 print(result.lineage.to_dict())
 ```
 
-Native async works directly with Jupyter top-level `await`:
+<div dir="rtl" align="right">
+
+نسخه ناهمگام (`async`) واقعی هم مستقیم با `await` سطح بالای Jupyter کار می‌کنه:
+
+</div>
 
 ```python
 from oxtapus import AsyncClient
@@ -86,15 +112,20 @@ async with AsyncClient() as client:
     prices = await client.market.daily_prices(["فولاد", "خودرو"])
 ```
 
-Oxtapus never starts, nests, restarts, or patches an event loop.
+<div dir="rtl" align="right">
 
-## Public surface
+Oxtapus خودش حلقه رویداد (`event loop`) رو راه نمی‌اندازه، تودرتو نمی‌کنه، از نو اجرا
+نمی‌کنه و دستکاریش هم نمی‌کنه.
 
-The root package intentionally exports `Client`, `AsyncClient`, `Settings`, `FetchResult`,
-`DataLayer`, `daily_prices`, `market_watch`, `instrument_search`, and `option_chain`.
-Provider implementation classes are internal.
+## رابط عمومی
 
-## Architecture
+از پکیج اصلی عمداً فقط `Client`، `AsyncClient`، `Settings`، `FetchResult`، `DataLayer`،
+`daily_prices`، `market_watch`، `instrument_search` و `option_chain` در دسترس مستقیم هستن.
+کلاس‌های داخلی فراهم‌کننده‌ها بخشی از رابط عمومی نیستن.
+
+## معماری
+
+</div>
 
 ```mermaid
 flowchart LR
@@ -110,10 +141,16 @@ flowchart LR
     PQ --> DB[Optional DuckDB]
 ```
 
-See the [documentation](docs/index.md) for configuration, endpoint evidence, replay,
-storage, schema contracts, testing, and provider development.
+<div dir="rtl" align="right">
 
-## Development
+برای تنظیمات، شواهد نقطه‌های پایانی، بازپخش داده، ذخیره‌سازی، قراردادهای طرح‌واره، تست و ساخت
+فراهم‌کننده جدید، یه سر به [مستندات کامل](docs/index.md) بزن.
+
+## توسعه پروژه
+
+برای آماده‌کردن محیط توسعه و اجرای همه بررسی‌ها از این دستورها استفاده کن:
+
+</div>
 
 ```bash
 uv sync --all-extras --group dev
@@ -126,15 +163,21 @@ uv run mkdocs build --strict
 uv build
 ```
 
-Ordinary tests are offline. Live canaries are opt-in with `pytest -m live`.
+<div dir="rtl" align="right">
 
-## Support the project
+تست‌های معمولی کاملاً آفلاین اجرا می‌شن. تست‌های زنده اختیاری‌ان و با `pytest -m live`
+اجرا می‌شن.
 
-If Oxtapus makes your work easier, consider supporting its continued open-source
-development.
+## حمایت از پروژه
 
-[![Sponsor Oxtapus](https://img.shields.io/badge/%E2%99%A1-Sponsor%20Oxtapus-ff69b4?style=flat-square)](https://daramet.com/yghaderi)
+اگه Oxtapus کارت رو راحت‌تر کرده و دوست داری توسعه متن‌بازش ادامه پیدا کنه، می‌تونی از
+پروژه حمایت کنی.
 
-## License
+[![حمایت از Oxtapus](https://img.shields.io/badge/%E2%99%A1-%D8%AD%D9%85%D8%A7%DB%8C%D8%AA%20%D8%A7%D8%B2%20Oxtapus-ff69b4?style=flat-square)](https://daramet.com/yghaderi)
 
-Oxtapus source code is MIT-licensed. Upstream data is governed separately by its source.
+## مجوز
+
+کد منبع Oxtapus با مجوز MIT منتشر شده. قوانین استفاده از داده‌های دریافتی جداست و به منبع
+اصلی هر داده بستگی داره.
+
+</div>
