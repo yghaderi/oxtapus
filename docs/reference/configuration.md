@@ -1,7 +1,9 @@
-# Configuration
+<div dir="rtl" align="right" markdown="1">
 
-Precedence is constructor arguments, `OXTAPUS_` environment variables, then safe defaults.
-Nested values use `__`. Examples:
+# تنظیمات
+
+اولویت تنظیمات به‌ترتیب آرگومان سازنده، متغیرهای محیطی با پیشوند `OXTAPUS_` و بعد مقدارهای
+پیش‌فرض امنه. برای مقدارهای تودرتو از `__` استفاده کن. چند نمونه:
 
 ```bash
 export OXTAPUS_CONCURRENCY=6
@@ -26,7 +28,9 @@ settings = Settings(
 )
 ```
 
-Settings cover provider/endpoint priority, approved base URLs, user agent, HTTP/2, TLS,
-proxy, four timeouts, connection limits, concurrency, rate limits, retries, progress, cache,
-data/storage/layers, schema and quality policy, failure mode, freshness, logging, and telemetry.
-High-level methods reject arbitrary remote hosts.
+تنظیمات شامل URLهای تأییدشده، user agent، HTTP/2، TLS، proxy، timeoutها، سقف اتصال، هم‌زمانی،
+rate limit، retry، progress، cache، storage، لایه‌های داده، سیاست schema و کیفیت، رفتار خطای
+گروهی، تازگی، logging و telemetry است. متدهای سطح بالا اجازه نمی‌دن یک host دلخواه به کتابخونه
+تحمیل بشه.
+
+</div>

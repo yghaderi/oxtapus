@@ -1,6 +1,9 @@
 """Canonical investor-activity schema contracts."""
 
 INVESTOR_ACTIVITY_COLUMNS = (
+    "tsetmc_instrument_code",
+    "symbol",
+    "event_timestamp",
     "individual_buy_count",
     "individual_buy_volume",
     "individual_buy_value",

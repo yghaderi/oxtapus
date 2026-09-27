@@ -11,9 +11,9 @@ attaches quality results.
 Gold consumes Silver only. Current deterministic curated outputs include latest market
 snapshots and flattened option chains.
 
-```mermaid
+:::{mermaid}
 flowchart LR
     R[Raw response] -->|checksum + metadata| B[Bronze]
     B -->|replay parser| S[Silver]
     S -->|pure transform| G[Gold]
-```
+:::

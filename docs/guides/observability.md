@@ -1,6 +1,12 @@
-# Observability
+<div dir="rtl" align="right" markdown="1">
 
-Library logging uses the `oxtapus` logger and never configures global handlers. Structured
-fields can be passed through the redaction helper. Telemetry is disabled by default; an
-application may provide a `TelemetrySink` for counters and durations. Payloads, credentials,
-cookies, and proxy secrets must never be telemetry attributes.
+# لاگ و مشاهده‌پذیری
+
+لاگ‌های کتابخونه از logger با نام `oxtapus` استفاده می‌کنن و handler سراسری برنامهٔ تو رو
+تغییر نمی‌دن. فیلدهای ساختاریافته قبل از ثبت می‌تونن از helper حذف اطلاعات حساس عبور کنن.
+
+Telemetry به‌صورت پیش‌فرض خاموشه. برنامهٔ میزبان می‌تونه برای شمارنده‌ها و مدت‌زمان‌ها یک
+`TelemetrySink` بده. payload کامل، credential، cookie و رمز proxy نباید هیچ‌وقت داخل telemetry
+قرار بگیرن.
+
+</div>

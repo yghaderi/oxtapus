@@ -1,0 +1,28 @@
+[catalog]
+version = "2026.09.27"
+provider = "tgju"
+verification_policy = "The maintainer confirmed a written source agreement; live payloads, dates, integral prices, aliases, nulls, and schema fingerprints were checked for five enabled assets."
+
+[[endpoint]]
+name = "asset_price_history"
+capability = "asset_price_history"
+host = "https://api.tgju.org"
+method = "GET"
+path_template = "/v1/market/indicator/summary-table-data/{source_item}"
+parameters = ["source_item:path:verified-mapping"]
+response_envelope = "data"
+identifier_type = "verified TGJU item identifier"
+supported_instrument_types = ["currency", "coin"]
+source_schema_version = "2026-09-27.1"
+canonical_dataset = "asset_price_history"
+primary_key = ["asset_code", "trading_date"]
+update_cadence = "daily"
+pagination_behavior = "complete available history; no pagination parameter"
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "Only price_dollar_rl, nima_sell_usd, price_eur, sekee, and nim are enabled; usage is subject to the maintainer's written source agreement and upstream terms."
+observed_response_size = 767835
+last_verified_timestamp = "2026-09-27T18:38:33Z"
+schema_fingerprint = "1a9392457cdcba79aee1cbb45c767d0eda09c54a2be23bcd872d7eb58d468198"
+status = "verified"
+known_limitations = "The source encodes direction and change inside HTML span strings and supplies Jalali dates as text; canonical output stores signed changes and preserves normalized Jalali strings."

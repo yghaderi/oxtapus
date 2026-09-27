@@ -1,8 +1,8 @@
 # Current-state audit
 
-The 0.4.1 baseline passed two utility tests and built, but exposed website-shaped `TSETMC`,
-`TGJU`, `Fipiran`, and `Rahavard` classes and mixed network, parsing, transformation, and
-persistence concerns. Public methods included `mw`, `ins_info`, `hist_price`,
+The 0.4.1 baseline passed two utility tests and built, but exposed website-shaped provider
+classes and mixed network, parsing, transformation, and persistence concerns. Public methods
+included `mw`, `ins_info`, `hist_price`,
 `adj_hist_price`, `client_type`, `intraday_trades`, `last_ins_data`, `options_mw`,
 `search_ins_code`, `shareholder_list`, `shareholder_history`, and `order_book`.
 
@@ -21,3 +21,8 @@ prohibited reuse without written permission; another historical fund source did 
 the remaining historical source had no verified public-use contract. All three were excluded
 from runtime architecture. The official live website's current API asset and cataloged host
 were then independently discovered and probed.
+
+After the 1.0 audit, the maintainer confirmed a written agreement covering the scoped TGJU
+integration. TGJU was therefore added as a separate, fail-closed provider for five explicitly
+mapped histories; this later authorization does not weaken the original rule that unverifiable
+or unauthorized sources remain excluded.

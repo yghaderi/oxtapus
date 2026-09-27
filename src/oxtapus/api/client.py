@@ -1,3 +1,4 @@
+# ruff: noqa: RUF002
 """Synchronous public client and capability namespaces."""
 
 from __future__ import annotations
@@ -12,6 +13,8 @@ from oxtapus.api._shared import normalize_symbols, parse_date, require_unadjuste
 from oxtapus.api.results import FetchResult
 from oxtapus.api.settings import Settings
 from oxtapus.application.services import (
+    AssetPriceService,
+    GovernanceService,
     IngestionRun,
     IngestionService,
     InstrumentService,
@@ -20,6 +23,7 @@ from oxtapus.application.services import (
 from oxtapus.domain.enums import ProviderCapability
 from oxtapus.domain.errors import PartialFailureError, PartialFetchWarning
 from oxtapus.progress.reporter import ProgressOption, make_progress_reporter
+from oxtapus.providers.tgju.provider import TgjuProvider
 from oxtapus.providers.tsetmc.provider import TsetmcProvider
 from oxtapus.providers.tsetmc.resolver import InstrumentResolver
 from oxtapus.storage.base import StorageBackend
@@ -32,7 +36,7 @@ from oxtapus.transport.sync_httpx2 import Httpx2SyncTransport
 
 
 class MarketNamespace:
-    """Synchronous market-data methods."""
+    """متدهای همگام قیمت، تابلو، سفارش‌ها و بازار."""
 
     def __init__(self, service: MarketDataService, settings: Settings) -> None:
         self._service = service
@@ -47,7 +51,7 @@ class MarketNamespace:
         adjusted: bool = False,
         progress: ProgressOption = None,
     ) -> pl.DataFrame:
-        """Return canonical daily OHLCV for resolved symbols or identifiers."""
+        """برای ``symbols`` در بازهٔ تاریخ، دیتافریم قیمت روزانه برمی‌گرداند."""
 
         result = self.fetch_daily_prices(
             symbols,
@@ -68,7 +72,7 @@ class MarketNamespace:
         adjusted: bool = False,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """Return daily data with source, retry, failure, quality, and lineage metadata."""
+        """قیمت روزانه را همراه metadata منبع، retry، خطا، کیفیت و lineage برمی‌گرداند."""
 
         require_unadjusted(adjusted)
         result = self._service.daily_prices(
@@ -85,7 +89,7 @@ class MarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> pl.DataFrame:
-        """Return the canonical latest bulk market snapshot."""
+        """برای نوع ابزارهای خواسته‌شده، آخرین snapshot بازار را برمی‌گرداند."""
 
         return self.fetch_market_watch(instrument_types, progress=progress).data
 
@@ -95,21 +99,63 @@ class MarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """Return a market snapshot with operational metadata."""
+        """snapshot بازار را همراه metadata عملیاتی برمی‌گرداند."""
 
         return FetchResult.from_service(
             self._service.market_watch(tuple(instrument_types), reporter=self._reporter(progress))
         )
 
+    def quote(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """برای ``identifier``، دیتافریم تک‌ردیفی آخرین اطلاعات تابلو را برمی‌گرداند."""
+
+        return self.fetch_quote(identifier, progress=progress).data
+
+    def fetch_quote(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
+        """اطلاعات تابلو را همراه metadata عملیاتی برمی‌گرداند."""
+
+        return FetchResult.from_service(
+            self._service.quote(identifier, reporter=self._reporter(progress))
+        )
+
+    def market_depth(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """برای ``identifier``، حداکثر پنج سطح فعلی order book را برمی‌گرداند."""
+
+        return self.fetch_market_depth(identifier, progress=progress).data
+
+    def fetch_market_depth(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """سطح‌های order book را همراه metadata عملیاتی برمی‌گرداند."""
+
+        return FetchResult.from_service(
+            self._service.order_book(identifier, reporter=self._reporter(progress))
+        )
+
+    def investor_activity(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> pl.DataFrame:
+        """آمار فعلی خرید و فروش حقیقی و حقوقی ``identifier`` را برمی‌گرداند."""
+
+        return self.fetch_investor_activity(identifier, progress=progress).data
+
+    def fetch_investor_activity(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """آمار حقیقی/حقوقی را همراه metadata عملیاتی برمی‌گرداند."""
+
+        return FetchResult.from_service(
+            self._service.investor_activity(identifier, reporter=self._reporter(progress))
+        )
+
     def option_chain(self, underlying: str, *, progress: ProgressOption = None) -> pl.DataFrame:
-        """Return one canonical row per put or call contract."""
+        """برای ``underlying``، یک ردیف canonical برای هر قرارداد اختیار برمی‌گرداند."""
 
         return self.fetch_option_chain(underlying, progress=progress).data
 
     def fetch_option_chain(
         self, underlying: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """Return option contracts with operational metadata."""
+        """قراردادهای اختیار را همراه metadata عملیاتی برمی‌گرداند."""
 
         return FetchResult.from_service(
             self._service.option_chain(underlying, reporter=self._reporter(progress))
@@ -120,26 +166,109 @@ class MarketNamespace:
 
 
 class InstrumentNamespace:
-    """Synchronous instrument discovery methods."""
+    """متدهای همگام جست‌وجو، هویت و اطلاعات ابزار."""
 
     def __init__(self, service: InstrumentService, settings: Settings) -> None:
         self._service = service
         self._settings = settings
 
     def search(self, term: str, *, progress: ProgressOption = None) -> pl.DataFrame:
-        """Search the canonical instrument master."""
+        """ابزارهای منطبق با ``term`` را در یک دیتافریم برمی‌گرداند."""
 
         return self.fetch_search(term, progress=progress).data
 
     def fetch_search(self, term: str, *, progress: ProgressOption = None) -> FetchResult:
-        """Search instruments and include source metadata."""
+        """نتیجهٔ جست‌وجو را همراه metadata منبع برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         return FetchResult.from_service(self._service.search(term, reporter))
 
+    def info(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """اطلاعات معاملاتی و ارزش‌گذاری ``identifier`` را برمی‌گرداند."""
+
+        return self.fetch_info(identifier, progress=progress).data
+
+    def fetch_info(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
+        """اطلاعات ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(self._service.info(identifier, reporter))
+
+    def identity(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """هویت، بازار، صنعت و زیرصنعت ``identifier`` را برمی‌گرداند."""
+
+        return self.fetch_identity(identifier, progress=progress).data
+
+    def fetch_identity(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
+        """هویت ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(self._service.identity(identifier, reporter))
+
+
+class GovernanceNamespace:
+    """متدهای همگام افشاهای راهبری شرکتی."""
+
+    def __init__(self, service: GovernanceService, settings: Settings) -> None:
+        self._service = service
+        self._settings = settings
+
+    def board_members(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """تاریخچهٔ اعضای هیئت‌مدیرهٔ ``identifier`` را به‌شکل تخت برمی‌گرداند."""
+
+        return self.fetch_board_members(identifier, progress=progress).data
+
+    def fetch_board_members(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """تاریخچهٔ هیئت‌مدیره را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(self._service.board_members(identifier, reporter))
+
+
+class AssetNamespace:
+    """متدهای همگام تاریخچهٔ ارز و سکه."""
+
+    def __init__(self, service: AssetPriceService, settings: Settings) -> None:
+        self._service = service
+        self._settings = settings
+
+    def history(
+        self,
+        asset: str,
+        start: date | str | None = None,
+        end: date | str | None = None,
+        *,
+        progress: ProgressOption = None,
+    ) -> pl.DataFrame:
+        """برای ``asset`` و بازهٔ تاریخ، دیتافریم روزانهٔ OHLC برمی‌گرداند."""
+
+        return self.fetch_history(asset, start, end, progress=progress).data
+
+    def fetch_history(
+        self,
+        asset: str,
+        start: date | str | None = None,
+        end: date | str | None = None,
+        *,
+        progress: ProgressOption = None,
+    ) -> FetchResult:
+        """تاریخچهٔ دارایی را همراه metadata منبع، کیفیت، retry و lineage برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(
+            self._service.history(
+                asset,
+                start=parse_date(start, "start"),
+                end=parse_date(end, "end"),
+                reporter=reporter,
+            )
+        )
+
 
 class IngestionNamespace:
-    """Explicit persisted ingestion over configured storage."""
+    """دریافت و ذخیره‌سازی صریح در storage تنظیم‌شده."""
 
     def __init__(self, service: IngestionService, settings: Settings) -> None:
         self._service = service
@@ -153,7 +282,7 @@ class IngestionNamespace:
         *,
         progress: ProgressOption = None,
     ) -> IngestionRun:
-        """Persist Bronze and Silver daily prices for each identifier."""
+        """قیمت روزانهٔ ``symbols`` را در لایه‌های Bronze و Silver ذخیره می‌کند."""
 
         return self._service.daily_prices(
             normalize_symbols(symbols),
@@ -170,7 +299,7 @@ class IngestionNamespace:
         *,
         progress: ProgressOption = None,
     ) -> IngestionRun:
-        """Persist Bronze, Silver market watch, and Gold market snapshot."""
+        """دیده‌بان Bronze/Silver و snapshot لایهٔ Gold را ذخیره می‌کند."""
 
         return self._service.market_watch(
             tuple(instrument_types),
@@ -180,7 +309,7 @@ class IngestionNamespace:
         )
 
     def option_chain(self, underlying: str, *, progress: ProgressOption = None) -> IngestionRun:
-        """Persist Bronze, Silver option quotes, and a Gold option chain."""
+        """quoteهای اختیار Bronze/Silver و زنجیرهٔ Gold را ذخیره می‌کند."""
 
         return self._service.option_chain(
             underlying,
@@ -191,7 +320,7 @@ class IngestionNamespace:
 
 
 class Client:
-    """Long-lived synchronous Oxtapus client."""
+    """کلاینت همگام با اتصال قابل‌استفادهٔ مجدد و namespaceهای عمومی."""
 
     def __init__(
         self,
@@ -206,6 +335,7 @@ class Client:
         self._transport = transport or _transport(self.settings)
         self.storage = storage or _storage(self.settings)
         provider = TsetmcProvider(self._transport)
+        tgju_provider = TgjuProvider(self._transport)
         resolver = InstrumentResolver(provider)
         self.market = MarketNamespace(
             MarketDataService(
@@ -216,7 +346,9 @@ class Client:
             ),
             self.settings,
         )
-        self.instruments = InstrumentNamespace(InstrumentService(provider), self.settings)
+        self.instruments = InstrumentNamespace(InstrumentService(provider, resolver), self.settings)
+        self.governance = GovernanceNamespace(GovernanceService(provider, resolver), self.settings)
+        self.assets = AssetNamespace(AssetPriceService(tgju_provider), self.settings)
         self.ingestion = IngestionNamespace(
             IngestionService(
                 provider,
@@ -227,6 +359,7 @@ class Client:
             self.settings,
         )
         self._provider = provider
+        self._tgju_provider = tgju_provider
         self._closed = False
 
     def __enter__(self) -> Client:
@@ -236,7 +369,7 @@ class Client:
         self.close()
 
     def close(self) -> None:
-        """Close transport resources owned by this client."""
+        """منابع transport و storage متعلق به کلاینت را می‌بندد."""
 
         if self._closed:
             return
@@ -249,14 +382,16 @@ class Client:
 
     @property
     def closed(self) -> bool:
-        """Whether the client has been closed."""
+        """اگر کلاینت بسته شده باشد ``True`` برمی‌گرداند."""
 
         return self._closed
 
     def capabilities(self) -> tuple[ProviderCapability, ...]:
-        """Return verified provider capabilities without network access."""
+        """قابلیت‌های تأییدشدهٔ providerها را بدون درخواست شبکه برمی‌گرداند."""
 
-        return self._provider.capabilities()
+        return tuple(
+            dict.fromkeys(self._provider.capabilities() + self._tgju_provider.capabilities())
+        )
 
 
 def _transport(settings: Settings) -> Httpx2SyncTransport:

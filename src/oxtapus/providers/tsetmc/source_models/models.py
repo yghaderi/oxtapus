@@ -31,6 +31,27 @@ class InstrumentSearchSource(SourceModel):
     cgrValCotTitle: str | None = None
 
 
+class EpsSource(SourceModel):
+    epsValue: float | None = None
+    estimatedEPS: str | int | float | None = None
+    sectorPE: float | None = None
+    psr: float | None = None
+
+
+class SectorSource(SourceModel):
+    dEven: int | None = None
+    cSecVal: str | None = None
+    lSecVal: str | None = None
+
+
+class StaticThresholdSource(SourceModel):
+    insCode: str | None = None
+    dEven: int | None = None
+    hEven: int | None = None
+    psGelStaMax: int | None = None
+    psGelStaMin: int | None = None
+
+
 class InstrumentInfoSource(SourceModel):
     insCode: str
     lVal30: str
@@ -42,7 +63,33 @@ class InstrumentInfoSource(SourceModel):
     cgrValCot: str | None = None
     cgrValCotTitle: str | None = None
     lastDate: int | None = None
-    sector: dict[str, Any] | None = None
+    eps: EpsSource | None = None
+    sector: SectorSource | None = None
+    staticThreshold: StaticThresholdSource | None = None
+    minWeek: int | None = None
+    maxWeek: int | None = None
+    minYear: int | None = None
+    maxYear: int | None = None
+    qTotTran5JAvg: int | None = None
+    kAjCapValCpsIdx: str | None = None
+    dEven: int | None = None
+    topInst: int | None = None
+    faraDesc: str | None = None
+    contractSize: int | None = None
+    nav: float | None = None
+    underSupervision: int | None = None
+    etfIssuedUnit: int | None = None
+    etfUnitDeven: int | None = None
+    cValMne: str | None = None
+    lVal18: str | None = None
+    cSocCSAC: str | None = None
+    lSoc30: str | None = None
+    yMarNSC: str | None = None
+    yVal: str | None = None
+    zTitad: int | None = None
+    baseVol: int | None = None
+    cComVal: str | None = None
+    sourceID: int | None = None
 
 
 class DailyPriceSource(SourceModel):
@@ -69,6 +116,114 @@ class OrderBookLevelSource(SourceModel):
     pmo: int | None = None
     zmo: int | None = None
     qmo: int | None = None
+
+
+class BestLimitSource(SourceModel):
+    number: int = Field(ge=1, le=5)
+    qTitMeDem: int | None = Field(default=None, ge=0)
+    zOrdMeDem: int | None = Field(default=None, ge=0)
+    pMeDem: int | None = Field(default=None, ge=0)
+    pMeOf: int | None = Field(default=None, ge=0)
+    zOrdMeOf: int | None = Field(default=None, ge=0)
+    qTitMeOf: int | None = Field(default=None, ge=0)
+    title: str | None = None
+    insCode: str | None = None
+
+
+class InstrumentStateSource(SourceModel):
+    idn: int | None = None
+    dEven: int | None = None
+    hEven: int | None = None
+    insCode: str | None = None
+    lVal18AFC: str | None = None
+    lVal30: str | None = None
+    cEtaval: str | None = None
+    realHeven: int | None = None
+    underSupervision: int | None = None
+    cEtavalTitle: str | None = None
+
+
+class ClosingPriceInfoSource(SourceModel):
+    instrumentState: InstrumentStateSource
+    instrument: dict[str, Any] | None = None
+    lastHEven: int | None = None
+    finalLastDate: int | None = None
+    nvt: float | None = None
+    mop: int | None = None
+    pRedTran: float | None = None
+    thirtyDayClosingHistory: Any | None = None
+    priceChange: float | None = None
+    priceMin: int | None = None
+    priceMax: int | None = None
+    priceYesterday: int | None = None
+    priceFirst: int | None = None
+    last: bool | None = None
+    id: int | None = None
+    insCode: str | None = None
+    dEven: int | None = None
+    hEven: int | None = None
+    pClosing: int | None = None
+    iClose: bool | None = None
+    yClose: bool | None = None
+    pDrCotVal: int | None = None
+    zTotTran: int | None = None
+    qTotTran5J: int | None = None
+    qTotCap: int | None = None
+
+
+class ClientTypeSource(SourceModel):
+    buy_I_Volume: int | None = None
+    buy_N_Volume: int | None = None
+    buy_DDD_Volume: int | None = None
+    buy_CountI: int | None = None
+    buy_CountN: int | None = None
+    buy_CountDDD: int | None = None
+    sell_I_Volume: int | None = None
+    sell_N_Volume: int | None = None
+    sell_CountI: int | None = None
+    sell_CountN: int | None = None
+
+
+class SubSectorSource(SourceModel):
+    dEven: int | None = None
+    cSecVal: str | None = None
+    cSoSecVal: int | None = None
+    lSoSecVal: str | None = None
+
+
+class InstrumentIdentitySource(SourceModel):
+    sector: SectorSource | None = None
+    subSector: SubSectorSource | None = None
+    cValMne: str | None = None
+    lVal18: str | None = None
+    cSocCSAC: str | None = None
+    lSoc30: str | None = None
+    yMarNSC: str | None = None
+    yVal: str | None = None
+    insCode: str | None = None
+    lVal30: str
+    lVal18AFC: str
+    flow: int | None = None
+    cIsin: str | None = None
+    zTitad: int | None = None
+    baseVol: int | None = None
+    instrumentID: str | None = None
+    cgrValCot: str | None = None
+    cComVal: str | None = None
+    lastDate: int | None = None
+    sourceID: int | None = None
+    flowTitle: str | None = None
+    cgrValCotTitle: str | None = None
+
+
+class BoardStatementSource(SourceModel):
+    title: str
+    sentDateTime_Gregorian: str
+    publishDateTime_Gregorian: str
+    publishDateTime_DEven: int
+    reportSubType: int
+    pageID: int
+    content: str
 
 
 class MarketWatchSource(SourceModel):

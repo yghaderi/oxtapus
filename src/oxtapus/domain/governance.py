@@ -1,0 +1,27 @@
+"""Canonical corporate-governance schema contracts."""
+
+BOARD_MEMBER_COLUMNS = (
+    "tsetmc_instrument_code",
+    "symbol",
+    "statement_title",
+    "sent_at",
+    "published_at",
+    "publication_date",
+    "report_subtype",
+    "page_id",
+    "is_correction",
+    "assembly_date_jalali",
+    "board_session_date_jalali",
+    "member_name",
+    "national_code_or_registration_number",
+    "designation",
+    "duty_status",
+    "education_degree",
+    "agent_name",
+    "agent_national_code",
+    "previous_member_name",
+    "previous_agent_name",
+    "chief_executive_name",
+    "chief_executive_national_code",
+    "chief_executive_education_degree",
+)

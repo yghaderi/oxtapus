@@ -1,5 +1,5 @@
 [catalog]
-version = "2026.08.29"
+version = "2026.08.31"
 provider = "tsetmc"
 verification_policy = "Payload, schema, identifiers, dates, numbers, multiple instrument types, and negative cases were checked."
 
@@ -37,7 +37,7 @@ parameters = ["tsetmc_instrument_code:path:digits"]
 response_envelope = "instrumentInfo"
 identifier_type = "TSETMC instrument code"
 supported_instrument_types = ["equity", "etf", "debt", "option", "futures"]
-source_schema_version = "2026-08-29.1"
+source_schema_version = "2026-08-31.1"
 canonical_dataset = "instrument"
 primary_key = ["tsetmc_instrument_code"]
 update_cadence = "daily and event-driven"
@@ -45,11 +45,35 @@ pagination_behavior = "single object"
 retry_safe = true
 required_headers = ["User-Agent", "Referer", "Accept"]
 known_restrictions = "Malformed identifiers return HTTP 400 or 500 depending on their form."
-observed_response_size = 1077
-last_verified_timestamp = "2026-08-29T20:22:17Z"
-schema_fingerprint = "25681ccffa0a452800207221f4cdf923d541b9ee1b4ef8103c5d44587f95f5d0"
+observed_response_size = 968
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "c7342d76d942c3aeeb968ea39655fdb93175739234bced563b26bb6fdb0ceff3"
 status = "verified"
-known_limitations = "Instrument state values and some nullable classification fields require conservative interpretation."
+known_limitations = "EPS value and estimated EPS are distinct; sector P/E must not be labeled as company P/E."
+
+[[endpoint]]
+name = "instrument_identity"
+capability = "instrument_master"
+host = "https://cdn.tsetmc.com"
+method = "GET"
+path_template = "/api/Instrument/GetInstrumentIdentity/{tsetmc_instrument_code}"
+parameters = ["tsetmc_instrument_code:path:digits"]
+response_envelope = "instrumentIdentity"
+identifier_type = "TSETMC instrument code"
+supported_instrument_types = ["equity", "etf", "debt", "option", "futures"]
+source_schema_version = "2026-08-31.1"
+canonical_dataset = "instrument_identity"
+primary_key = ["tsetmc_instrument_code"]
+update_cadence = "daily and event-driven"
+pagination_behavior = "single object"
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "The response can contain zero placeholders; the requested path code remains authoritative."
+observed_response_size = 635
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "4f37ccc4af87e23eb6cbe5c8dad7fddcbbdac1162518398b45c497a7aae5dd81"
+status = "verified"
+known_limitations = "Identity duplicates part of instrument_info but uniquely supplies subsector classification."
 
 [[endpoint]]
 name = "daily_prices"
@@ -98,6 +122,102 @@ last_verified_timestamp = "2026-08-29T20:22:17Z"
 schema_fingerprint = "87fb8683f3188ff90c51ff942bb17030fe0f4778c04f6ad8117b93fc8693222b"
 status = "verified"
 known_limitations = "Compact live fields are canonicalized; redundant zero-valued legacy-shaped fields are ignored and reported by source fixtures."
+
+[[endpoint]]
+name = "closing_price_info"
+capability = "quote"
+host = "https://cdn.tsetmc.com"
+method = "GET"
+path_template = "/api/ClosingPrice/GetClosingPriceInfo/{tsetmc_instrument_code}"
+parameters = ["tsetmc_instrument_code:path:digits"]
+response_envelope = "closingPriceInfo"
+identifier_type = "TSETMC instrument code"
+supported_instrument_types = ["equity", "etf", "debt", "option"]
+source_schema_version = "2026-08-31.1"
+canonical_dataset = "quote"
+primary_key = ["tsetmc_instrument_code"]
+update_cadence = "intraday"
+pagination_behavior = "single object"
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "Malformed identifiers return HTTP 400."
+observed_response_size = 629
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "4246cafec040e4a677b4f80bd6f99e147d6cad2c08f52dba61b2907696e42689"
+status = "verified"
+known_limitations = "Source prices and counts are JSON numbers; only mathematically integral values enter integral canonical columns."
+
+[[endpoint]]
+name = "best_limits"
+capability = "order_book"
+host = "https://cdn.tsetmc.com"
+method = "GET"
+path_template = "/api/BestLimits/{tsetmc_instrument_code}"
+parameters = ["tsetmc_instrument_code:path:digits"]
+response_envelope = "bestLimits"
+identifier_type = "TSETMC instrument code"
+supported_instrument_types = ["equity", "etf", "debt", "option"]
+source_schema_version = "2026-08-31.1"
+canonical_dataset = "order_book"
+primary_key = ["tsetmc_instrument_code", "event_timestamp", "order_book_level"]
+update_cadence = "intraday"
+pagination_behavior = "up to five levels; no pagination"
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "Malformed identifiers return HTTP 400; inactive instruments can return a null envelope."
+observed_response_size = 722
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "ef25e9a17c521e6aa63ecb6f8316ed19cd503f6fe9c232313c43e30404183987"
+status = "verified"
+known_limitations = "The source omits an event time; event_timestamp is the timezone-aware retrieval timestamp."
+
+[[endpoint]]
+name = "client_type"
+capability = "investor_activity"
+host = "https://cdn.tsetmc.com"
+method = "GET"
+path_template = "/api/ClientType/GetClientType/{tsetmc_instrument_code}/1/0"
+parameters = ["tsetmc_instrument_code:path:digits", "selection:path:fixed-one", "flow:path:fixed-zero"]
+response_envelope = "clientType"
+identifier_type = "TSETMC instrument code"
+supported_instrument_types = ["equity", "etf", "debt", "option"]
+source_schema_version = "2026-08-31.1"
+canonical_dataset = "investor_activity"
+primary_key = ["tsetmc_instrument_code", "event_timestamp"]
+update_cadence = "intraday"
+pagination_behavior = "single object"
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "Only the website-observed fixed suffix /1/0 is enabled."
+observed_response_size = 242
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "949fc66adcb565424e69f2af8b4267b5f3a2d45f008c2b70060cc8be58b7132e"
+status = "verified"
+known_limitations = "The source reports counts and volumes, not buy/sell values; DDD semantics are not classified."
+
+[[endpoint]]
+name = "board_members"
+capability = "board_members"
+host = "https://cdn.tsetmc.com"
+method = "GET"
+path_template = "/api/Codal/GetStatementContentByInsCode/12/0/-1/{tsetmc_instrument_code}"
+parameters = ["category:path:fixed-12", "page:path:fixed-zero", "filter:path:fixed-minus-one", "tsetmc_instrument_code:path:digits"]
+response_envelope = "statemetnContent"
+identifier_type = "TSETMC instrument code"
+supported_instrument_types = ["equity"]
+source_schema_version = "2026-08-31.1"
+canonical_dataset = "board_member_history"
+primary_key = ["tsetmc_instrument_code", "published_at", "national_code_or_registration_number"]
+update_cadence = "event-driven"
+pagination_behavior = "The website-observed fixed selectors return statement history; broader pagination semantics are unverified."
+retry_safe = true
+required_headers = ["User-Agent", "Referer", "Accept"]
+known_restrictions = "Only category 12, page 0, and filter -1 are enabled."
+observed_response_size = 36696
+last_verified_timestamp = "2026-08-31T16:30:53Z"
+schema_fingerprint = "fb81c6906f7d4d586fe1dfa1dbe6896730ecb3103c6a32d807febff243c88d2c"
+status = "verified"
+known_limitations = "The JSON record embeds XML; Jalali dates are preserved as source strings and corrections remain separate statements."
 
 [[endpoint]]
 name = "option_market_watch"

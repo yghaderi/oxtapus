@@ -5,5 +5,7 @@ stages: validate/normalize the query, extract a raw response, and transform it t
 data. Endpoint specifications are catalog-owned and fail closed unless live evidence marks
 them verified.
 
-Only the official TSETMC website provider is enabled in 1.0. Unverified sources are not kept as
-fallbacks or placeholders.
+The verified TSETMC website provider serves securities data. A separately catalogued TGJU
+provider serves the explicitly enabled currency and gold-coin histories covered by the
+maintainer's written agreement. Unverified sources and arbitrary upstream identifiers are not
+kept as fallbacks or placeholders.

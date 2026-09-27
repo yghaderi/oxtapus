@@ -1,13 +1,24 @@
-# Dataset catalog
+<div dir="rtl" align="right" markdown="1">
 
-| Dataset | Layer | Primary key | Unit | Update |
+# فهرست دیتاست‌ها
+
+| دیتاست | لایه | کلید اصلی | واحد | زمان به‌روزرسانی |
 |---|---|---|---|---|
-| `instrument` | Silver | `tsetmc_instrument_code` | record | daily |
-| `daily_price` | Silver | instrument code + trading date | IRR, shares | trading day |
-| `market_watch` | Silver | instrument code | IRR, shares | intraday |
-| `option_quote` | Silver | instrument code | IRR, contracts | intraday |
-| `market_snapshot` | Gold | instrument code | IRR, shares | intraday |
-| `option_chain` | Gold | instrument code | IRR, contracts | intraday |
+| `instrument` | Silver | `tsetmc_instrument_code` | رکورد | روزانه |
+| `instrument_info` | Silver | کد ابزار | رکورد، ریال، سهم | روزانه/رویدادمحور |
+| `instrument_identity` | Silver | کد ابزار | رکورد | روزانه/رویدادمحور |
+| `daily_price` | Silver | کد ابزار + تاریخ معامله | ریال، سهم | روز معاملاتی |
+| `asset_price_history` | Silver | کد دارایی + تاریخ | ریال به‌ازای واحد دارایی | روزانه |
+| `quote` | Silver | کد ابزار | ریال، سهم | درون‌روزی |
+| `order_book` | Silver | کد ابزار + زمان دریافت + سطح | ریال، سهم، سفارش | درون‌روزی |
+| `investor_activity` | Silver | کد ابزار + زمان دریافت | سهم، معامله‌گر | درون‌روزی |
+| `board_member_history` | Silver | کد ابزار + انتشار + شناسه عضو | رکورد افشا | رویدادمحور |
+| `market_watch` | Silver | کد ابزار | ریال، سهم | درون‌روزی |
+| `option_quote` | Silver | کد ابزار | ریال، قرارداد | درون‌روزی |
+| `market_snapshot` | Gold | کد ابزار | ریال، سهم | درون‌روزی |
+| `option_chain` | Gold | کد ابزار | ریال، قرارداد | درون‌روزی |
 
-The packaged `data_catalog.toml` is authoritative for ownership, schema version,
-partitioning, sorting, freshness, duplicate/null policy, rules, retention, and lineage.
+فایل همراه پکیج با نام `data_catalog.toml` مرجع نهایی مالکیت، نسخهٔ schema، پارتیشن‌بندی،
+مرتب‌سازی، تازگی، سیاست رکورد تکراری و null، قواعد کیفیت، نگه‌داری و lineage هر دیتاست است.
+
+</div>

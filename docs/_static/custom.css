@@ -1,0 +1,28 @@
+.rtl-doc,
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl-doc pre,
+.rtl-doc code,
+[dir="rtl"] pre,
+[dir="rtl"] code,
+.highlight {
+  direction: ltr;
+  text-align: left;
+}
+
+.rtl-doc table,
+[dir="rtl"] table {
+  direction: rtl;
+}
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 66rem;
+}
+
+.sig.sig-object.py {
+  direction: ltr;
+  text-align: left;
+}

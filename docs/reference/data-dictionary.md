@@ -1,26 +1,69 @@
-# Data dictionary
+<div dir="rtl" align="right" markdown="1">
 
-Core daily-price fields use these meanings:
+# فرهنگ داده
 
-| Column | Type | Unit | Null behavior |
+ستون‌های اصلی قیمت روزانهٔ نمادها این معنا رو دارن:
+
+| ستون | نوع | واحد | رفتار مقدار خالی |
 |---|---|---|---|
-| `isin` | string | identifier | preserved when source omits it |
-| `symbol` | string | normalized display symbol | required after resolution |
-| `tsetmc_instrument_code` | string | identifier | primary-key component |
-| `trading_date` | date | Gregorian exchange date | required |
-| `open_price` | Int64 | IRR | preserved |
-| `high_price` | Int64 | IRR | preserved |
-| `low_price` | Int64 | IRR | preserved |
-| `close_price` | Int64 | IRR | official closing price; preserved |
-| `last_price` | Int64 | IRR | last traded price; preserved |
-| `previous_close_price` | Int64 | IRR | preserved |
-| `price_change` | Float64 | IRR | signed source difference; fractional anomalies preserved |
-| `trade_count` | Int64 | trades | zero is retained, null is not coerced |
-| `trade_volume` | Int64 | shares/contracts | zero is retained, null is not coerced |
-| `trade_value` | Int64 | IRR | zero is retained, null is not coerced |
+| `isin` | string | شناسه | اگر منبع نده null می‌مونه |
+| `symbol` | string | نماد نمایشی نرمال‌شده | بعد از resolve اجباریه |
+| `tsetmc_instrument_code` | string | شناسه | بخشی از کلید اصلیه |
+| `trading_date` | date | تاریخ میلادی معامله | اجباریه |
+| `open_price` | Int64 | ریال | null حفظ می‌شه |
+| `high_price` | Int64 | ریال | null حفظ می‌شه |
+| `low_price` | Int64 | ریال | null حفظ می‌شه |
+| `close_price` | Int64 | ریال | قیمت پایانی رسمی؛ null حفظ می‌شه |
+| `last_price` | Int64 | ریال | آخرین قیمت؛ null حفظ می‌شه |
+| `previous_close_price` | Int64 | ریال | null حفظ می‌شه |
+| `price_change` | Float64 | ریال | تغییر علامت‌دار منبع؛ اعشار غیرعادی حذف نمی‌شه |
+| `trade_count` | Int64 | معامله | صفر حفظ می‌شه و null به صفر تبدیل نمی‌شه |
+| `trade_volume` | Int64 | سهم/قرارداد | صفر حفظ می‌شه و null به صفر تبدیل نمی‌شه |
+| `trade_value` | Int64 | ریال | صفر حفظ می‌شه و null به صفر تبدیل نمی‌شه |
 
-Market snapshots add timezone-aware `event_timestamp`, price limits, capitalization, EPS,
-and P/E. Option chains add underlying identity, option type, strike, expiration, contract
-multiplier, open interest, and best bid/ask. Every calculated field documents its formula in
-the canonical transform source; market capitalization is `close_price * shares_outstanding`
-and remains null if either input is null.
+snapshot بازار ستون‌هایی مثل `event_timestamp` دارای timezone، سقف و کف قیمت، ارزش بازار، EPS
+و P/E رو اضافه می‌کنه. زنجیرهٔ اختیار هم دارایی پایه، نوع اختیار، قیمت اعمال، سررسید، اندازهٔ
+قرارداد، موقعیت باز و بهترین سفارش خرید/فروش رو داره. ارزش بازار از
+`close_price * shares_outstanding` ساخته می‌شه و اگر یکی از ورودی‌ها null باشه نتیجه هم null
+می‌مونه.
+
+## تابلو و عمق بازار
+
+`quote` خلاصهٔ یک‌ردیفی تابلو شامل وضعیت معامله، دامنهٔ قیمت روز، قیمت اولین، آخرین، پایانی و
+روز قبل و جمع تعداد، حجم و ارزش معامله‌هاست.
+
+`order_book` دیتاست جدا و چندردیفیه که متد `market_depth` برمی‌گردونه. هر ردیف یکی از سطح‌های
+۱ تا ۵ و شامل `bid_price`، `bid_size`، `bid_order_count`، `ask_price`، `ask_size` و
+`ask_order_count` است. چون TSETMC زمان رویداد رو در این پاسخ نمی‌ده، `event_timestamp` زمان
+دریافت با timezone است.
+
+## حقیقی/حقوقی و راهبری شرکتی
+
+`investor_activity` تعداد و حجم خرید و فروش حقیقی و حقوقی رو داره. منبع فعلی ارزش خرید و فروش
+رو منتشر نمی‌کنه؛ پس ستون‌های value مربوطه null می‌مونن و صفر ساختگی نمی‌گیرن.
+
+`board_member_history` برای هر عضو در هر اطلاعیه یک ردیف می‌سازه. زمان انتشار میلادی timezone
+داره. تاریخ جلالی مجمع و جلسهٔ هیئت‌مدیره تا وقتی سیاست تبدیل تقویم جداگانه تأیید نشده، به شکل
+string منبع حفظ می‌شه.
+
+## تاریخچهٔ دلار، یورو و سکه
+
+خروجی `asset_history` این ستون‌ها رو داره:
+
+| ستون | نوع | توضیح |
+|---|---|---|
+| `asset_code` | string | کد canonical دارایی |
+| `asset_name` | string | نام فارسی دارایی |
+| `provider_instrument_id` | string | شناسهٔ داخلی منبع برای lineage |
+| `trading_date` | date | تاریخ میلادی |
+| `jalali_date` | string | تاریخ جلالی نرمال‌شده به `YYYY-MM-DD` |
+| `open_price` | Int64 | قیمت بازشدن به ریال |
+| `high_price` | Int64 | بیشترین قیمت به ریال |
+| `low_price` | Int64 | کمترین قیمت به ریال |
+| `close_price` | Int64 | قیمت بسته‌شدن به ریال |
+| `price_change` | Int64 | تغییر علامت‌دار به ریال |
+| `price_change_percentage` | Float64 | درصد تغییر علامت‌دار |
+| `currency` | string | فعلاً همیشه `IRR` |
+| `unit` | string | یک دلار، یک یورو یا یک سکه |
+
+</div>

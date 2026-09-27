@@ -49,6 +49,54 @@ class MarketWatchQuery(QueryModel):
     instrument_types: tuple[str, ...] = ("equity", "etf")
 
 
+class QuoteQuery(QueryModel):
+    """Fetch the latest board quote for one resolved instrument."""
+
+    tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+    symbol: str
+
+    @field_validator("symbol")
+    @classmethod
+    def normalize_symbol(cls, value: str) -> str:
+        return normalize_persian(value)
+
+
+class OrderBookQuery(QueryModel):
+    """Fetch the latest order-book levels for one resolved instrument."""
+
+    tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+
+
+class InvestorActivityQuery(QueryModel):
+    """Fetch the latest individual/institutional activity for one instrument."""
+
+    tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+    symbol: str
+
+    @field_validator("symbol")
+    @classmethod
+    def normalize_symbol(cls, value: str) -> str:
+        return normalize_persian(value)
+
+
+class InstrumentIdentityQuery(QueryModel):
+    """Fetch source identity and classification for one resolved instrument."""
+
+    tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+
+
+class BoardMembersQuery(QueryModel):
+    """Fetch board-member disclosures for one resolved instrument."""
+
+    tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+    symbol: str
+
+    @field_validator("symbol")
+    @classmethod
+    def normalize_symbol(cls, value: str) -> str:
+        return normalize_persian(value)
+
+
 class OptionChainQuery(QueryModel):
     """Fetch the option chain for one underlying instrument."""
 

@@ -1,5 +1,5 @@
 [catalog]
-version = "1.0.0"
+version = "1.1.0"
 
 [[dataset]]
 name = "instrument"
@@ -23,6 +23,48 @@ retention_policy = "retain latest and Bronze lineage"
 lineage = "TSETMC source record to canonical instrument"
 
 [[dataset]]
+name = "instrument_info"
+description = "Detailed canonical instrument, valuation, threshold, and issuance information."
+layer = "silver"
+owner = "reference-data"
+provider_capability = "instrument_master"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "daily and event-driven"
+freshness_expectation = "one trading day"
+currency = "IRR"
+unit = "record, rial, shares"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["identifier_not_empty", "primary_key_unique", "prices_non_negative"]
+storage_format = "parquet"
+retention_policy = "retain latest and Bronze lineage"
+lineage = "TSETMC instrument info source to canonical instrument information"
+
+[[dataset]]
+name = "instrument_identity"
+description = "Canonical instrument identity, company, sector, and subsector classification."
+layer = "silver"
+owner = "reference-data"
+provider_capability = "instrument_master"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "daily and event-driven"
+freshness_expectation = "one trading day"
+currency = "unknown"
+unit = "record"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["identifier_not_empty", "primary_key_unique"]
+storage_format = "parquet"
+retention_policy = "retain latest and Bronze lineage"
+lineage = "TSETMC identity source to canonical instrument classification"
+
+[[dataset]]
 name = "daily_price"
 description = "Canonical daily OHLCV and official closing-price observations."
 layer = "silver"
@@ -42,6 +84,111 @@ quality_rules = ["primary_key_unique", "prices_non_negative", "high_not_below_lo
 storage_format = "parquet"
 retention_policy = "indefinite"
 lineage = "TSETMC closing-price source to canonical daily price"
+
+[[dataset]]
+name = "asset_price_history"
+description = "Canonical daily OHLC history for supported currencies and gold coins."
+layer = "silver"
+owner = "market-data"
+provider_capability = "asset_price_history"
+schema_version = "1.0.0"
+primary_key = ["asset_code", "trading_date"]
+partition_columns = ["trading_year"]
+sort_columns = ["asset_code", "trading_date"]
+update_cadence = "daily"
+freshness_expectation = "one calendar day"
+currency = "IRR"
+unit = "rial per asset unit"
+duplicate_policy = "merge by primary key"
+null_policy = "preserve"
+quality_rules = ["primary_key_unique", "prices_non_negative", "high_not_below_low"]
+storage_format = "parquet"
+retention_policy = "indefinite"
+lineage = "TGJU historical table source to canonical asset price history"
+
+[[dataset]]
+name = "quote"
+description = "Latest canonical per-instrument board quote and trading state."
+layer = "silver"
+owner = "market-data"
+provider_capability = "quote"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, shares, rial value"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["primary_key_unique", "prices_non_negative"]
+storage_format = "parquet"
+retention_policy = "configured observation window"
+lineage = "TSETMC closing-price info source to canonical quote"
+
+[[dataset]]
+name = "order_book"
+description = "Latest canonical five-level bid and ask book for one instrument."
+layer = "silver"
+owner = "market-data"
+provider_capability = "order_book"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code", "event_timestamp", "order_book_level"]
+partition_columns = []
+sort_columns = ["tsetmc_instrument_code", "order_book_level"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "IRR"
+unit = "rial, shares, orders"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["order_book_level_unique", "prices_non_negative", "sizes_non_negative"]
+storage_format = "parquet"
+retention_policy = "configured observation window"
+lineage = "TSETMC best-limits source to canonical order-book levels"
+
+[[dataset]]
+name = "investor_activity"
+description = "Current canonical individual and institutional transaction activity."
+layer = "silver"
+owner = "market-data"
+provider_capability = "investor_activity"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code", "event_timestamp"]
+partition_columns = []
+sort_columns = ["symbol"]
+update_cadence = "intraday"
+freshness_expectation = "provider update cadence"
+currency = "unknown"
+unit = "shares, participants"
+duplicate_policy = "replace observation"
+null_policy = "preserve"
+quality_rules = ["counts_non_negative", "volumes_non_negative"]
+storage_format = "parquet"
+retention_policy = "configured observation window"
+lineage = "TSETMC client-type source to canonical investor activity"
+
+[[dataset]]
+name = "board_member_history"
+description = "Canonical board-member and chief-executive disclosure history."
+layer = "silver"
+owner = "corporate-governance"
+provider_capability = "board_members"
+schema_version = "1.0.0"
+primary_key = ["tsetmc_instrument_code", "published_at", "national_code_or_registration_number"]
+partition_columns = []
+sort_columns = ["tsetmc_instrument_code", "published_at", "member_name"]
+update_cadence = "event-driven"
+freshness_expectation = "provider publication cadence"
+currency = "unknown"
+unit = "disclosure record"
+duplicate_policy = "merge by primary key"
+null_policy = "preserve"
+quality_rules = ["identifier_not_empty", "publication_date_valid"]
+storage_format = "parquet"
+retention_policy = "indefinite"
+lineage = "TSETMC Codal statement JSON and embedded XML to canonical board-member history"
 
 [[dataset]]
 name = "market_watch"

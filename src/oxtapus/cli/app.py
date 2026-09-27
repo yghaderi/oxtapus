@@ -53,8 +53,16 @@ def parser() -> argparse.ArgumentParser:
     fetch_commands = fetch.add_subparsers(dest="command", required=True)
     daily = fetch_commands.add_parser("daily-prices", help="Fetch daily OHLCV.")
     daily.add_argument("symbols", nargs="+", help="Symbols or verified identifiers.")
-    daily.add_argument("--start", help="First ISO date, inclusive.")
-    daily.add_argument("--end", help="Last ISO date, inclusive.")
+    daily.add_argument("--start", help="Optional first Jalali or Gregorian date, inclusive.")
+    daily.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
+    asset_history = fetch_commands.add_parser(
+        "asset-history", help="Fetch a supported currency or gold-coin history."
+    )
+    asset_history.add_argument("asset", help="Persian asset name or canonical asset code.")
+    asset_history.add_argument(
+        "--start", help="Optional first Jalali or Gregorian date, inclusive."
+    )
+    asset_history.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
     watch = fetch_commands.add_parser("market-watch", help="Fetch the latest snapshot.")
     watch.add_argument(
         "--instrument-type",
@@ -75,12 +83,12 @@ def parser() -> argparse.ArgumentParser:
     )
     ingest.add_argument("--symbol", action="append", help="Daily-price symbol; repeatable.")
     ingest.add_argument("--underlying", help="Option-chain underlying symbol.")
-    ingest.add_argument("--start", help="First ISO date, inclusive.")
-    ingest.add_argument("--end", help="Last ISO date, inclusive.")
+    ingest.add_argument("--start", help="Optional first Jalali or Gregorian date, inclusive.")
+    ingest.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
     backfill = groups.add_parser("backfill", help="Backfill a configured date range.")
     backfill.add_argument("symbols", nargs="+", help="Daily-price symbols or identifiers.")
-    backfill.add_argument("--start", required=True, help="First ISO date, inclusive.")
-    backfill.add_argument("--end", required=True, help="Last ISO date, inclusive.")
+    backfill.add_argument("--start", required=True, help="First Jalali or Gregorian date.")
+    backfill.add_argument("--end", required=True, help="Last Jalali or Gregorian date.")
 
     schemas = groups.add_parser("schemas", help="Inspect canonical schemas.")
     schema_commands = schemas.add_subparsers(dest="command", required=True)
@@ -144,6 +152,15 @@ def main(argv: Sequence[str] | None = None) -> int:
                 _print_frame(
                     client.market.daily_prices(
                         arguments.symbols,
+                        arguments.start,
+                        arguments.end,
+                        progress=True,
+                    )
+                )
+            elif arguments.command == "asset-history":
+                _print_frame(
+                    client.assets.history(
+                        arguments.asset,
                         arguments.start,
                         arguments.end,
                         progress=True,

@@ -1,3 +1,4 @@
+# ruff: noqa: RUF002
 """Native asynchronous public client and namespaces."""
 
 from __future__ import annotations
@@ -11,10 +12,16 @@ import polars as pl
 from oxtapus.api._shared import normalize_symbols, parse_date, require_unadjusted
 from oxtapus.api.results import FetchResult
 from oxtapus.api.settings import Settings
-from oxtapus.application.services import AsyncInstrumentService, AsyncMarketDataService
+from oxtapus.application.services import (
+    AsyncAssetPriceService,
+    AsyncGovernanceService,
+    AsyncInstrumentService,
+    AsyncMarketDataService,
+)
 from oxtapus.domain.enums import ProviderCapability
 from oxtapus.domain.errors import PartialFailureError, PartialFetchWarning
 from oxtapus.progress.reporter import ProgressOption, ProgressReporter, make_progress_reporter
+from oxtapus.providers.tgju.provider import AsyncTgjuProvider
 from oxtapus.providers.tsetmc.provider import AsyncTsetmcProvider
 from oxtapus.providers.tsetmc.resolver import AsyncInstrumentResolver
 from oxtapus.transport.async_httpx2 import Httpx2AsyncTransport
@@ -23,7 +30,7 @@ from oxtapus.transport.retry import RetryPolicy
 
 
 class AsyncMarketNamespace:
-    """Asynchronous market-data methods with no event-loop ownership."""
+    """متدهای ناهمگام قیمت، تابلو، سفارش‌ها و بازار."""
 
     def __init__(self, service: AsyncMarketDataService, settings: Settings) -> None:
         self._service = service
@@ -38,7 +45,7 @@ class AsyncMarketNamespace:
         adjusted: bool = False,
         progress: ProgressOption = None,
     ) -> pl.DataFrame:
-        """Return canonical daily OHLCV using native async I/O."""
+        """برای ``symbols`` در بازهٔ تاریخ، دیتافریم قیمت روزانه برمی‌گرداند."""
 
         result = await self.fetch_daily_prices(
             symbols,
@@ -59,7 +66,7 @@ class AsyncMarketNamespace:
         adjusted: bool = False,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """Return daily data and complete operational metadata."""
+        """قیمت روزانه را همراه metadata کامل عملیاتی برمی‌گرداند."""
 
         require_unadjusted(adjusted)
         result = await self._service.daily_prices(
@@ -76,7 +83,7 @@ class AsyncMarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> pl.DataFrame:
-        """Return the canonical market snapshot."""
+        """برای نوع ابزارهای خواسته‌شده، آخرین snapshot بازار را برمی‌گرداند."""
 
         return (await self.fetch_market_watch(instrument_types, progress=progress)).data
 
@@ -86,24 +93,67 @@ class AsyncMarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """Return a market snapshot with operational metadata."""
+        """snapshot بازار را همراه metadata عملیاتی برمی‌گرداند."""
 
         result = await self._service.market_watch(
             tuple(instrument_types), reporter=self._reporter(progress)
         )
         return FetchResult.from_service(result)
 
+    async def quote(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """برای ``identifier``، دیتافریم تک‌ردیفی آخرین اطلاعات تابلو را برمی‌گرداند."""
+
+        return (await self.fetch_quote(identifier, progress=progress)).data
+
+    async def fetch_quote(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
+        """اطلاعات تابلو را همراه metadata عملیاتی برمی‌گرداند."""
+
+        result = await self._service.quote(identifier, reporter=self._reporter(progress))
+        return FetchResult.from_service(result)
+
+    async def market_depth(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> pl.DataFrame:
+        """برای ``identifier``، حداکثر پنج سطح فعلی order book را برمی‌گرداند."""
+
+        return (await self.fetch_market_depth(identifier, progress=progress)).data
+
+    async def fetch_market_depth(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """سطح‌های order book را همراه metadata عملیاتی برمی‌گرداند."""
+
+        result = await self._service.order_book(identifier, reporter=self._reporter(progress))
+        return FetchResult.from_service(result)
+
+    async def investor_activity(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> pl.DataFrame:
+        """آمار فعلی خرید و فروش حقیقی و حقوقی ``identifier`` را برمی‌گرداند."""
+
+        return (await self.fetch_investor_activity(identifier, progress=progress)).data
+
+    async def fetch_investor_activity(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """آمار حقیقی/حقوقی را همراه metadata عملیاتی برمی‌گرداند."""
+
+        result = await self._service.investor_activity(
+            identifier, reporter=self._reporter(progress)
+        )
+        return FetchResult.from_service(result)
+
     async def option_chain(
         self, underlying: str, *, progress: ProgressOption = None
     ) -> pl.DataFrame:
-        """Return one canonical row per option contract."""
+        """برای ``underlying``، یک ردیف canonical برای هر قرارداد اختیار برمی‌گرداند."""
 
         return (await self.fetch_option_chain(underlying, progress=progress)).data
 
     async def fetch_option_chain(
         self, underlying: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """Return option contracts with operational metadata."""
+        """قراردادهای اختیار را همراه metadata عملیاتی برمی‌گرداند."""
 
         result = await self._service.option_chain(underlying, reporter=self._reporter(progress))
         return FetchResult.from_service(result)
@@ -113,26 +163,113 @@ class AsyncMarketNamespace:
 
 
 class AsyncInstrumentNamespace:
-    """Asynchronous instrument discovery methods."""
+    """متدهای ناهمگام جست‌وجو، هویت و اطلاعات ابزار."""
 
     def __init__(self, service: AsyncInstrumentService, settings: Settings) -> None:
         self._service = service
         self._settings = settings
 
     async def search(self, term: str, *, progress: ProgressOption = None) -> pl.DataFrame:
-        """Search canonical instruments asynchronously."""
+        """ابزارهای منطبق با ``term`` را در یک دیتافریم برمی‌گرداند."""
 
         return (await self.fetch_search(term, progress=progress)).data
 
     async def fetch_search(self, term: str, *, progress: ProgressOption = None) -> FetchResult:
-        """Search instruments and include source metadata."""
+        """نتیجهٔ جست‌وجو را همراه metadata منبع برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         return FetchResult.from_service(await self._service.search(term, reporter))
 
+    async def info(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """اطلاعات معاملاتی و ارزش‌گذاری ``identifier`` را برمی‌گرداند."""
+
+        return (await self.fetch_info(identifier, progress=progress)).data
+
+    async def fetch_info(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
+        """اطلاعات ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(await self._service.info(identifier, reporter))
+
+    async def identity(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+        """هویت، بازار، صنعت و زیرصنعت ``identifier`` را برمی‌گرداند."""
+
+        return (await self.fetch_identity(identifier, progress=progress)).data
+
+    async def fetch_identity(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """هویت ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        return FetchResult.from_service(await self._service.identity(identifier, reporter))
+
+
+class AsyncGovernanceNamespace:
+    """متدهای ناهمگام افشاهای راهبری شرکتی."""
+
+    def __init__(self, service: AsyncGovernanceService, settings: Settings) -> None:
+        self._service = service
+        self._settings = settings
+
+    async def board_members(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> pl.DataFrame:
+        """تاریخچهٔ اعضای هیئت‌مدیرهٔ ``identifier`` را به‌شکل تخت برمی‌گرداند."""
+
+        return (await self.fetch_board_members(identifier, progress=progress)).data
+
+    async def fetch_board_members(
+        self, identifier: str, *, progress: ProgressOption = None
+    ) -> FetchResult:
+        """تاریخچهٔ هیئت‌مدیره را همراه metadata عملیاتی برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        result = await self._service.board_members(identifier, reporter)
+        return FetchResult.from_service(result)
+
+
+class AsyncAssetNamespace:
+    """متدهای ناهمگام تاریخچهٔ ارز و سکه."""
+
+    def __init__(self, service: AsyncAssetPriceService, settings: Settings) -> None:
+        self._service = service
+        self._settings = settings
+
+    async def history(
+        self,
+        asset: str,
+        start: date | str | None = None,
+        end: date | str | None = None,
+        *,
+        progress: ProgressOption = None,
+    ) -> pl.DataFrame:
+        """برای ``asset`` و بازهٔ تاریخ، دیتافریم روزانهٔ OHLC برمی‌گرداند."""
+
+        return (await self.fetch_history(asset, start, end, progress=progress)).data
+
+    async def fetch_history(
+        self,
+        asset: str,
+        start: date | str | None = None,
+        end: date | str | None = None,
+        *,
+        progress: ProgressOption = None,
+    ) -> FetchResult:
+        """تاریخچهٔ دارایی را همراه metadata منبع، کیفیت، retry و lineage برمی‌گرداند."""
+
+        reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
+        result = await self._service.history(
+            asset,
+            start=parse_date(start, "start"),
+            end=parse_date(end, "end"),
+            reporter=reporter,
+        )
+        return FetchResult.from_service(result)
+
 
 class AsyncClient:
-    """Long-lived native asynchronous Oxtapus client."""
+    """کلاینت ناهمگام با اتصال قابل‌استفادهٔ مجدد و namespaceهای عمومی."""
 
     def __init__(
         self,
@@ -144,6 +281,7 @@ class AsyncClient:
         self._owns_transport = transport is None
         self._transport = transport or _transport(self.settings)
         provider = AsyncTsetmcProvider(self._transport)
+        tgju_provider = AsyncTgjuProvider(self._transport)
         resolver = AsyncInstrumentResolver(provider)
         self.market = AsyncMarketNamespace(
             AsyncMarketDataService(
@@ -154,8 +292,15 @@ class AsyncClient:
             ),
             self.settings,
         )
-        self.instruments = AsyncInstrumentNamespace(AsyncInstrumentService(provider), self.settings)
+        self.instruments = AsyncInstrumentNamespace(
+            AsyncInstrumentService(provider, resolver), self.settings
+        )
+        self.governance = AsyncGovernanceNamespace(
+            AsyncGovernanceService(provider, resolver), self.settings
+        )
+        self.assets = AsyncAssetNamespace(AsyncAssetPriceService(tgju_provider), self.settings)
         self._provider = provider
+        self._tgju_provider = tgju_provider
         self._closed = False
 
     async def __aenter__(self) -> AsyncClient:
@@ -165,7 +310,7 @@ class AsyncClient:
         await self.aclose()
 
     async def aclose(self) -> None:
-        """Close transport resources owned by this client."""
+        """منابع transport متعلق به کلاینت را می‌بندد."""
 
         if self._closed:
             return
@@ -175,14 +320,16 @@ class AsyncClient:
 
     @property
     def closed(self) -> bool:
-        """Whether this client has been closed."""
+        """اگر کلاینت بسته شده باشد ``True`` برمی‌گرداند."""
 
         return self._closed
 
     def capabilities(self) -> tuple[ProviderCapability, ...]:
-        """Return verified provider capabilities without remote access."""
+        """قابلیت‌های تأییدشدهٔ providerها را بدون درخواست شبکه برمی‌گرداند."""
 
-        return self._provider.capabilities()
+        return tuple(
+            dict.fromkeys(self._provider.capabilities() + self._tgju_provider.capabilities())
+        )
 
 
 def _transport(settings: Settings) -> Httpx2AsyncTransport:

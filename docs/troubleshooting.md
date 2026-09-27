@@ -1,15 +1,25 @@
-# Troubleshooting
+<div dir="rtl" align="right" markdown="1">
 
-**No rows for a symbol:** call `instrument_search`, normalize the exact symbol, and inspect
-advanced `failures`. Oxtapus does not choose fuzzy candidates.
+# رفع اشکال
 
-**Temporary status errors:** inspect retry events and `retry_count`. Increase bounded timeout
-or retry budgets carefully; do not disable rate limits.
+**برای نماد هیچ ردیفی نیومده:** اول `instrument_search` رو صدا بزن و اسم دقیق نماد رو ببین.
+بعد `failures` نتیجهٔ پیشرفته رو بررسی کن. Oxtapus بین چند نتیجهٔ شبیه، یکی رو شانسی انتخاب
+نمی‌کنه.
 
-**Schema validation error:** save the sanitized response as Bronze, compare fingerprints, and
-run the provider doctor. Do not weaken required fields before verifying source semantics.
+**نام دلار یا سکه قبول نمی‌شه:** از «دلار»، «دلار نیما»، «یورو»، «سکه امامی» یا «نیم‌سکه»
+استفاده کن. فاصله و نیم‌فاصله مهم نیست. پیام خطا ورودی تو و نام‌های پشتیبانی‌شده رو نمایش
+می‌ده.
 
-**Arrow, Pandas, or DuckDB import error:** install the corresponding optional extra.
+**خطای موقت HTTP می‌بینی:** رویدادهای retry و `retry_count` رو بررسی کن. timeout یا بودجهٔ
+retry رو با سقف مشخص افزایش بده و rate limit رو خاموش نکن.
 
-**Async notebook issue:** use `AsyncClient` with top-level `await`; do not wrap it in an event
-loop runner.
+**خطای schema validation داری:** پاسخ پاک‌سازی‌شدهٔ Bronze رو نگه دار، fingerprintها رو مقایسه
+کن و provider doctor رو اجرا کن. قبل از فهم دقیق تغییر منبع، فیلدهای اجباری رو اختیاری نکن.
+
+**PyArrow، Pandas یا DuckDB import نمی‌شه:** extra مربوطه رو نصب کن؛ مثلاً
+`pip install 'oxtapus[pandas]'`.
+
+**داخل Jupyter مشکل async داری:** از `AsyncClient` و `await` مستقیم استفاده کن؛ دورش
+`asyncio.run` نذار.
+
+</div>

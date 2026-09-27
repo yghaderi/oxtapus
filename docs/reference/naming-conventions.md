@@ -1,6 +1,20 @@
-# Naming conventions
+<div dir="rtl" align="right" markdown="1">
 
-Names are lowercase `snake_case`, provider-independent, and financially explicit. Dates end
-in `_date`, aware timestamps end in `_timestamp`, prices end in `_price`, counts in `_count`,
-volumes in `_volume`, values in `_value`, percentages in `_percentage`, and provider-specific
-identifiers carry the provider name. Source abbreviations never cross the transform boundary.
+# قواعد نام‌گذاری
+
+اسم ستون‌ها با حروف کوچک و `snake_case` نوشته می‌شن، به نام‌های داخلی منبع وابسته نیستن و
+معنای مالی مشخص دارن:
+
+- تاریخ با `_date` تموم می‌شه؛
+- timestamp دارای timezone با `_timestamp`؛
+- قیمت با `_price`؛
+- تعداد با `_count`؛
+- حجم با `_volume`؛
+- ارزش با `_value`؛
+- درصد با `_percentage`.
+
+شناسه‌ای که واقعاً مخصوص یک provider باشه اسم provider رو همراه خودش داره، مثل
+`tsetmc_instrument_code`. مخفف‌های مبهم پاسخ خام بعد از مرحلهٔ تبدیل وارد دیتافریم عمومی
+نمی‌شن.
+
+</div>

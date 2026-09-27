@@ -5,7 +5,7 @@ services coordinate use cases; domain objects contain financial language; provid
 own source-specific parsing; transport owns HTTPX2, retries, rate limits, and byte progress;
 storage owns persistence.
 
-```mermaid
+:::{mermaid}
 flowchart TD
     U[User API or CLI] --> A[Application]
     A --> D[Domain contracts]
@@ -13,7 +13,7 @@ flowchart TD
     P --> X[Source adapter]
     X --> T[Transport port]
     A --> S[Storage port]
-```
+:::
 
 Dependencies point inward. Provider transformation performs no I/O, extraction performs no
 persistence, and Gold transformation performs no network access.

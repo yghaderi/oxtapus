@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import time
 import uuid
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from datetime import UTC, date, datetime
 from typing import Any
 
@@ -19,7 +19,14 @@ from oxtapus.progress.events import OperationCompleted, OperationStarted
 from oxtapus.progress.reporter import ProgressReporter
 from oxtapus.providers.base import FetchExecution
 from oxtapus.providers.tsetmc.provider import AsyncTsetmcProvider, TsetmcProvider
-from oxtapus.providers.tsetmc.queries import DailyPriceQuery, MarketWatchQuery, OptionChainQuery
+from oxtapus.providers.tsetmc.queries import (
+    DailyPriceQuery,
+    InvestorActivityQuery,
+    MarketWatchQuery,
+    OptionChainQuery,
+    OrderBookQuery,
+    QuoteQuery,
+)
 from oxtapus.providers.tsetmc.resolver import AsyncInstrumentResolver, InstrumentResolver
 
 _CANONICAL_VERSION = "1.0.0"
@@ -127,6 +134,62 @@ class MarketDataService:
             ),
         )
 
+    def quote(self, identifier: str, *, reporter: ProgressReporter) -> ServiceResult:
+        """Resolve one instrument and retrieve its latest board quote."""
+
+        instrument = self._resolve(identifier, reporter)
+        query = QuoteQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+            symbol=instrument.symbol,
+        )
+        return self._single(
+            {"identifier": identifier},
+            ProviderCapability.QUOTE,
+            "quote",
+            "canonicalize_quote",
+            reporter,
+            lambda operation_id: self._provider.quote(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
+    def order_book(self, identifier: str, *, reporter: ProgressReporter) -> ServiceResult:
+        """Resolve one instrument and retrieve its latest order-book levels."""
+
+        instrument = self._resolve(identifier, reporter)
+        query = OrderBookQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+        )
+        return self._single(
+            {"identifier": identifier},
+            ProviderCapability.ORDER_BOOK,
+            "order_book",
+            "canonicalize_order_book",
+            reporter,
+            lambda operation_id: self._provider.order_book(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
+    def investor_activity(self, identifier: str, *, reporter: ProgressReporter) -> ServiceResult:
+        """Resolve one instrument and retrieve current investor-type activity."""
+
+        instrument = self._resolve(identifier, reporter)
+        query = InvestorActivityQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+            symbol=instrument.symbol,
+        )
+        return self._single(
+            {"identifier": identifier},
+            ProviderCapability.INVESTOR_ACTIVITY,
+            "investor_activity",
+            "canonicalize_investor_activity",
+            reporter,
+            lambda operation_id: self._provider.investor_activity(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
     def option_chain(self, underlying: str, *, reporter: ProgressReporter) -> ServiceResult:
         """Resolve an underlying and retrieve its canonical option contracts."""
 
@@ -207,6 +270,13 @@ class MarketDataService:
             operation_id=operation_id,
             elapsed=time.monotonic() - started,
             provider=self._provider.name,
+        )
+
+    def _resolve(self, identifier: str, reporter: ProgressReporter):
+        return self._resolver.resolve(
+            identifier,
+            reporter=reporter,
+            operation_id=uuid.uuid4().hex,
         )
 
 
@@ -312,6 +382,64 @@ class AsyncMarketDataService:
             provider=self._provider.name,
         )
 
+    async def quote(self, identifier: str, *, reporter: ProgressReporter) -> ServiceResult:
+        """Resolve one instrument and retrieve its latest board quote."""
+
+        instrument = await self._resolve(identifier, reporter)
+        query = QuoteQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+            symbol=instrument.symbol,
+        )
+        return await self._single(
+            {"identifier": identifier},
+            ProviderCapability.QUOTE,
+            "quote",
+            "canonicalize_quote",
+            reporter,
+            lambda operation_id: self._provider.quote(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
+    async def order_book(self, identifier: str, *, reporter: ProgressReporter) -> ServiceResult:
+        """Resolve one instrument and retrieve its latest order-book levels."""
+
+        instrument = await self._resolve(identifier, reporter)
+        query = OrderBookQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+        )
+        return await self._single(
+            {"identifier": identifier},
+            ProviderCapability.ORDER_BOOK,
+            "order_book",
+            "canonicalize_order_book",
+            reporter,
+            lambda operation_id: self._provider.order_book(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
+    async def investor_activity(
+        self, identifier: str, *, reporter: ProgressReporter
+    ) -> ServiceResult:
+        """Resolve one instrument and retrieve current investor-type activity."""
+
+        instrument = await self._resolve(identifier, reporter)
+        query = InvestorActivityQuery(
+            tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+            symbol=instrument.symbol,
+        )
+        return await self._single(
+            {"identifier": identifier},
+            ProviderCapability.INVESTOR_ACTIVITY,
+            "investor_activity",
+            "canonicalize_investor_activity",
+            reporter,
+            lambda operation_id: self._provider.investor_activity(
+                query, reporter=reporter, operation_id=operation_id
+            ),
+        )
+
     async def option_chain(self, underlying: str, *, reporter: ProgressReporter) -> ServiceResult:
         operation_id = uuid.uuid4().hex
         started = time.monotonic()
@@ -335,6 +463,52 @@ class AsyncMarketDataService:
             operation_id=operation_id,
             elapsed=time.monotonic() - started,
             provider=self._provider.name,
+        )
+
+    async def _single(
+        self,
+        query: dict[str, Any],
+        capability: ProviderCapability,
+        dataset: str,
+        operation: str,
+        reporter: ProgressReporter,
+        fetch: Callable[[str], Awaitable[FetchExecution[Any]]],
+    ) -> ServiceResult:
+        operation_id = uuid.uuid4().hex
+        started = time.monotonic()
+        reporter.emit(
+            OperationStarted(
+                operation_id=operation_id,
+                capability=capability.value,
+                total_items=1,
+            )
+        )
+        execution = await fetch(operation_id)
+        reporter.emit(
+            OperationCompleted(
+                operation_id=operation_id,
+                total=1,
+                success_count=1,
+                failure_count=0,
+                retry_count=execution.response.retry_count,
+            )
+        )
+        return _single_result(
+            execution,
+            query=query,
+            capability=capability,
+            dataset=dataset,
+            operation=operation,
+            operation_id=operation_id,
+            elapsed=time.monotonic() - started,
+            provider=self._provider.name,
+        )
+
+    async def _resolve(self, identifier: str, reporter: ProgressReporter):
+        return await self._resolver.resolve(
+            identifier,
+            reporter=reporter,
+            operation_id=uuid.uuid4().hex,
         )
 
 

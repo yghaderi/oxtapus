@@ -46,6 +46,42 @@ def payload_for(url: str) -> dict[str, object]:
                 "flowTitle": "بورس",
                 "cgrValCotTitle": "بازار اول",
                 "sector": {"cSecVal": "27", "lSecVal": "فلزات اساسی"},
+                "eps": {
+                    "epsValue": 512,
+                    "estimatedEPS": "530",
+                    "sectorPE": 6.2,
+                    "psr": 1.4,
+                },
+                "staticThreshold": {"psGelStaMax": 4400, "psGelStaMin": 4000},
+                "minWeek": 3900,
+                "maxWeek": 4300,
+                "minYear": 3200,
+                "maxYear": 5100,
+                "qTotTran5JAvg": 190000,
+                "contractSize": 0,
+                "underSupervision": 0,
+                "zTitad": 800000000000,
+                "baseVol": 1,
+            }
+        }
+    if "GetInstrumentIdentity" in url:
+        return {
+            "instrumentIdentity": {
+                "sector": {"cSecVal": "27", "lSecVal": "فلزات اساسی"},
+                "subSector": {"cSoSecVal": 2710, "lSoSecVal": "تولید آهن و فولاد"},
+                "cValMne": "FOLD1",
+                "lVal18": "Foolad Mobarakeh",
+                "cSocCSAC": "FOLD",
+                "lSoc30": "فولاد مبارکه اصفهان",
+                "lVal30": "فولاد مبارکه اصفهان",
+                "lVal18AFC": "فولاد",
+                "flow": 1,
+                "cIsin": "IRO1FOLD0001",
+                "instrumentID": "IRO1FOLD0005",
+                "cgrValCot": "N1",
+                "lastDate": 1,
+                "flowTitle": "بورس",
+                "cgrValCotTitle": "بازار اول",
             }
         }
     if "GetClosingPriceDailyList" in url:
@@ -89,6 +125,104 @@ def payload_for(url: str) -> dict[str, object]:
                 }
             ]
         }
+    if "GetClosingPriceInfo" in url:
+        return {
+            "closingPriceInfo": {
+                "instrumentState": {
+                    "cEtaval": "A ",
+                    "underSupervision": 0,
+                    "cEtavalTitle": "مجاز",
+                },
+                "lastHEven": 123030,
+                "finalLastDate": 20260831,
+                "priceChange": 70,
+                "priceMin": 4100,
+                "priceMax": 4300,
+                "priceYesterday": 4180,
+                "priceFirst": 4200,
+                "dEven": 20260831,
+                "hEven": 123045,
+                "pClosing": 4250,
+                "pDrCotVal": 4270,
+                "zTotTran": 100,
+                "qTotTran5J": 200000,
+                "qTotCap": 850000000,
+            }
+        }
+    if "/api/BestLimits/" in url:
+        return {
+            "bestLimits": [
+                {
+                    "number": 1,
+                    "qTitMeDem": 10000,
+                    "zOrdMeDem": 4,
+                    "pMeDem": 4260,
+                    "pMeOf": 4270,
+                    "zOrdMeOf": 3,
+                    "qTitMeOf": 12000,
+                    "title": None,
+                    "insCode": None,
+                },
+                {
+                    "number": 2,
+                    "qTitMeDem": 8000,
+                    "zOrdMeDem": 2,
+                    "pMeDem": 4250,
+                    "pMeOf": 4280,
+                    "zOrdMeOf": 5,
+                    "qTitMeOf": 16000,
+                    "title": None,
+                    "insCode": None,
+                },
+            ]
+        }
+    if "GetClientType" in url:
+        return {
+            "clientType": {
+                "buy_I_Volume": 150000,
+                "buy_N_Volume": 50000,
+                "buy_DDD_Volume": 0,
+                "buy_CountI": 90,
+                "buy_CountN": 10,
+                "buy_CountDDD": 0,
+                "sell_I_Volume": 130000,
+                "sell_N_Volume": 70000,
+                "sell_CountI": 80,
+                "sell_CountN": 20,
+            }
+        }
+    if "GetStatementContentByInsCode/12/0/-1" in url:
+        content = """<BoardMember>
+          <AssemblyDate>1405/05/20</AssemblyDate>
+          <BoardMembersSessionDate>1405/05/25</BoardMembersSessionDate>
+          <BoardMembers><BoardMember>
+            <MemberName>شرکت سرمایه گذاری نمونه</MemberName>
+            <NationalCode_RegisterNumber>10101234567</NationalCode_RegisterNumber>
+            <Designation>رئیس هیئت مدیره</Designation>
+            <Charged>موظف</Charged>
+            <EducationDegree>کارشناسی ارشد</EducationDegree>
+            <Agent>علی نمونه</Agent>
+            <AgentNationalCode>0012345678</AgentNationalCode>
+          </BoardMember></BoardMembers>
+          <DirectorManager>
+            <DirectorManagerName>رضا نمونه</DirectorManagerName>
+            <DirectorManagerNationalCode>0098765432</DirectorManagerNationalCode>
+            <DirectorManagerEducationDegree>دکتری</DirectorManagerEducationDegree>
+          </DirectorManager>
+        </BoardMember>"""
+        return {
+            "statemetnContent": [
+                {
+                    "title": "معرفی اعضای هیئت مدیره",
+                    "sentDateTime_Gregorian": "2026-08-11T12:10:00",
+                    "publishDateTime_Gregorian": "2026-08-11T12:20:00",
+                    "publishDateTime_DEven": 20260811,
+                    "reportSubType": 0,
+                    "pageID": 12345,
+                    "content": content,
+                }
+            ]
+        }
     if "GetInstrumentOptionMarketWatch" in url:
         return {
             "instrumentOptMarketWatch": [
@@ -108,6 +242,34 @@ def payload_for(url: str) -> dict[str, object]:
                     "pClosing_C": 110,
                 }
             ]
+        }
+    if "summary-table-data" in url:
+        return {
+            "data": [
+                [
+                    "100,000",
+                    "99,000",
+                    "102,000",
+                    "101,000",
+                    '<span class="high" dir="ltr">1,000</span>',
+                    '<span class="high" dir="ltr">1.00%</span>',
+                    "2026/09/26",
+                    "1405/07/04",
+                ],
+                [
+                    "101,000",
+                    "98,000",
+                    "101,500",
+                    "99,000",
+                    '<span class="low" dir="ltr">2,000</span>',
+                    '<span class="low" dir="ltr">1.98%</span>',
+                    "2026/09/27",
+                    "1405/07/05",
+                ],
+            ],
+            "draw": 1,
+            "recordsFiltered": 2,
+            "recordsTotal": 2,
         }
     raise AssertionError(f"Unexpected fixture URL: {url}")
 

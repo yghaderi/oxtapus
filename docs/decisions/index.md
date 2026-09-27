@@ -8,6 +8,5 @@
 - [Storage abstraction](0006-storage.md)
 - [Schema versioning](0007-schema-versioning.md)
 - [Hard public API replacement](0008-hard-api-replacement.md)
-- [Excluded retired gateway](0009-excluded-gateway.md)
 - [Endpoint verification policy](0010-endpoint-verification.md)
 - [Progress event architecture](0011-progress-events.md)

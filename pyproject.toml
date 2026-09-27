@@ -4,11 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oxtapus"
-version = "1.0.0"
-description = "A typed, Polars-native SDK for Iranian financial market data."
+version = "1.1.0"
+description = "A typed, Polars-native Python SDK for TSETMC, TGJU, and Iranian financial market data."
 readme = "README.md"
 license = { file = "LICENSE.txt" }
 authors = [{ name = "Yaghoub Ghadri", email = "ghaderi.yaghoub@gmail.com" }]
+keywords = [
+  "tsetmc",
+  "tgju",
+  "tehran stock exchange",
+  "iran stock market",
+  "financial data",
+  "polars",
+]
 requires-python = ">=3.11,<3.15"
 classifiers = [
   "Development Status :: 5 - Production/Stable",
@@ -24,6 +32,7 @@ classifiers = [
 ]
 dependencies = [
   "httpx2>=2.12,<3",
+  "jdatetime>=6.1,<7",
   "polars>=1.37,<2",
   "pydantic>=2.11,<3",
   "pydantic-settings>=2.10,<3",
@@ -35,8 +44,12 @@ duckdb = ["duckdb>=1.3,<2"]
 pandas = ["pandas>=2.2,<4"]
 http2 = ["httpx2[http2]>=2.12,<3"]
 docs = [
-  "mkdocs-material>=9.6,<10",
-  "mkdocstrings[python]>=0.30,<1",
+  "myst-parser==5.1.0",
+  "pydata-sphinx-theme==0.22.0",
+  "sphinx==8.2.3; python_version < '3.12'",
+  "sphinx==9.1.0; python_version >= '3.12'",
+  "sphinx-copybutton==0.5.2",
+  "sphinxcontrib-mermaid==2.1.1",
 ]
 
 [project.scripts]
@@ -46,6 +59,7 @@ oxtapus = "oxtapus.cli.app:main"
 Documentation = "https://yghaderi.github.io/oxtapus/"
 Issues = "https://github.com/yghaderi/oxtapus/issues"
 Repository = "https://github.com/yghaderi/oxtapus"
+Funding = "https://daramet.com/yghaderi"
 
 [dependency-groups]
 dev = [
@@ -74,7 +88,6 @@ include = [
   "/DATA_SOURCE_NOTICE.md",
   "/THIRD_PARTY_NOTICES.md",
   "/pyproject.toml",
-  "/mkdocs.yml",
 ]
 
 [tool.ruff]

@@ -120,6 +120,21 @@ def validate_daily_prices(frame: pl.DataFrame) -> QualityReport:
     )
 
 
+def validate_asset_prices(frame: pl.DataFrame) -> QualityReport:
+    """Validate canonical non-security asset-price history."""
+
+    issues = _price_issues(frame, keys=("asset_code", "trading_date"))
+    invalid = _invalid_price_rows(frame, keys=("asset_code", "trading_date"))
+    quarantined = frame.filter(invalid)
+    return QualityReport(
+        dataset="asset_price_history",
+        checked_rows=frame.height,
+        accepted_rows=frame.height - quarantined.height,
+        quarantined_rows=quarantined.height,
+        issues=tuple(issues),
+    )
+
+
 def split_daily_prices(frame: pl.DataFrame) -> QualitySplit:
     """Split invalid daily rows for an explicit quarantine policy."""
 
@@ -128,20 +143,87 @@ def split_daily_prices(frame: pl.DataFrame) -> QualitySplit:
 
 
 def _split_daily_rows(frame: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFrame]:
-    invalid = pl.lit(False)
-    keys = ["tsetmc_instrument_code", "trading_date"]
+    invalid = _invalid_price_rows(
+        frame,
+        keys=("tsetmc_instrument_code", "trading_date"),
+        extra_non_negative=(
+            "last_price",
+            "previous_close_price",
+            "trade_count",
+            "trade_volume",
+            "trade_value",
+        ),
+    )
+    return frame.filter(~invalid), frame.filter(invalid)
+
+
+def _price_issues(
+    frame: pl.DataFrame,
+    *,
+    keys: tuple[str, ...],
+) -> list[QualityIssue]:
+    issues: list[QualityIssue] = []
     if set(keys) <= set(frame.columns):
-        invalid |= pl.struct(keys).is_duplicated()
+        duplicates = frame.group_by(list(keys)).len().filter(pl.col("len") > 1).height
+        if duplicates:
+            issues.append(
+                QualityIssue(
+                    rule="primary_key_unique",
+                    severity=QualitySeverity.ERROR,
+                    failed_rows=duplicates,
+                    message="Asset/date primary keys must be unique.",
+                )
+            )
     for column in (
         "open_price",
         "high_price",
         "low_price",
         "close_price",
-        "last_price",
-        "previous_close_price",
-        "trade_count",
-        "trade_volume",
-        "trade_value",
+    ):
+        if column in frame.columns:
+            failed = frame.filter(pl.col(column).is_not_null() & (pl.col(column) < 0)).height
+            if failed:
+                issues.append(
+                    QualityIssue(
+                        rule=f"{column}_non_negative",
+                        severity=QualitySeverity.ERROR,
+                        failed_rows=failed,
+                        message=f"{column} cannot be negative.",
+                    )
+                )
+    if {"high_price", "low_price"} <= set(frame.columns):
+        failed = frame.filter(
+            pl.col("high_price").is_not_null()
+            & pl.col("low_price").is_not_null()
+            & (pl.col("high_price") < pl.col("low_price"))
+        ).height
+        if failed:
+            issues.append(
+                QualityIssue(
+                    rule="daily_high_not_below_low",
+                    severity=QualitySeverity.ERROR,
+                    failed_rows=failed,
+                    message="high_price must be greater than or equal to low_price.",
+                )
+            )
+    return issues
+
+
+def _invalid_price_rows(
+    frame: pl.DataFrame,
+    *,
+    keys: tuple[str, ...],
+    extra_non_negative: tuple[str, ...] = (),
+) -> pl.Expr:
+    invalid = pl.lit(False)
+    if set(keys) <= set(frame.columns):
+        invalid |= pl.struct(list(keys)).is_duplicated()
+    for column in (
+        "open_price",
+        "high_price",
+        "low_price",
+        "close_price",
+        *extra_non_negative,
     ):
         if column in frame.columns:
             invalid |= pl.col(column).is_not_null() & (pl.col(column) < 0)
@@ -151,4 +233,4 @@ def _split_daily_rows(frame: pl.DataFrame) -> tuple[pl.DataFrame, pl.DataFrame]:
             & pl.col("low_price").is_not_null()
             & (pl.col("high_price") < pl.col("low_price"))
         )
-    return frame.filter(~invalid), frame.filter(invalid)
+    return invalid

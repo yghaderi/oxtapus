@@ -8,7 +8,7 @@ uv run ruff check .
 uv run pyright
 uv run lint-imports
 uv run pytest -m "not live"
-uv run mkdocs build --strict
+uv run sphinx-build -W --keep-going -b html docs docs/_build/html
 uv build
 ```
 

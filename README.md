@@ -1,24 +1,24 @@
-# Oxtapus 1.0
+# Oxtapus 1.1
 
 <p align="center">
   <a href="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml">
-    <img src="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml/badge.svg?branch=master" alt="وضعیت تست‌ها">
+    <img src="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml/badge.svg?branch=master" alt="Tests">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/dm/oxtapus?color=%2334D058&amp;label=%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF" alt="تعداد دانلودهای PyPI">
+    <img src="https://img.shields.io/pypi/dm/oxtapus?color=%2334D058&amp;label=downloads" alt="PyPI downloads">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/pyversions/oxtapus.svg?color=%2334D058&amp;label=%D9%BE%D8%A7%DB%8C%D8%AA%D9%88%D9%86" alt="نسخه‌های پشتیبانی‌شده پایتون">
+    <img src="https://img.shields.io/pypi/pyversions/oxtapus.svg?color=%2334D058&amp;label=python" alt="Supported Python versions">
   </a>
   <a href="https://pypi.org/project/oxtapus/">
-    <img src="https://img.shields.io/pypi/v/oxtapus?color=%2334D058&amp;label=%D9%86%D8%B3%D8%AE%D9%87" alt="نسخه پکیج">
+    <img src="https://img.shields.io/pypi/v/oxtapus?color=%2334D058&amp;label=version" alt="Package version">
   </a>
 </p>
 
 <div dir="rtl" align="right">
 
 Oxtapus یه بسته توسعه نرم‌افزاری (SDK) پایتون تایپ‌شده و مبتنی بر Polars برای داده‌های بازار
-مالی ایرانه. نسخه 1.0 با یه معماری و رابط برنامه‌نویسی (API) کاملاً تازه ساخته شده؛ یعنی هم
+مالی ایرانه. شاخهٔ 1.x با یه معماری و رابط برنامه‌نویسی (API) کاملاً تازه ساخته شده؛ یعنی هم
 برای کارهای سریع داخل نوت‌بوک جمع‌وجوره و هم زیرِ همین ظاهر ساده، سرویس‌های تایپ‌شده، قراردادهای
 مشخص برای فراهم‌کننده‌ها، انتقال مقاوم HTTPX2 و خط لوله داده قابل‌بازپخش داره تا توی پروژه‌های
 بزرگ‌تر هم بشه روش حساب کرد.
@@ -26,6 +26,11 @@ Oxtapus یه بسته توسعه نرم‌افزاری (SDK) پایتون تای
 با Oxtapus می‌تونی به داده‌های عمومی منتشرشده در [TSETMC](https://tsetmc.com/) برای بورس
 اوراق بهادار تهران (بورس تهران) و بازار سرمایه ایران دسترسی داشته باشی. این پروژه مستقل و
 غیررسمیه و هیچ وابستگی یا تأییدی از طرف TSETMC نداره.
+
+تاریخچهٔ قیمت دلار آزاد، دلار نیما، یورو، سکه امامی و نیم‌سکه هم از
+[TGJU](https://www.tgju.org/) در دسترسه.
+اتصال TGJU بر اساس موافقت‌نامهٔ کتبی نگه‌دارندهٔ پروژه پیاده شده؛ کاربران پایین‌دستی همچنان
+باید شرایط استفادهٔ منبع را برای کاربرد خودشان بررسی کنند.
 
 به زبان ساده، اگه دنبال یه کتابخونه پایتون برای دریافت و پردازش داده‌های TSETMC و بورس
 تهران هستی، Oxtapus دقیقاً برای همین کار ساخته شده.
@@ -69,8 +74,8 @@ import oxtapus as ox
 
 prices = ox.daily_prices(
     symbols=["فولاد", "خودرو"],
-    start="2025-01-01",
-    end="2026-01-01",
+    start="۱۴۰۳/۱۰/۱۲",
+    end="۱۴۰۴/۱۰/۱۱",
     progress=True,
 )
 
@@ -78,6 +83,25 @@ print(prices.select("symbol", "trading_date", "close_price"))
 ```
 
 <div dir="rtl" align="right">
+
+برای گرفتن تاریخچهٔ دلار یا سکه هم فقط اسم دارایی رو بده:
+
+</div>
+
+```python
+usd = ox.asset_history("دلار", start="۱۴۰۲/۱۰/۱۱")
+nima = ox.asset_history("دلار نیما")
+eur = ox.asset_history("یورو")
+emami = ox.asset_history("سکه امامی")
+half = ox.asset_history("نیم‌سکه")
+```
+
+<div dir="rtl" align="right">
+
+`start` و `end` اختیاری‌ان. تاریخ شمسی رو می‌تونی با رقم فارسی، عربی یا انگلیسی و در قالب‌های
+`YYYY-MM-DD`، `YYYY/MM/DD`، `YYYY.MM.DD` یا `YYYYMMDD` بدی. Oxtapus با `jdatetime` اون رو به
+میلادی تبدیل می‌کنه؛ تاریخ میلادی ISO هم پذیرفته می‌شه. ورودی نامعتبر، همراه با همون مقدار
+واردشده و قالب‌های مجاز خطا می‌ده.
 
 تابع‌های ساده یه `polars.DataFrame` برمی‌گردونن. شکل‌های مختلف حروف فارسی و عربی به‌صورت
 خودکار یکدست می‌شن، شناسه‌ها شفاف پیدا می‌شن، مقدارهای خالی واقعاً خالی می‌مونن، تلاش دوباره
@@ -93,6 +117,11 @@ from oxtapus import Client, Settings
 settings = Settings(concurrency=4, requests_per_second=2, progress=True)
 with Client(settings) as client:
     snapshot = client.market.market_watch(["equity", "etf"])
+    quote = client.market.quote("فولاد")
+    order_book = client.market.market_depth("فولاد")
+    activity = client.market.investor_activity("فولاد")
+    identity = client.instruments.identity("فولاد")
+    board = client.governance.board_members("فولاد")
     result = client.market.fetch_daily_prices(["فولاد", "خودرو"])
 
 print(result.failures)
@@ -119,9 +148,11 @@ Oxtapus خودش حلقه رویداد (`event loop`) رو راه نمی‌ان�
 
 ## رابط عمومی
 
-از پکیج اصلی عمداً فقط `Client`، `AsyncClient`، `Settings`، `FetchResult`، `DataLayer`،
-`daily_prices`، `market_watch`، `instrument_search` و `option_chain` در دسترس مستقیم هستن.
-کلاس‌های داخلی فراهم‌کننده‌ها بخشی از رابط عمومی نیستن.
+از پکیج اصلی عمداً فقط کلاینت‌ها، تنظیمات، نتیجه‌ی پیشرفته و میان‌برهای دیتاست‌های عمومی مثل
+`daily_prices`، `market_watch`، `quote`، `market_depth`، `investor_activity`،
+`instrument_search`، `instrument_info`، `instrument_identity`، `board_members` و
+`option_chain` و `asset_history` در دسترس مستقیم هستن. کلاس‌های داخلی فراهم‌کننده‌ها بخشی از
+رابط عمومی نیستن.
 
 ## معماری
 
@@ -132,7 +163,9 @@ flowchart LR
     API[Notebook API / Client / CLI] --> APP[Application services]
     APP --> PORT[Provider and storage ports]
     PORT --> TS[TSETMC provider]
+    PORT --> TG[TGJU provider]
     TS --> HTTP[HTTPX2 transport]
+    TG --> HTTP
     APP --> B[Bronze raw evidence]
     B --> S[Silver canonical]
     S --> G[Gold curated]
@@ -144,7 +177,7 @@ flowchart LR
 <div dir="rtl" align="right">
 
 برای تنظیمات، شواهد نقطه‌های پایانی، بازپخش داده، ذخیره‌سازی، قراردادهای طرح‌واره، تست و ساخت
-فراهم‌کننده جدید، یه سر به [مستندات کامل](docs/index.md) بزن.
+فراهم‌کننده جدید، یه سر به [مستندات کامل](docs/index.rst) بزن.
 
 ## توسعه پروژه
 
@@ -159,7 +192,7 @@ uv run ruff check .
 uv run pyright
 uv run pytest -m "not live"
 uv run lint-imports
-uv run mkdocs build --strict
+uv run sphinx-build -W --keep-going -b html docs docs/_build/html
 uv build
 ```
 

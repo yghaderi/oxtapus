@@ -1,13 +1,24 @@
-# Progress
+<div dir="rtl" align="right" markdown="1">
 
-Pass `progress=True` for terminal/notebook text, a callback for typed events, or a custom
-`ProgressReporter`.
+# نمایش پیشرفت
+
+برای نمایش سادهٔ پیشرفت در ترمینال یا نوت‌بوک، `progress=True` بده:
+
+```python
+import oxtapus as ox
+
+df = ox.daily_prices(["فولاد", "خودرو"], progress=True)
+```
+
+اگه می‌خوای رویدادها رو خودت در رابط کاربری یا log مصرف کنی، یک callback بده:
 
 ```python
 events = []
 df = ox.daily_prices(["فولاد"], progress=events.append)
 ```
 
-Transfers with `Content-Length` expose a real percentage and finish at exactly 100%. Unknown
-lengths report bytes and throughput without inventing a percentage. Batch progress counts
-completed items and exposes retries and failures.
+وقتی منبع `Content-Length` بده، درصد واقعی نمایش داده می‌شه و پایان دقیقاً ۱۰۰٪ است. اگر حجم
+کل مشخص نباشه، Oxtapus درصد ساختگی تولید نمی‌کنه و فقط بایت و سرعت رو گزارش می‌ده. در دریافت
+گروهی، تعداد آیتم‌های کامل‌شده، retry و خطا هم قابل مشاهده‌ان.
+
+</div>

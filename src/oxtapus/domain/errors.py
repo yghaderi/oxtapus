@@ -77,6 +77,16 @@ class InvalidInstrumentIdentifierError(InstrumentResolutionError):
     """An identifier has an invalid form."""
 
 
+class UnsupportedAssetError(OxtapusError):
+    """A requested non-security asset is not in the verified public mapping."""
+
+    def __init__(self, asset: str, supported: Sequence[str]) -> None:
+        self.asset = asset
+        self.supported = tuple(supported)
+        choices = ", ".join(self.supported)
+        super().__init__(f"Unsupported asset input {asset!r}. Supported assets: {choices}.")
+
+
 class AmbiguousInstrumentError(InstrumentResolutionError):
     """An identifier matches more than one instrument."""
 

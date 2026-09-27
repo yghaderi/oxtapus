@@ -9,11 +9,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from oxtapus.domain.enums import DataLayer, FailureMode, SchemaPolicy
 
-_ALLOWED_PROVIDER_HOSTS = frozenset({"https://cdn.tsetmc.com"})
+_ALLOWED_PROVIDER_HOSTS = frozenset({"https://api.tgju.org", "https://cdn.tsetmc.com"})
 
 
 class Settings(BaseSettings):
-    """Runtime settings loaded from arguments, environment, then defaults."""
+    """تنظیمات اجرا با اولویت آرگومان، متغیر محیطی و سپس مقدار پیش‌فرض."""
 
     model_config = SettingsConfigDict(
         env_prefix="OXTAPUS_",
@@ -24,8 +24,8 @@ class Settings(BaseSettings):
 
     provider: str = "tsetmc"
     endpoint_priority: tuple[str, ...] = ("tsetmc",)
-    base_urls: tuple[str, ...] = ("https://cdn.tsetmc.com",)
-    user_agent: str = "Oxtapus/1.0 (+https://github.com/yghaderi/oxtapus)"
+    base_urls: tuple[str, ...] = ("https://cdn.tsetmc.com", "https://api.tgju.org")
+    user_agent: str = "Oxtapus/1.1 (+https://github.com/yghaderi/oxtapus)"
     http2: bool = False
     verify_tls: bool = True
     proxy: str | None = None

@@ -1,7 +1,14 @@
-# Exceptions
+<div dir="rtl" align="right" markdown="1">
 
-All package errors derive from `OxtapusError`. Typed branches cover configuration,
-unsupported capabilities, unavailable endpoints, transport/status/retry exhaustion,
-response/schema/schema-drift validation, data quality, storage, missing or ambiguous
-instruments, invalid identifiers, and partial batch failure. `RetryExhaustedError.original`
-preserves the final cause; ambiguity errors preserve candidate records.
+# خطاها
+
+همهٔ خطاهای پکیج از `OxtapusError` ارث می‌برن. شاخه‌های مشخصی برای تنظیمات، قابلیت
+پشتیبانی‌نشده، endpoint در دسترس‌نبودنی، شبکه و HTTP، تمام‌شدن retry، پاسخ یا schema نامعتبر،
+schema drift، کیفیت داده، storage، ابزار پیدا‌نشده یا مبهم، شناسهٔ نامعتبر و شکست بخشی از
+درخواست گروهی وجود داره.
+
+`RetryExhaustedError.original` علت نهایی رو نگه می‌داره و خطای ابهام هم کاندیداهای پیدا‌شده رو
+حفظ می‌کنه. برای نام دارایی TGJU نامعتبر، پیام خطا ورودی اصلی کاربر و فهرست همهٔ نام‌های مجاز
+رو نشون می‌ده.
+
+</div>

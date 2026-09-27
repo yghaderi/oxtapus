@@ -1,3 +1,4 @@
+# ruff: noqa: RUF002
 """Advanced public fetch result and explicit tabular conversions."""
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ from oxtapus.providers.base import FetchFailure
 
 @dataclass(frozen=True, slots=True)
 class FetchResult:
-    """Canonical frame plus complete operational metadata."""
+    """دیتافریم canonical همراه metadata کامل دریافت، کیفیت و lineage."""
 
     data: pl.DataFrame
     capability: ProviderCapability
@@ -36,22 +37,22 @@ class FetchResult:
 
     @classmethod
     def from_service(cls, result: ServiceResult) -> FetchResult:
-        """Construct the stable public view of an application result."""
+        """یک نتیجهٔ application service را به قرارداد عمومی پایدار تبدیل می‌کند."""
 
         return cls(**{name: getattr(result, name) for name in cls.__dataclass_fields__})
 
     def to_polars(self) -> pl.DataFrame:
-        """Return a cheap Polars clone."""
+        """یک clone کم‌هزینه از دیتافریم Polars برمی‌گرداند."""
 
         return self.data.clone()
 
     def to_lazy(self) -> pl.LazyFrame:
-        """Return a lazy plan over the in-memory result."""
+        """یک ``LazyFrame`` روی نتیجهٔ موجود در حافظه برمی‌گرداند."""
 
         return self.data.lazy()
 
     def to_arrow(self) -> Any:
-        """Convert to Arrow; requires the ``arrow`` extra."""
+        """نتیجه را به Arrow تبدیل می‌کند؛ extra با نام ``arrow`` لازم است."""
 
         try:
             return self.data.to_arrow()
@@ -59,7 +60,7 @@ class FetchResult:
             raise ModuleNotFoundError("Install oxtapus[arrow] for Arrow conversion.") from exc
 
     def to_pandas(self) -> Any:
-        """Convert to Pandas; requires the ``pandas`` and ``arrow`` extras."""
+        """نتیجه را به Pandas تبدیل می‌کند؛ extraهای ``pandas`` و ``arrow`` لازم‌اند."""
 
         try:
             return self.data.to_pandas()
@@ -69,6 +70,6 @@ class FetchResult:
             ) from exc
 
     def to_records(self) -> list[dict[str, Any]]:
-        """Return Python dictionaries in row order."""
+        """ردیف‌ها را به‌ترتیب به‌شکل فهرست dictionaryهای پایتون برمی‌گرداند."""
 
         return self.data.to_dicts()
