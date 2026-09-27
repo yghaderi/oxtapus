@@ -17,7 +17,7 @@ from oxtapus.domain.identifiers import IdentifierKind, classify_identifier, norm
 
 
 def test_root_surface_is_small_and_versioned() -> None:
-    assert ox.__version__ == "1.1.0"
+    assert ox.__version__ == "1.1.1"
     assert set(ox.__all__) == {
         "AsyncClient",
         "Client",

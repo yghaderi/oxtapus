@@ -2,10 +2,9 @@
 
 Oxtapus software is MIT-licensed; market data, names, classifications, and other upstream
 content are not relicensed by Oxtapus. The enabled TSETMC adapter accesses routes used by the
-current official website. The TGJU integration is maintained under a written agreement held
-by the Oxtapus maintainer. That agreement does not grant or imply separate downstream data
-rights for package users. Availability, accuracy, completeness, latency, and continued access
-are controlled by each upstream operator.
+current official website. Availability, accuracy, completeness, latency, and continued access
+are controlled by each upstream operator. Oxtapus does not grant or imply downstream data
+rights for package users.
 
 Users must determine whether their collection, storage, transformation, redistribution, and
 commercial use comply with applicable terms, exchange rules, privacy obligations, and law.

@@ -12,7 +12,7 @@ from oxtapus.transport.base import AsyncTransport, SyncTransport
 
 
 class TgjuProvider:
-    """Synchronous TGJU provider for agreement-covered verified assets."""
+    """Synchronous TGJU provider for explicitly mapped verified assets."""
 
     name = "tgju"
 

@@ -6,6 +6,5 @@ data. Endpoint specifications are catalog-owned and fail closed unless live evid
 them verified.
 
 The verified TSETMC website provider serves securities data. A separately catalogued TGJU
-provider serves the explicitly enabled currency and gold-coin histories covered by the
-maintainer's written agreement. Unverified sources and arbitrary upstream identifiers are not
-kept as fallbacks or placeholders.
+provider serves the explicitly enabled currency and gold-coin histories. Unverified sources
+and arbitrary upstream identifiers are not kept as fallbacks or placeholders.

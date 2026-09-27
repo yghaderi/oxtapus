@@ -1,7 +1,7 @@
 [catalog]
 version = "2026.09.27"
 provider = "tgju"
-verification_policy = "The maintainer confirmed a written source agreement; live payloads, dates, integral prices, aliases, nulls, and schema fingerprints were checked for five enabled assets."
+verification_policy = "Live payloads, dates, integral prices, aliases, nulls, and schema fingerprints were checked for five enabled assets."
 
 [[endpoint]]
 name = "asset_price_history"
@@ -20,7 +20,7 @@ update_cadence = "daily"
 pagination_behavior = "complete available history; no pagination parameter"
 retry_safe = true
 required_headers = ["User-Agent", "Referer", "Accept"]
-known_restrictions = "Only price_dollar_rl, nima_sell_usd, price_eur, sekee, and nim are enabled; usage is subject to the maintainer's written source agreement and upstream terms."
+known_restrictions = "Only price_dollar_rl, nima_sell_usd, price_eur, sekee, and nim are enabled; usage is subject to upstream terms."
 observed_response_size = 767835
 last_verified_timestamp = "2026-09-27T18:38:33Z"
 schema_fingerprint = "1a9392457cdcba79aee1cbb45c767d0eda09c54a2be23bcd872d7eb58d468198"

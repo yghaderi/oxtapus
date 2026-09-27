@@ -11,5 +11,4 @@ copied. In particular, reciprocal-license implementations were treated as behavi
 only.
 
 TGJU and TSETMC names and upstream content remain the property of their respective owners.
-The TGJU adapter is maintained under a written agreement held by the project maintainer; no
-upstream content is relicensed by the MIT license of Oxtapus.
+No upstream content is relicensed by the MIT license of Oxtapus.

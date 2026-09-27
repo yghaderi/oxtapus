@@ -2,7 +2,7 @@
 
 Read the root `AGENTS.md` before changing this bounded context.
 
-- Use only routes covered by the maintainer's written source agreement and recorded here.
+- Use only verified routes and mappings recorded in the endpoint catalog.
 - The endpoint catalog is evidence, not a wish list. Defaults use verified entries only.
 - Never add scraping fallbacks, browser impersonation, authentication bypasses, or hidden routes.
 - Extraction never persists and transformation never performs remote access.

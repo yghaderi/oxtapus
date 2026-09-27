@@ -22,7 +22,6 @@ the remaining historical source had no verified public-use contract. All three w
 from runtime architecture. The official live website's current API asset and cataloged host
 were then independently discovered and probed.
 
-After the 1.0 audit, the maintainer confirmed a written agreement covering the scoped TGJU
-integration. TGJU was therefore added as a separate, fail-closed provider for five explicitly
-mapped histories; this later authorization does not weaken the original rule that unverifiable
-or unauthorized sources remain excluded.
+After the 1.0 audit, TGJU was added as a separate, fail-closed provider for five explicitly
+mapped histories. This scoped addition does not weaken the original rule that unverifiable or
+unauthorized sources remain excluded.

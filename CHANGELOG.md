@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 — 2026-09-27
+
+- Removed project-maintainer authorization wording from public project copy.
+
 ## 1.1.0 — 2026-09-27
 
 - Added one typed `asset_history` API for TGJU-backed histories of `usd_irr`, `nima_usd_irr`,
