@@ -2,6 +2,8 @@
 """Identity, configuration, and result contract tests."""
 
 from datetime import UTC, date, datetime
+from types import SimpleNamespace
+from unittest.mock import Mock
 
 import polars as pl
 import pytest
@@ -17,7 +19,7 @@ from oxtapus.domain.identifiers import IdentifierKind, classify_identifier, norm
 
 
 def test_root_surface_is_small_and_versioned() -> None:
-    assert ox.__version__ == "1.1.1"
+    assert ox.__version__ == "1.2.0"
     assert set(ox.__all__) == {
         "AsyncClient",
         "Client",
@@ -25,7 +27,11 @@ def test_root_surface_is_small_and_versioned() -> None:
         "FetchResult",
         "Settings",
         "__version__",
-        "asset_history",
+        "tgju",
+        "tsetmc",
+    }
+    assert ox.tgju.__all__ == ["daily_prices"]
+    assert set(ox.tsetmc.__all__) == {
         "board_members",
         "daily_prices",
         "instrument_identity",
@@ -37,6 +43,49 @@ def test_root_surface_is_small_and_versioned() -> None:
         "option_chain",
         "quote",
     }
+    assert not hasattr(ox, "asset_history")
+    assert not hasattr(ox, "daily_prices")
+
+
+def test_tgju_namespace_dispatches_daily_prices(monkeypatch: pytest.MonkeyPatch) -> None:
+    frame = pl.DataFrame({"asset_code": ["usd_irr"]})
+    history = Mock(return_value=frame)
+    client = _ShortcutClient(assets=SimpleNamespace(history=history))
+    monkeypatch.setattr(ox.tgju, "Client", lambda: client)
+
+    result = ox.tgju.daily_prices("دلار", start="۱۴۰۳/۱۰/۱۲", progress=True)
+
+    assert result is frame
+    history.assert_called_once_with("دلار", "۱۴۰۳/۱۰/۱۲", None, progress=True)
+
+
+def test_tsetmc_namespace_dispatches_daily_prices(monkeypatch: pytest.MonkeyPatch) -> None:
+    frame = pl.DataFrame({"symbol": ["فولاد"]})
+    daily_prices = Mock(return_value=frame)
+    client = _ShortcutClient(market=SimpleNamespace(daily_prices=daily_prices))
+    monkeypatch.setattr(ox.tsetmc, "Client", lambda: client)
+
+    result = ox.tsetmc.daily_prices(["فولاد"], end="۱۴۰۴/۱۰/۱۱")
+
+    assert result is frame
+    daily_prices.assert_called_once_with(
+        ["فولاد"],
+        None,
+        "۱۴۰۴/۱۰/۱۱",
+        adjusted=False,
+        progress=None,
+    )
+
+
+class _ShortcutClient:
+    def __init__(self, **namespaces: object) -> None:
+        self.__dict__.update(namespaces)
+
+    def __enter__(self) -> "_ShortcutClient":
+        return self
+
+    def __exit__(self, *_args: object) -> None:
+        return None
 
 
 @pytest.mark.parametrize(

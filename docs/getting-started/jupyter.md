@@ -12,7 +12,7 @@
 import polars as pl
 import oxtapus as ox
 
-df = ox.daily_prices(["فولاد", "خودرو"], progress=True)
+df = ox.tsetmc.daily_prices(["فولاد", "خودرو"], progress=True)
 df.head()
 ```
 
@@ -32,7 +32,7 @@ latest
 
 ## تبدیل به Pandas
 
-اگه ابزار بعدی‌ات Pandas یا کتابخونه‌ای مثل statsmodels است، extra مربوطه رو نصب کن و تبدیل
+اگه ابزار بعدی‌ات Pandas یا کتابخونه‌ای مثل statsmodels است، extra مربوطه رو نصب کن و تبدیل رو
 انجام بده:
 
 ```python
@@ -43,7 +43,7 @@ latest
 pandas_df = df.to_pandas()
 ```
 
-## استفادهٔ async
+## اجرای ناهمگام
 
 Jupyter از `await` مستقیم پشتیبانی می‌کنه:
 
@@ -55,7 +55,7 @@ async with AsyncClient() as client:
     usd = await client.assets.history("دلار")
 ```
 
-نیازی به `asyncio.run`، دستکاری event loop یا `nest_asyncio` نیست. نمایش پیشرفت هم در cell
-خروجی کار می‌کنه.
+نیازی به `asyncio.run`، دستکاری حلقهٔ رویداد (`event loop`) یا `nest_asyncio` نیست. نمایش
+پیشرفت هم در خروجی cell کار می‌کنه.
 
 </div>

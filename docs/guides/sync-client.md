@@ -21,10 +21,10 @@ with Client(Settings(concurrency=4)) as client:
 ```
 
 متدهای ساده مثل `history` و `daily_prices` مستقیماً دیتافریم می‌دن. متدهای `fetch_history` و
-`fetch_daily_prices` یک `FetchResult` می‌دن که کنار دیتافریم، اطلاعات منبع، retry، هشدار،
-کیفیت و lineage هم داره.
+`fetch_daily_prices` یک `FetchResult` می‌دن که کنار دیتافریم، فرادادهٔ منبع، تلاش‌های مجدد،
+هشدار، کیفیت و `lineage` هم داره.
 
 بهترین روش استفاده از `with` است تا اتصال‌ها در پایان بسته بشن. اگه transport رو خودت به
-کلاینت تزریق کرده باشی، مالکیت و بستن اون با خودته.
+کلاینت داده باشی، مالکیت و بستن اون هم با خودته.
 
 </div>

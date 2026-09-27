@@ -60,7 +60,7 @@ intersphinx_mapping = {
 }
 
 html_theme = "pydata_sphinx_theme"
-html_title = "مستندات Oxtapus 1.1"
+html_title = f"مستندات Oxtapus {version}"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_theme_options = {

@@ -17,7 +17,7 @@ from oxtapus.providers.base import FetchFailure
 
 @dataclass(frozen=True, slots=True)
 class FetchResult:
-    """دیتافریم canonical همراه metadata کامل دریافت، کیفیت و lineage."""
+    """دیتافریم استاندارد همراه فرادادهٔ دریافت، گزارش کیفیت و lineage."""
 
     data: pl.DataFrame
     capability: ProviderCapability
@@ -42,7 +42,7 @@ class FetchResult:
         return cls(**{name: getattr(result, name) for name in cls.__dataclass_fields__})
 
     def to_polars(self) -> pl.DataFrame:
-        """یک clone کم‌هزینه از دیتافریم Polars برمی‌گرداند."""
+        """یک نسخهٔ کم‌هزینه از دیتافریم Polars برمی‌گرداند."""
 
         return self.data.clone()
 
@@ -70,6 +70,6 @@ class FetchResult:
             ) from exc
 
     def to_records(self) -> list[dict[str, Any]]:
-        """ردیف‌ها را به‌ترتیب به‌شکل فهرست dictionaryهای پایتون برمی‌گرداند."""
+        """ردیف‌ها را به‌ترتیب به‌شکل فهرستی از دیکشنری‌های پایتون برمی‌گرداند."""
 
         return self.data.to_dicts()

@@ -7,12 +7,12 @@
 ```python
 import oxtapus as ox
 
-frame = ox.asset_history("دلار", start="۱۴۰۲/۱۰/۱۱", end="۱۴۰۴/۱۰/۰۸")
+frame = ox.tgju.daily_prices("دلار", start="1402/10/11", end="1404/10/08")
 ```
 
 ## دارایی‌های پشتیبانی‌شده
 
-| نام فارسی | کد canonical | شناسهٔ داخلی منبع |
+| نام فارسی | کد استاندارد | شناسهٔ داخلی منبع |
 |---|---|---|
 | دلار آزاد | `usd_irr` | `price_dollar_rl` |
 | دلار نیما | `nima_usd_irr` | `nima_sell_usd` |
@@ -20,20 +20,20 @@ frame = ox.asset_history("دلار", start="۱۴۰۲/۱۰/۱۱", end="۱۴۰۴/�
 | سکه امامی | `emami_gold_coin` | `sekee` |
 | نیم‌سکه | `half_gold_coin` | `nim` |
 
-شناسهٔ داخلی منبع برای شفافیت و lineage در جدول اومده، اما ورودی API عمومی نیست. ورودی عمومی
-یا نام فارسیه یا کد canonical.
+شناسهٔ داخلی منبع برای شفافیت و `lineage` در جدول اومده، اما ورودی API عمومی نیست. ورودی
+عمومی یا نام فارسیه یا کد استاندارد.
 
 ## نرمال‌سازی نام فارسی
 
 این ورودی‌ها همگی بدون حساسیت به فاصله و نیم‌فاصله تشخیص داده می‌شن:
 
 ```python
-ox.asset_history("نیم سکه")
-ox.asset_history("نیم‌سکه")
-ox.asset_history("  نیم   سکه  ")
+ox.tgju.daily_prices("نیم سکه")
+ox.tgju.daily_prices("نیم‌سکه")
+ox.tgju.daily_prices("  نیم   سکه  ")
 
-ox.asset_history("سکه امامی")
-ox.asset_history("سکه‌امامی")
+ox.tgju.daily_prices("سکه امامی")
+ox.tgju.daily_prices("سکه‌امامی")
 ```
 
 شکل عربی «ی» و «ک»، فاصلهٔ غیرقابل‌شکستن و فاصله‌های تکراری هم نرمال می‌شن. نام مبهم «سکه»
@@ -50,7 +50,7 @@ ox.asset_history("سکه‌امامی")
 from oxtapus import Client
 
 with Client() as client:
-    result = client.assets.fetch_history("یورو", start="۱۴۰۲/۱۰/۱۱")
+    result = client.assets.fetch_history("یورو", start="1402/10/11")
 
 print(result.data)
 print(result.retrieved_at)
@@ -58,13 +58,13 @@ print(result.source_schema_version)
 print(result.quality_summary)
 ```
 
-endpoint فقط برای همین پنج mapping تأییدشده بازه و URL یا شناسهٔ دلخواه نمی‌پذیره. حقوق
-استفادهٔ پایین‌دستی از داده‌ها باید جداگانه با شرایط منبع و کاربرد خودت سازگار باشه.
+نقطهٔ پایانی فقط برای همین پنج نگاشت تأییدشده در دسترسه و URL یا شناسهٔ دلخواه نمی‌پذیره.
+شرایط استفاده و بازنشر داده‌ها رو باید جداگانه با مقررات منبع و نوع کاربرد خودت تطبیق بدی.
 
 برای استفاده از خط فرمان هم همین ورودی‌ها معتبرن:
 
 ```bash
-oxtapus fetch asset-history 'دلار نیما' --start ۱۴۰۳/۱۰/۱۲
+oxtapus fetch tgju daily-prices 'دلار نیما' --start 1403/10/12
 ```
 
 </div>

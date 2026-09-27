@@ -5,8 +5,8 @@
 
    <div class="rtl-doc" dir="rtl">
 
-``AsyncClient`` همتای native-async کلاینت همگامه. Oxtapus event loop رو نمی‌سازه و کنترل
-نمی‌کنه؛ متدها رو داخل loop برنامه یا با ``await`` مستقیم Jupyter صدا بزن.
+``AsyncClient`` همتای ناهمگام کلاینت همگامه. Oxtapus حلقهٔ رویداد (``event loop``) رو نمی‌سازه
+و کنترل نمی‌کنه؛ متدها رو داخل حلقهٔ رویداد برنامه یا با ``await`` مستقیم Jupyter صدا بزن.
 
 .. code-block:: pycon
 

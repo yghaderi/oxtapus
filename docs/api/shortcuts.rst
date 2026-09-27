@@ -1,22 +1,23 @@
-میان‌برهای دیتافریم
+API منبع‌محور
 ============================
 
 .. raw:: html
 
    <div class="rtl-doc" dir="rtl">
 
-این توابع برای نوت‌بوک و تحلیل سریع مناسبن و مستقیماً ``polars.DataFrame`` برمی‌گردونن. برای
-metadata کامل از متدهای ``fetch_...`` کلاینت استفاده کن.
+این توابع برای نوت‌بوک و تحلیل سریع مناسبن و مستقیماً ``polars.DataFrame`` برمی‌گردونن. نام
+منبع همیشه در مسیر فراخوانی مشخصه. برای فرادادهٔ کامل از متدهای ``fetch_...`` کلاینت استفاده
+کن.
 
-ارز و سکه
----------
+TGJU: ارز و سکه
+---------------
 
-.. autofunction:: oxtapus.asset_history
+.. autofunction:: oxtapus.tgju.daily_prices
 
 .. code-block:: pycon
 
    >>> import oxtapus as ox
-   >>> frame = ox.asset_history("سکه امامی", start="۱۴۰۳/۱۰/۱۲")
+   >>> frame = ox.tgju.daily_prices("سکه امامی", start="1403/10/12")
    >>> frame.select("asset_code", "trading_date", "close_price").tail(2)
    shape: (2, 3)
    ┌─────────────────┬──────────────┬─────────────┐
@@ -28,22 +29,22 @@ metadata کامل از متدهای ``fetch_...`` کلاینت استفاده ک
    │ emami_gold_coin ┆ …            ┆ …           │
    └─────────────────┴──────────────┴─────────────┘
 
-قیمت و بازار
-------------
+TSETMC: قیمت و بازار
+------------------------
 
-.. autofunction:: oxtapus.daily_prices
+.. autofunction:: oxtapus.tsetmc.daily_prices
 
-.. autofunction:: oxtapus.market_watch
+.. autofunction:: oxtapus.tsetmc.market_watch
 
-.. autofunction:: oxtapus.quote
+.. autofunction:: oxtapus.tsetmc.quote
 
-.. autofunction:: oxtapus.market_depth
+.. autofunction:: oxtapus.tsetmc.market_depth
 
-.. autofunction:: oxtapus.investor_activity
+.. autofunction:: oxtapus.tsetmc.investor_activity
 
 .. code-block:: pycon
 
-   >>> quote = ox.quote("فولاد")
+   >>> quote = ox.tsetmc.quote("فولاد")
    >>> quote.select("symbol", "last_price", "close_price")
    shape: (1, 3)
    ┌────────┬────────────┬─────────────┐
@@ -57,15 +58,15 @@ metadata کامل از متدهای ``fetch_...`` کلاینت استفاده ک
 اطلاعات ابزار و شرکت
 --------------------
 
-.. autofunction:: oxtapus.instrument_search
+.. autofunction:: oxtapus.tsetmc.instrument_search
 
-.. autofunction:: oxtapus.instrument_info
+.. autofunction:: oxtapus.tsetmc.instrument_info
 
-.. autofunction:: oxtapus.instrument_identity
+.. autofunction:: oxtapus.tsetmc.instrument_identity
 
-.. autofunction:: oxtapus.board_members
+.. autofunction:: oxtapus.tsetmc.board_members
 
-.. autofunction:: oxtapus.option_chain
+.. autofunction:: oxtapus.tsetmc.option_chain
 
 .. raw:: html
 

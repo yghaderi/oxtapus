@@ -5,26 +5,50 @@
 
    <div class="rtl-doc" dir="rtl">
 
-این صفحه نمای کلی آبجکت‌ها، توابع و متدهای عمومی Oxtapus رو می‌ده. اسم‌های موجود در
-``oxtapus.__all__`` سطح اصلی API هستن؛ namespaceهای ``Client`` و ``AsyncClient`` هم در
-صفحه‌های جدا با تمام متدها مستند شدن.
+این صفحه نمای کلی اشیاء، توابع و متدهای عمومی Oxtapus رو می‌ده. API ساده زیر دو منبع
+``oxtapus.tsetmc`` و ``oxtapus.tgju`` قرار داره؛ ``Client`` و ``AsyncClient`` هم در صفحه‌های
+جدا با تمام متدها مستند شدن.
 
-میان‌برهای دیتافریم
--------------------
+TGJU
+----
+
+قیمت روزانه ارز و سکه
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
 
-   oxtapus.asset_history
-   oxtapus.daily_prices
-   oxtapus.market_watch
-   oxtapus.quote
-   oxtapus.market_depth
-   oxtapus.investor_activity
-   oxtapus.instrument_search
-   oxtapus.instrument_info
-   oxtapus.instrument_identity
-   oxtapus.board_members
-   oxtapus.option_chain
+   oxtapus.tgju.daily_prices
+
+TSETMC
+------
+
+قیمت و دیده‌بان بازار
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+
+   oxtapus.tsetmc.daily_prices
+   oxtapus.tsetmc.market_watch
+   oxtapus.tsetmc.quote
+   oxtapus.tsetmc.market_depth
+   oxtapus.tsetmc.investor_activity
+
+جست‌وجو و اطلاعات ابزار
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+
+   oxtapus.tsetmc.instrument_search
+   oxtapus.tsetmc.instrument_info
+   oxtapus.tsetmc.instrument_identity
+
+اختیار معامله و راهبری شرکتی
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+
+   oxtapus.tsetmc.board_members
+   oxtapus.tsetmc.option_chain
 
 کلاینت‌ها
 ---------
@@ -46,12 +70,22 @@
 صفحه‌های جزئیات
 ---------------
 
-* :doc:`shortcuts` — تابع‌های ساده‌ای که مستقیم دیتافریم می‌دن.
-* :doc:`sync-client` — کلاینت همگام و namespaceهای بازار، ابزار، دارایی و راهبری شرکتی.
-* :doc:`async-client` — نسخهٔ async با قابلیت‌های معادل.
+* :doc:`shortcuts` — تابع‌های منبع‌محوری که مستقیم دیتافریم می‌دن.
+* :doc:`sync-client` — کلاینت همگام و فضای نام بازار، ابزار، دارایی و راهبری شرکتی.
+* :doc:`async-client` — نسخهٔ ناهمگام با قابلیت‌های معادل.
 * :doc:`results-settings` — ``FetchResult``، تبدیل خروجی و تنظیمات.
 * :doc:`exceptions` — سلسله‌مراتب خطاهای تایپ‌شده.
 
 .. raw:: html
 
    </div>
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   shortcuts
+   sync-client
+   async-client
+   results-settings
+   exceptions

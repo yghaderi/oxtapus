@@ -9,10 +9,10 @@
 ```python
 import oxtapus as ox
 
-prices = ox.daily_prices(
+prices = ox.tsetmc.daily_prices(
     ["فولاد", "خودرو"],
-    start="۱۴۰۳/۱۰/۱۲",
-    end="۱۴۰۴/۱۰/۰۸",
+    start="1403/10/12",
+    end="1404/10/08",
     progress=True,
 )
 
@@ -27,15 +27,15 @@ print(prices.select("symbol", "trading_date", "close_price", "trade_volume"))
 یک تابع برای هر پنج دارایی داریم؛ فقط اسم دارایی رو عوض کن:
 
 ```python
-usd = ox.asset_history("دلار", start="۱۴۰۲/۱۰/۱۱")
-nima = ox.asset_history("دلار نیما")
-eur = ox.asset_history("یورو")
-emami = ox.asset_history("سکه امامی")
-half = ox.asset_history("نیم‌سکه")
+usd = ox.tgju.daily_prices("دلار", start="1402/10/11")
+nima = ox.tgju.daily_prices("دلار نیما")
+eur = ox.tgju.daily_prices("یورو")
+emami = ox.tgju.daily_prices("سکه امامی")
+half = ox.tgju.daily_prices("نیم‌سکه")
 ```
 
-فاصلهٔ اضافه، نیم‌فاصله و تفاوت حروف فارسی/عربی مشکلی ایجاد نمی‌کنه. این پنج نام canonical هم
-برای کدهای انگلیسی قابل استفاده‌ان:
+فاصلهٔ اضافه، نیم‌فاصله و تفاوت حروف فارسی/عربی مشکلی ایجاد نمی‌کنه. این پنج کد استاندارد هم
+برای ورودی انگلیسی قابل استفاده‌ان:
 
 - `usd_irr`
 - `nima_usd_irr`
@@ -46,32 +46,33 @@ half = ox.asset_history("نیم‌سکه")
 مثلاً این دو درخواست یک دارایی رو می‌گیرن:
 
 ```python
-first = ox.asset_history("  نیم   سکه ")
-second = ox.asset_history("half_gold_coin")
+first = ox.tgju.daily_prices("  نیم   سکه ")
+second = ox.tgju.daily_prices("half_gold_coin")
 ```
 
 اگه نام پشتیبانی نشه، متن خطا هم ورودی خودت رو نشون می‌ده و هم فهرست دارایی‌های مجاز رو.
 
-## اطلاعات لحظه‌ای‌تر بازار
+## داده‌های جاری بازار
 
 ```python
-instruments = ox.instrument_search("فولاد")
-snapshot = ox.market_watch(["equity", "etf"])
-quote = ox.quote("فولاد")
-book = ox.market_depth("فولاد")
-activity = ox.investor_activity("فولاد")
-identity = ox.instrument_identity("فولاد")
-board = ox.board_members("فولاد")
-chain = ox.option_chain("خودرو")
+instruments = ox.tsetmc.instrument_search("فولاد")
+snapshot = ox.tsetmc.market_watch(["equity", "etf"])
+quote = ox.tsetmc.quote("فولاد")
+book = ox.tsetmc.market_depth("فولاد")
+activity = ox.tsetmc.investor_activity("فولاد")
+identity = ox.tsetmc.instrument_identity("فولاد")
+board = ox.tsetmc.board_members("فولاد")
+chain = ox.tsetmc.option_chain("خودرو")
 ```
 
-`quote` خلاصهٔ یک‌ردیفی تابلو مثل قیمت اولین، آخرین، پایانی و دامنهٔ روزه. در مقابل،
+`quote` خلاصهٔ یک‌ردیفی تابلو، شامل قیمت اولین معامله، آخرین معامله، قیمت پایانی و دامنهٔ قیمت
+روزانه است. در مقابل،
 `market_depth` چند ردیف برمی‌گردونه و هر ردیف یک سطح سفارش خرید و فروشه؛ پس این دو یکی نیستن.
 
-## وقتی جزئیات دریافت مهمه
+## وقتی فرادادهٔ دریافت مهمه
 
-برای دیدن خطاها، retry، کیفیت داده، نسخهٔ schema و lineage از کلاینت و متد `fetch_...` استفاده
-کن:
+برای دیدن خطاها، تلاش‌های مجدد، کیفیت داده، نسخهٔ طرح‌واره و `lineage` از کلاینت و متد
+`fetch_...` استفاده کن:
 
 ```python
 from oxtapus import Client

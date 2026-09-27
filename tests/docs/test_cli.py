@@ -1,4 +1,3 @@
-# ruff: noqa: RUF001
 """CLI commands remain thin, offline where possible, and English."""
 
 from oxtapus.cli.app import main, parser
@@ -17,10 +16,11 @@ def test_cli_help_is_english() -> None:
     assert "capabilities" in help_text
 
 
-def test_cli_parses_asset_history() -> None:
+def test_cli_parses_source_qualified_tgju_daily_prices() -> None:
     arguments = parser().parse_args(
-        ["fetch", "asset-history", "دلار نیما", "--start", "۱۴۰۳/۱۰/۱۲"]
+        ["fetch", "tgju", "daily-prices", "دلار نیما", "--start", "1403/10/12"]
     )
-    assert arguments.command == "asset-history"
+    assert arguments.source == "tgju"
+    assert arguments.command == "daily-prices"
     assert arguments.asset == "دلار نیما"
-    assert arguments.start == "۱۴۰۳/۱۰/۱۲"
+    assert arguments.start == "1403/10/12"

@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     provider: str = "tsetmc"
     endpoint_priority: tuple[str, ...] = ("tsetmc",)
     base_urls: tuple[str, ...] = ("https://cdn.tsetmc.com", "https://api.tgju.org")
-    user_agent: str = "Oxtapus/1.1 (+https://github.com/yghaderi/oxtapus)"
+    user_agent: str = "Oxtapus/1.2 (+https://github.com/yghaderi/oxtapus)"
     http2: bool = False
     verify_tls: bool = True
     proxy: str | None = None

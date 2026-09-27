@@ -4,7 +4,7 @@ from enum import StrEnum
 
 
 class DataLayer(StrEnum):
-    """A material data-engineering layer."""
+    """یکی از لایه‌های مادی خط لولهٔ مهندسی داده."""
 
     BRONZE = "bronze"
     SILVER = "silver"
@@ -12,7 +12,7 @@ class DataLayer(StrEnum):
 
 
 class EndpointStatus(StrEnum):
-    """Verification state of an upstream endpoint."""
+    """وضعیت راستی‌آزمایی یک نقطهٔ پایانی منبع."""
 
     VERIFIED = "verified"
     EXPERIMENTAL = "experimental"
@@ -22,7 +22,7 @@ class EndpointStatus(StrEnum):
 
 
 class ProviderCapability(StrEnum):
-    """Canonical provider capabilities exposed by Oxtapus."""
+    """قابلیت‌های استاندارد فراهم‌کننده که Oxtapus ارائه می‌کند."""
 
     INSTRUMENT_SEARCH = "instrument_search"
     INSTRUMENT_MASTER = "instrument_master"
@@ -39,14 +39,14 @@ class ProviderCapability(StrEnum):
 
 
 class FailureMode(StrEnum):
-    """Batch failure behavior."""
+    """رفتار موردنظر هنگام شکست در پردازش گروهی."""
 
     COLLECT = "collect"
     FAIL_FAST = "fail_fast"
 
 
 class SchemaPolicy(StrEnum):
-    """Action taken when a source schema changes."""
+    """عملی که هنگام تغییر طرح‌وارهٔ منبع انجام می‌شود."""
 
     REPORT = "report"
     QUARANTINE = "quarantine"
@@ -54,7 +54,7 @@ class SchemaPolicy(StrEnum):
 
 
 class QualitySeverity(StrEnum):
-    """Severity assigned to a data-quality rule."""
+    """شدت اختصاص‌یافته به یک قانون کیفیت داده."""
 
     ERROR = "error"
     QUARANTINE = "quarantine"
@@ -63,7 +63,7 @@ class QualitySeverity(StrEnum):
 
 
 class InstrumentState(StrEnum):
-    """Lifecycle or trading state of an instrument."""
+    """وضعیت چرخهٔ عمر یا معاملهٔ یک ابزار مالی."""
 
     ACTIVE = "active"
     INACTIVE = "inactive"

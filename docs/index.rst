@@ -18,7 +18,7 @@ Oxtapus یک SDK تایپ‌شده و مبتنی بر Polars برای داده�
 .. code-block:: pycon
 
    >>> import oxtapus as ox
-   >>> usd = ox.asset_history("دلار", start="۱۴۰۳/۱۰/۱۲")
+   >>> usd = ox.tgju.daily_prices("دلار", start="1403/10/12")
    >>> usd.select("trading_date", "close_price").tail(3)
    shape: (3, 2)
    ┌──────────────┬─────────────┐
@@ -52,11 +52,6 @@ Oxtapus یک SDK تایپ‌شده و مبتنی بر Polars برای داده�
    :caption: مرجع API پایتون
 
    api/index
-   api/shortcuts
-   api/sync-client
-   api/async-client
-   api/results-settings
-   api/exceptions
 
 .. toctree::
    :maxdepth: 2

@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.0 — 2026-09-27
+
+- Replaced ambiguous root shortcuts with explicit ``oxtapus.tsetmc`` and ``oxtapus.tgju``
+  source namespaces; both expose ``daily_prices`` and no compatibility aliases remain.
+- Grouped CLI fetch commands by source under ``fetch tsetmc`` and ``fetch tgju``.
+- Reorganized the Python API reference by source and capability, and linked packaged project
+  copy to the generated Sphinx site instead of raw documentation source files.
+- Restored concise Persian API summaries from the 0.4.1 documentation where applicable;
+  generated signatures, parameters, return descriptions, and types are English and LTR.
+- Reviewed Persian financial, statistical, market-data, and data-engineering terminology;
+  retained established English terms such as ``Rolling Volatility`` and ``Bid–Ask Spread``
+  where a Persian rendering would be unclear.
+- Isolated mixed Persian/Latin README text for stable bidirectional rendering and changed
+  PyPI-facing documentation links to absolute URLs.
+- Changed Jalali dates in user-facing examples to Latin digits while retaining Persian and
+  Arabic digit support in the parser.
+
 ## 1.1.1 — 2026-09-27
 
 - Removed project-maintainer authorization wording from public project copy.

@@ -66,7 +66,7 @@ class AsyncMarketNamespace:
         adjusted: bool = False,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """قیمت روزانه را همراه metadata کامل عملیاتی برمی‌گرداند."""
+        """قیمت روزانه را همراه فرادادهٔ کامل عملیاتی برمی‌گرداند."""
 
         require_unadjusted(adjusted)
         result = await self._service.daily_prices(
@@ -83,7 +83,7 @@ class AsyncMarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> pl.DataFrame:
-        """برای نوع ابزارهای خواسته‌شده، آخرین snapshot بازار را برمی‌گرداند."""
+        """برای نوع ابزارهای خواسته‌شده، آخرین تصویر لحظه‌ای بازار را برمی‌گرداند."""
 
         return (await self.fetch_market_watch(instrument_types, progress=progress)).data
 
@@ -93,7 +93,7 @@ class AsyncMarketNamespace:
         *,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """snapshot بازار را همراه metadata عملیاتی برمی‌گرداند."""
+        """تصویر لحظه‌ای بازار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         result = await self._service.market_watch(
             tuple(instrument_types), reporter=self._reporter(progress)
@@ -106,7 +106,7 @@ class AsyncMarketNamespace:
         return (await self.fetch_quote(identifier, progress=progress)).data
 
     async def fetch_quote(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
-        """اطلاعات تابلو را همراه metadata عملیاتی برمی‌گرداند."""
+        """اطلاعات تابلو را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         result = await self._service.quote(identifier, reporter=self._reporter(progress))
         return FetchResult.from_service(result)
@@ -114,14 +114,14 @@ class AsyncMarketNamespace:
     async def market_depth(
         self, identifier: str, *, progress: ProgressOption = None
     ) -> pl.DataFrame:
-        """برای ``identifier``، حداکثر پنج سطح فعلی order book را برمی‌گرداند."""
+        """برای ``identifier``، حداکثر پنج سطح فعلی دفتر سفارش‌ها را برمی‌گرداند."""
 
         return (await self.fetch_market_depth(identifier, progress=progress)).data
 
     async def fetch_market_depth(
         self, identifier: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """سطح‌های order book را همراه metadata عملیاتی برمی‌گرداند."""
+        """سطح‌های دفتر سفارش‌ها را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         result = await self._service.order_book(identifier, reporter=self._reporter(progress))
         return FetchResult.from_service(result)
@@ -136,7 +136,7 @@ class AsyncMarketNamespace:
     async def fetch_investor_activity(
         self, identifier: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """آمار حقیقی/حقوقی را همراه metadata عملیاتی برمی‌گرداند."""
+        """آمار حقیقی/حقوقی را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         result = await self._service.investor_activity(
             identifier, reporter=self._reporter(progress)
@@ -146,14 +146,14 @@ class AsyncMarketNamespace:
     async def option_chain(
         self, underlying: str, *, progress: ProgressOption = None
     ) -> pl.DataFrame:
-        """برای ``underlying``، یک ردیف canonical برای هر قرارداد اختیار برمی‌گرداند."""
+        """برای ``underlying``، یک ردیف استاندارد برای هر قرارداد اختیار برمی‌گرداند."""
 
         return (await self.fetch_option_chain(underlying, progress=progress)).data
 
     async def fetch_option_chain(
         self, underlying: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """قراردادهای اختیار را همراه metadata عملیاتی برمی‌گرداند."""
+        """قراردادهای اختیار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         result = await self._service.option_chain(underlying, reporter=self._reporter(progress))
         return FetchResult.from_service(result)
@@ -175,18 +175,18 @@ class AsyncInstrumentNamespace:
         return (await self.fetch_search(term, progress=progress)).data
 
     async def fetch_search(self, term: str, *, progress: ProgressOption = None) -> FetchResult:
-        """نتیجهٔ جست‌وجو را همراه metadata منبع برمی‌گرداند."""
+        """نتیجهٔ جست‌وجو را همراه فرادادهٔ منبع برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         return FetchResult.from_service(await self._service.search(term, reporter))
 
     async def info(self, identifier: str, *, progress: ProgressOption = None) -> pl.DataFrame:
-        """اطلاعات معاملاتی و ارزش‌گذاری ``identifier`` را برمی‌گرداند."""
+        """داده‌های پایهٔ نماد یا ابزار معاملاتی را برمی‌گرداند."""
 
         return (await self.fetch_info(identifier, progress=progress)).data
 
     async def fetch_info(self, identifier: str, *, progress: ProgressOption = None) -> FetchResult:
-        """اطلاعات ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+        """اطلاعات ابزار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         return FetchResult.from_service(await self._service.info(identifier, reporter))
@@ -199,7 +199,7 @@ class AsyncInstrumentNamespace:
     async def fetch_identity(
         self, identifier: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """هویت ابزار را همراه metadata عملیاتی برمی‌گرداند."""
+        """هویت ابزار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         return FetchResult.from_service(await self._service.identity(identifier, reporter))
@@ -222,7 +222,7 @@ class AsyncGovernanceNamespace:
     async def fetch_board_members(
         self, identifier: str, *, progress: ProgressOption = None
     ) -> FetchResult:
-        """تاریخچهٔ هیئت‌مدیره را همراه metadata عملیاتی برمی‌گرداند."""
+        """تاریخچهٔ هیئت‌مدیره را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         result = await self._service.board_members(identifier, reporter)
@@ -256,7 +256,7 @@ class AsyncAssetNamespace:
         *,
         progress: ProgressOption = None,
     ) -> FetchResult:
-        """تاریخچهٔ دارایی را همراه metadata منبع، کیفیت، retry و lineage برمی‌گرداند."""
+        """تاریخچهٔ دارایی را همراه فرادادهٔ منبع، کیفیت، تلاش‌های مجدد و lineage برمی‌گرداند."""
 
         reporter = make_progress_reporter(self._settings.progress if progress is None else progress)
         result = await self._service.history(
@@ -269,7 +269,7 @@ class AsyncAssetNamespace:
 
 
 class AsyncClient:
-    """کلاینت ناهمگام با اتصال قابل‌استفادهٔ مجدد و namespaceهای عمومی."""
+    """کلاینت ناهمگام با اتصال قابل‌استفادهٔ مجدد و فضاهای نام عمومی."""
 
     def __init__(
         self,
@@ -310,7 +310,7 @@ class AsyncClient:
         await self.aclose()
 
     async def aclose(self) -> None:
-        """منابع transport متعلق به کلاینت را می‌بندد."""
+        """منابع انتقال متعلق به کلاینت را می‌بندد."""
 
         if self._closed:
             return
@@ -325,7 +325,7 @@ class AsyncClient:
         return self._closed
 
     def capabilities(self) -> tuple[ProviderCapability, ...]:
-        """قابلیت‌های تأییدشدهٔ providerها را بدون درخواست شبکه برمی‌گرداند."""
+        """قابلیت‌های تأییدشدهٔ فراهم‌کننده‌ها را بدون درخواست شبکه برمی‌گرداند."""
 
         return tuple(
             dict.fromkeys(self._provider.capabilities() + self._tgju_provider.capabilities())

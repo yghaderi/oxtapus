@@ -4,27 +4,27 @@ from collections.abc import Sequence
 
 
 class OxtapusError(Exception):
-    """Base class for all package errors."""
+    """کلاس پایهٔ همهٔ خطاهای بسته."""
 
 
 class ConfigurationError(OxtapusError):
-    """Configuration is invalid or unsafe."""
+    """تنظیمات نامعتبر یا ناامن است."""
 
 
 class UnsupportedCapabilityError(OxtapusError):
-    """A provider does not implement the requested capability."""
+    """فراهم‌کننده قابلیت درخواستی را پیاده‌سازی نکرده است."""
 
 
 class EndpointUnavailableError(OxtapusError):
-    """No verified endpoint can serve the capability."""
+    """هیچ نقطهٔ پایانی تأییدشده‌ای برای قابلیت درخواستی در دسترس نیست."""
 
 
 class TransportError(OxtapusError):
-    """A remote request failed before a valid response was produced."""
+    """درخواست پیش از دریافت پاسخ معتبر شکست خورده است."""
 
 
 class HTTPResponseError(TransportError):
-    """A remote server returned an unsuccessful HTTP response."""
+    """سرور منبع پاسخ ناموفق HTTP برگردانده است."""
 
     def __init__(self, status_code: int, url: str, message: str) -> None:
         self.status_code = status_code
@@ -33,7 +33,7 @@ class HTTPResponseError(TransportError):
 
 
 class RetryExhaustedError(TransportError):
-    """A retryable request exhausted its configured retry policy."""
+    """درخواست پس از همهٔ تلاش‌های مجاز همچنان ناموفق بوده است."""
 
     def __init__(self, attempts: int, original: BaseException) -> None:
         self.attempts = attempts
@@ -42,31 +42,31 @@ class RetryExhaustedError(TransportError):
 
 
 class ResponseValidationError(OxtapusError):
-    """A response body is malformed or semantically implausible."""
+    """بدنهٔ پاسخ ناقص یا از نظر معنایی نامعتبر است."""
 
 
 class SchemaValidationError(ResponseValidationError):
-    """A source or canonical record violates its schema contract."""
+    """رکورد منبع یا رکورد استاندارد با قرارداد طرح‌واره سازگار نیست."""
 
 
 class SchemaDriftError(SchemaValidationError):
-    """A source schema changed under a strict schema policy."""
+    """طرح‌وارهٔ منبع با وجود سیاست سخت‌گیرانه تغییر کرده است."""
 
 
 class DataQualityError(OxtapusError):
-    """Canonical data violates an error-level quality rule."""
+    """دادهٔ استاندارد یکی از قواعد خطای کیفیت را نقض کرده است."""
 
 
 class StorageError(OxtapusError):
-    """A persistence operation failed safely."""
+    """عملیات ذخیره‌سازی به‌شکل کنترل‌شده شکست خورده است."""
 
 
 class InstrumentResolutionError(OxtapusError):
-    """Base class for instrument-resolution errors."""
+    """کلاس پایهٔ خطاهای شناسایی ابزار مالی."""
 
 
 class InstrumentNotFoundError(InstrumentResolutionError):
-    """No instrument matches an identifier."""
+    """هیچ ابزار مالی با شناسهٔ واردشده پیدا نشده است."""
 
     def __init__(self, identifier: str) -> None:
         self.identifier = identifier
@@ -74,11 +74,11 @@ class InstrumentNotFoundError(InstrumentResolutionError):
 
 
 class InvalidInstrumentIdentifierError(InstrumentResolutionError):
-    """An identifier has an invalid form."""
+    """قالب شناسهٔ ابزار مالی معتبر نیست."""
 
 
 class UnsupportedAssetError(OxtapusError):
-    """A requested non-security asset is not in the verified public mapping."""
+    """دارایی درخواستی در فهرست تأییدشده وجود ندارد."""
 
     def __init__(self, asset: str, supported: Sequence[str]) -> None:
         self.asset = asset
@@ -88,7 +88,7 @@ class UnsupportedAssetError(OxtapusError):
 
 
 class AmbiguousInstrumentError(InstrumentResolutionError):
-    """An identifier matches more than one instrument."""
+    """شناسهٔ واردشده با بیش از یک ابزار مالی منطبق است."""
 
     def __init__(self, identifier: str, candidates: Sequence[object]) -> None:
         self.identifier = identifier
@@ -100,8 +100,8 @@ class AmbiguousInstrumentError(InstrumentResolutionError):
 
 
 class PartialFailureError(OxtapusError):
-    """One or more items failed in fail-fast mode."""
+    """یک یا چند مورد در حالت توقف با اولین خطا شکست خورده‌اند."""
 
 
 class PartialFetchWarning(UserWarning):
-    """A simple batch call returned data while one or more items failed."""
+    """درخواست گروهی با وجود شکست بعضی موارد، بخشی از داده را برگردانده است."""

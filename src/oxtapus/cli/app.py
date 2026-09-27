@@ -50,20 +50,15 @@ def parser() -> argparse.ArgumentParser:
     search.add_argument("term", help="Symbol or instrument name fragment.")
 
     fetch = groups.add_parser("fetch", help="Fetch canonical market data.")
-    fetch_commands = fetch.add_subparsers(dest="command", required=True)
-    daily = fetch_commands.add_parser("daily-prices", help="Fetch daily OHLCV.")
+    fetch_sources = fetch.add_subparsers(dest="source", required=True)
+
+    fetch_tsetmc = fetch_sources.add_parser("tsetmc", help="Fetch data from TSETMC.")
+    tsetmc_commands = fetch_tsetmc.add_subparsers(dest="command", required=True)
+    daily = tsetmc_commands.add_parser("daily-prices", help="Fetch daily OHLCV.")
     daily.add_argument("symbols", nargs="+", help="Symbols or verified identifiers.")
     daily.add_argument("--start", help="Optional first Jalali or Gregorian date, inclusive.")
     daily.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
-    asset_history = fetch_commands.add_parser(
-        "asset-history", help="Fetch a supported currency or gold-coin history."
-    )
-    asset_history.add_argument("asset", help="Persian asset name or canonical asset code.")
-    asset_history.add_argument(
-        "--start", help="Optional first Jalali or Gregorian date, inclusive."
-    )
-    asset_history.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
-    watch = fetch_commands.add_parser("market-watch", help="Fetch the latest snapshot.")
+    watch = tsetmc_commands.add_parser("market-watch", help="Fetch the latest snapshot.")
     watch.add_argument(
         "--instrument-type",
         action="append",
@@ -71,8 +66,17 @@ def parser() -> argparse.ArgumentParser:
         choices=("equity", "etf"),
         help="Repeat to select instrument types.",
     )
-    chain = fetch_commands.add_parser("option-chain", help="Fetch an option chain.")
+    chain = tsetmc_commands.add_parser("option-chain", help="Fetch an option chain.")
     chain.add_argument("underlying", help="Underlying symbol or identifier.")
+
+    fetch_tgju = fetch_sources.add_parser("tgju", help="Fetch data from TGJU.")
+    tgju_commands = fetch_tgju.add_subparsers(dest="command", required=True)
+    tgju_daily = tgju_commands.add_parser(
+        "daily-prices", help="Fetch daily currency or gold-coin prices."
+    )
+    tgju_daily.add_argument("asset", help="Persian asset name or canonical asset code.")
+    tgju_daily.add_argument("--start", help="Optional first Jalali or Gregorian date, inclusive.")
+    tgju_daily.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
 
     ingest = groups.add_parser("ingest", help="Run configured incremental ingestion.")
     ingest.add_argument(
@@ -148,7 +152,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if arguments.group == "fetch":
         with Client(settings) as client:
-            if arguments.command == "daily-prices":
+            if arguments.source == "tsetmc" and arguments.command == "daily-prices":
                 _print_frame(
                     client.market.daily_prices(
                         arguments.symbols,
@@ -157,7 +161,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                         progress=True,
                     )
                 )
-            elif arguments.command == "asset-history":
+            elif arguments.source == "tgju" and arguments.command == "daily-prices":
                 _print_frame(
                     client.assets.history(
                         arguments.asset,
@@ -166,10 +170,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                         progress=True,
                     )
                 )
-            elif arguments.command == "market-watch":
+            elif arguments.source == "tsetmc" and arguments.command == "market-watch":
                 types = arguments.instrument_types or ["equity", "etf"]
                 _print_frame(client.market.market_watch(types, progress=True))
-            elif arguments.command == "option-chain":
+            elif arguments.source == "tsetmc" and arguments.command == "option-chain":
                 _print_frame(client.market.option_chain(arguments.underlying, progress=True))
         return 0
     if arguments.group == "ingest":

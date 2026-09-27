@@ -11,6 +11,13 @@
 .highlight {
   direction: ltr;
   text-align: left;
+  unicode-bidi: isolate;
+}
+
+.rtl-doc .ltr,
+[dir="rtl"] .ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .rtl-doc table,
@@ -25,4 +32,22 @@
 .sig.sig-object.py {
   direction: ltr;
   text-align: left;
+}
+
+/* In generated API entries, only the short description is Persian/RTL. */
+dl.py.function > dd > p:first-child,
+dl.py.method > dd > p:first-child,
+dl.py.property > dd > p:first-child,
+dl.py.class > dd > p:nth-child(2) {
+  direction: rtl;
+  text-align: right;
+  unicode-bidi: plaintext;
+}
+
+dl.py > dd > .field-list,
+dl.py > dd > .field-list p,
+dl.py > dd > .field-list li {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
 }

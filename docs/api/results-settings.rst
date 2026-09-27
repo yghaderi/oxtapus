@@ -1,5 +1,5 @@
-نتیجه، تنظیمات و enumها
-==============================
+نتیجه، تنظیمات و نوع‌های شمارشی
+===============================
 
 FetchResult
 -----------
@@ -13,6 +13,7 @@ Settings
 
 .. autoclass:: oxtapus.api.settings.Settings
    :members:
+   :exclude-members: model_config
    :member-order: bysource
    :show-inheritance:
 

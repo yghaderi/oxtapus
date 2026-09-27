@@ -5,9 +5,9 @@
 پارامترهای `start` و `end` اختیاری‌اند. حذف هرکدام یعنی آن سمت بازه محدود نمی‌شود:
 
 ```python
-all_rows = ox.asset_history("دلار")
-from_date = ox.asset_history("دلار", start="۱۴۰۳/۱۰/۱۲")
-until_date = ox.asset_history("دلار", end="۱۴۰۴/۱۰/۰۸")
+all_rows = ox.tgju.daily_prices("دلار")
+from_date = ox.tgju.daily_prices("دلار", start="1403/10/12")
+until_date = ox.tgju.daily_prices("دلار", end="1404/10/08")
 ```
 
 ## قالب‌های پذیرفته‌شده
@@ -15,18 +15,18 @@ until_date = ox.asset_history("دلار", end="۱۴۰۴/۱۰/۰۸")
 تاریخ شمسی با رقم‌های فارسی، عربی یا انگلیسی پذیرفته می‌شود:
 
 ```python
-ox.asset_history("یورو", start="۱۴۰۳-۱۰-۱۲")
-ox.asset_history("یورو", start="1403/10/12")
-ox.asset_history("یورو", start="1403.10.12")
-ox.asset_history("یورو", start="14031012")
+ox.tgju.daily_prices("یورو", start="1403-10-12")
+ox.tgju.daily_prices("یورو", start="1403/10/12")
+ox.tgju.daily_prices("یورو", start="1403.10.12")
+ox.tgju.daily_prices("یورو", start="14031012")
 ```
 
 Oxtapus تاریخ شمسی را با `jdatetime` به میلادی تبدیل می‌کند. تاریخ میلادی با همین چهار فرم و
-یک شیء `datetime.date` هم پذیرفته می‌شود. سال‌های ۱۲۰۰ تا ۱۵۹۹ شمسی و سال‌های ۱۸۰۰ تا ۲۱۹۹
+یک شیء `datetime.date` هم پذیرفته می‌شود. سال‌های 1200 تا 1599 شمسی و سال‌های 1800 تا 2199
 میلادی در نظر گرفته می‌شوند تا تقویم ورودی مبهم نباشد.
 
-ستون canonical به نام `trading_date` از نوع `date` و میلادی است. تاریخ شمسی خام TGJU نیز در
-ستون `jalali_date` حفظ می‌شود.
+ستون استاندارد `trading_date` از نوع `date` و میلادی است. تاریخ شمسی خام TGJU هم در ستون
+`jalali_date` حفظ می‌شود.
 
 ## خطای ورودی
 
@@ -34,10 +34,10 @@ Oxtapus تاریخ شمسی را با `jdatetime` به میلادی تبدیل �
 نام پارامتر، مقدار واردشده و قالب‌های مجاز را نشان می‌دهد:
 
 ```pycon
->>> ox.asset_history("دلار", start="۱۴۰۳/۱۳/۰۱")
+>>> ox.tgju.daily_prices("دلار", start="1403/13/01")
 Traceback (most recent call last):
 ...
-ValueError: Invalid start='۱۴۰۳/۱۳/۰۱'. Use a valid Jalali date ...
+ValueError: Invalid start='1403/13/01'. Use a valid Jalali date ...
 ```
 
 </div>

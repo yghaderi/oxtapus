@@ -2,12 +2,12 @@
 
 # دریافت و ذخیره‌سازی افزایشی
 
-`IngestionPipeline` پاسخ خام و تغییرناپذیر Bronze رو نگه می‌داره، رکوردهای Silver رو بر اساس
-کلید اصلی merge می‌کنه و در صورت نیاز دیتاست Gold می‌سازه. `CheckpointStore` پارتیشن، checksum
-و وضعیت کامل‌شدن رو ثبت می‌کنه تا اجرای دوباره بتونه کار تکراری رو رد کنه.
+`IngestionPipeline` پاسخ خام و تغییرناپذیر رو در لایهٔ Bronze نگه می‌داره، رکوردهای Silver رو
+بر اساس کلید اصلی ادغام می‌کنه و در صورت نیاز مجموعه‌دادهٔ Gold می‌سازه. `CheckpointStore`
+پارتیشن، checksum و وضعیت کامل‌شدن رو ثبت می‌کنه تا اجرای دوباره از پردازش تکراری رد بشه.
 
-در replay، داده از Bronze خونده می‌شه، checksum بررسی می‌شه و فقط تبدیل خالص و Gold builder
-اجرا می‌شن؛ هیچ درخواست شبکه‌ای زده نمی‌شه.
+در بازپخش (`replay`)، داده از Bronze خونده می‌شه، checksum بررسی می‌شه و فقط تبدیل‌های خالص و
+Gold builder اجرا می‌شن؛ هیچ درخواست شبکه‌ای زده نمی‌شه.
 
 ```python
 from oxtapus import Client, Settings
@@ -16,7 +16,7 @@ settings = Settings(storage_backend="parquet", data_directory="./market-data")
 with Client(settings) as client:
     run = client.ingestion.market_watch(progress=True)
     backfill = client.ingestion.daily_prices(
-        ["فولاد", "خودرو"], start="۱۴۰۳/۱۰/۱۲", end="۱۴۰۴/۱۰/۱۰"
+        ["فولاد", "خودرو"], start="1403/10/12", end="1404/10/10"
     )
 ```
 
