@@ -67,7 +67,9 @@ def parser() -> argparse.ArgumentParser:
         help="Repeat to select instrument types.",
     )
     chain = tsetmc_commands.add_parser("option-chain", help="Fetch an option chain.")
-    chain.add_argument("underlying", help="Underlying symbol or identifier.")
+    chain.add_argument(
+        "underlying", nargs="*", help="Underlying symbols or identifiers; omit for all contracts."
+    )
 
     fetch_tgju = fetch_sources.add_parser("tgju", help="Fetch data from TGJU.")
     tgju_commands = fetch_tgju.add_subparsers(dest="command", required=True)
@@ -86,7 +88,9 @@ def parser() -> argparse.ArgumentParser:
         help="Dataset to ingest.",
     )
     ingest.add_argument("--symbol", action="append", help="Daily-price symbol; repeatable.")
-    ingest.add_argument("--underlying", help="Option-chain underlying symbol.")
+    ingest.add_argument(
+        "--underlying", action="append", help="Option-chain underlying; repeat or omit for all."
+    )
     ingest.add_argument("--start", help="Optional first Jalali or Gregorian date, inclusive.")
     ingest.add_argument("--end", help="Optional last Jalali or Gregorian date, inclusive.")
     backfill = groups.add_parser("backfill", help="Backfill a configured date range.")
@@ -174,13 +178,15 @@ def main(argv: Sequence[str] | None = None) -> int:
                 types = arguments.instrument_types or ["equity", "etf"]
                 _print_frame(client.market.market_watch(types, progress=True))
             elif arguments.source == "tsetmc" and arguments.command == "option-chain":
-                _print_frame(client.market.option_chain(arguments.underlying, progress=True))
+                _print_frame(
+                    client.market.option_chain(arguments.underlying or None, progress=True)
+                )
         return 0
     if arguments.group == "ingest":
         with Client(settings) as client:
             if arguments.dataset == "market_snapshot":
                 run = client.ingestion.market_watch(progress=True)
-            elif arguments.dataset == "option_chain" and arguments.underlying:
+            elif arguments.dataset == "option_chain":
                 run = client.ingestion.option_chain(arguments.underlying, progress=True)
             elif arguments.dataset == "daily_price" and arguments.symbol:
                 run = client.ingestion.daily_prices(
@@ -190,9 +196,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     progress=True,
                 )
             else:
-                sys.stderr.write(
-                    "daily_price requires --symbol; option_chain requires --underlying.\n"
-                )
+                sys.stderr.write("daily_price requires --symbol.\n")
                 return 2
         _print_ingestion(run)
         return 0

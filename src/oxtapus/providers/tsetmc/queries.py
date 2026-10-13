@@ -98,12 +98,14 @@ class BoardMembersQuery(QueryModel):
 
 
 class OptionChainQuery(QueryModel):
-    """Fetch the option chain for one underlying instrument."""
+    """Fetch all option contracts, optionally selecting underlying symbols or codes."""
 
-    underlying_symbol: str
-    underlying_tsetmc_instrument_code: str = Field(pattern=r"^[0-9]{5,20}$")
+    underlyings: tuple[str, ...] = ()
 
-    @field_validator("underlying_symbol")
+    @field_validator("underlyings")
     @classmethod
-    def normalize_symbol(cls, value: str) -> str:
-        return normalize_persian(value)
+    def normalize_underlyings(cls, value: tuple[str, ...]) -> tuple[str, ...]:
+        normalized = tuple(dict.fromkeys(normalize_persian(item) for item in value))
+        if any(not item for item in normalized):
+            raise ValueError("Underlying selections cannot contain empty identifiers.")
+        return normalized

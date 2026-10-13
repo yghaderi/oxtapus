@@ -12,6 +12,7 @@ import polars as pl
 
 from oxtapus.application.batch import run_batch, run_batch_async
 from oxtapus.application.results import ServiceResult
+from oxtapus.application.services.options import option_chain_query, option_chain_query_async
 from oxtapus.data.lineage import Lineage, LineageNode
 from oxtapus.data.quality import validate_daily_prices
 from oxtapus.domain.enums import DataLayer, FailureMode, ProviderCapability
@@ -23,7 +24,6 @@ from oxtapus.providers.tsetmc.queries import (
     DailyPriceQuery,
     InvestorActivityQuery,
     MarketWatchQuery,
-    OptionChainQuery,
     OrderBookQuery,
     QuoteQuery,
 )
@@ -190,47 +190,24 @@ class MarketDataService:
             ),
         )
 
-    def option_chain(self, underlying: str, *, reporter: ProgressReporter) -> ServiceResult:
-        """Resolve an underlying and retrieve its canonical option contracts."""
+    def option_chain(
+        self, underlyings: tuple[str, ...], *, reporter: ProgressReporter
+    ) -> ServiceResult:
+        """Retrieve one bulk option snapshot and select zero or more underlyings."""
 
-        operation_id = uuid.uuid4().hex
-        started = time.monotonic()
-        reporter.emit(
-            OperationStarted(
+        return self._single(
+            {"underlying": list(underlyings) if underlyings else None},
+            ProviderCapability.OPTION_CHAIN,
+            "option_chain",
+            "construct_option_chain",
+            reporter,
+            lambda operation_id: self._provider.option_chain(
+                option_chain_query(
+                    underlyings, self._resolver, reporter=reporter, operation_id=operation_id
+                ),
+                reporter=reporter,
                 operation_id=operation_id,
-                capability=ProviderCapability.OPTION_CHAIN.value,
-                total_items=1,
-            )
-        )
-        instrument = self._resolver.resolve(
-            underlying, reporter=reporter, operation_id=operation_id
-        )
-        execution = self._provider.option_chain(
-            OptionChainQuery(
-                underlying_symbol=instrument.symbol,
-                underlying_tsetmc_instrument_code=instrument.tsetmc_instrument_code,
             ),
-            reporter=reporter,
-            operation_id=operation_id,
-        )
-        reporter.emit(
-            OperationCompleted(
-                operation_id=operation_id,
-                total=1,
-                success_count=1,
-                failure_count=0,
-                retry_count=execution.response.retry_count,
-            )
-        )
-        return _single_result(
-            execution,
-            query={"underlying": underlying},
-            capability=ProviderCapability.OPTION_CHAIN,
-            dataset="option_chain",
-            operation="construct_option_chain",
-            operation_id=operation_id,
-            elapsed=time.monotonic() - started,
-            provider=self._provider.name,
         )
 
     def _single(
@@ -440,29 +417,26 @@ class AsyncMarketDataService:
             ),
         )
 
-    async def option_chain(self, underlying: str, *, reporter: ProgressReporter) -> ServiceResult:
-        operation_id = uuid.uuid4().hex
-        started = time.monotonic()
-        instrument = await self._resolver.resolve(
-            underlying, reporter=reporter, operation_id=operation_id
-        )
-        execution = await self._provider.option_chain(
-            OptionChainQuery(
-                underlying_symbol=instrument.symbol,
-                underlying_tsetmc_instrument_code=instrument.tsetmc_instrument_code,
-            ),
-            reporter=reporter,
-            operation_id=operation_id,
-        )
-        return _single_result(
-            execution,
-            query={"underlying": underlying},
-            capability=ProviderCapability.OPTION_CHAIN,
-            dataset="option_chain",
-            operation="construct_option_chain",
-            operation_id=operation_id,
-            elapsed=time.monotonic() - started,
-            provider=self._provider.name,
+    async def option_chain(
+        self, underlyings: tuple[str, ...], *, reporter: ProgressReporter
+    ) -> ServiceResult:
+        """Retrieve and filter one bulk option snapshot using native async access."""
+
+        async def fetch(operation_id: str):
+            query = await option_chain_query_async(
+                underlyings, self._resolver, reporter=reporter, operation_id=operation_id
+            )
+            return await self._provider.option_chain(
+                query, reporter=reporter, operation_id=operation_id
+            )
+
+        return await self._single(
+            {"underlying": list(underlyings) if underlyings else None},
+            ProviderCapability.OPTION_CHAIN,
+            "option_chain",
+            "construct_option_chain",
+            reporter,
+            fetch,
         )
 
     async def _single(

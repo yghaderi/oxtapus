@@ -9,7 +9,12 @@ from datetime import date
 
 import polars as pl
 
-from oxtapus.api._shared import normalize_symbols, parse_date, require_unadjusted
+from oxtapus.api._shared import (
+    normalize_symbols,
+    normalize_underlyings,
+    parse_date,
+    require_unadjusted,
+)
 from oxtapus.api.results import FetchResult
 from oxtapus.api.settings import Settings
 from oxtapus.application.services import (
@@ -147,18 +152,30 @@ class MarketNamespace:
             self._service.investor_activity(identifier, reporter=self._reporter(progress))
         )
 
-    def option_chain(self, underlying: str, *, progress: ProgressOption = None) -> pl.DataFrame:
-        """برای ``underlying``، یک ردیف استاندارد برای هر قرارداد اختیار برمی‌گرداند."""
+    def option_chain(
+        self, underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
+    ) -> pl.DataFrame:
+        """قراردادهای اختیار همهٔ دارایی‌های پایه یا دارایی‌های انتخاب‌شده را برمی‌گرداند.
+
+        Args:
+            underlying: One underlying identifier or a sequence; ``None`` selects all.
+            progress: Progress reporting configuration or event callback.
+
+        Returns:
+            A Polars DataFrame with one row per matching option contract.
+        """
 
         return self.fetch_option_chain(underlying, progress=progress).data
 
     def fetch_option_chain(
-        self, underlying: str, *, progress: ProgressOption = None
+        self, underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
     ) -> FetchResult:
         """قراردادهای اختیار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
         return FetchResult.from_service(
-            self._service.option_chain(underlying, reporter=self._reporter(progress))
+            self._service.option_chain(
+                normalize_underlyings(underlying), reporter=self._reporter(progress)
+            )
         )
 
     def _reporter(self, option: ProgressOption):
@@ -308,11 +325,13 @@ class IngestionNamespace:
             ),
         )
 
-    def option_chain(self, underlying: str, *, progress: ProgressOption = None) -> IngestionRun:
+    def option_chain(
+        self, underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
+    ) -> IngestionRun:
         """quoteهای اختیار Bronze/Silver و زنجیرهٔ Gold را ذخیره می‌کند."""
 
         return self._service.option_chain(
-            underlying,
+            normalize_underlyings(underlying),
             reporter=make_progress_reporter(
                 self._settings.progress if progress is None else progress
             ),

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0 — 2026-10-13
+
+- ``tsetmc.option_chain()``, sync/async market clients, and persisted ingestion now
+  accept no underlying (all contracts), one identifier, or a sequence of identifiers.
+- Symbols and TSETMC instrument codes are selected from one bulk option-market request;
+  ISIN and provider identifiers retain explicit resolution support.
+- Empty option results preserve canonical column types; selections are normalized and
+  duplicate contracts are removed. Invalid or empty selections fail before remote access.
+- Extended CLI option fetching and ingestion to all or multiple underlyings, and documented
+  the new forms and uv installation/upgrade commands in Persian.
+- Added Python 3.15 support and CI coverage for Python 3.11 through 3.15.
+
 ## 1.2.0 — 2026-09-27
 
 - Replaced ambiguous root shortcuts with explicit ``oxtapus.tsetmc`` and ``oxtapus.tgju``

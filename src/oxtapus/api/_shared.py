@@ -9,7 +9,7 @@ from datetime import date
 import jdatetime
 
 from oxtapus.domain.errors import UnsupportedCapabilityError
-from oxtapus.domain.identifiers import normalize_persian
+from oxtapus.domain.identifiers import classify_identifier, normalize_persian
 
 _DATE_PATTERN = re.compile(
     r"^(?P<year>\d{4})(?:(?P<separator>[-/.])(?P<month>\d{1,2})(?P=separator)"
@@ -65,6 +65,22 @@ def normalize_symbols(symbols: Sequence[str]) -> tuple[str, ...]:
     if not values or any(not item for item in values):
         raise ValueError("symbols must contain at least one non-empty identifier.")
     return values
+
+
+def normalize_underlyings(underlying: object) -> tuple[str, ...]:
+    """Validate optional option-chain selections before any remote access."""
+
+    if underlying is None:
+        return ()
+    values = (underlying,) if isinstance(underlying, str) else underlying
+    if not isinstance(values, Sequence) or any(not isinstance(item, str) for item in values):
+        raise TypeError("underlying must be a string, a sequence of strings, or None.")
+    normalized = tuple(dict.fromkeys(normalize_persian(item) for item in values))
+    if not normalized:
+        raise ValueError("underlying cannot be an empty sequence; use None for all contracts.")
+    for item in normalized:
+        classify_identifier(item)
+    return normalized
 
 
 def require_unadjusted(adjusted: bool) -> None:

@@ -7,11 +7,12 @@ from dataclasses import dataclass
 from datetime import date
 
 from oxtapus.application.ingestion import IngestionPipeline, LayeredIngestionResult
+from oxtapus.application.services.options import option_chain_query
 from oxtapus.domain.instruments import Instrument
 from oxtapus.progress.reporter import ProgressReporter
 from oxtapus.providers.base import FetchFailure
 from oxtapus.providers.tsetmc.provider import TsetmcProvider
-from oxtapus.providers.tsetmc.queries import DailyPriceQuery, MarketWatchQuery, OptionChainQuery
+from oxtapus.providers.tsetmc.queries import DailyPriceQuery, MarketWatchQuery
 from oxtapus.providers.tsetmc.resolver import InstrumentResolver
 from oxtapus.storage.base import StorageBackend
 
@@ -99,20 +100,16 @@ class IngestionService:
 
     def option_chain(
         self,
-        underlying: str,
+        underlyings: tuple[str, ...],
         *,
         reporter: ProgressReporter,
     ) -> IngestionRun:
         """Persist one option Bronze, Silver quote set, and Gold chain."""
 
         operation_id = uuid.uuid4().hex
-        instrument = self._resolver.resolve(
-            underlying, reporter=reporter, operation_id=operation_id
-        )
         execution = self._provider.option_chain(
-            OptionChainQuery(
-                underlying_symbol=instrument.symbol,
-                underlying_tsetmc_instrument_code=instrument.tsetmc_instrument_code,
+            option_chain_query(
+                underlyings, self._resolver, reporter=reporter, operation_id=operation_id
             ),
             reporter=reporter,
             operation_id=operation_id,

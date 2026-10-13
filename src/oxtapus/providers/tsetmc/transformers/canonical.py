@@ -383,34 +383,36 @@ def transform_option_chain(
     """Flatten paired put/call source records into one row per contract."""
 
     models = _validate_many(OptionPairSource, records)
+    selections = set(query.underlyings)
     rows: list[dict[str, object]] = []
     for item in models:
-        if item.uaInsCode != query.underlying_tsetmc_instrument_code:
+        if selections and not selections.intersection(
+            (item.uaInsCode, normalize_persian(item.lval30_UA))
+        ):
             continue
         expiration = _parse_date_text(item.endDate, "endDate")
         rows.extend(
             [
-                _option_row(item, query, expiration, "put"),
-                _option_row(item, query, expiration, "call"),
+                _option_row(item, expiration, "put"),
+                _option_row(item, expiration, "call"),
             ]
         )
-    frame = pl.DataFrame(rows)
+    frame = pl.DataFrame(rows, schema=_option_schema())
     if frame.height:
         frame = frame.unique(subset=["tsetmc_instrument_code"], keep="last").sort(
-            ["expiration_date", "strike_price", "option_type"]
+            ["underlying_symbol", "expiration_date", "strike_price", "option_type"]
         )
     return TransformOutput(data=frame, unknown_fields=_unknown_fields(models))
 
 
 def _option_row(
     item: OptionPairSource,
-    query: OptionChainQuery,
     expiration: date,
     option_type: str,
 ) -> dict[str, object]:
     suffix = "P" if option_type == "put" else "C"
     return {
-        "underlying_symbol": query.underlying_symbol,
+        "underlying_symbol": normalize_persian(item.lval30_UA),
         "underlying_tsetmc_instrument_code": item.uaInsCode,
         "option_type": option_type,
         "option_style": None,
@@ -440,6 +442,35 @@ def _validate_many(model: type[S], records: list[dict[str, object]]) -> list[S]:
         return [model.model_validate(record) for record in records]
     except ValidationError as exc:
         raise SchemaValidationError(f"{model.__name__} violates its source contract.") from exc
+
+
+def _option_schema() -> pl.Schema:
+    return pl.Schema(
+        {
+            "underlying_symbol": pl.String,
+            "underlying_tsetmc_instrument_code": pl.String,
+            "option_type": pl.String,
+            "option_style": pl.String,
+            "symbol": pl.String,
+            "instrument_name": pl.String,
+            "tsetmc_instrument_code": pl.String,
+            "strike_price": pl.Int64,
+            "expiration_date": pl.Date,
+            "days_to_expiration": pl.Int64,
+            "contract_multiplier": pl.Int64,
+            "open_interest": pl.Int64,
+            "close_price": pl.Int64,
+            "last_price": pl.Int64,
+            "previous_close_price": pl.Int64,
+            "trade_count": pl.Int64,
+            "trade_volume": pl.Int64,
+            "trade_value": pl.Int64,
+            "bid_price": pl.Int64,
+            "bid_size": pl.Int64,
+            "ask_price": pl.Int64,
+            "ask_size": pl.Int64,
+        }
+    )
 
 
 def _unknown_fields(models: Sequence[SourceModel]) -> tuple[str, ...]:

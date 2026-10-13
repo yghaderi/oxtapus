@@ -1,5 +1,7 @@
 """CLI commands remain thin, offline where possible, and English."""
 
+import pytest
+
 from oxtapus.cli.app import main, parser
 
 
@@ -24,3 +26,9 @@ def test_cli_parses_source_qualified_tgju_daily_prices() -> None:
     assert arguments.command == "daily-prices"
     assert arguments.asset == "دلار نیما"
     assert arguments.start == "1403/10/12"
+
+
+@pytest.mark.parametrize("underlyings", [[], ["فولاد"], ["فولاد", "خودرو"]])
+def test_cli_parses_bulk_option_selection(underlyings) -> None:
+    arguments = parser().parse_args(["fetch", "tsetmc", "option-chain", *underlyings])
+    assert arguments.underlying == underlyings

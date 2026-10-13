@@ -183,15 +183,21 @@ def board_members(identifier: str, *, progress: ProgressOption = None) -> pl.Dat
         return client.governance.board_members(identifier, progress=progress)
 
 
-def option_chain(underlying: str, *, progress: ProgressOption = None) -> pl.DataFrame:
+def option_chain(
+    underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
+) -> pl.DataFrame:
     """داده‌های نمای بازار اختیار معامله را برمی‌گرداند.
 
     Args:
-        underlying: An underlying symbol, ISIN, or TSETMC instrument code.
+        underlying: One underlying symbol, ISIN, or TSETMC instrument code, or a
+            sequence of these identifiers. Omit it or pass ``None`` for all contracts.
+            An empty sequence is invalid. Unmatched symbols or codes return no rows.
         progress: Progress reporting configuration or event callback.
 
     Returns:
         A Polars DataFrame containing one canonical row per matching option contract.
+        Symbols and instrument codes are filtered from a single bulk request;
+        ISINs and provider identifiers require additional resolution requests.
     """
 
     with Client() as client:

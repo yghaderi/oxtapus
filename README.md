@@ -1,4 +1,4 @@
-# Oxtapus 1.2
+# Oxtapus 1.3
 
 <p align="center">
   <a href="https://github.com/yghaderi/oxtapus/actions/workflows/ci.yml">
@@ -50,7 +50,7 @@ python -m pip install oxtapus
 
 <div align="right">
 
-&#x2067;نسخه‌های &#x2066;3.11&#x2069; تا &#x2066;3.14&#x2069; پایتون پشتیبانی می‌شن. اگه
+&#x2067;نسخه‌های &#x2066;3.11&#x2069; تا &#x2066;3.15&#x2069; پایتون پشتیبانی می‌شن. اگه
 یکپارچه‌سازی‌های اختیاری رو هم می‌خوای، باید موقع نصب مشخصشون کنی:&#x2069;
 
 </div>
@@ -92,6 +92,19 @@ nima = ox.tgju.daily_prices("دلار نیما")
 eur = ox.tgju.daily_prices("یورو")
 emami = ox.tgju.daily_prices("سکه امامی")
 half = ox.tgju.daily_prices("نیم‌سکه")
+```
+
+<div align="right">
+
+&#x2067;برای قراردادهای اختیار معامله، بدون ورودی همهٔ دارایی‌های پایه رو می‌گیری. اگه فقط
+بعضی دارایی‌ها رو می‌خوای، یک نماد یا فهرست نمادها رو بده:&#x2069;
+
+</div>
+
+```python
+all_options = ox.tsetmc.option_chain()
+foolad_options = ox.tsetmc.option_chain("فولاد")
+selected_options = ox.tsetmc.option_chain(["فولاد", "خودرو"])
 ```
 
 <div align="right">

@@ -68,6 +68,14 @@ TSETMC: قیمت و بازار
 
 .. autofunction:: oxtapus.tsetmc.option_chain
 
+.. code-block:: python
+
+   import oxtapus as ox
+
+   all_options = ox.tsetmc.option_chain()
+   single_underlying = ox.tsetmc.option_chain("فولاد")
+   selected_underlyings = ox.tsetmc.option_chain(["فولاد", "خودرو"])
+
 .. raw:: html
 
    </div>

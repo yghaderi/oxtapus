@@ -240,7 +240,22 @@ def payload_for(url: str) -> dict[str, object]:
                     "lVal18AFC_C": "ضفولاد",
                     "pClosing_P": 90,
                     "pClosing_C": 110,
-                }
+                },
+                {
+                    "insCode_P": "333333",
+                    "insCode_C": "444444",
+                    "contractSize": 1000,
+                    "uaInsCode": "65883838195688438",
+                    "lVal18AFC_P": "طخودرو",
+                    "lVal30_P": "اختیار فروش خودرو",
+                    "lval30_UA": "خودرو",
+                    "endDate": "20261221",
+                    "strikePrice": 2000,
+                    "lVal30_C": "اختیار خرید خودرو",
+                    "lVal18AFC_C": "ضخودرو",
+                    "pClosing_P": None,
+                    "pClosing_C": 150,
+                },
             ]
         }
     if "summary-table-data" in url:

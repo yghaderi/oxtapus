@@ -9,7 +9,12 @@ from datetime import date
 
 import polars as pl
 
-from oxtapus.api._shared import normalize_symbols, parse_date, require_unadjusted
+from oxtapus.api._shared import (
+    normalize_symbols,
+    normalize_underlyings,
+    parse_date,
+    require_unadjusted,
+)
 from oxtapus.api.results import FetchResult
 from oxtapus.api.settings import Settings
 from oxtapus.application.services import (
@@ -144,18 +149,28 @@ class AsyncMarketNamespace:
         return FetchResult.from_service(result)
 
     async def option_chain(
-        self, underlying: str, *, progress: ProgressOption = None
+        self, underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
     ) -> pl.DataFrame:
-        """برای ``underlying``، یک ردیف استاندارد برای هر قرارداد اختیار برمی‌گرداند."""
+        """قراردادهای اختیار همهٔ دارایی‌های پایه یا دارایی‌های انتخاب‌شده را برمی‌گرداند.
+
+        Args:
+            underlying: One underlying identifier or a sequence; ``None`` selects all.
+            progress: Progress reporting configuration or event callback.
+
+        Returns:
+            A Polars DataFrame with one row per matching option contract.
+        """
 
         return (await self.fetch_option_chain(underlying, progress=progress)).data
 
     async def fetch_option_chain(
-        self, underlying: str, *, progress: ProgressOption = None
+        self, underlying: str | Sequence[str] | None = None, *, progress: ProgressOption = None
     ) -> FetchResult:
         """قراردادهای اختیار را همراه فرادادهٔ عملیاتی برمی‌گرداند."""
 
-        result = await self._service.option_chain(underlying, reporter=self._reporter(progress))
+        result = await self._service.option_chain(
+            normalize_underlyings(underlying), reporter=self._reporter(progress)
+        )
         return FetchResult.from_service(result)
 
     def _reporter(self, option: ProgressOption) -> ProgressReporter:
