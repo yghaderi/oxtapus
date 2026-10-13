@@ -1,0 +1,31 @@
+name: publish-pypi
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tested release tag to publish
+        required: true
+        default: v1.3.0
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --locked --group dev
+      - run: uv run pytest -m "not live"
+      - run: uv build
+      - name: Publish validated release distributions
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_RELEASE_TOKEN }}
+        run: uv publish --trusted-publishing never --check-url https://pypi.org/simple dist/*
