@@ -11,6 +11,8 @@
 - Extended CLI option fetching and ingestion to all or multiple underlyings, and documented
   the new forms and uv installation/upgrade commands in Persian.
 - Added Python 3.15 support and CI coverage for Python 3.11 through 3.15.
+- Updated Python 3.15 dependency minima for native wheels and used Polars expressions
+  for ISIN resolution across supported Python versions.
 
 ## 1.2.0 — 2026-09-27
 

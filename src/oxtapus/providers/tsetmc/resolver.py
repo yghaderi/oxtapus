@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 
+import polars as pl
+
 from oxtapus.domain.enums import InstrumentState
 from oxtapus.domain.errors import AmbiguousInstrumentError, InstrumentNotFoundError
 from oxtapus.domain.identifiers import IdentifierKind, classify_identifier, normalize_persian
@@ -54,7 +56,7 @@ class InstrumentResolver:
         ).output.data
         upper = normalized.upper()
         matches = watch.filter(
-            watch["provider_instrument_id"].fill_null("").str.slice(0, 11) == upper[:11]
+            pl.col("provider_instrument_id").fill_null("").str.slice(0, 11) == upper[:11]
         )
         if matches.height == 0:
             raise InstrumentNotFoundError(identifier)
@@ -137,7 +139,7 @@ class AsyncInstrumentResolver:
         ).output.data
         upper = normalized.upper()
         matches = watch.filter(
-            watch["provider_instrument_id"].fill_null("").str.slice(0, 11) == upper[:11]
+            pl.col("provider_instrument_id").fill_null("").str.slice(0, 11) == upper[:11]
         )
         if matches.height == 0:
             raise InstrumentNotFoundError(identifier)
