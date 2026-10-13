@@ -34,7 +34,7 @@ classifiers = [
 dependencies = [
   "httpx2>=2.12,<3",
   "jdatetime>=6.1,<7",
-  "polars>=1.37,<2",
+  "polars>=2.0,<3",
   "pydantic>=2.11,<3; python_version < '3.15'",
   "pydantic>=2.14,<3; python_version >= '3.15'",
   "pydantic-settings>=2.10,<3",

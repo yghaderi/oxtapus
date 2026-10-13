@@ -2,6 +2,7 @@
 
 ## 1.3.0 — 2026-10-13
 
+- Upgraded the DataFrame engine dependency to Polars 2.x (``>=2.0,<3``).
 - ``tsetmc.option_chain()``, sync/async market clients, and persisted ingestion now
   accept no underlying (all contracts), one identifier, or a sequence of identifiers.
 - Symbols and TSETMC instrument codes are selected from one bulk option-market request;

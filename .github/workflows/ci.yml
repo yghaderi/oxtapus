@@ -25,6 +25,7 @@ jobs:
         run: uv sync --group dev
       - if: matrix.python-version == '3.15'
         run: uv sync --group dev --extra arrow --extra pandas
+      - run: uv run python -c "import sys, polars; print(sys.version); print(polars.__version__)"
       - run: uv run pytest -m "not live"
 
   quality:

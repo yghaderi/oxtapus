@@ -15,7 +15,8 @@ python -m pip install oxtapus
 %pip install oxtapus
 ```
 
-نسخهٔ اصلی همه‌چیز لازم برای دریافت داده و ساخت `Polars DataFrame` رو داره. تبدیل به Pandas
+نسخهٔ 1.3 روی Polars 2 اجرا می‌شه. نسخهٔ اصلی همه‌چیز لازم برای دریافت داده و ساخت
+`Polars DataFrame` رو داره. تبدیل به Pandas
 یا Arrow، ذخیره در DuckDB و HTTP/2 اختیاریه:
 
 ```bash
